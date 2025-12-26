@@ -7,6 +7,8 @@ abstract class AppColors {
 
   static const Color primary = Color(0xff0C1322);
   static const Color secondary = Color(0xff005430);
+  static const Color bgSecondary = Color(0xff151F24);
+  static const Color iconColor = Color(0xffA2A2A2);
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xff000000);
   static const Color positiveGreen = Color(0xff21D575);
