@@ -25,6 +25,7 @@ class _SetupWalletViewState extends State<SetupWalletView> {
       appBar: CustomAppBar(title: '', backgroundColor: Colors.transparent),
       body: Column(
         children: [
+
           10.h.height,
           Align(
             alignment: AlignmentGeometry.centerLeft,
