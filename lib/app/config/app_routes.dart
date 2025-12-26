@@ -20,6 +20,9 @@ import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controlle
 import 'package:safewallet/app/mvvm/view_model/profile_controllers/profile_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/splash_controller/splash_controller.dart';
 
+import '../mvvm/view/bottom_bar_view/bottom_bar_view.dart';
+import '../mvvm/view_model/bottom_bar_controller/bottom_bar_controller.dart';
+
 /// Defines navigation routes for the LayerX app.
 abstract class AppRoutes {
   AppRoutes._();
@@ -35,6 +38,7 @@ abstract class AppRoutes {
   static const String idCardVerificationView = '/idCardVerificationView';
   static const String biometricVerificationView = '/biometriVerificationView';
   static const String doneVerificationView = '/doneVerificationView';
+  static const String bottomBarView = '/bottomBarView';
 }
 
 abstract class AppPages {
@@ -117,6 +121,13 @@ abstract class AppPages {
       page: () => DoneVerificationView(),
       binding: BindingsBuilder(() {
         Get.lazyPut<DoneVerificationController>(() => DoneVerificationController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.bottomBarView,
+      page: () => BottomBarView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<BottomBarController>(() => BottomBarController());
       }),
     ),
     // GetPage(

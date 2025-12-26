@@ -79,7 +79,7 @@ class _BottomBarViewState extends State<BottomBarView> {
           child: Column(
             children: [
               8.h.height,
-              SvgPicture.asset(isSelected ? activeIcon : icon),
+              Image.asset(isSelected ? activeIcon : icon,color: isSelected ? AppColors.secondary : AppColors.iconColor, height: 25.h,),
               8.h.height,
               Text(
                 label,
