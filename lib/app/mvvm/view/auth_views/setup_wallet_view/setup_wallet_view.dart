@@ -25,17 +25,17 @@ class _SetupWalletViewState extends State<SetupWalletView> {
       appBar: CustomAppBar(title: '', backgroundColor: Colors.transparent),
       body: Column(
         children: [
-
           10.h.height,
           Align(
-            alignment: AlignmentGeometry.centerLeft,
+            alignment: Alignment.centerLeft,
+
             child: Text(
               'Setup Your Wallet',
               style: AppTextStyles.customText24(color: Colors.white, fontWeight: FontWeight.w700),
             ),
           ),
           Align(
-            alignment: AlignmentGeometry.centerLeft,
+            alignment: Alignment.centerLeft,
             child: Text('Create a new wallet or import an existing one', style: AppTextStyles.customText14(color: Colors.white)),
           ),
           25.h.height,
