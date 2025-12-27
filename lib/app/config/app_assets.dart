@@ -38,6 +38,9 @@ class AppAssets {
   static const String volumeIcon = '$imagesPath/volume_icon.png';
   static const String backgroundCardImg = '$imagesPath/background_card.png';
   static const String kycIcon = '$imagesPath/kyc_check.png';
+  static const String biometricIcon = '$imagesPath/biometric_icon.png';
+  static const String keyIcon = '$imagesPath/key_icon.png';
+  static const String privacyIcon = '$imagesPath/privacy_icon.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';

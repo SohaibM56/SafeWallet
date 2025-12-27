@@ -31,6 +31,7 @@ import 'package:safewallet/app/mvvm/view_model/splash_controller/splash_controll
 import '../mvvm/view/bottom_bar_view/bottom_bar_view.dart';
 import '../mvvm/view/bottom_bar_view/setting_views/support_view.dart';
 import '../mvvm/view_model/bottom_bar_controller/bottom_bar_controller.dart';
+import '../mvvm/view_model/phrase_controller/phrase_controller.dart';
 
 /// Defines navigation routes for the LayerX app.
 abstract class AppRoutes {
@@ -170,7 +171,9 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.recoveryPhaseView,
       page: () => RecoveryPhaseView(),
-      binding: BindingsBuilder(() {}),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<PhraseController>(() => PhraseController());
+      }),
     ),
     GetPage(
       name: AppRoutes.walletView,

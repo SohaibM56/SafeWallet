@@ -7,6 +7,7 @@ import 'package:safewallet/app/config/app_colors.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/widgets/custom_menu_tile.dart';
+import 'package:safewallet/app/widgets/custom_sheets/crypto_wallet_sheet.dart';
 import 'package:safewallet/app/widgets/custom_sheets/language_select_sheet.dart';
 import 'package:safewallet/app/widgets/custom_sheets/personal_info_sheet.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
@@ -233,6 +234,12 @@ class _ProfileViewState extends State<ProfileView> {
                             icon: AppAssets.shieldIcon,
                             title: 'KYC Status',
                             isApproved: true,
+
+                            onTap: () => Utils.showBottomSheet(
+                              context: context,
+                              child: CryptoWalletSheet(),
+                            ),
+
                           ),
                           Divider(
                             color: Colors.white.withValues(alpha: 0.1),

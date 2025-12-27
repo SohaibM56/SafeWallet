@@ -43,4 +43,6 @@ abstract class AppColors {
   static const Color overlayDim = Colors.black54;
   static const Color accent = Color(0xFF2F80ED);
   static const Color warningAmber = Color(0xffdea60e);
+  static const Color faintBgColor = Color(0xfff3f3f4);
+  static const Color faintColor = Color(0xff888888);
 }
