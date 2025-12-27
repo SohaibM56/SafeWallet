@@ -1,8 +1,13 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/home_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/profile_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/reward_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/trade_view.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 import '../../../config/app_assets.dart';
@@ -18,30 +23,32 @@ class BottomBarView extends StatefulWidget {
 }
 
 class _BottomBarViewState extends State<BottomBarView> {
-  List screens = <Widget>[Container(color: Colors.grey,), Container(color: Colors.amber,), Container(color: Colors.red,),
-    // WalletView(),
-    Container(color: Colors.black26,),
-    Container(color: Colors.green,)];
+  List screens = <Widget>[
+    HomeView(),
+    TradeView(),
+    RewardView(),
+    ToolsView(),
+    ProfileView()
+  ];
 
   final BottomBarController barController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-
-
     return WillPopScope(
       onWillPop: () async {
         exit(0);
       },
       child: SafeArea(
-       top: false,
+        top: false,
         bottom: true,
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           extendBody: true,
           backgroundColor: AppColors.primary,
           body: Obx(() => screens[barController.selectedIndex.value]),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: Container(
             width: 1.sw,
             height: 70.h,
@@ -50,14 +57,39 @@ class _BottomBarViewState extends State<BottomBarView> {
               border: Border.all(color: AppColors.primary),
             ),
             child: Obx(
-                  () => Row(
+              () => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _bottomIconBuilder(index: 0, icon: AppAssets.home, label: 'Home', activeIcon: AppAssets.homeActive),
-                  _bottomIconBuilder(index: 1, icon: AppAssets.trade, label: 'Trade', activeIcon: AppAssets.trade),
-                  _bottomIconBuilder(index: 2, icon: AppAssets.rewards, label: 'Rewards', activeIcon: AppAssets.rewardsActive),
-                  _bottomIconBuilder(index: 3, icon: AppAssets.tool, label: 'Tools', activeIcon: AppAssets.toolActive),
-                  _bottomIconBuilder(index: 4, icon: AppAssets.profile, label: 'Profile', activeIcon: AppAssets.profileActive),
+                  _bottomIconBuilder(
+                    index: 0,
+                    icon: AppAssets.home,
+                    label: 'Home',
+                    activeIcon: AppAssets.homeActive,
+                  ),
+                  _bottomIconBuilder(
+                    index: 1,
+                    icon: AppAssets.trade,
+                    label: 'Trade',
+                    activeIcon: AppAssets.trade,
+                  ),
+                  _bottomIconBuilder(
+                    index: 2,
+                    icon: AppAssets.rewards,
+                    label: 'Rewards',
+                    activeIcon: AppAssets.rewardsActive,
+                  ),
+                  _bottomIconBuilder(
+                    index: 3,
+                    icon: AppAssets.tool,
+                    label: 'Tools',
+                    activeIcon: AppAssets.toolActive,
+                  ),
+                  _bottomIconBuilder(
+                    index: 4,
+                    icon: AppAssets.profile,
+                    label: 'Profile',
+                    activeIcon: AppAssets.profileActive,
+                  ),
                 ],
               ),
             ),
@@ -67,7 +99,12 @@ class _BottomBarViewState extends State<BottomBarView> {
     );
   }
 
-  Widget _bottomIconBuilder({int? index, required String icon, required String activeIcon, required String label}) {
+  Widget _bottomIconBuilder({
+    int? index,
+    required String icon,
+    required String activeIcon,
+    required String label,
+  }) {
     bool isSelected = barController.selectedIndex.value == index;
 
     return Expanded(
@@ -79,11 +116,19 @@ class _BottomBarViewState extends State<BottomBarView> {
           child: Column(
             children: [
               8.h.height,
-              Image.asset(isSelected ? activeIcon : icon,color: isSelected ? AppColors.secondary : AppColors.iconColor, height: 25.h,),
+              Image.asset(
+                isSelected ? activeIcon : icon,
+                color: isSelected ? AppColors.secondary : AppColors.iconColor,
+                height: 25.h,
+              ),
               8.h.height,
               Text(
                 label,
-                style: AppTextStyles.customText(fontSize: 10, fontWeight: FontWeight.w400, color: isSelected ? AppColors.secondary : AppColors.iconColor),
+                style: AppTextStyles.customText(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                  color: isSelected ? AppColors.secondary : AppColors.iconColor,
+                ),
               ),
             ],
           ),

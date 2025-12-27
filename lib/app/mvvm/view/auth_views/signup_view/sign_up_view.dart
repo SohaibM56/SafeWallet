@@ -8,7 +8,6 @@ import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controlle
 import 'package:safewallet/app/widgets/app_custom_button.dart';
 import 'package:safewallet/app/widgets/app_custom_field.dart';
 import 'package:safewallet/app/widgets/custom_app_bar.dart';
-import 'package:safewallet/app/widgets/custom_back_button.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 import '../../../../config/app_assets.dart';
@@ -186,7 +185,7 @@ class _SignUpViewState extends State<SignUpView> {
                     .animate(delay: 1000.ms)
                     .fadeIn(duration: 600.ms)
                     .scale(begin: const Offset(0.95, 0.95), curve: Curves.easeOutBack),
-                15.h.height,
+                40.h.height,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

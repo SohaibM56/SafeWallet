@@ -26,10 +26,16 @@ class AppAssets {
   static const String rewardsActive = '$imagesPath/rewards_active.png';
   static const String toolActive = '$imagesPath/tool_active.png';
   static const String tradeActive = '$imagesPath/trade_active.png';
+  static const String langIcon = '$imagesPath/lang_icon.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';
   static const String cameraIc = '$svgsPath/camera_ic.svg';
   static const String backButton = '$svgsPath/back_button.svg';
   static const String securityIcon = '$svgsPath/security_icon.svg';
+  static const String backgroundCard = '$svgsPath/background_card.svg';
+  static const String clipIcon = '$svgsPath/clip_icon.svg';
+  static const String notificationIcon = '$svgsPath/notification_icon.svg';
+  static const String kycLogo = '$svgsPath/kyc_logo.svg';
+  static const String logoutIcon = '$svgsPath/logout_icon.svg';
 }

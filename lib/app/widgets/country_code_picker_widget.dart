@@ -133,7 +133,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
               else
                 const SizedBox(width: 14),
               Icon(Icons.arrow_drop_down_rounded, size: 20, color: AppColors.black),
-              Container(
+              SizedBox(
                 height: 50.h,
                 child: VerticalDivider(color: Colors.black.withOpacity(0.1)).paddingVertical(12.h),
               ),

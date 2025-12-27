@@ -30,7 +30,7 @@ abstract class AppTextStyles {
     return GoogleFonts.poppins(fontSize: fontSize, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, height: height);
   }
 
-  static textStyleTextBotton({bool? isUnderline = true, String? fontFamily}) {
+  static TextStyle textStyleTextBotton({bool? isUnderline = true, String? fontFamily}) {
     return TextStyle(
       decoration: (isUnderline ?? true) ? TextDecoration.underline : null,
       color: AppColors.white.withOpacity(0.5),

@@ -110,6 +110,7 @@ class _LoginViewState extends State<LoginView> {
                 AppCustomButton(
                       title: AppStrings.logIn,
                       onPressed: () async {
+                        Get.toNamed(AppRoutes.bottomBarView);
                         //   if (!formKey.currentState!.validate()) {
                         //     return;
                         //   }
@@ -135,7 +136,7 @@ class _LoginViewState extends State<LoginView> {
                     .animate(delay: 900.ms)
                     .fadeIn(duration: 500.ms)
                     .scale(begin: const Offset(0.9, 0.9), curve: Curves.easeOutBack),
-                15.h.height,
+                50.h.height,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

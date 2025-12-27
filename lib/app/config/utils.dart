@@ -1,4 +1,5 @@
 /// Provides utility functions for the LayerX app.
+library;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -68,7 +69,7 @@ class Utils {
       ),
       context: context,
       builder: (context) {
-        return Container(width: ScreenUtil().screenWidth, child: child);
+        return SizedBox(width: ScreenUtil().screenWidth, child: child);
       },
     );
   }
@@ -129,7 +130,7 @@ class Utils {
     );
   }
 
-  static showErrorDialog(BuildContext context, String message) {
+  static void showErrorDialog(BuildContext context, String message) {
     showDialog(
       context: context,
       builder: (context) {
