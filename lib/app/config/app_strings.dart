@@ -79,6 +79,7 @@ abstract class AppStrings {
   static const String confirmed = 'Confirmed';
   static const String completed = 'Completed';
   static const String personalInformation = 'Personal Information';
+  static const String personalInfo = 'Personal Info';
   static const String pushNotifications = 'Push Notifications';
   static const String termsOfService = 'Terms of Service';
   static const String signOut = 'Sign out';

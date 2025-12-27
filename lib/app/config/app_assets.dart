@@ -27,6 +27,9 @@ class AppAssets {
   static const String toolActive = '$imagesPath/tool_active.png';
   static const String tradeActive = '$imagesPath/trade_active.png';
   static const String langIcon = '$imagesPath/lang_icon.png';
+  static const String currencyIcon = '$imagesPath/currency_icon.png';
+  static const String shieldIcon = '$imagesPath/shield_icon.png';
+  static const String supportIcon = '$imagesPath/support_icon.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';

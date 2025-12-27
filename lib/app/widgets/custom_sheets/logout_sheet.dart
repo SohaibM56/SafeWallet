@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/config/app_colors.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
+import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/widgets/app_custom_button.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
@@ -19,6 +20,7 @@ class LogoutSheet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Drag handle
+          5.h.height,
           Center(
             child: Container(
               width: 48.w,
@@ -35,50 +37,33 @@ class LogoutSheet extends StatelessWidget {
               onTap: () {
                 Get.back();
               },
-              child: Container(
-                padding: EdgeInsets.all(8.sp),
-                decoration: BoxDecoration(
-                  color: Color(0xffE6E6E6),
-                  borderRadius: BorderRadius.circular(50.r),
-                ),
-                child: Icon(Icons.close, color: Color(0xff848484), size: 16.sp),
-              ),
+              child: Icon(Icons.close, color: AppColors.black, size: 24.sp),
             ),
-          ),
-
-          30.h.height,
-
-          // Title
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'Are you sure you want to log out?',
-                style: AppTextStyles.customText(
-                  color: Colors.black,
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              4.h.height,
-
-              // Subtitle
-              Text(
-                'You can sign back in at any time',
-                style: AppTextStyles.customText(
-                  color: Colors.black,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
+          ).paddingRight(5.w),
 
           20.h.height,
 
+          // Title
+          Text(
+            textAlign: TextAlign.center,
+            'Are you sure you want\nto logout from this account?',
+            style: AppTextStyles.customText(
+              color: Colors.black,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600,
+            ),
+          ).animate()
+              .fadeIn(duration: 600.ms, delay: 300.ms)
+              .scale(
+            begin: const Offset(0.7, 0.7),
+            curve: Curves.easeOutBack,
+          ),
+
+          24.h.height,
+
           AppCustomButton(
-                title: 'Log Out',
-                borderRadius: 12.r,
+                title: 'Logout',
+                borderRadius: 80.r,
                 onPressed: () async {
                   // try {
                   //   GetLoader.showAppLoader();
@@ -97,9 +82,9 @@ class LogoutSheet extends StatelessWidget {
                   //   GlobalVariables.errorMessages.showError();
                   // }
                 },
-                bgColor: AppColors.primary,
+                bgColor: AppColors.secondary,
               )
-              .paddingSymmetric(horizontal: 30.w)
+              .paddingSymmetric(horizontal: 35.w)
               .animate()
               .fadeIn(duration: 600.ms, delay: 600.ms)
               .slideY(begin: 0.2, end: 0, delay: 600.ms)
@@ -110,9 +95,9 @@ class LogoutSheet extends StatelessWidget {
                 delay: 600.ms,
               ),
 
-          20.h.height,
+          12.h.height,
         ],
-      ).paddingAll(20.sp),
+      ).paddingAll(10.sp),
     );
   }
 }

@@ -8,6 +8,11 @@ import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_vie
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/done_verification.view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/id_card_verification_view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/selfie_verification_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/recovery_phase_view/recovery_phase_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/regulatory_identity_view/buy_asset_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/regulatory_identity_view/regulatory_identity_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/setting_views/currency_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/wallet_view/wallet_view.dart';
 import 'package:safewallet/app/mvvm/view/get_started_view/get_started_view.dart';
 import 'package:safewallet/app/mvvm/view/splash_view/splash_view.dart';
 import 'package:safewallet/app/mvvm/view_model/auth_controller/forgot_password_controller/forgot_password_controller.dart';
@@ -21,6 +26,7 @@ import 'package:safewallet/app/mvvm/view_model/profile_controllers/profile_contr
 import 'package:safewallet/app/mvvm/view_model/splash_controller/splash_controller.dart';
 
 import '../mvvm/view/bottom_bar_view/bottom_bar_view.dart';
+import '../mvvm/view/bottom_bar_view/setting_views/support_view.dart';
 import '../mvvm/view_model/bottom_bar_controller/bottom_bar_controller.dart';
 
 /// Defines navigation routes for the LayerX app.
@@ -39,6 +45,12 @@ abstract class AppRoutes {
   static const String biometricVerificationView = '/biometriVerificationView';
   static const String doneVerificationView = '/doneVerificationView';
   static const String bottomBarView = '/bottomBarView';
+  static const String supportView = '/supportView';
+  static const String currencyView = '/currencyView';
+  static const String recoveryPhaseView = '/recoveryPhaseView';
+  static const String walletView = '/walletView';
+  static const String regulatoryIdentityView = '/regulatoryIdentityView';
+  static const String buyAssetView = '/buyAssetView';
 }
 
 abstract class AppPages {
@@ -99,28 +111,36 @@ abstract class AppPages {
       name: AppRoutes.selfieVerificationView,
       page: () => SelfieVerificationView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut<SelfieVerificationController>(() => SelfieVerificationController());
+        Get.lazyPut<SelfieVerificationController>(
+          () => SelfieVerificationController(),
+        );
       }),
     ),
     GetPage(
       name: AppRoutes.idCardVerificationView,
       page: () => IDCardVerificationView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut<IDCardVerificationController>(() => IDCardVerificationController());
+        Get.lazyPut<IDCardVerificationController>(
+          () => IDCardVerificationController(),
+        );
       }),
     ),
     GetPage(
       name: AppRoutes.biometricVerificationView,
       page: () => BioMetricVerificationView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut<BiometricVerificationController>(() => BiometricVerificationController());
+        Get.lazyPut<BiometricVerificationController>(
+          () => BiometricVerificationController(),
+        );
       }),
     ),
     GetPage(
       name: AppRoutes.doneVerificationView,
       page: () => DoneVerificationView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut<DoneVerificationController>(() => DoneVerificationController());
+        Get.lazyPut<DoneVerificationController>(
+          () => DoneVerificationController(),
+        );
       }),
     ),
     GetPage(
@@ -128,7 +148,38 @@ abstract class AppPages {
       page: () => BottomBarView(),
       binding: BindingsBuilder(() {
         Get.lazyPut<BottomBarController>(() => BottomBarController());
+        Get.lazyPut<ProfileController>(() => ProfileController());
       }),
+    ),
+    GetPage(
+      name: AppRoutes.supportView,
+      page: () => SupportView(),
+      binding: BindingsBuilder(() {}),
+    ),
+    GetPage(
+      name: AppRoutes.currencyView,
+      page: () => CurrencyView(),
+      binding: BindingsBuilder(() {}),
+    ),
+    GetPage(
+      name: AppRoutes.recoveryPhaseView,
+      page: () => RecoveryPhaseView(),
+      binding: BindingsBuilder(() {}),
+    ),
+    GetPage(
+      name: AppRoutes.walletView,
+      page: () => WalletView(),
+      binding: BindingsBuilder(() {}),
+    ),
+    GetPage(
+      name: AppRoutes.regulatoryIdentityView,
+      page: () => RegulatoryIdentityView(),
+      binding: BindingsBuilder(() {}),
+    ),
+    GetPage(
+      name: AppRoutes.buyAssetView,
+      page: () => BuyAssetView(),
+      binding: BindingsBuilder(() {}),
     ),
     // GetPage(
     //   name: AppRoutes.currencyDisplayView,

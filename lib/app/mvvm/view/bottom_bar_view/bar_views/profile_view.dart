@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 import 'package:safewallet/app/config/app_colors.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
-import 'package:safewallet/app/mvvm/view_model/profile_controller/profile_controller.dart';
-import 'package:safewallet/app/services/logger_service.dart';
 import 'package:safewallet/app/widgets/custom_menu_tile.dart';
+import 'package:safewallet/app/widgets/custom_sheets/language_select_sheet.dart';
+import 'package:safewallet/app/widgets/custom_sheets/personal_info_sheet.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 import '../../../../config/app_assets.dart';
+import '../../../../config/app_routes.dart';
 import '../../../../config/utils.dart';
+import '../../../../widgets/custom_sheets/logout_sheet.dart';
+import '../../../view_model/profile_controllers/profile_controller.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -24,7 +25,7 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  final ProfileController controller = Get.put(ProfileController());
+  final ProfileController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -87,9 +88,7 @@ class _ProfileViewState extends State<ProfileView> {
                                   children: [
                                     SvgPicture.asset(
                                       AppAssets.clipIcon,
-                                      color: Colors.white.withValues(
-                                        alpha: 0.6,
-                                      ),
+                                      color: Colors.white.withValues(alpha: 0.6),
                                     ),
                                     5.w.width,
                                     Text(
@@ -117,8 +116,7 @@ class _ProfileViewState extends State<ProfileView> {
                     .slideY(begin: 0.3, curve: Curves.easeOutCubic),
                 Positioned(
                   top: 0,
-                  child:
-                      Stack(
+                  child: Stack(
                             clipBehavior: Clip.none,
                             alignment: Alignment.bottomRight,
                             children: [
@@ -157,20 +155,23 @@ class _ProfileViewState extends State<ProfileView> {
                                 right: 5.w,
                                 child: GestureDetector(
                                   onTap: () {
-                                    LoggerService.w("TAPPED");
-                                    Utils.showPickImageOptionsDialog(
-                                      context,
-                                      onCameraTap: () async {
-                                        Navigator.of(context).pop();
-                                        await controller
-                                            .pickProfileFromCamera();
-                                      },
-                                      onGalleryTap: () async {
-                                        Navigator.of(context).pop();
-                                        await controller
-                                            .pickProfileFromGallery();
-                                      },
+                                    Utils.showBottomSheet(
+                                      context: context,
+                                      child: PersonalInfoSheet(),
                                     );
+                                    // Utils.showPickImageOptionsDialog(
+                                    //   context,
+                                    //   onCameraTap: () async {
+                                    //     Navigator.of(context).pop();
+                                    //     await controller
+                                    //         .pickProfileFromCamera();
+                                    //   },
+                                    //   onGalleryTap: () async {
+                                    //     Navigator.of(context).pop();
+                                    //     await controller
+                                    //         .pickProfileFromGallery();
+                                    //   },
+                                    // );
                                   },
                                   child: SvgPicture.asset(
                                     AppAssets.cameraIc,
@@ -191,63 +192,86 @@ class _ProfileViewState extends State<ProfileView> {
             ),
 
             Expanded(
-              child: SingleChildScrollView(
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.r),
-                    border: Border.all(
-                      color: Colors.white.withValues(alpha: 0.1),
-                      width: 1.w,
+                  child: SingleChildScrollView(
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.r),
+                        border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.1),
+                          width: 1.w,
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          Obx(
+                            () => CustomMenuTile(
+                              icon: AppAssets.notificationIcon,
+                              title: 'Push Notifications',
+                              isToggle: controller.isToggleEnabled.value,
+                              onToggle: () {
+                                controller.isToggleEnabled.value =
+                                    !controller.isToggleEnabled.value;
+                              },
+                            ),
+                          ),
+                          Divider(
+                            color: Colors.white.withValues(alpha: 0.1),
+                          ).paddingHorizontal(10.w),
+                          CustomMenuTile(
+                            icon: AppAssets.langIcon,
+                            title: 'Language',
+                            onTap: () => Utils.showBottomSheet(
+                              context: context,
+                              child: LangugaeSelectSheet(),
+                            ),
+                          ),
+                          Divider(
+                            color: Colors.white.withValues(alpha: 0.1),
+                          ).paddingHorizontal(10.w),
+                          CustomMenuTile(
+                            icon: AppAssets.shieldIcon,
+                            title: 'KYC Status',
+                            isApproved: true,
+                          ),
+                          Divider(
+                            color: Colors.white.withValues(alpha: 0.1),
+                          ).paddingHorizontal(10.w),
+                          CustomMenuTile(
+                            icon: AppAssets.currencyIcon,
+                            title: 'Currency',
+                            onTap: () => Get.toNamed(AppRoutes.currencyView),
+                          ),
+                          Divider(
+                            color: Colors.white.withValues(alpha: 0.1),
+                          ).paddingHorizontal(10.w),
+                          CustomMenuTile(
+                            icon: AppAssets.supportIcon,
+                            title: 'Help & Support',
+                            onTap: () => Get.toNamed(AppRoutes.supportView),
+                          ),
+                          Divider(
+                            color: Colors.white.withValues(alpha: 0.1),
+                          ).paddingHorizontal(10.w),
+                          CustomMenuTile(
+                            icon: AppAssets.logoutIcon,
+                            title: 'Logout',
+                            onTap: () => Utils.showBottomSheet(
+                              context: context,
+                              child: LogoutSheet(),
+                            ),
+                          ).paddingBottom(5.h),
+                        ],
+                      ),
                     ),
                   ),
-                  child: Column(
-                    children: [
-                     Obx(() =>  CustomMenuTile(
-                        icon: AppAssets.notificationIcon,
-                        title: 'Push Notifications',
-                        isToggle: controller.isToggleEnabled.value,
-                        onToggle: () {
-                          controller.isToggleEnabled.value = !controller.isToggleEnabled.value;
-                        },
-                      ),
-                     ),
-                      Divider(color: Colors.white.withValues(alpha: 0.1)).paddingHorizontal(10.w),
-                      CustomMenuTile(
-                        icon: AppAssets.langIcon,
-                        title: 'Language',
-                        onToggle: () {},
-                      ),
-                      Divider(color: Colors.white.withValues(alpha: 0.1)).paddingHorizontal(10.w),
-                      CustomMenuTile(
-                        icon: AppAssets.notificationIcon,
-                        title: 'KYC Status',
-                        isApproved: true,
-                        onToggle: () {},
-                      ),
-                      Divider(color: Colors.white.withValues(alpha: 0.1)).paddingHorizontal(10.w),
-                      CustomMenuTile(
-                        icon: AppAssets.notificationIcon,
-                        title: 'Currency',
-                        onToggle: () {},
-                      ),
-                      Divider(color: Colors.white.withValues(alpha: 0.1)).paddingHorizontal(10.w),
-                      CustomMenuTile(
-                        icon: AppAssets.notificationIcon,
-                        title: 'Help & Support',
-                        onToggle: () {},
-                      ),
-                      Divider(color: Colors.white.withValues(alpha: 0.1)).paddingHorizontal(10.w),
-                      CustomMenuTile(
-                        icon: AppAssets.logoutIcon,
-                        title: 'Logout',
-                        onToggle: () {},
-                      ),
-                    ],
-                  ),
+                )
+                .animate()
+                .fadeIn(duration: 600.ms, delay: 300.ms)
+                .scale(
+                  begin: const Offset(0.7, 0.7),
+                  curve: Curves.easeOutBack,
                 ),
-              ),
-            ),
             20.h.height,
           ],
         ).paddingHorizontal(20.w),

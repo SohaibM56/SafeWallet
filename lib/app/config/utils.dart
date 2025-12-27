@@ -63,8 +63,8 @@ class Utils {
       isScrollControlled: true,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          topRight: Radius.circular(20.sp),
-          topLeft: Radius.circular(20.sp),
+          topRight: Radius.circular(30.sp),
+          topLeft: Radius.circular(30.sp),
         ),
       ),
       context: context,
