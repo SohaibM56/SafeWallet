@@ -38,6 +38,13 @@ class AppAssets {
   static const String volumeIcon = '$imagesPath/volume_icon.png';
   static const String backgroundCardImg = '$imagesPath/background_card.png';
   static const String kycIcon = '$imagesPath/kyc_check.png';
+  static const String bitCoinLogo = '$imagesPath/bitcoin_logo.png';
+  static const String sendIcon = '$imagesPath/send_ic.png';
+  static const String receiveIcon = '$imagesPath/receive_ic.png';
+  static const String historyIcon = '$imagesPath/history_ic.png';
+  static const String arrowsIcon = '$imagesPath/arrows.png';
+  static const String infoIcon = '$imagesPath/info_ic.png';
+  static const String handIcon = '$imagesPath/hand_ic.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';

@@ -11,6 +11,8 @@ abstract class AppColors {
   static const Color iconColor = Color(0xffA2A2A2);
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xff000000);
+  static const Color green = Color(0xff1DBF73);
+  static const Color red = Color(0xffEA4546);
   static const Color positiveGreen = Color(0xff21D575);
   static const Color textDarkColor = Color(0xff1B0036);
   static const Color negativeRed = Color(0xffEA4334);
@@ -21,11 +23,11 @@ abstract class AppColors {
   static const Color borderColor = Color(0xFFE6E7E9);
   static const Color borderGrey = Color(0xFFD7DDE5);
   static const Color lightTextColor = Color(0xFF777E90);
-  static const Color green = Color(0xff4CAF50);
+  // static const Color green = Color(0xff4CAF50);
   static const Color softgreen = Color(0xffB6FF57);
-  static const Color fillColor = Color(0x12FFFFFF);
+  // static const Color fillColor = Color(0x12FFFFFF);
   static const Color hintTextColor = Color(0xff9EA0A5);
-  static const Color scaffoldBgColor = Color(0xff0C1322);
+  // static const Color scaffoldBgColor = Color(0xff0C1322);
   static const Color grey = Color(0xff424243);
   static const Color lightGrey = Color(0xffD5D9E2);
   static const Color darkGrey = Color(0xff555A65);

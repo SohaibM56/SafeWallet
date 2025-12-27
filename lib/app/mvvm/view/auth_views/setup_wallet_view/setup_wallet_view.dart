@@ -21,7 +21,7 @@ class _SetupWalletViewState extends State<SetupWalletView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldBgColor,
+      backgroundColor: AppColors.primary,
       appBar: CustomAppBar(title: '', backgroundColor: Colors.transparent),
       body: Column(
         children: [
@@ -31,12 +31,18 @@ class _SetupWalletViewState extends State<SetupWalletView> {
 
             child: Text(
               'Setup Your Wallet',
-              style: AppTextStyles.customText24(color: Colors.white, fontWeight: FontWeight.w700),
+              style: AppTextStyles.customText24(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
           Align(
             alignment: Alignment.centerLeft,
-            child: Text('Create a new wallet or import an existing one', style: AppTextStyles.customText14(color: Colors.white)),
+            child: Text(
+              'Create a new wallet or import an existing one',
+              style: AppTextStyles.customText14(color: Colors.white),
+            ),
           ),
           25.h.height,
           GestureDetector(
@@ -56,10 +62,18 @@ class _SetupWalletViewState extends State<SetupWalletView> {
                   8.h.height,
                   Text(
                     'Create New Wallet',
-                    style: AppTextStyles.customText16(color: Colors.white, fontWeight: FontWeight.w500),
+                    style: AppTextStyles.customText16(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   3.h.height,
-                  Text('Generate a new 12-word recovery phrase', style: AppTextStyles.customText14(color: Colors.white.withOpacity(0.5))),
+                  Text(
+                    'Generate a new 12-word recovery phrase',
+                    style: AppTextStyles.customText14(
+                      color: Colors.white.withOpacity(0.5),
+                    ),
+                  ),
                 ],
               ).paddingVertical(30.h),
             ),
@@ -82,10 +96,18 @@ class _SetupWalletViewState extends State<SetupWalletView> {
                   8.h.height,
                   Text(
                     'Import Existing Wallet',
-                    style: AppTextStyles.customText16(color: Colors.white, fontWeight: FontWeight.w500),
+                    style: AppTextStyles.customText16(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   3.h.height,
-                  Text('Restore using your recovery phrase', style: AppTextStyles.customText14(color: Colors.white.withOpacity(0.5))),
+                  Text(
+                    'Restore using your recovery phrase',
+                    style: AppTextStyles.customText14(
+                      color: Colors.white.withOpacity(0.5),
+                    ),
+                  ),
                 ],
               ).paddingVertical(30.h),
             ),
@@ -95,15 +117,23 @@ class _SetupWalletViewState extends State<SetupWalletView> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Color(0xff151F24),
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(20.sp), topRight: Radius.circular(20.sp)),
-          border: Border.symmetric(horizontal: BorderSide(color: Colors.white.withOpacity(0.17))),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.sp),
+            topRight: Radius.circular(20.sp),
+          ),
+          border: Border.symmetric(
+            horizontal: BorderSide(color: Colors.white.withOpacity(0.17)),
+          ),
         ),
         child: SafeArea(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SvgPicture.asset(AppAssets.securityIcon, height: 22.h).paddingTop(10.h),
+              SvgPicture.asset(
+                AppAssets.securityIcon,
+                height: 22.h,
+              ).paddingTop(10.h),
               10.w.width,
               Column(
                 mainAxisSize: MainAxisSize.min,
@@ -111,11 +141,16 @@ class _SetupWalletViewState extends State<SetupWalletView> {
                 children: [
                   Text(
                     'Non-Custodial Security',
-                    style: AppTextStyles.customText16(color: Colors.white, fontWeight: FontWeight.w500),
+                    style: AppTextStyles.customText16(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   Text(
                     'Your private keys are stored securely on\nyour device. You own your keys.',
-                    style: AppTextStyles.customText12(color: Colors.white.withOpacity(0.5)),
+                    style: AppTextStyles.customText12(
+                      color: Colors.white.withOpacity(0.5),
+                    ),
                   ),
                   12.h.height,
                 ],
