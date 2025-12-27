@@ -13,6 +13,9 @@ import 'package:safewallet/app/mvvm/view/bottom_bar_view/regulatory_identity_vie
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/regulatory_identity_view/regulatory_identity_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/setting_views/currency_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/wallet_view/wallet_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/snipper_tool_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/sol_tool_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/volume_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/get_started_view/get_started_view.dart';
 import 'package:safewallet/app/mvvm/view/splash_view/splash_view.dart';
 import 'package:safewallet/app/mvvm/view_model/auth_controller/forgot_password_controller/forgot_password_controller.dart';
@@ -51,6 +54,9 @@ abstract class AppRoutes {
   static const String walletView = '/walletView';
   static const String regulatoryIdentityView = '/regulatoryIdentityView';
   static const String buyAssetView = '/buyAssetView';
+  static const String solToolView = '/solToolView';
+  static const String snipperToolView = '/snipperToolView';
+  static const String volumeToolView = '/volumeToolView';
 }
 
 abstract class AppPages {
@@ -180,6 +186,27 @@ abstract class AppPages {
       name: AppRoutes.buyAssetView,
       page: () => BuyAssetView(),
       binding: BindingsBuilder(() {}),
+    ),
+    GetPage(
+      name: AppRoutes.solToolView,
+      page: () => SolToolView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<BottomBarController>(() => BottomBarController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.snipperToolView,
+      page: () => SnipperToolView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<BottomBarController>(() => BottomBarController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.volumeToolView,
+      page: () => VolumeToolView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<BottomBarController>(() => BottomBarController());
+      }),
     ),
     // GetPage(
     //   name: AppRoutes.currencyDisplayView,

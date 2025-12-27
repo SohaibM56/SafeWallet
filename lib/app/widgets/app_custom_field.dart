@@ -59,6 +59,7 @@ class AppCustomField extends StatelessWidget {
     this.labelTitleSize,
     this.cursorColor,
     this.textSize,
+    this.isOutlineBorder = false,
   });
 
   final Color? cursorColor;
@@ -112,6 +113,7 @@ class AppCustomField extends StatelessWidget {
   final bool enabled;
   final double? labelTitleSize;
   final VoidCallback? onTap;
+  final bool isOutlineBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +132,11 @@ class AppCustomField extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              if (isRequired) Text(' *', style: AppTextStyles.customText16(color: AppColors.primary)),
+              if (isRequired)
+                Text(
+                  ' *',
+                  style: AppTextStyles.customText16(color: AppColors.primary),
+                ),
             ],
           ),
         if (titleWidget != null) titleWidget!,
@@ -149,7 +155,10 @@ class AppCustomField extends StatelessWidget {
             }
             return null;
           },
-          style: AppTextStyles.customText(fontSize: textSize ?? 16, color: textColor ?? AppColors.white),
+          style: AppTextStyles.customText(
+            fontSize: textSize ?? 16,
+            color: textColor ?? AppColors.white,
+          ),
 
           initialValue: initialValue,
           textAlign: fieldsTextAlign ?? TextAlign.start,
@@ -170,8 +179,9 @@ class AppCustomField extends StatelessWidget {
           },
 
           decoration: InputDecoration(
-            counterStyle: AppTextStyles.customText12(color: counterColor ?? AppColors.black),
-
+            counterStyle: AppTextStyles.customText12(
+              color: counterColor ?? AppColors.black,
+            ),
             hintText: hintText,
             hintStyle: AppTextStyles.customText(
               fontSize: hintTextFontSize ?? 14.sp,
@@ -184,21 +194,95 @@ class AppCustomField extends StatelessWidget {
             floatingLabelBehavior: FloatingLabelBehavior.auto,
             filled: filled ?? true,
             fillColor: fillColor ?? AppColors.transparent,
-            border: UnderlineInputBorder(borderSide: BorderSide(color: enabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.4))),
+
             prefixIconColor: prefixIconColor,
             suffixIconColor: suffixIconColor,
-            contentPadding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 1.w),
-            prefixIconConstraints: BoxConstraints(minWidth: 40.w, minHeight: 40.h),
-            suffixIconConstraints: BoxConstraints(minWidth: 40.w, minHeight: 40.h),
-            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: focusedBorderColor ?? AppColors.secondary, width: 2.0)),
-            enabledBorder: UnderlineInputBorder(borderSide: BorderSide(width: 2.0, color: enabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.4))),
-            focusedErrorBorder: UnderlineInputBorder(borderSide: BorderSide(color: focusErrorBorderColor ?? AppColors.negativeRed, width: 2.0)),
-            disabledBorder: UnderlineInputBorder(borderSide: BorderSide(width: 2.0, color: disabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.3))),
+            contentPadding: EdgeInsets.symmetric(
+              vertical: 15.h,
+              horizontal: isOutlineBorder ? 10.w : 1.w,
+            ),
+            prefixIconConstraints: BoxConstraints(
+              minWidth: 40.w,
+              minHeight: 40.h,
+            ),
+            suffixIconConstraints: BoxConstraints(
+              minWidth: 40.w,
+              minHeight: 40.h,
+            ),
+
+            /// ✅ Conditional Borders
+            border: _buildBorder(
+              enabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.4),
+            ),
+            enabledBorder: _buildBorder(
+              enabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.4),
+            ),
+            focusedBorder: _buildBorder(
+              focusedBorderColor ?? AppColors.secondary,
+            ),
+            errorBorder: _buildBorder(
+              errorBorderColor ?? AppColors.negativeRed,
+            ),
+            focusedErrorBorder: _buildBorder(
+              focusErrorBorderColor ?? AppColors.negativeRed,
+            ),
+            disabledBorder: _buildBorder(
+              disabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.3),
+            ),
+
+            // border: UnderlineInputBorder(
+            //   borderSide: BorderSide(
+            //     color:
+            //         enabledBorderColor ??
+            //         AppColors.textLightBlack.withOpacity(0.4),
+            //   ),
+            // ),
+            // focusedBorder: UnderlineInputBorder(
+            //   borderSide: BorderSide(
+            //     color: focusedBorderColor ?? AppColors.secondary,
+            //     width: 2.0,
+            //   ),
+            // ),
+            // enabledBorder: UnderlineInputBorder(
+            //   borderSide: BorderSide(
+            //     width: 2.0,
+            //     color:
+            //         enabledBorderColor ??
+            //         AppColors.textLightBlack.withOpacity(0.4),
+            //   ),
+            // ),
+            // focusedErrorBorder: UnderlineInputBorder(
+            //   borderSide: BorderSide(
+            //     color: focusErrorBorderColor ?? AppColors.negativeRed,
+            //     width: 2.0,
+            //   ),
+            // ),
+            // disabledBorder: UnderlineInputBorder(
+            //   borderSide: BorderSide(
+            //     width: 2.0,
+            //     color:
+            //         disabledBorderColor ??
+            //         AppColors.textLightBlack.withOpacity(0.3),
+            //   ),
+            // ),
             errorMaxLines: 2,
             errorStyle: TextStyle(color: Colors.red, fontSize: 12.sp),
           ),
         ),
       ],
     );
+  }
+
+  InputBorder _buildBorder(Color color) {
+    if (isOutlineBorder) {
+      return OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10.r),
+        borderSide: BorderSide(color: color, width: 2),
+      );
+    } else {
+      return UnderlineInputBorder(
+        borderSide: BorderSide(color: color, width: 2),
+      );
+    }
   }
 }
