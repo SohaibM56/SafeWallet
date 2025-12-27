@@ -8,6 +8,9 @@ import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_vie
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/done_verification.view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/id_card_verification_view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/selfie_verification_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/snipper_tool_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/sol_tool_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/volume_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/get_started_view/get_started_view.dart';
 import 'package:safewallet/app/mvvm/view/splash_view/splash_view.dart';
 import 'package:safewallet/app/mvvm/view_model/auth_controller/forgot_password_controller/forgot_password_controller.dart';
@@ -39,6 +42,9 @@ abstract class AppRoutes {
   static const String biometricVerificationView = '/biometriVerificationView';
   static const String doneVerificationView = '/doneVerificationView';
   static const String bottomBarView = '/bottomBarView';
+  static const String solToolView = '/solToolView';
+  static const String snipperToolView = '/snipperToolView';
+  static const String volumeToolView = '/volumeToolView';
 }
 
 abstract class AppPages {
@@ -99,28 +105,36 @@ abstract class AppPages {
       name: AppRoutes.selfieVerificationView,
       page: () => SelfieVerificationView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut<SelfieVerificationController>(() => SelfieVerificationController());
+        Get.lazyPut<SelfieVerificationController>(
+          () => SelfieVerificationController(),
+        );
       }),
     ),
     GetPage(
       name: AppRoutes.idCardVerificationView,
       page: () => IDCardVerificationView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut<IDCardVerificationController>(() => IDCardVerificationController());
+        Get.lazyPut<IDCardVerificationController>(
+          () => IDCardVerificationController(),
+        );
       }),
     ),
     GetPage(
       name: AppRoutes.biometricVerificationView,
       page: () => BioMetricVerificationView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut<BiometricVerificationController>(() => BiometricVerificationController());
+        Get.lazyPut<BiometricVerificationController>(
+          () => BiometricVerificationController(),
+        );
       }),
     ),
     GetPage(
       name: AppRoutes.doneVerificationView,
       page: () => DoneVerificationView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut<DoneVerificationController>(() => DoneVerificationController());
+        Get.lazyPut<DoneVerificationController>(
+          () => DoneVerificationController(),
+        );
       }),
     ),
     GetPage(
@@ -128,6 +142,27 @@ abstract class AppPages {
       page: () => BottomBarView(),
       binding: BindingsBuilder(() {
         Get.lazyPut<BottomBarController>(() => BottomBarController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.solToolView,
+      page: () => SolToolView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<BottomBarController>(() => BottomBarController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.snipperToolView,
+      page: () => SnipperToolView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<BottomBarController>(() => BottomBarController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.volumeToolView,
+      page: () => VolumeToolView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<BottomBarController>(() => BottomBarController());
       }),
     ),
     // GetPage(
