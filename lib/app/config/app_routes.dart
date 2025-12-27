@@ -8,14 +8,14 @@ import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_vie
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/done_verification.view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/id_card_verification_view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/selfie_verification_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/snipper_tool_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/sol_tool_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/volume_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/recovery_phase_view/recovery_phase_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/regulatory_identity_view/buy_asset_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/regulatory_identity_view/regulatory_identity_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/setting_views/currency_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/wallet_view/wallet_view.dart';
-import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/snipper_tool_view.dart';
-import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/sol_tool_view.dart';
-import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/volume_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/get_started_view/get_started_view.dart';
 import 'package:safewallet/app/mvvm/view/splash_view/splash_view.dart';
 import 'package:safewallet/app/mvvm/view_model/auth_controller/forgot_password_controller/forgot_password_controller.dart';
@@ -25,6 +25,7 @@ import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controlle
 import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controller/verification_controllers/done_verification_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controller/verification_controllers/id_card_verfication_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controller/verification_controllers/selfie_verification_controller.dart';
+import 'package:safewallet/app/mvvm/view_model/bottom_bar_controller/trade_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/profile_controllers/profile_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/splash_controller/splash_controller.dart';
 
@@ -155,6 +156,7 @@ abstract class AppPages {
       page: () => BottomBarView(),
       binding: BindingsBuilder(() {
         Get.lazyPut<BottomBarController>(() => BottomBarController());
+        Get.lazyPut<TradeController>(() => TradeController());
         Get.lazyPut<ProfileController>(() => ProfileController());
       }),
     ),

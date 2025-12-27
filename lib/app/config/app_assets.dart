@@ -41,6 +41,13 @@ class AppAssets {
   static const String biometricIcon = '$imagesPath/biometric_icon.png';
   static const String keyIcon = '$imagesPath/key_icon.png';
   static const String privacyIcon = '$imagesPath/privacy_icon.png';
+  static const String bitCoinLogo = '$imagesPath/bitcoin_logo.png';
+  static const String sendIcon = '$imagesPath/send_ic.png';
+  static const String receiveIcon = '$imagesPath/receive_ic.png';
+  static const String historyIcon = '$imagesPath/history_ic.png';
+  static const String arrowsIcon = '$imagesPath/arrows.png';
+  static const String infoIcon = '$imagesPath/info_ic.png';
+  static const String handIcon = '$imagesPath/hand_ic.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';

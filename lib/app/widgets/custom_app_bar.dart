@@ -64,14 +64,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(borderRadius ?? 25.sp))),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(borderRadius ?? 25.sp),
+        ),
+      ),
       automaticallyImplyLeading: false,
       titleSpacing: 10,
       toolbarHeight: toolBarHeight ?? kToolbarHeight,
       scrolledUnderElevation: 0.0,
       systemOverlayStyle:
           statusBarStyle ??
-          const SystemUiOverlayStyle(statusBarColor: Colors.transparent, statusBarIconBrightness: Brightness.light, statusBarBrightness: Brightness.light),
+          const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.light,
+            statusBarBrightness: Brightness.light,
+          ),
       backgroundColor: backgroundColor,
       surfaceTintColor: Colors.transparent,
       leadingWidth: leadingWidth ?? 70.w,
@@ -123,5 +131,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight((toolBarHeight ?? kToolbarHeight) + (addBottomPadding ? (bottomPadding ?? 10.h) : 0));
+  Size get preferredSize => Size.fromHeight(
+    (toolBarHeight ?? kToolbarHeight) +
+        (addBottomPadding ? (bottomPadding ?? 10.h) : 0),
+  );
 }

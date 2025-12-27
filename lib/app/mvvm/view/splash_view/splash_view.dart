@@ -35,16 +35,27 @@ class _SplashViewState extends State<SplashView> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Center(
-            child: Text("v 1.0", style: TextStyle(fontSize: 18, color: AppColors.primary)),
+            child: Text(
+              "v 1.0",
+              style: TextStyle(fontSize: 18, color: AppColors.primary),
+            ),
           ),
         ],
       ),
-      appBar: CustomAppBar(backgroundColor: AppColors.transparent, title: '', leading: SizedBox.shrink()),
+      appBar: CustomAppBar(
+        backgroundColor: AppColors.transparent,
+        title: '',
+        leading: SizedBox.shrink(),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(AppAssets.appLogo, width: double.infinity, height: 130.h).paddingSymmetric(horizontal: 10.w),
+            Image.asset(
+              AppAssets.appLogo,
+              width: double.infinity,
+              height: 130.h,
+            ).paddingSymmetric(horizontal: 10.w),
             // .animate()
             // .scale(
             //   duration: 1200.ms,
