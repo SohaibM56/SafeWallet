@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:safewallet/app/config/app_assets.dart';
+import 'package:safewallet/app/config/app_routes.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
+import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/mvvm/view_model/phrase_controller/phrase_controller.dart';
+import 'package:safewallet/app/widgets/app_custom_button.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 import '../../../../config/app_colors.dart';
 import '../../../../widgets/custom_app_bar.dart';
+import '../../../../widgets/word_tile.dart';
 
 class RecoveryPhaseView extends StatefulWidget {
   const RecoveryPhaseView({super.key});
@@ -16,77 +23,772 @@ class RecoveryPhaseView extends StatefulWidget {
 }
 
 class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
-
   final PhraseController controller = Get.find();
+
+  final List<String> words = [
+    'Adult',
+    'Acid',
+    'Again',
+    'Anxiety',
+    'Alley',
+    'Around',
+    'Around',
+    'Already',
+    'Actress',
+    'Adult',
+    'Acid',
+    'Again',
+    'Apart',
+    'Abstract',
+    'Author',
+  ];
+
+  final List<String> selectionWords = [
+    "Album",
+    "Add",
+    "Account",
+    "Apology",
+    "Athlete",
+    "Another",
+    "Annual",
+    "Action",
+    "Addict",
+    "Artist",
+    "Affair",
+    "Artwork",
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primary,
-      appBar: CustomAppBar(
-        title: '',
-        backgroundColor: Colors.transparent,
-      ),
-      body: Column(children: [
-        Obx(() =>
-            Row(
+      appBar: CustomAppBar(title: '', backgroundColor: Colors.transparent),
+      body: Column(
+        children: [
+          Obx(
+            () => Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              _buildCircularView("01","Generate", controller.currentProgress.value == "01"),
-              30.w.width,
-              _buildCircularView("02", "Verify" ,controller.currentProgress.value == "02"),
-              30.w.width,
-              _buildCircularView("03", "Complete",controller.currentProgress.value == "03"),
-            ],),
-        ),
-
-        20.h.height,
-
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            'Your Recovery Phrase',
-            style: AppTextStyles.customText20(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-            ),
+                _buildCircularView(
+                  step: 1,
+                  title: "Generate",
+                  currentStep: controller.phase.value.index + 1,
+                ),
+                30.w.width,
+                _buildCircularView(
+                  step: 2,
+                  title: "Verify",
+                  currentStep: controller.phase.value.index + 1,
+                ),
+                30.w.width,
+                _buildCircularView(
+                  step: 3,
+                  title: "Complete",
+                  currentStep: controller.phase.value.index + 1,
+                ),
+              ],
+            ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.2, end: 0),
           ),
-        ),
-        5.h.height,
-        Text(
-          'Write down these words in the exact order and\mstore them in a secure location.',
-          style: AppTextStyles.customText(
-            fontSize: 11.sp,
-            color: Colors.white.withValues(alpha: 0.5),
-            fontWeight: FontWeight.w400,
-          ),
-        ),
 
-      ],).paddingSymmetric(horizontal: 20.w, vertical: 10.h),
+          20.h.height,
+
+          Obx(() {
+            switch (controller.phase.value) {
+              case RecoveryPhase.generate:
+                return _buildRecoveryPhase();
+              case RecoveryPhase.verify:
+                return _buildVerificationPhase();
+              case RecoveryPhase.complete:
+                return _buildCompletePhase();
+            }
+          }),
+        ],
+      ).paddingSymmetric(horizontal: 20.w, vertical: 10.h)
     );
   }
 
-  Widget _buildCircularView(String title, String subTitle, bool isSelected){
+  Widget _buildCircularView({
+    required int step,
+    required String title,
+    required int currentStep,
+  }) {
+    final bool isCompleted = step < currentStep;
+    final bool isActive = step == currentStep;
+
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.all(16.sp),
-          decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: isSelected?AppColors.secondary:AppColors.white.withValues(alpha: 0.2),
-          border: Border.all(color: isSelected? AppColors.secondary :AppColors.white.withValues(alpha: 0.2))
-        ),
-        child: Text(title, style: AppTextStyles.customText18(color: isSelected? AppColors.white: AppColors.faintColor, fontWeight: FontWeight.w500)),
-        ),
-        5.h.height,
+              width: 50.w,
+              height: 50.w,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isCompleted || isActive
+                    ? AppColors.secondary
+                    : Colors.transparent,
+                border: Border.all(
+                  width: 2,
+                  color: isCompleted || isActive
+                      ? AppColors.secondary
+                      : Colors.white.withValues(alpha: 0.25),
+                ),
+              ),
+              child: Center(
+                child: isCompleted
+                    ? Icon(Icons.check, color: Colors.white, size: 30.sp)
+                    : Text(
+                        step.toString().padLeft(2, '0'),
+                        style: AppTextStyles.customText20(
+                          color: isActive
+                              ? Colors.white
+                              : Colors.white.withValues(alpha: 0.4),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+              ),
+            )
+            .animate(target: isActive ? 1 : 0)
+            .scale(end: const Offset(1.05, 1.05), duration: 600.ms)
+            .then()
+            .scale(end: const Offset(1.0, 1.0), duration: 600.ms),
+        8.h.height,
         Text(
-          subTitle,
-          style: AppTextStyles.customText12(
+          title,
+          style: AppTextStyles.customText14(
             color: Colors.white,
             fontWeight: FontWeight.w400,
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildRecoveryPhase() {
+    return Expanded(
+      child: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Your Recovery Phrase',
+                style: AppTextStyles.customText20(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1, end: 0),
+            5.h.height,
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Write down these words in the exact order and\nstore them in a secure location.',
+                style: AppTextStyles.customText(
+                  fontSize: 11.sp,
+                  color: Colors.white.withValues(alpha: 0.5),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
+
+            20.h.height,
+
+            Row(children: [
+                    Expanded(
+                      child: _buildWordsWidget("12 Words", "Visible", true),
+                    ),
+                    14.w.width,
+                    Expanded(
+                      child: _buildWordsWidget("24 Words", "Offline", false),
+                    ),
+                  ],
+                )
+                .paddingHorizontal(24.w)
+                .animate()
+                .fadeIn(duration: 400.ms, delay: 200.ms),
+
+            20.h.height,
+
+            Stack(
+              children: [
+                Positioned.fill(
+                  child: Image.asset(AppAssets.bgGradient, fit: BoxFit.fill),
+                ),
+
+                Column(
+                  children: [
+                    GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 10.w,
+                        mainAxisSpacing: 10.h,
+                        mainAxisExtent: 40.h,
+                      ),
+                      itemCount: words.length,
+                      itemBuilder: (context, index) {
+                        return WordTile(word: words[index])
+                            .animate()
+                            .fadeIn(duration: 300.ms, delay: (50 * index).ms)
+                            .slideY(begin: 0.3, end: 0);
+                        ;
+                      },
+                    ),
+
+                    10.h.height,
+
+                    Row(
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            height: 40.h,
+                            child: WordTile(word: 'Copy', icon: Icons.copy),
+                          ),
+                        ),
+                        12.w.width,
+                        Expanded(
+                          child: SizedBox(
+                            height: 40.h,
+                            child: WordTile(
+                              word: 'Hide',
+                              icon: Icons.visibility_off,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ).animate().fadeIn(duration: 400.ms, delay: 800.ms),
+                  ],
+                ).paddingAll(10.sp),
+              ],
+            ).animate().fadeIn(duration: 500.ms, delay: 300.ms),
+
+            10.h.height,
+
+            Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(16.sp),
+                  decoration: BoxDecoration(
+                    color: Color(0xFF25201d),
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Never share your recovery phrase",
+                        style: AppTextStyles.customText(
+                          fontSize: 14.sp,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      2.h.height,
+                      Text(
+                        "Anyone with access to this phrase can steal your funds.\nStore it offline and never enter it on any website.",
+                        style: AppTextStyles.customText(
+                          fontSize: 10.sp,
+                          color: Colors.white.withValues(alpha: 0.5),
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+                .animate()
+                .fadeIn(duration: 400.ms, delay: 1000.ms)
+                .slideY(begin: 0.2, end: 0),
+
+            14.h.height,
+
+            AppCustomButton(
+                  title: "I'v Written It Down",
+                  onPressed: () {
+                    controller.phase.value = RecoveryPhase.verify;
+                  },
+                )
+                .paddingHorizontal(30.w)
+                .animate()
+                .fadeIn(duration: 400.ms, delay: 1100.ms),
+
+            10.h.height,
+
+            AppCustomButton(
+                  bgColor: AppColors.white,
+                  textStyle: AppTextStyles.customText16(
+                    color: AppColors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  title: "Generate New Phrase",
+                  onPressed: () {},
+                )
+                .paddingHorizontal(30.w)
+                .animate()
+                .fadeIn(duration: 400.ms, delay: 1200.ms),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildVerificationPhase() {
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            'Verify Your Phrase',
+            style: AppTextStyles.customText20(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1, end: 0),
+        5.h.height,
+        Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            "Select the words in the correct order to verify you've\nsaved your recovery phrase.",
+            style: AppTextStyles.customText(
+              fontSize: 11.sp,
+              color: Colors.white.withValues(alpha: 0.5),
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
+
+        30.h.height,
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Progress",
+              style: AppTextStyles.customText14(
+                color: Colors.white.withValues(alpha: 0.6),
+              ),
+            ),
+            Text(
+              "10/12",
+              style: AppTextStyles.customText14(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ).animate().fadeIn(duration: 400.ms, delay: 200.ms),
+
+        8.h.height,
+
+        _buildProgressHeader(
+          current: 10,
+          total: 12,
+        ).animate().fadeIn(duration: 400.ms, delay: 300.ms),
+
+        30.h.height,
+
+        Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(AppAssets.bgGradient, fit: BoxFit.fill),
+            ),
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                10.h.height,
+
+                Text(
+                  "Your selection:",
+                  style: AppTextStyles.customText(
+                    fontSize: 15.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+
+                10.h.height,
+
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 10.w,
+                    mainAxisSpacing: 10.h,
+                    mainAxisExtent: 44.h,
+                  ),
+                  itemCount: selectionWords.length,
+                  itemBuilder: (context, index) {
+                    return WordTile(
+                          word: selectionWords[index],
+                          borderColor: AppColors.secondary,
+                        )
+                        .animate()
+                        .fadeIn(duration: 300.ms, delay: (50 * index).ms)
+                        .scale(
+                          begin: const Offset(0.8, 0.8),
+                          end: const Offset(1.0, 1.0),
+                        );
+                  },
+                ),
+
+                10.h.height,
+              ],
+            ).paddingAll(10.sp),
+          ],
+        ).animate().fadeIn(duration: 500.ms, delay: 400.ms),
+
+        70.h.height,
+
+        AppCustomButton(
+              title: "Continue to Wallet",
+              onPressed: () {
+                controller.phase.value = RecoveryPhase.complete;
+              },
+            )
+            .paddingHorizontal(30.w)
+            .animate()
+            .fadeIn(duration: 400.ms, delay: 800.ms),
+
+        20.h.height,
+
+        GestureDetector(
+          onTap: () {
+            controller.phase.value = RecoveryPhase.generate;
+          },
+          child: Text(
+            "Back to Seed Phase",
+            style: AppTextStyles.customText(
+              fontSize: 13.sp,
+              color: Colors.white.withValues(alpha: 0.5),
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ).animate().fadeIn(duration: 400.ms, delay: 900.ms),
+      ],
+    );
+  }
+
+  Widget _buildCompletePhase() {
+    return Expanded(
+      child: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Backup Complete!',
+                style: AppTextStyles.customText20(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1, end: 0),
+            5.h.height,
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Your wallet has been created and your recovery\nphrase has been verified successfully.',
+                style: AppTextStyles.customText(
+                  fontSize: 11.sp,
+                  color: Colors.white.withValues(alpha: 0.5),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
+
+            20.h.height,
+
+            Stack(
+              children: [
+                Positioned.fill(
+                  child: SvgPicture.asset(
+                    AppAssets.completeGradient,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    8.h.height,
+
+                    Text(
+                          'Security Summary',
+                          style: AppTextStyles.customText16(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        )
+                        .animate()
+                        .fadeIn(duration: 300.ms, delay: 200.ms)
+                        .slideX(begin: -0.1, end: 0),
+
+                    16.h.height,
+
+                    _buildSummaryTile(
+                          AppAssets.checkIcon,
+                          "Recovery phrase saved",
+                          "Your 12/24 words have been securely generated",
+                        )
+                        .animate()
+                        .fadeIn(duration: 300.ms, delay: 300.ms)
+                        .slideX(begin: -0.1, end: 0),
+
+                    20.h.height,
+
+                    _buildSummaryTile(
+                          AppAssets.checkIcon,
+                          "Verification complete",
+                          "You've confirmed you can access your backup",
+                        )
+                        .animate()
+                        .fadeIn(duration: 300.ms, delay: 400.ms)
+                        .slideX(begin: -0.1, end: 0),
+
+                    20.h.height,
+
+                    _buildSummaryTile(
+                      AppAssets.lockIcon,
+                      "Wallet protected",
+                      "Your assets are now secured by your recovery phrase",
+                    ),
+
+                    10.h.height,
+                  ],
+                ).paddingAll(10.sp),
+              ],
+            ).animate().fadeIn(duration: 500.ms, delay: 100.ms),
+
+            12.h.height,
+
+            Stack(
+              children: [
+                Positioned.fill(
+                  child: SvgPicture.asset(
+                    AppAssets.completeGradient,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    8.h.height,
+
+                    Text(
+                      'Security Tips',
+                      style: AppTextStyles.customText16(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+
+                    16.h.height,
+
+                    _buildSecurityTile(
+                      AppAssets.solidDot,
+                      "Consider using a hardware wallet for large holdings",
+                    ).animate().fadeIn(duration: 300.ms, delay: 600.ms),
+
+                    14.h.height,
+
+                    _buildSecurityTile(
+                      AppAssets.solidDot,
+                      "Never share it with anyone, including support staff",
+                    ).animate().fadeIn(duration: 300.ms, delay: 700.ms),
+
+                    14.h.height,
+
+                    _buildSecurityTile(
+                      AppAssets.solidDot,
+                      "Store your recovery phrase in multiple secure locations",
+                    ).animate().fadeIn(duration: 300.ms, delay: 800.ms),
+
+                    10.h.height,
+                  ],
+                ).paddingAll(10.sp),
+              ],
+            ).animate().fadeIn(duration: 500.ms, delay: 500.ms),
+
+            40.h.height,
+
+            AppCustomButton(
+                  title: "Go to Wallet",
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.walletView);
+                  },
+                )
+                .paddingHorizontal(30.w)
+                .animate()
+                .fadeIn(duration: 400.ms, delay: 1000.ms)
+                .slideY(begin: 0.2, end: 0),
+
+            20.h.height,
+
+            GestureDetector(
+              onTap: () {
+                controller.phase.value = RecoveryPhase.generate;
+              },
+              child: Text(
+                "Return Home",
+                style: AppTextStyles.customText(
+                  fontSize: 13.sp,
+                  color: Colors.white.withValues(alpha: 0.5),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ).animate().fadeIn(duration: 400.ms, delay: 1100.ms),
+
+            20.h.height,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildWordsWidget(String title, String subTitle, bool isSelected) {
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 15.sp),
+          decoration: BoxDecoration(
+            color: isSelected ? AppColors.secondary : AppColors.transparent,
+            borderRadius: BorderRadius.circular(10.sp),
+            border: Border.all(color: AppColors.white.withValues(alpha: 0.3)),
+          ),
+          child: Center(
+            child: Text(
+              title,
+              style: AppTextStyles.customText16(
+                color: isSelected ? AppColors.white : AppColors.faintColor,
+              ),
+            ),
+          ),
+        ),
+        10.h.height,
+        Text(
+          subTitle,
+          style: AppTextStyles.customText(
+            fontSize: 15.sp,
+            color: isSelected ? AppColors.white : AppColors.faintColor,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSummaryTile(String icon, String title, String subTitle) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Image.asset(icon, width: 22.w, height: 22.w),
+        10.w.width,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: AppTextStyles.customText(
+                  fontSize: 13.sp,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              Text(
+                subTitle,
+                style: AppTextStyles.customText10(
+                  color: Colors.white.withValues(alpha: 0.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSecurityTile(String icon, String title) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SvgPicture.asset(icon, width: 12.w, height: 12.w),
+        10.w.width,
+        Expanded(
+          child: Text(
+            title,
+            style: AppTextStyles.customText10(
+              color: Colors.white.withValues(alpha: 0.5),
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildProgressHeader({required int current, required int total}) {
+    final double progress = current / total;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final double width = constraints.maxWidth;
+        final double thumbSize = 22.w;
+        final double barHeight = 8.h;
+
+        return SizedBox(
+          height: thumbSize,
+          child: Stack(
+            alignment: Alignment.centerLeft,
+            children: [
+              Container(
+                height: barHeight,
+                width: width,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20.r),
+                ),
+              ),
+
+              Container(
+                height: barHeight,
+                width: width * progress,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF0B6B43),
+                  borderRadius: BorderRadius.circular(20.r),
+                ),
+              ).animate().slideX(
+                begin: -1,
+                end: 0,
+                duration: 600.ms,
+                curve: Curves.easeOut,
+              ),
+
+              Positioned(
+                left: (width * progress) - (thumbSize / 2),
+                child: Container(
+                  width: thumbSize,
+                  height: thumbSize,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: const Color(0xFF0B6B43),
+                    border: Border.all(color: Colors.white, width: 3),
+                  ),
+                ),
+              ).animate().scale(
+                duration: 400.ms,
+                delay: 600.ms,
+                curve: Curves.elasticOut,
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

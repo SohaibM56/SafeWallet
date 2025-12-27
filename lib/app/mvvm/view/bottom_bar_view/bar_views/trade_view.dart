@@ -10,6 +10,8 @@ import 'package:safewallet/app/widgets/app_custom_button.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 import '../../../../config/app_assets.dart';
+import '../../../../config/utils.dart';
+import '../../../../widgets/custom_sheets/crypto_wallet_sheet.dart';
 
 class TradeView extends StatefulWidget {
   const TradeView({super.key});
@@ -35,7 +37,7 @@ class _TradeViewState extends State<TradeView> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                     "Trade Meme Coins",
@@ -67,18 +69,18 @@ class _TradeViewState extends State<TradeView> {
                   .animate()
                   .fadeIn(duration: 600.ms, delay: 200.ms)
                   .slideY(begin: 0.3, curve: Curves.easeOutCubic),
-              15.h.height,
+              // 15.h.height,
 
               _buildTransactionWidget()
                   .animate()
                   .fadeIn(duration: 600.ms, delay: 200.ms)
                   .slideY(begin: 0.3, curve: Curves.easeOutCubic),
 
-              20.h.height,
+              10.h.height,
               Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 2, color: AppColors.darkGrey),
+                      border: Border.all(width: 1, color: AppColors.darkGrey),
                       borderRadius: BorderRadius.all(Radius.circular(10.r)),
                     ),
                     child: Padding(
@@ -163,13 +165,13 @@ class _TradeViewState extends State<TradeView> {
                   .animate()
                   .fadeIn(duration: 600.ms, delay: 250.ms)
                   .slideY(begin: 0.3, curve: Curves.easeOutCubic),
-              15.h.height,
+              // 15.h.height,
               Container(
                     width: double.infinity,
-                    margin: EdgeInsets.only(top: 20.h),
+                    margin: EdgeInsets.only(top: 10.h),
                     height: 85.h,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 2, color: AppColors.darkGrey),
+                      border: Border.all(width: 1, color: AppColors.darkGrey),
                       borderRadius: BorderRadius.all(Radius.circular(10.r)),
                     ),
                     child: Padding(
@@ -240,7 +242,13 @@ class _TradeViewState extends State<TradeView> {
                   .fadeIn(duration: 600.ms, delay: 300.ms)
                   .slideY(begin: 0.3, curve: Curves.easeOutCubic),
               20.h.height,
-              AppCustomButton(title: "Swap Tokens", onPressed: () {})
+              AppCustomButton(
+                    title: "Swap Tokens",
+                    onPressed: () => Utils.showBottomSheet(
+                      context: context,
+                      child: CryptoWalletSheet(),
+                    ),
+                  )
                   .paddingSymmetric(horizontal: 20.w)
                   .animate(delay: 1000.ms)
                   .fadeIn(duration: 600.ms)
@@ -270,10 +278,10 @@ class _TradeViewState extends State<TradeView> {
   Widget _buildTransactionWidget() {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(top: 20.h),
+      margin: EdgeInsets.only(top: 10.h),
       height: 200.h,
       decoration: BoxDecoration(
-        border: Border.all(width: 2, color: AppColors.darkGrey),
+        border: Border.all(width: 1, color: AppColors.darkGrey),
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
         image: DecorationImage(
           image: AssetImage(AppAssets.backgroundCardImg),

@@ -23,7 +23,8 @@ class SafeWalletApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: AppColors.secondary),
             useMaterial3: true,
           ),
-          initialRoute: AppRoutes.bottomBarView,
+          initialRoute: AppRoutes.splashView,
+          // initialRoute: AppRoutes.bottomBarView,
           getPages: AppPages.routes,
         );
       },

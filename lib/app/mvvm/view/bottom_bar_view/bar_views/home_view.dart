@@ -20,6 +20,12 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   final ProfileController controller = Get.put(ProfileController());
 
+  final methods = [
+    {"icon": AppAssets.sendIcon, "title": "Send"},
+    {"icon": AppAssets.receiveIcon, "title": "Receive"},
+    {"icon": AppAssets.historyIcon, "title": "History"},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,31 +102,30 @@ class _HomeViewState extends State<HomeView> {
                   .slideY(begin: 0.3, curve: Curves.easeOutCubic),
 
               15.h.height,
-              Row(
-                children: [
-                  _transactionMethods(
-                    methodImg: AppAssets.sendIcon,
-                    methtodTitle: "Send",
-                  ),
-                  8.w.width,
-                  _transactionMethods(
-                    methodImg: AppAssets.receiveIcon,
-                    methtodTitle: "Receive",
-                  ),
-                  8.w.width,
-                  _transactionMethods(
-                    methodImg: AppAssets.historyIcon,
-                    methtodTitle: "History",
-                  ),
-                ],
-              ),
-              15.h.height,
+
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 8.w,
+                  mainAxisSpacing: 8.h,
+                ),
+                itemCount: methods.length,
+                itemBuilder: (context, index) {
+                  return _transactionMethods(
+                    methodImg: methods[index]["icon"]!,
+                    methtodTitle: methods[index]["title"]!,
+                  );
+                },
+              ).animate().fadeIn(duration: 600.ms, delay: 300.ms),
+
               Container(
                 width: double.infinity,
                 margin: EdgeInsets.only(top: 20.h),
                 height: 85.h,
                 decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: AppColors.darkGrey),
+                  border: Border.all(width: 1, color: AppColors.darkGrey),
                   borderRadius: BorderRadius.all(Radius.circular(10.r)),
                 ),
                 child: Padding(
@@ -219,7 +224,7 @@ class _HomeViewState extends State<HomeView> {
       height: 110.h,
       width: 110,
       decoration: BoxDecoration(
-        border: Border.all(width: 2, color: AppColors.darkGrey),
+        border: Border.all(width: 1, color: AppColors.darkGrey),
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
       ),
       child: Center(
@@ -246,7 +251,7 @@ class _HomeViewState extends State<HomeView> {
       margin: EdgeInsets.only(top: 20.h),
 
       decoration: BoxDecoration(
-        border: Border.all(width: 2, color: AppColors.darkGrey),
+        border: Border.all(width: 1, color: AppColors.darkGrey),
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
         image: DecorationImage(
           image: AssetImage(AppAssets.backgroundCardImg),
@@ -296,7 +301,7 @@ class _HomeViewState extends State<HomeView> {
                 width: 32.w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(width: 2, color: AppColors.darkGrey),
+                  border: Border.all(width: 1, color: AppColors.darkGrey),
                 ),
                 child: Icon(
                   Icons.remove_red_eye_outlined,
@@ -373,7 +378,7 @@ class _HomeViewState extends State<HomeView> {
       margin: EdgeInsets.only(top: 20.h),
       height: 85.h,
       decoration: BoxDecoration(
-        border: Border.all(width: 2, color: AppColors.darkGrey),
+        border: Border.all(width: 1, color: AppColors.darkGrey),
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
       ),
       child: Padding(

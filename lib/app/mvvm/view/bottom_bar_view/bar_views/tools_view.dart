@@ -129,7 +129,7 @@ class _ToolsViewState extends State<ToolsView> {
         margin: EdgeInsets.only(top: 20.h),
         height: 85.h,
         decoration: BoxDecoration(
-          border: Border.all(width: 2, color: AppColors.darkGrey),
+          border: Border.all(width: 1, color: AppColors.darkGrey),
           borderRadius: BorderRadius.all(Radius.circular(10.r)),
           image: DecorationImage(
             image: AssetImage(AppAssets.backgroundCardImg),

@@ -234,12 +234,6 @@ class _ProfileViewState extends State<ProfileView> {
                             icon: AppAssets.shieldIcon,
                             title: 'KYC Status',
                             isApproved: true,
-
-                            onTap: () => Utils.showBottomSheet(
-                              context: context,
-                              child: CryptoWalletSheet(),
-                            ),
-
                           ),
                           Divider(
                             color: Colors.white.withValues(alpha: 0.1),

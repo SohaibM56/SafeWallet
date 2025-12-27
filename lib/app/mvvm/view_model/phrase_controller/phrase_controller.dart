@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 
-class PhraseController extends GetxController{
+class PhraseController extends GetxController {
 
-  RxString currentProgress = "01".obs;
+  final phase = RecoveryPhase.generate.obs;
 
 }
+
+enum RecoveryPhase { generate, verify, complete }

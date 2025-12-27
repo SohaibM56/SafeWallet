@@ -18,6 +18,7 @@ class AppAssets {
   static const String addIcon = '$imagesPath/add_icon.png';
   static const String importWalletIcon = '$imagesPath/import_wallet_icon.png';
   static const String addWalletIcon = '$imagesPath/add_wallet_icon.png';
+  static const String bgGradient = '$imagesPath/bg_gradient.png';
 
   static const String home = '$imagesPath/home.png';
   static const String trade = '$imagesPath/trade.png';
@@ -48,6 +49,13 @@ class AppAssets {
   static const String arrowsIcon = '$imagesPath/arrows.png';
   static const String infoIcon = '$imagesPath/info_ic.png';
   static const String handIcon = '$imagesPath/hand_ic.png';
+  static const String lockIcon = '$imagesPath/lock_icon.png';
+  static const String checkIcon = '$imagesPath/check_icon.png';
+  static const String diagonalArrowIcon = '$imagesPath/diagonal_arrow.png';
+  static const String walletIcon = '$imagesPath/wallet_icon.png';
+  static const String etherIcon = '$imagesPath/ether_icon.png';
+  static const String qrCodeIcon = '$imagesPath/qr_code_icon.png';
+  static const String tickIcon = '$imagesPath/tick_icon.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';
@@ -59,4 +67,7 @@ class AppAssets {
   static const String notificationIcon = '$svgsPath/notification_icon.svg';
   static const String kycLogo = '$svgsPath/kyc_logo.svg';
   static const String logoutIcon = '$svgsPath/logout_icon.svg';
+  static const String completeGradient = '$svgsPath/complete_gradient.svg';
+  static const String solidDot = '$svgsPath/solid_dot.svg';
+
 }
