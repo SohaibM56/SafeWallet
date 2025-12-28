@@ -26,9 +26,9 @@ class _RewardViewState extends State<RewardView> {
   final List<String> platforms = ["Coin-Back Rewards", "Stalking"];
 
   final methods = [
-    {"icon": AppAssets.sendIcon, "title": "Send"},
-    {"icon": AppAssets.receiveIcon, "title": "Receive"},
-    {"icon": AppAssets.historyIcon, "title": "History"},
+    {"icon": AppAssets.lockedIcon, "title": "Locked", "count":"1,2345.65"},
+    {"icon": AppAssets.walletIcon, "title": "Available", "count":"567.89"},
+    {"icon": AppAssets.graphIcon, "title": "Stalked", "count":"2,500.00"},
   ];
 
   @override
@@ -66,210 +66,238 @@ class _RewardViewState extends State<RewardView> {
                   .slideY(begin: -0.1, curve: Curves.easeOut),
               20.h.height,
 
-              _buildPlatformSelector()
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 200.ms)
-                  .slideY(begin: 0.3, curve: Curves.easeOutCubic),
-              // 15.h.height,
-
               _buildRecordWidget()
                   .animate()
                   .fadeIn(duration: 600.ms, delay: 200.ms)
                   .slideY(begin: 0.3, curve: Curves.easeOutCubic),
 
               10.h.height,
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: AppColors.darkGrey),
-                  borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 15.w,
-                    vertical: 20.w,
-                  ),
-                  child: Column(
-                    children: [
-                      10.h.height,
-                      Row(
+
+              _buildPlatformSelector()
+                  .animate()
+                  .fadeIn(duration: 600.ms, delay: 200.ms)
+                  .slideY(begin: 0.3, curve: Curves.easeOutCubic),
+
+              10.h.height,
+
+              if(selectedPlatformIndex==0)
+                ...[
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: AppColors.darkGrey),
+                      borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.w,
+                        vertical: 10.w,
+                      ),
+                      child: Column(
+                        children: [
+                          5.h.height,
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset(AppAssets.ovalLockIcon, width: 45.w,height: 45.h),
+                              10.w.width,
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Locked Rewards",
+                                      style: AppTextStyles.customText12(
+                                        color: AppColors.white.withValues(alpha: 0.5),
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                                    5.h.height,
+                                    Text(
+                                      "1,234.56 SEC",
+                                      style: AppTextStyles.customText18(
+                                        color: AppColors.white,
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          10.h.height,
+
+                          Text(
+                            "Coin-Back rewards from your Trades. Unlock to move\nto your available balance",
+                            style: AppTextStyles.customText12(
+                              color: AppColors.white.withValues(alpha: 0.5),
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+
+                          10.h.height,
+
+                          AppCustomButton(
+                            title: "Unlock Rewards",
+                            onPressed: () {
+
+                            },
+                          ).paddingHorizontal(30.w),
+                          5.h.height,
+
+                        ],
+                      ),
+                    ),
+                  )
+                      .animate()
+                      .fadeIn(duration: 600.ms, delay: 250.ms)
+                      .slideY(begin: 0.3, curve: Curves.easeOutCubic),
+                  Container(
+                    width: double.infinity,
+                    margin: EdgeInsets.only(top: 10.h),
+                    padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 16.h),
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: AppColors.darkGrey),
+                      borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          ImageIcon(
-                            AssetImage(AppAssets.infoIcon),
-                            size: 25,
-                            color: AppColors.white,
-                          ).animate().fadeIn(
-                            duration: 600.ms,
-                            delay: 300.ms,
-                          ),
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "How to Coin-back Works ",
+                                  style: AppTextStyles.customText18(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ).animate().fadeIn(
+                                  duration: 600.ms,
+                                  delay: 400.ms,
+                                ),
 
-                          12.w.width,
+                                10.h.height,
+
+                                Text(
+                                  "1.   Get 25% of the fee back as SEC tokens!",
+                                  style: AppTextStyles.customText12(
+                                    color: Colors.white.withValues(alpha: 0.6),
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ).animate().fadeIn(
+                                  duration: 600.ms,
+                                  delay: 500.ms,
+                                ), 4.h.height,
+
+                                Text(
+                                  "2.   1% transaction fee is applied to each swap",
+                                  style: AppTextStyles.customText12(
+                                    color: Colors.white.withValues(alpha: 0.6),
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ).animate().fadeIn(
+                                  duration: 600.ms,
+                                  delay: 500.ms,
+                                ),
+                                4.h.height,
+
+                                Text(
+                                  "3.   Trade meme coins on pump.fun, moonshot, or\n      raydium",
+                                  style: AppTextStyles.customText12(
+                                    color: Colors.white.withValues(alpha: 0.6),
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ).animate().fadeIn(
+                                  duration: 600.ms,
+                                  delay: 500.ms,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                      .animate()
+                      .fadeIn(duration: 600.ms, delay: 300.ms)
+                      .slideY(begin: 0.3, curve: Curves.easeOutCubic),
+                ],
+               if(selectedPlatformIndex==1)
+                ...[
+
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: AppColors.darkGrey),
+                      borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.w,
+                        vertical: 10.w,
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                5.h.height,
+                                Text(
+                                  "Current APY",
+                                  style: AppTextStyles.customText18(
+                                    color: AppColors.white,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+
+                                5.h.height,
+
+                                Text(
+                                 "Stake your SEC tokens to earn passive rewards",
+                                  style: AppTextStyles.customText12(
+                                    color: AppColors.white.withValues(alpha: 0.5),
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+
+                                5.h.height,
+                              ],
+                            ),
+                          ),
                           Text(
-                            "Fee Breakdown",
-                            overflow: TextOverflow.ellipsis,
+                            "12.5 %",
                             style: AppTextStyles.customText18(
-                              color: Colors.white,
+                              color: AppColors.green,
                               fontWeight: FontWeight.w800,
                             ),
-                          ).animate().fadeIn(
-                            duration: 600.ms,
-                            delay: 400.ms,
-                          ),
+                          ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
                         ],
                       ),
-                      15.h.height,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Transaction Fee (1%)",
-                            style: AppTextStyles.customText12(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Text(
-                            "0 SOL",
-                            style: AppTextStyles.customText16(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
+                    ),
+                  )
+                      .animate()
+                      .fadeIn(duration: 600.ms, delay: 250.ms)
+                      .slideY(begin: 0.3, curve: Curves.easeOutCubic),
 
-                      10.h.height,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "SEC Coin-back (25% of fee)",
-                            style: AppTextStyles.customText12(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Text(
-                            "+0 SEC",
-                            style: AppTextStyles.customText16(
-                              color: AppColors.secondary,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              )
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 250.ms)
-                  .slideY(begin: 0.3, curve: Curves.easeOutCubic),
-              // 15.h.height,
-              Container(
-                width: double.infinity,
-                margin: EdgeInsets.only(top: 10.h),
-                height: 85.h,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: AppColors.darkGrey),
-                  borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.w),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      /// Icon
-                      Container(
-                        height: 50.w,
-                        width: 50.w,
-                        decoration: BoxDecoration(
-                          color: AppColors.softgreen.withValues(alpha: 0.1),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(
-                          child:
-                          ImageIcon(
-                            AssetImage(AppAssets.handIcon),
-                            size: 25,
-                            color: AppColors.white,
-                          ).animate().fadeIn(
-                            duration: 600.ms,
-                            delay: 300.ms,
-                          ),
-                        ),
-                      ),
 
-                      12.w.width,
+                  20.h.height,
 
-                      /// ✅ Text Area (Expanded FIX)
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Earn SEC Token Rewards!",
-                              style: AppTextStyles.customText16(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ).animate().fadeIn(
-                              duration: 600.ms,
-                              delay: 400.ms,
-                            ),
+                  AppCustomButton(
+                    title: "Stake More SEC",
+                    onPressed: () {
 
-                            4.h.height,
+                    },
+                  ).paddingHorizontal(30.w),
 
-                            Text(
-                              "Get 25% of every fee back as SEC tokens",
-                              style: AppTextStyles.customText10(
-                                color: Colors.white.withValues(alpha: 0.6),
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ).animate().fadeIn(
-                              duration: 600.ms,
-                              delay: 500.ms,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 300.ms)
-                  .slideY(begin: 0.3, curve: Curves.easeOutCubic),
-              20.h.height,
-              AppCustomButton(
-                title: "Swap Tokens",
-                onPressed: () {
-                  Utils.showBottomSheet(
-                    context: context,
-                    child: CryptoWalletSheet(),
-                  );
-                },
-              )
-                  .paddingSymmetric(horizontal: 20.w)
-                  .animate(delay: 1000.ms)
-                  .fadeIn(duration: 600.ms)
-                  .scale(
-                begin: const Offset(0.95, 0.95),
-                curve: Curves.easeOutBack,
-              ),
-              12.h.height,
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                  "Network: Solana Devante ( Test/Dev Environment)",
-                  style: AppTextStyles.customText12(
-                    color: Colors.white.withValues(alpha: 0.5),
-                    fontWeight: FontWeight.w400,
-                  ),
-                ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
-              ),
+                ],
+
               10.h.height,
             ],
           ).paddingHorizontal(20.w),
@@ -282,7 +310,6 @@ class _RewardViewState extends State<RewardView> {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(top: 10.h),
-      height: 200.h,
       decoration: BoxDecoration(
         border: Border.all(width: 1, color: AppColors.darkGrey),
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
@@ -334,12 +361,14 @@ class _RewardViewState extends State<RewardView> {
               crossAxisCount: 3,
               crossAxisSpacing: 8.w,
               mainAxisSpacing: 8.h,
+              mainAxisExtent: 85.h
             ),
             itemCount: methods.length,
             itemBuilder: (context, index) {
               return _transactionMethods(
                 methodImg: methods[index]["icon"]!,
                 methtodTitle: methods[index]["title"]!,
+                count: methods[index]["count"]!,
               );
             },
           ).animate().fadeIn(duration: 600.ms, delay: 300.ms),
@@ -404,25 +433,28 @@ class _RewardViewState extends State<RewardView> {
     );
   }
 
-
-  Widget _transactionMethods({
-    required String methodImg,
-    required String methtodTitle,
-  }) {
+  Widget _transactionMethods({required String methodImg, required String methtodTitle, required String count}) {
     return Container(
-      height: 110.h,
-      width: 110,
       decoration: BoxDecoration(
-        border: Border.all(width: 1, color: AppColors.darkGrey),
+        color: AppColors.primary,
+        border: Border.all(width: 1.w, color: AppColors.darkGrey),
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
       ),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ImageIcon(AssetImage(methodImg), color: AppColors.white, size: 30),
+            ImageIcon(AssetImage(methodImg), color: AppColors.white, size: 18.sp),
             Text(
               methtodTitle,
+              style: AppTextStyles.customText12(
+                color: AppColors.white.withValues(alpha: 0.5),
+                fontWeight: FontWeight.w400,
+              ),
+            ).paddingVertical(5.h),
+            Text(
+              count,
               style: AppTextStyles.customText16(
                 color: AppColors.white,
                 fontWeight: FontWeight.w400,
