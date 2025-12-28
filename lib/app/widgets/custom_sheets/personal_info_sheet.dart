@@ -39,7 +39,7 @@ class PersonalInfoSheet extends StatelessWidget {
             ).paddingRight(5.w),
             Text(
               AppStrings.personalInfo.tr,
-              style: AppTextStyles.customText28(fontWeight: FontWeight.w600),
+              style: AppTextStyles.customText24(fontWeight: FontWeight.w600),
             ),
             15.h.height,
 

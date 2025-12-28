@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
-import 'package:safewallet/app/widgets/app_custom_button.dart';
+import 'package:safewallet/app/widgets/custom_sheets/transaction_success_sheet.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
-import '../../config/app_assets.dart';
 import '../../config/app_colors.dart';
+import '../../config/utils.dart';
 
 class TransactionSentSheet extends StatelessWidget {
   const TransactionSentSheet({super.key});
@@ -36,11 +36,11 @@ class TransactionSentSheet extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   Get.back();
+                  Utils.showBottomSheet(context: context, child: TransactionSuccessSheet());
                 },
                 child: Icon(Icons.close, color: AppColors.black, size: 22.sp),
               ),
             ).paddingRight(5.w),
-
 
             Align(
               alignment: Alignment.topLeft,

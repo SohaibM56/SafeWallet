@@ -56,6 +56,13 @@ class AppAssets {
   static const String etherIcon = '$imagesPath/ether_icon.png';
   static const String qrCodeIcon = '$imagesPath/qr_code_icon.png';
   static const String tickIcon = '$imagesPath/tick_icon.png';
+  static const String alertIcon = '$imagesPath/alert_icon.png';
+  static const String boardIcon = '$imagesPath/board_icon.png';
+  static const String privacyShieldIcon = '$imagesPath/privacy_shield_icon.png';
+  static const String nafathBadge = '$imagesPath/nafath_badge.png';
+  static const String shieldPrivate = '$imagesPath/shield_private.png';
+  static const String bitcoinIcon = '$imagesPath/bitcoin_icon.png';
+  static const String downArrow = '$imagesPath/down_arrow.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';
@@ -69,5 +76,8 @@ class AppAssets {
   static const String logoutIcon = '$svgsPath/logout_icon.svg';
   static const String completeGradient = '$svgsPath/complete_gradient.svg';
   static const String solidDot = '$svgsPath/solid_dot.svg';
+  static const String transferIcon = '$svgsPath/transfer_icon.svg';
+  static const String transparentFill = '$svgsPath/transparent_fill.svg';
+  static const String smallTransferIcon = '$svgsPath/small_transfer_icon.svg';
 
 }

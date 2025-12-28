@@ -374,7 +374,7 @@ class WalletView extends StatelessWidget {
               "Cancel",
               style: AppTextStyles.customText(
                 fontSize: 13.sp,
-                color: Colors.white.withValues(alpha: 0.5),
+                color: Colors.white,
                 fontWeight: FontWeight.w400,
               ),
             ),
