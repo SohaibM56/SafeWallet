@@ -63,6 +63,7 @@ class CryptoWalletSheet extends StatelessWidget {
             AppCustomButton(
               title: "Start Seed Phrase Flow",
               onPressed: () {
+                Get.back();
                 Get.toNamed(AppRoutes.recoveryPhaseView);
               },
             ).paddingHorizontal(30.w),

@@ -63,6 +63,7 @@ class AppAssets {
   static const String shieldPrivate = '$imagesPath/shield_private.png';
   static const String bitcoinIcon = '$imagesPath/bitcoin_icon.png';
   static const String downArrow = '$imagesPath/down_arrow.png';
+  static const String ovalRewardIcon = '$imagesPath/oval_reward_icon.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';

@@ -244,10 +244,12 @@ class _TradeViewState extends State<TradeView> {
               20.h.height,
               AppCustomButton(
                     title: "Swap Tokens",
-                    onPressed: () => Utils.showBottomSheet(
-                      context: context,
-                      child: CryptoWalletSheet(),
-                    ),
+                    onPressed: () {
+                      Utils.showBottomSheet(
+                        context: context,
+                        child: CryptoWalletSheet(),
+                      );
+                    },
                   )
                   .paddingSymmetric(horizontal: 20.w)
                   .animate(delay: 1000.ms)
@@ -261,13 +263,13 @@ class _TradeViewState extends State<TradeView> {
                 alignment: Alignment.center,
                 child: Text(
                   "Network: Solana Devante ( Test/Dev Environment)",
-
                   style: AppTextStyles.customText12(
                     color: Colors.white.withValues(alpha: 0.5),
                     fontWeight: FontWeight.w400,
                   ),
                 ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
               ),
+              10.h.height,
             ],
           ).paddingHorizontal(20.w),
         ),
