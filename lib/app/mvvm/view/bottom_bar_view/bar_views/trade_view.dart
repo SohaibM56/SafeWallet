@@ -69,8 +69,8 @@ class _TradeViewState extends State<TradeView> {
                   .animate()
                   .fadeIn(duration: 600.ms, delay: 200.ms)
                   .slideY(begin: 0.3, curve: Curves.easeOutCubic),
-              // 15.h.height,
 
+              // 15.h.height,
               _buildTransactionWidget()
                   .animate()
                   .fadeIn(duration: 600.ms, delay: 200.ms)
@@ -305,19 +305,19 @@ class _TradeViewState extends State<TradeView> {
                     fontWeight: FontWeight.w400,
                   ),
                 ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                Expanded(
+                  child: Text(
+                    "0.00",
+
+                    style: AppTextStyles.customText22(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                ),
+
                 Text(
-                  "0.00",
-
-                  style: AppTextStyles.customText22(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-
-                40.h.height,
-
-                Text(
-                  "From",
+                  "To",
 
                   style: AppTextStyles.customText12(
                     color: AppColors.white.withValues(alpha: 0.5),
@@ -325,13 +325,14 @@ class _TradeViewState extends State<TradeView> {
                   ),
                 ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
                 Text(
-                  "0.00",
+                  "0",
 
                   style: AppTextStyles.customText22(
                     color: AppColors.white,
                     fontWeight: FontWeight.w400,
                   ),
                 ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                20.h.height,
               ],
             ),
           ),

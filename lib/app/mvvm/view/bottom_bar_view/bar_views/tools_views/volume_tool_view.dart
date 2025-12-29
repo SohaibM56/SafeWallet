@@ -30,6 +30,7 @@ class _VolumeToolViewState extends State<VolumeToolView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                20.h.height,
                 // Back Button / Title
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,

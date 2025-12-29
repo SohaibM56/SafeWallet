@@ -76,13 +76,14 @@ class _BioMetricVerificationViewState extends State<BioMetricVerificationView> {
                             .fadeIn(duration: 600.ms, delay: 100.ms)
                             .slideY(begin: -0.2, curve: Curves.easeOut),
 
-                        8.h.height,
+                        12.h.height,
 
                         /// Subtitle
                         Text(
                               AppStrings.bioMetricText,
                               textAlign: TextAlign.center,
                               style: AppTextStyles.customText14(
+                                height: 1.5,
                                 color: Colors.white.withValues(alpha: 0.5),
                                 fontWeight: FontWeight.w400,
                               ),

@@ -30,6 +30,7 @@ class _SolToolViewState extends State<SolToolView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                20.h.height,
                 // Back Button / Title
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,

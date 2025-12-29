@@ -7,7 +7,6 @@ import 'package:safewallet/app/config/app_colors.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/widgets/custom_menu_tile.dart';
-import 'package:safewallet/app/widgets/custom_sheets/crypto_wallet_sheet.dart';
 import 'package:safewallet/app/widgets/custom_sheets/language_select_sheet.dart';
 import 'package:safewallet/app/widgets/custom_sheets/personal_info_sheet.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
@@ -89,7 +88,9 @@ class _ProfileViewState extends State<ProfileView> {
                                   children: [
                                     SvgPicture.asset(
                                       AppAssets.clipIcon,
-                                      color: Colors.white.withValues(alpha: 0.6),
+                                      color: Colors.white.withValues(
+                                        alpha: 0.6,
+                                      ),
                                     ),
                                     5.w.width,
                                     Text(
@@ -117,7 +118,8 @@ class _ProfileViewState extends State<ProfileView> {
                     .slideY(begin: 0.3, curve: Curves.easeOutCubic),
                 Positioned(
                   top: 0,
-                  child: Stack(
+                  child:
+                      Stack(
                             clipBehavior: Clip.none,
                             alignment: Alignment.bottomRight,
                             children: [

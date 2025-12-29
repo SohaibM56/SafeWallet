@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,6 +22,8 @@ class SignUpController extends GetxController {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+  Rx<Country?> selectedCountry = Rx<Country?>(null);
+  final TextEditingController phoneController = TextEditingController();
 
   // --------------------- Image Picker ---------------------
   final ImagePicker picker = ImagePicker();
@@ -53,4 +56,22 @@ class SignUpController extends GetxController {
   //   selectedCountry.value = country;
   //   debugPrint("Selected country: ${country.name} (+${country.phoneCode})");
   // }
+  @override
+  void onInit() {
+    selectedCountry = Rx<Country?>(
+      Country(
+        phoneCode: '39',
+        countryCode: 'IT',
+        e164Sc: 0,
+        geographic: true,
+        level: 1,
+        name: 'Italy',
+        example: '3123456789',
+        displayName: 'Italy (IT)',
+        displayNameNoCountryCode: 'Italy',
+        e164Key: '39',
+      ),
+    );
+    super.onInit();
+  }
 }

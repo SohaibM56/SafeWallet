@@ -8,6 +8,7 @@ import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_vie
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/done_verification.view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/id_card_verification_view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/selfie_verification_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/all_activity_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/snipper_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/sol_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/volume_tool_view.dart';
@@ -28,6 +29,7 @@ import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controlle
 import 'package:safewallet/app/mvvm/view_model/bottom_bar_controller/trade_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/profile_controllers/profile_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/splash_controller/splash_controller.dart';
+import 'package:safewallet/app/mvvm/view_model/tools_controller/snipper_tool_controller.dart';
 
 import '../mvvm/view/bottom_bar_view/bottom_bar_view.dart';
 import '../mvvm/view/bottom_bar_view/setting_views/support_view.dart';
@@ -50,6 +52,7 @@ abstract class AppRoutes {
   static const String biometricVerificationView = '/biometriVerificationView';
   static const String doneVerificationView = '/doneVerificationView';
   static const String bottomBarView = '/bottomBarView';
+  static const String allActivityView = '/allActivityView';
   static const String supportView = '/supportView';
   static const String currencyView = '/currencyView';
   static const String recoveryPhaseView = '/recoveryPhaseView';
@@ -161,6 +164,11 @@ abstract class AppPages {
       }),
     ),
     GetPage(
+      name: AppRoutes.allActivityView,
+      page: () => AllActivityView(),
+      binding: BindingsBuilder(() {}),
+    ),
+    GetPage(
       name: AppRoutes.supportView,
       page: () => SupportView(),
       binding: BindingsBuilder(() {}),
@@ -203,7 +211,7 @@ abstract class AppPages {
       name: AppRoutes.snipperToolView,
       page: () => SnipperToolView(),
       binding: BindingsBuilder(() {
-        // Get.lazyPut<BottomBarController>(() => BottomBarController());
+        Get.lazyPut<SnipperToolController>(() => SnipperToolController());
       }),
     ),
     GetPage(
@@ -213,84 +221,5 @@ abstract class AppPages {
         // Get.lazyPut<BottomBarController>(() => BottomBarController());
       }),
     ),
-    // GetPage(
-    //   name: AppRoutes.currencyDisplayView,
-    //   page: () => CurrencyDisplayView(),
-    //   binding: BindingsBuilder(() {
-    //     // Get.lazyPut<SignupController>(() => SignupController());
-    //   }),
-    // ),
-    // GetPage(
-    //   name: AppRoutes.accountSettingView,
-    //   page: () => AccountSettingView(),
-    //   binding: BindingsBuilder(() {
-    //     // Get.lazyPut<ProfileController>(() => ProfileController());
-    //   }),
-    // ),
-    // GetPage(
-    //   name: AppRoutes.aboutUsView,
-    //   page: () => AboutView(),
-    //   binding: BindingsBuilder(() {
-    //     // Get.lazyPut<SignupController>(() => SignupController());
-    //   }),
-    // ),
-    // GetPage(
-    //   name: AppRoutes.privacyPolicyView,
-    //   page: () => PrivacyView(),
-    //   binding: BindingsBuilder(() {
-    //     // Get.lazyPut<SignupController>(() => SignupController());
-    //   }),
-    // ),
-    // GetPage(
-    //   name: AppRoutes.giveFeedbackView,
-    //   page: () => FeedbackView(),
-    //   binding: BindingsBuilder(() {
-    //     Get.lazyPut<FeedbackController>(() => FeedbackController());
-    //   }),
-    // ),
-    // GetPage(
-    //   name: AppRoutes.contactSupportView,
-    //   page: () => ContactSupportView(),
-    //   binding: BindingsBuilder(() {
-    //     // Get.lazyPut<SignupController>(() => SignupController());
-    //   }),
-    // ),
-    // GetPage(
-    //   name: AppRoutes.helpCenterView,
-    //   page: () => HelpCenterView(),
-    //   binding: BindingsBuilder(() {
-    //     Get.lazyPut<HelpCenterController>(() => HelpCenterController());
-    //   }),
-    // ),
-    // GetPage(
-    //   name: AppRoutes.deleteAccountView,
-    //   page: () => DeleteAccountView(),
-    //   binding: BindingsBuilder(() {
-    //     Get.lazyPut<DeleteAccountController>(() => DeleteAccountController());
-    //   }),
-    // ),
-    // GetPage(
-    //   name: AppRoutes.viewRateDisplay,
-    //   page: () => ViewRateDisplay(),
-    //   binding: BindingsBuilder(() {
-    //     Get.lazyPut<ExchangeController>(() => ExchangeController());
-    //   }),
-    // ),
-    // GetPage(
-    //   name: AppRoutes.bottomBarView,
-    //   page: () => BottomBarView(),
-    //   binding: BindingsBuilder(() {
-    //     Get.lazyPut<BottomBarController>(() => BottomBarController());
-    //     Get.lazyPut<HomeController>(() => HomeController());
-    //     Get.lazyPut<ExchangeController>(() => ExchangeController());
-    //     // Get.lazyPut<PortfolioController>(() => PortfolioController());
-    //     Get.lazyPut<ProfileController>(() => ProfileController());
-    //   }),
-    // ),
-
-    // GetPage(
-    //   name: AppRoutes.garageMaintenanceRecordView,
-    //   page: () => ImageViewerScreen(),
-    // ),
   ];
 }

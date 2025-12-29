@@ -41,57 +41,86 @@ class _LoginViewState extends State<LoginView> {
                 /// Logo
                 Align(
                   alignment: Alignment.center,
-                  child: Image.asset(
-                    AppAssets.appLogo,
-                    height: 125.h,
-                    width: 150.w,
-                  ).animate().fadeIn(duration: 800.ms).scale(begin: const Offset(0.8, 0.8), curve: Curves.easeOutBack),
+                  child:
+                      Image.asset(
+                            AppAssets.appLogo,
+                            height: 125.h,
+                            width: 150.w,
+                          )
+                          .animate()
+                          .fadeIn(duration: 800.ms)
+                          .scale(
+                            begin: const Offset(0.8, 0.8),
+                            curve: Curves.easeOutBack,
+                          ),
                 ),
                 60.h.height,
 
                 /// Login Title
                 Text(
-                  AppStrings.welcome,
-                  style: AppTextStyles.customText24(color: Colors.white, fontWeight: FontWeight.bold),
-                ).animate().fadeIn(duration: 500.ms, delay: 200.ms).slideY(begin: -0.2, curve: Curves.easeOut),
+                      AppStrings.welcome,
+                      style: AppTextStyles.customText24(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                    .animate()
+                    .fadeIn(duration: 500.ms, delay: 200.ms)
+                    .slideY(begin: -0.2, curve: Curves.easeOut),
                 8.h.height,
 
                 /// Subtitle
                 Text(
                   AppStrings.loginText,
-                  style: AppTextStyles.customText14(color: Colors.white, fontWeight: FontWeight.w400),
+                  style: AppTextStyles.customText14(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ).animate().fadeIn(duration: 500.ms, delay: 300.ms),
                 40.h.height,
                 AppCustomField(
-                  labelTitle: AppStrings.emailAddress,
-                  hintText: '${AppStrings.enter} ${AppStrings.emailAddress}',
-                  controller: authController.emailController,
-                  // validator: (value) {
-                  //   if (value == null || value.trim().isEmpty) {
-                  //     return AppStrings.emailRequired;
-                  //   } else if (!GetUtils.isEmail(value.trim())) {
-                  //     return AppStrings.enterValidEmail;
-                  //   }
-                  //   return null;
-                  // },
-                ).animate(delay: 400.ms).fadeIn(duration: 500.ms).slideY(begin: 0.2, curve: Curves.easeOut),
+                      labelTitle: AppStrings.emailAddress,
+                      hintText:
+                          '${AppStrings.enter} ${AppStrings.emailAddress}',
+                      controller: authController.emailController,
+                      // validator: (value) {
+                      //   if (value == null || value.trim().isEmpty) {
+                      //     return AppStrings.emailRequired;
+                      //   } else if (!GetUtils.isEmail(value.trim())) {
+                      //     return AppStrings.enterValidEmail;
+                      //   }
+                      //   return null;
+                      // },
+                    )
+                    .animate(delay: 400.ms)
+                    .fadeIn(duration: 500.ms)
+                    .slideY(begin: 0.2, curve: Curves.easeOut),
                 20.h.height,
 
                 /// Password Label & Field
                 Obx(
-                  () => AppCustomField(
-                    labelTitle: AppStrings.password,
-                    hintText: '${AppStrings.enter} ${AppStrings.password}',
-                    controller: authController.passwordController,
-                    obscureText: authController.obscureText.value,
-                    suffixIcon: GestureDetector(
-                      onTap: () {
-                        authController.obscureText.value = !authController.obscureText.value;
-                      },
-                      child: Icon(authController.obscureText.value ? Icons.visibility_off : Icons.visibility, size: 20.sp),
-                    ),
-                  ),
-                ).animate(delay: 600.ms).fadeIn(duration: 500.ms).slideY(begin: 0.2, curve: Curves.easeOut),
+                      () => AppCustomField(
+                        labelTitle: AppStrings.password,
+                        hintText: '${AppStrings.enter} ${AppStrings.password}',
+                        controller: authController.passwordController,
+                        obscureText: authController.obscureText.value,
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            authController.obscureText.value =
+                                !authController.obscureText.value;
+                          },
+                          child: Icon(
+                            authController.obscureText.value
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            size: 20.sp,
+                          ),
+                        ),
+                      ),
+                    )
+                    .animate(delay: 600.ms)
+                    .fadeIn(duration: 500.ms)
+                    .slideY(begin: 0.2, curve: Curves.easeOut),
                 20.h.height,
 
                 /// Forgot Password
@@ -101,7 +130,12 @@ class _LoginViewState extends State<LoginView> {
                     onTap: () {
                       Get.toNamed(AppRoutes.forgotPasswordView);
                     },
-                    child: Text(AppStrings.forgotPassword, style: AppTextStyles.customText14(color: Colors.white.withValues(alpha: 0.8))),
+                    child: Text(
+                      AppStrings.forgotPassword,
+                      style: AppTextStyles.customText14(
+                        color: Colors.white.withValues(alpha: 0.8),
+                      ),
+                    ),
                   ),
                 ).animate(delay: 700.ms).fadeIn(duration: 500.ms),
                 70.h.height,
@@ -135,25 +169,39 @@ class _LoginViewState extends State<LoginView> {
                     .paddingSymmetric(horizontal: 20.w)
                     .animate(delay: 900.ms)
                     .fadeIn(duration: 500.ms)
-                    .scale(begin: const Offset(0.9, 0.9), curve: Curves.easeOutBack),
+                    .scale(
+                      begin: const Offset(0.9, 0.9),
+                      curve: Curves.easeOutBack,
+                    ),
                 50.h.height,
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(AppStrings.dontHaveAccount, style: AppTextStyles.customText14(color: Colors.white.withValues(alpha: 0.7))),
-                    2.w.width,
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(AppRoutes.signUpView);
-                      },
-                      child: Text(
-                        AppStrings.signUp,
-                        style: AppTextStyles.customText14(color: AppColors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ).animate(delay: 1100.ms).fadeIn(duration: 600.ms).slideY(begin: 0.2, curve: Curves.easeOut),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          AppStrings.dontHaveAccount,
+                          style: AppTextStyles.customText14(
+                            color: Colors.white.withValues(alpha: 0.7),
+                          ),
+                        ),
+                        5.w.width,
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(AppRoutes.signUpView);
+                          },
+                          child: Text(
+                            AppStrings.signUp,
+                            style: AppTextStyles.customText14(
+                              color: AppColors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                    .animate(delay: 1100.ms)
+                    .fadeIn(duration: 600.ms)
+                    .slideY(begin: 0.2, curve: Curves.easeOut),
               ],
             ),
           ).paddingSymmetric(horizontal: 15.w),

@@ -19,7 +19,8 @@ class AppAssets {
   static const String importWalletIcon = '$imagesPath/import_wallet_icon.png';
   static const String addWalletIcon = '$imagesPath/add_wallet_icon.png';
   static const String bgGradient = '$imagesPath/bg_gradient.png';
-
+  static const String greenArrow = '$imagesPath/green_arrow.png';
+  static const String redArrow = '$imagesPath/red_arrow.png';
   static const String home = '$imagesPath/home.png';
   static const String trade = '$imagesPath/trade.png';
   static const String rewards = '$imagesPath/rewards.png';
@@ -67,6 +68,8 @@ class AppAssets {
   static const String lockedIcon = '$imagesPath/locked_icon.png';
   static const String graphIcon = '$imagesPath/graph_icon.png';
   static const String ovalLockIcon = '$imagesPath/oval_lock_icon.png';
+  static const String filledNotificationIcon =
+      '$imagesPath/notification_ic.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';
@@ -83,5 +86,4 @@ class AppAssets {
   static const String transferIcon = '$svgsPath/transfer_icon.svg';
   static const String transparentFill = '$svgsPath/transparent_fill.svg';
   static const String smallTransferIcon = '$svgsPath/small_transfer_icon.svg';
-
 }

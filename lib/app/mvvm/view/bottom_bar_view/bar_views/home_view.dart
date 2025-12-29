@@ -3,8 +3,11 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/config/app_colors.dart';
+import 'package:safewallet/app/config/app_routes.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
+import 'package:safewallet/app/config/utils.dart';
+import 'package:safewallet/app/widgets/custom_sheets/receive_sheet.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 import '../../../../config/app_assets.dart';
@@ -20,10 +23,37 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   final ProfileController controller = Get.put(ProfileController());
 
-  final methods = [
-    {"icon": AppAssets.sendIcon, "title": "Send"},
-    {"icon": AppAssets.receiveIcon, "title": "Receive"},
-    {"icon": AppAssets.historyIcon, "title": "History"},
+  // final methods = [
+  //   {
+  //     "icon": AppAssets.sendIcon,
+  //     "title": "Send",
+  //     "onTap": () {
+  //       Get.toNamed(AppRoutes.walletView);
+  //     },
+  //   },
+  //   {"icon": AppAssets.receiveIcon, "title": "Receive", "onTap": () {}},
+  //   {"icon": AppAssets.historyIcon, "title": "History", "onTap": () {}},
+  // ];
+  List<TransactionMethod> methods = <TransactionMethod>[
+    TransactionMethod(
+      icon: AppAssets.sendIcon,
+      title: "Send",
+      onTap: () {
+        Get.toNamed(AppRoutes.walletView);
+      },
+    ),
+    TransactionMethod(
+      icon: AppAssets.receiveIcon,
+      title: "Receive",
+      onTap: () {},
+    ),
+    TransactionMethod(
+      icon: AppAssets.historyIcon,
+      title: "History",
+      onTap: () {
+        Get.toNamed(AppRoutes.allActivityView);
+      },
+    ),
   ];
 
   @override
@@ -36,36 +66,35 @@ class _HomeViewState extends State<HomeView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                            "Welcome Back",
-                            textAlign: TextAlign.center,
-                            style: AppTextStyles.customText(
-                              fontSize: 15,
-                              color: Colors.white.withValues(alpha: 0.7),
-                              fontWeight: FontWeight.w400,
-                            ),
-                          )
-                          .animate()
-                          .fadeIn(duration: 600.ms, delay: 200.ms)
-                          .slideY(begin: -0.1, curve: Curves.easeOut),
-                      5.h.height,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                              "Welcome Back",
+                              style: AppTextStyles.customText14(
+                                color: Colors.white.withValues(alpha: 0.7),
+                                fontWeight: FontWeight.w400,
+                              ),
+                            )
+                            .animate()
+                            .fadeIn(duration: 600.ms, delay: 200.ms)
+                            .slideY(begin: -0.1, curve: Curves.easeOut),
+                        5.h.height,
 
-                      Text(
-                            "SEC Wallet",
-                            style: AppTextStyles.customText28(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          )
-                          .animate()
-                          .fadeIn(duration: 600.ms, delay: 100.ms)
-                          .slideY(begin: -0.2, curve: Curves.easeOut),
-                    ],
+                        Text(
+                              "SEC Wallet",
+                              style: AppTextStyles.customText26(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
+                            .animate()
+                            .fadeIn(duration: 600.ms, delay: 100.ms)
+                            .slideY(begin: -0.2, curve: Curves.easeOut),
+                      ],
+                    ),
                   ),
                   Container(
                     height: 44.w,
@@ -92,6 +121,38 @@ class _HomeViewState extends State<HomeView> {
                       ],
                     ),
                   ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Container(
+                      height: 44.w,
+                      width: 44.w,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: AppColors.white),
+                      ),
+                      child: Center(
+                        child: Stack(
+                          children: [
+                            ImageIcon(
+                              AssetImage(AppAssets.filledNotificationIcon),
+                              color: AppColors.white,
+                            ),
+                            Positioned(
+                              right: 0,
+                              child: Container(
+                                height: 10.w,
+                                width: 10.w,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.secondary,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
 
@@ -114,8 +175,16 @@ class _HomeViewState extends State<HomeView> {
                 itemCount: methods.length,
                 itemBuilder: (context, index) {
                   return _transactionMethods(
-                    methodImg: methods[index]["icon"]!,
-                    methtodTitle: methods[index]["title"]!,
+                    methodImg: methods[index].icon,
+                    methtodTitle: methods[index].title,
+                    onTap: methods[index].title == "Receive"
+                        ? () {
+                            Utils.showBottomSheet(
+                              context: context,
+                              child: ReceiveSheet(),
+                            );
+                          }
+                        : methods[index].onTap,
                   );
                 },
               ).animate().fadeIn(duration: 600.ms, delay: 300.ms),
@@ -143,7 +212,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                         child: Center(
                           child: ImageIcon(
-                            AssetImage(AppAssets.sendIcon),
+                            AssetImage(AppAssets.rewards),
                             size: 25,
                             color: AppColors.white,
                           ).animate().fadeIn(duration: 600.ms, delay: 300.ms),
@@ -181,14 +250,14 @@ class _HomeViewState extends State<HomeView> {
                       ),
                       ImageIcon(
                         AssetImage(AppAssets.volumeIcon),
-                        color: AppColors.secondary,
+                        color: AppColors.green,
                       ),
                       2.w.width,
                       Text(
                         "\$745.80",
                         overflow: TextOverflow.ellipsis,
                         style: AppTextStyles.customText16(
-                          color: AppColors.secondary,
+                          color: AppColors.green,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -196,14 +265,40 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
               ),
+              10.h.height,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Recent Activity",
+                    style: AppTextStyles.customText20(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                  TextButton(
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.allActivityView);
+                    },
+                    child: Text(
+                      "View All",
+                      style: AppTextStyles.customText14(
+                        color: AppColors.softgreen,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                ],
+              ),
+              15.h.height,
               _homeCardWidget(
-                cardIcon: Icons.arrow_downward,
+                cardIcon: AppAssets.greenArrow,
                 cardTitle: "Received",
                 cardSubtitle: "tb1qxy2k...Owlh",
                 isRecived: true,
               ),
               _homeCardWidget(
-                cardIcon: Icons.arrow_upward,
+                cardIcon: AppAssets.redArrow,
                 cardTitle: "Received",
                 cardSubtitle: "tb1qxy2k...Owlh",
                 isRecived: false,
@@ -219,27 +314,35 @@ class _HomeViewState extends State<HomeView> {
   Widget _transactionMethods({
     required String methodImg,
     required String methtodTitle,
+    required VoidCallback onTap,
   }) {
-    return Container(
-      height: 110.h,
-      width: 110,
-      decoration: BoxDecoration(
-        border: Border.all(width: 1, color: AppColors.darkGrey),
-        borderRadius: BorderRadius.all(Radius.circular(10.r)),
-      ),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ImageIcon(AssetImage(methodImg), color: AppColors.white, size: 30),
-            Text(
-              methtodTitle,
-              style: AppTextStyles.customText16(
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 110.h,
+        width: 110,
+        decoration: BoxDecoration(
+          border: Border.all(width: 1, color: AppColors.darkGrey),
+          borderRadius: BorderRadius.all(Radius.circular(10.r)),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ImageIcon(
+                AssetImage(methodImg),
                 color: AppColors.white,
-                fontWeight: FontWeight.w400,
+                size: 30,
               ),
-            ),
-          ],
+              Text(
+                methtodTitle,
+                style: AppTextStyles.customText16(
+                  color: AppColors.white,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -349,14 +452,14 @@ class _HomeViewState extends State<HomeView> {
               8.w.width,
               ImageIcon(
                 AssetImage(AppAssets.volumeIcon),
-                color: AppColors.secondary,
+                color: AppColors.green,
               ),
               2.w.width,
               Text(
                 "\$745.80",
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyles.customText18(
-                  color: AppColors.secondary,
+                  color: AppColors.green,
                   fontWeight: FontWeight.w400,
                 ),
               ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
@@ -368,14 +471,14 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget _homeCardWidget({
-    required IconData cardIcon,
+    required String cardIcon,
     required String cardTitle,
     required String cardSubtitle,
     required bool isRecived,
   }) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(top: 20.h),
+      margin: EdgeInsets.only(bottom: 10.h),
       height: 85.h,
       decoration: BoxDecoration(
         border: Border.all(width: 1, color: AppColors.darkGrey),
@@ -397,8 +500,9 @@ class _HomeViewState extends State<HomeView> {
                 shape: BoxShape.circle,
               ),
               child: Center(
-                child: Icon(
-                  cardIcon,
+                child: ImageIcon(
+                  AssetImage(cardIcon),
+                  size: isRecived == true ? 25 : 35,
                   color: isRecived == true ? AppColors.green : AppColors.red,
                 ),
               ),
@@ -438,7 +542,7 @@ class _HomeViewState extends State<HomeView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "+75.8 BTC",
+                  "${isRecived == true ? '+' : '-'}75.8 BTC",
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.customText16(
                     color: isRecived == true ? AppColors.green : AppColors.red,
@@ -460,4 +564,16 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
+}
+
+class TransactionMethod {
+  final String icon;
+  final String title;
+  final VoidCallback onTap;
+
+  TransactionMethod({
+    required this.icon,
+    required this.title,
+    required this.onTap,
+  });
 }

@@ -60,6 +60,7 @@ class AppCustomField extends StatelessWidget {
     this.cursorColor,
     this.textSize,
     this.isOutlineBorder = false,
+    this.noBorder = false,
   });
 
   final Color? cursorColor;
@@ -114,6 +115,7 @@ class AppCustomField extends StatelessWidget {
   final double? labelTitleSize;
   final VoidCallback? onTap;
   final bool isOutlineBorder;
+  final bool noBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -212,10 +214,12 @@ class AppCustomField extends StatelessWidget {
 
             /// ✅ Conditional Borders
             border: _buildBorder(
-              enabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.4),
+              enabledBorderColor ??
+                  AppColors.textLightBlack.withValues(alpha: 0.4),
             ),
             enabledBorder: _buildBorder(
-              enabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.4),
+              enabledBorderColor ??
+                  AppColors.textLightBlack.withValues(alpha: 0.4),
             ),
             focusedBorder: _buildBorder(
               focusedBorderColor ?? AppColors.secondary,
@@ -227,14 +231,15 @@ class AppCustomField extends StatelessWidget {
               focusErrorBorderColor ?? AppColors.negativeRed,
             ),
             disabledBorder: _buildBorder(
-              disabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.3),
+              disabledBorderColor ??
+                  AppColors.textLightBlack.withValues(alpha: 0.4),
             ),
 
             // border: UnderlineInputBorder(
             //   borderSide: BorderSide(
             //     color:
             //         enabledBorderColor ??
-            //         AppColors.textLightBlack.withOpacity(0.4),
+            //         AppColors.textLightBlack.withValues(alpha:0.4),
             //   ),
             // ),
             // focusedBorder: UnderlineInputBorder(
@@ -274,6 +279,9 @@ class AppCustomField extends StatelessWidget {
   }
 
   InputBorder _buildBorder(Color color) {
+    if (noBorder) {
+      return InputBorder.none;
+    }
     if (isOutlineBorder) {
       return OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.r),
