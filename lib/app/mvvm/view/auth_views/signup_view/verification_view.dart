@@ -52,12 +52,13 @@ class _VerificationViewState extends State<VerificationView> {
                   .fadeIn(duration: 600.ms, delay: 100.ms)
                   .slideY(begin: -0.2, curve: Curves.easeOut),
 
-              12.h.height,
+              5.h.height,
 
               /// Subtitle
               Text(
                     AppStrings.indetityVerificationText,
                     style: AppTextStyles.customText14(
+                      height: 1.2,
                       color: Colors.white.withValues(alpha: 0.7),
                       fontWeight: FontWeight.w400,
                     ),
@@ -66,7 +67,7 @@ class _VerificationViewState extends State<VerificationView> {
                   .fadeIn(duration: 600.ms, delay: 200.ms)
                   .slideY(begin: -0.1, curve: Curves.easeOut),
 
-              26.h.height,
+              24.h.height,
               _identityVerificationMethods(
                     onTap: () {
                       Get.toNamed(AppRoutes.selfieVerificationView);

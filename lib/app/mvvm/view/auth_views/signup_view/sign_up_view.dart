@@ -280,7 +280,7 @@ class _SignUpViewState extends State<SignUpView> {
                       begin: const Offset(0.95, 0.95),
                       curve: Curves.easeOutBack,
                     ),
-                40.h.height,
+                20.h.height,
                 Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,

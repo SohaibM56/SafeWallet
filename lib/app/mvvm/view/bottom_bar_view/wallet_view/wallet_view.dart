@@ -55,24 +55,101 @@ class WalletView extends StatelessWidget {
           10.h.height,
 
           Stack(
-            children: [
-              Positioned.fill(
-                child: SvgPicture.asset(
-                  AppAssets.completeGradient,
-                  fit: BoxFit.fill,
-                ),
-              ),
-
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  5.h.height,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Positioned.fill(
+                    child: SvgPicture.asset(
+                      AppAssets.completeGradient,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      5.h.height,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'From',
+                            style: AppTextStyles.customText(
+                              fontSize: 15.sp,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+
+                          Row(
+                            children: [
+                              Image.asset(
+                                AppAssets.walletIcon,
+                                width: 11.w,
+                                height: 11.h,
+                              ),
+                              5.w.width,
+                              Text(
+                                'Main Wallet',
+                                style: AppTextStyles.customText12(
+                                  color: Colors.white.withValues(alpha: 0.5),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+
+                      10.h.height,
+
+                      Container(
+                        padding: EdgeInsets.all(10.sp),
+                        decoration: BoxDecoration(
+                          color: AppColors.primary,
+                          borderRadius: BorderRadius.circular(6.r),
+                          border: Border.all(
+                            color: AppColors.white.withValues(alpha: 0.09),
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              AppAssets.etherIcon,
+                              width: 35.w,
+                              height: 35.h,
+                            ),
+                            10.w.width,
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Ethereum',
+                                    style: AppTextStyles.customText12(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Balance: 2.4521 ETH',
+                                    style: AppTextStyles.customText10(
+                                      color: Colors.white.withValues(
+                                        alpha: 0.5,
+                                      ),
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      12.h.height,
+
                       Text(
-                        'From',
+                        'Amount',
                         style: AppTextStyles.customText(
                           fontSize: 15.sp,
                           color: Colors.white,
@@ -80,131 +157,56 @@ class WalletView extends StatelessWidget {
                         ),
                       ),
 
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.walletIcon,
-                            width: 11.w,
-                            height: 11.h,
-                          ),
-                          5.w.width,
-                          Text(
-                            'Main Wallet',
-                            style: AppTextStyles.customText12(
-                              color: Colors.white.withValues(alpha: 0.5),
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                      10.h.height,
 
-                  10.h.height,
-
-                  Container(
-                    padding: EdgeInsets.all(10.sp),
-                    decoration: BoxDecoration(
-                      color: AppColors.primary,
-                      borderRadius: BorderRadius.circular(6.r),
-                      border: Border.all(
-                        color: AppColors.white.withValues(alpha: 0.09),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          AppAssets.etherIcon,
-                          width: 35.w,
-                          height: 35.h,
+                      Container(
+                        padding: EdgeInsets.all(10.sp),
+                        decoration: BoxDecoration(
+                          color: AppColors.primary,
+                          borderRadius: BorderRadius.circular(6.r),
+                          border: Border.all(
+                            color: AppColors.white.withValues(alpha: 0.09),
+                          ),
                         ),
-                        10.w.width,
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Ethereum',
-                                style: AppTextStyles.customText12(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                '0.00',
+                                style: AppTextStyles.customText26(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              Text(
-                                'Balance: 2.4521 ETH',
-                                style: AppTextStyles.customText10(
-                                  color: Colors.white.withValues(alpha: 0.5),
-                                  fontWeight: FontWeight.w500,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'ETH',
+                                  style: AppTextStyles.customText12(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  12.h.height,
-
-                  Text(
-                    'Amount',
-                    style: AppTextStyles.customText(
-                      fontSize: 15.sp,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-
-                  10.h.height,
-
-                  Container(
-                    padding: EdgeInsets.all(10.sp),
-                    decoration: BoxDecoration(
-                      color: AppColors.primary,
-                      borderRadius: BorderRadius.circular(6.r),
-                      border: Border.all(
-                        color: AppColors.white.withValues(alpha: 0.09),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            '0.00',
-                            style: AppTextStyles.customText26(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'ETH',
-                              style: AppTextStyles.customText12(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            2.w.width,
-                            Text(
-                              'MAX',
-                              style: AppTextStyles.customText(
-                                fontSize: 7.sp,
-                                color: Colors.white.withValues(alpha: 0.8),
-                                fontWeight: FontWeight.w500,
-                              ),
+                                2.w.width,
+                                Text(
+                                  'MAX',
+                                  style: AppTextStyles.customText(
+                                    fontSize: 7.sp,
+                                    color: Colors.white.withValues(alpha: 0.8),
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
-                    ),
-                  ),
-                  5.h.height,
+                      ),
+                      5.h.height,
+                    ],
+                  ).paddingAll(10.sp),
                 ],
-              ).paddingAll(10.sp),
-            ],
-          )
+              )
               .animate()
               .fadeIn(duration: 500.ms, delay: 300.ms)
               .slideY(begin: 0.1, end: 0),
@@ -212,82 +214,85 @@ class WalletView extends StatelessWidget {
           10.h.height,
 
           Stack(
-            children: [
-              Positioned.fill(
-                child: SvgPicture.asset(
-                  AppAssets.completeGradient,
-                  fit: BoxFit.fill,
-                ),
-              ),
-
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  5.h.height,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'To',
-                        style: AppTextStyles.customText(
-                          fontSize: 15.sp,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+                  Positioned.fill(
+                    child: SvgPicture.asset(
+                      AppAssets.completeGradient,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
 
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      5.h.height,
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Image.asset(
-                            AppAssets.qrCodeIcon,
-                            width: 11.w,
-                            height: 11.h,
-                          ),
-                          5.w.width,
                           Text(
-                            'Scan QR',
-                            style: AppTextStyles.customText12(
-                              color: Colors.white.withValues(alpha: 0.5),
-                              fontWeight: FontWeight.w500,
+                            'To',
+                            style: AppTextStyles.customText(
+                              fontSize: 15.sp,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
                             ),
+                          ),
+
+                          Row(
+                            children: [
+                              Image.asset(
+                                AppAssets.qrCodeIcon,
+                                width: 11.w,
+                                height: 11.h,
+                              ),
+                              5.w.width,
+                              Text(
+                                'Scan QR',
+                                style: AppTextStyles.customText12(
+                                  color: Colors.white.withValues(alpha: 0.5),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
 
-                  14.h.height,
+                      14.h.height,
 
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 18.h),
-                    decoration: BoxDecoration(
-                      color: AppColors.primary,
-                      borderRadius: BorderRadius.circular(6.r),
-                      border: Border.all(
-                        color: AppColors.white.withValues(alpha: 0.09),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            '0x..... or ENS name',
-                            style: AppTextStyles.customText12(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 14.w,
+                          vertical: 18.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.primary,
+                          borderRadius: BorderRadius.circular(6.r),
+                          border: Border.all(
+                            color: AppColors.white.withValues(alpha: 0.09),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                '0x..... or ENS name',
+                                style: AppTextStyles.customText12(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
 
-                  5.h.height,
+                      5.h.height,
+                    ],
+                  ).paddingAll(10.sp),
                 ],
-              ).paddingAll(10.sp),
-            ],
-          )
+              )
               .animate()
               .fadeIn(duration: 500.ms, delay: 500.ms)
               .slideY(begin: 0.1, end: 0),
@@ -295,70 +300,76 @@ class WalletView extends StatelessWidget {
           10.h.height,
 
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
-            decoration: BoxDecoration(
-              color: AppColors.primary,
-              borderRadius: BorderRadius.circular(6.r),
-              border: Border.all(
-                color: AppColors.white.withValues(alpha: 0.09),
-              ),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Network Free',
-                        style: AppTextStyles.customText12(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      2.h.height,
-                      Text(
-                        'Estimated time:  ~30 seconds',
-                        style: AppTextStyles.customText10(
-                          color: Colors.white.withValues(alpha: 0.5),
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+                decoration: BoxDecoration(
+                  color: AppColors.primary,
+                  borderRadius: BorderRadius.circular(6.r),
+                  border: Border.all(
+                    color: AppColors.white.withValues(alpha: 0.09),
                   ),
                 ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        '~\$2.50',
-                        style: AppTextStyles.customText12(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                        ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Network Free',
+                            style: AppTextStyles.customText12(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          2.h.height,
+                          Text(
+                            'Estimated time:  ~30 seconds',
+                            style: AppTextStyles.customText10(
+                              color: Colors.white.withValues(alpha: 0.5),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                       ),
-                      2.h.height,
-                      Text(
-                        '0.0012 ETH',
-                        style: AppTextStyles.customText10(
-                          color: Colors.white.withValues(alpha: 0.5),
-                          fontWeight: FontWeight.w500,
-                        ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            '~\$2.50',
+                            style: AppTextStyles.customText12(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          2.h.height,
+                          Text(
+                            '0.0012 ETH',
+                            style: AppTextStyles.customText10(
+                              color: Colors.white.withValues(alpha: 0.5),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          )
+              )
               .animate()
               .fadeIn(duration: 400.ms, delay: 700.ms)
               .slideY(begin: 0.1, end: 0),
 
           20.h.height,
 
-          AppCustomButton(title: "Review Transaction", onPressed: ()=> Utils.showBottomSheet(context: context, child: ReviewTransactionSheet()))
+          AppCustomButton(
+                title: "Review Transaction",
+                onPressed: () => Utils.showBottomSheet(
+                  context: context,
+                  child: ReviewTransactionSheet(),
+                ),
+              )
               .paddingHorizontal(30.w)
               .animate()
               .fadeIn(duration: 400.ms, delay: 900.ms)
