@@ -202,46 +202,25 @@ class _RewardViewState extends State<RewardView> {
 
                                   10.h.height,
 
-                                  Text(
-                                    "1.   Get 25% of the fee back as SEC tokens!",
-                                    style: AppTextStyles.customText12(
-                                      color: Colors.white.withValues(
-                                        alpha: 0.6,
-                                      ),
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ).animate().fadeIn(
-                                    duration: 600.ms,
-                                    delay: 500.ms,
-                                  ),
+                                  numberedText(
+                                    1,
+                                    "Get 25% of the fee back as SEC tokens!.",
+                                  ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
+
                                   4.h.height,
 
-                                  Text(
-                                    "2.   1% transaction fee is applied to each swap",
-                                    style: AppTextStyles.customText12(
-                                      color: Colors.white.withValues(
-                                        alpha: 0.6,
-                                      ),
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ).animate().fadeIn(
-                                    duration: 600.ms,
-                                    delay: 500.ms,
-                                  ),
+                                  numberedText(
+                                    2,
+                                    "A 1% transaction fee is applied to each swap.",
+                                  ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
+
                                   4.h.height,
 
-                                  Text(
-                                    "3.   Trade meme coins on pump.fun, moonshot, or raydium",
-                                    style: AppTextStyles.customText12(
-                                      color: Colors.white.withValues(
-                                        alpha: 0.6,
-                                      ),
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ).animate().fadeIn(
-                                    duration: 600.ms,
-                                    delay: 500.ms,
-                                  ),
+                                  numberedText(
+                                    3,
+                                    "Trade meme coins on Pump.fun, Moonshot, or raydium.",
+                                  ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
+
                                 ],
                               ),
                             ),
@@ -613,7 +592,33 @@ class _RewardViewState extends State<RewardView> {
     );
   }
 
-  // Widget _buildStakeMoreSheet(){
+  Widget numberedText(int number, String text) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "$number.",
+          style: AppTextStyles.customText12(
+            color: Colors.white.withValues(alpha: 0.6),
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        6.w.width,
+        Expanded(
+          child: Text(
+            text,
+            style: AppTextStyles.customText12(
+              color: Colors.white.withValues(alpha: 0.6),
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+
+// Widget _buildStakeMoreSheet(){
   //   return
   // }
 }

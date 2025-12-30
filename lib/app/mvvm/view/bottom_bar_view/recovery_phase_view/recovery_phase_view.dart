@@ -232,7 +232,6 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                             .animate()
                             .fadeIn(duration: 300.ms, delay: (50 * index).ms)
                             .slideY(begin: 0.3, end: 0);
-                        ;
                       },
                     ),
 

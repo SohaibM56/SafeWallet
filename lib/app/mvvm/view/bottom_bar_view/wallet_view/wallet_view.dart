@@ -3,10 +3,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_utils/src/extensions/widget_extensions.dart';
 import 'package:safewallet/app/config/app_assets.dart';
-import 'package:safewallet/app/config/app_routes.dart';
 import 'package:safewallet/app/widgets/custom_sheets/review_transaction_sheet.dart';
 
 import '../../../../config/app_colors.dart';

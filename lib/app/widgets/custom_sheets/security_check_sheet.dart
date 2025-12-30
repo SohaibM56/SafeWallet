@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/config/utils.dart';
 import 'package:safewallet/app/widgets/app_custom_button.dart';
 import 'package:safewallet/app/widgets/custom_sheets/transaction_sent_sheet.dart';
-import 'package:safewallet/app/widgets/custom_sheets/transaction_success_sheet.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 import '../../config/app_assets.dart';
