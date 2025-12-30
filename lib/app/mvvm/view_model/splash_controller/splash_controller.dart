@@ -6,6 +6,6 @@ import 'package:safewallet/app/widgets/custom_sheets/language_select_sheet.dart'
 class SplashController extends GetxController {
   Future<void> showLanguageSheet(BuildContext context) async {
     await Future.delayed(const Duration(seconds: 3));
-    Utils.showBottomSheet(context: context, child: LangugaeSelectSheet());
+    Utils.showBottomSheet(context: context, child: LangugaeSelectSheet(isFromSettings: false));
   }
 }

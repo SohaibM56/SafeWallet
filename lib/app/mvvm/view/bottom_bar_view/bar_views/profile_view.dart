@@ -226,7 +226,7 @@ class _ProfileViewState extends State<ProfileView> {
                             title: 'Language',
                             onTap: () => Utils.showBottomSheet(
                               context: context,
-                              child: LangugaeSelectSheet(),
+                              child: LangugaeSelectSheet(isFromSettings: true),
                             ),
                           ),
                           Divider(

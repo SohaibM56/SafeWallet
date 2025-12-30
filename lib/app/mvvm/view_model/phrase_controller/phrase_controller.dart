@@ -11,37 +11,36 @@ class PhraseController extends GetxController {
     'Again',
     'Anxiety',
     'Alley',
-    'Around',
+    'Ground',
     'Around',
     'Already',
     'Actress',
-    'Adult',
-    'Acid',
-    'Again',
+    'Young',
+    'Base',
+    'Before',
     'Apart',
     'Abstract',
     'Author',
-  ].obs;
+  ].obs..shuffle();
 
-  RxList<String> selectionWords = [
-    "Album",
-    "Add",
-    "Account",
-    "Apology",
-    "Athlete",
-    "Another",
-    "Annual",
-    "Action",
-    "Addict",
-    "Artist",
-    "Affair",
-    "Artwork",
-  ].obs;
+  RxList<String> selectionWords = <String>[].obs;
 
   RxBool is12Words = true.obs;
   void selectWords(bool value) {
     log("message");
     is12Words.value = value;
+  }
+
+  void toggleWord(String word) {
+    if (selectionWords.contains(word)) {
+      selectionWords.remove(word);
+    } else {
+      if (selectionWords.length >= 12) {
+        Get.snackbar("Limit reached", "You can select max 12 words", snackPosition: SnackPosition.BOTTOM);
+        return;
+      }
+      selectionWords.add(word); // select
+    }
   }
 }
 

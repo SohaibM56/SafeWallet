@@ -210,10 +210,21 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                         ),
                         itemCount: controller.words.length,
                         itemBuilder: (context, index) {
-                          return WordTile(word: controller.words[index])
-                              .animate()
+
+                        return  Obx(() {
+                          final word = controller.words[index];
+                          final isSelected = controller.selectionWords.contains(word);
+
+                          return WordTile(
+                            word: word,
+                            borderColor: isSelected ? AppColors.secondary :  AppColors.white.withValues(alpha: 0.4),
+                            onTap: () => controller.toggleWord(word),
+                          ).animate()
                               .fadeIn(duration: 300.ms, delay: (50 * index).ms)
                               .slideY(begin: 0.3, end: 0);
+
+                          },);
+
                         },
                       ),
                     ),
@@ -225,7 +236,9 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                         Expanded(
                           child: SizedBox(
                             height: 40.h,
-                            child: WordTile(word: 'Copy', icon: Icons.copy),
+                            child: WordTile(
+                                borderColor: AppColors.white.withValues(alpha: 0.4),
+                                word: 'Copy', icon: Icons.copy),
                           ),
                         ),
                         12.w.width,
@@ -233,6 +246,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                           child: SizedBox(
                             height: 40.h,
                             child: WordTile(
+                              borderColor: AppColors.white.withValues(alpha: 0.4),
                               word: 'Hide',
                               icon: Icons.visibility_off,
                             ),

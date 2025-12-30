@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/config/app_colors.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
@@ -27,7 +28,6 @@ class _TradeViewState extends State<TradeView> {
   String fromCoin = "SOL";
   String toCoin = "BONK";
   final List<String> coins = ["SOL", "BONK", "MEME"];
-
   final List<String> platforms = ["Pump.fun", "Moonshot", "Raydium"];
 
   @override
@@ -290,132 +290,151 @@ class _TradeViewState extends State<TradeView> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "From",
-
-                  style: AppTextStyles.customText12(
-                    color: AppColors.white.withValues(alpha: 0.5),
-                    fontWeight: FontWeight.w400,
-                  ),
-                ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-                Expanded(
-                  child: Text(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "From",
+                    style: AppTextStyles.customText(
+                      fontSize: 13.sp,
+                      color: AppColors.white.withValues(alpha: 0.5),
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                  10.h.height,
+                  Text(
                     "0.00",
-
                     style: AppTextStyles.customText22(
                       color: AppColors.white,
                       fontWeight: FontWeight.w400,
                     ),
                   ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-                ),
-
-                Text(
-                  "To",
-
-                  style: AppTextStyles.customText12(
-                    color: AppColors.white.withValues(alpha: 0.5),
-                    fontWeight: FontWeight.w400,
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    "Balance: 12.5",
+                    style: AppTextStyles.customText(
+                      fontSize: 13.sp,
+                      color: Colors.white.withValues(alpha: 0.5),
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                  10.h.height,
+                  _buildCoinDropdown(
+                    value: fromCoin,
+                    items: coins,
+                    colors: [
+                      Colors.purple,
+                      Colors.amber,
+                      Colors.amber,
+                    ],
+                    onChanged: (val) {
+                      setState(() {
+                        fromCoin = val;
+                      });
+                    },
                   ),
-                ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-                Text(
-                  "0",
-
-                  style: AppTextStyles.customText22(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-                20.h.height,
-              ],
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: Container(
-                  height: 50.w,
-                  width: 50.w,
-                  decoration: BoxDecoration(
-                    color: AppColors.softgreen.withValues(alpha: 0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: ImageIcon(
-                      AssetImage(AppAssets.arrowsIcon),
-                      size: 25,
-                      color: AppColors.white,
-                    ).animate().fadeIn(duration: 600.ms, delay: 300.ms),
-                  ),
-                ),
+                ],
               ),
             ],
           ),
-          30.w.width,
-          Column(
-            children: [
-              15.h.height,
-              Text(
-                "Balance: 12.5",
-                style: AppTextStyles.customText12(
-                  color: Colors.white.withValues(alpha: 0.5),
-                  fontWeight: FontWeight.w300,
-                ),
-              ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-              10.h.height,
-              _buildCoinDropdown(
-                value: fromCoin,
-                items: coins,
-                onChanged: (val) {
-                  setState(() {
-                    fromCoin = val;
-                  });
-                },
+          Center(
+            child: Container(
+              height: 50.w,
+              width: 50.w,
+              decoration: BoxDecoration(
+                color: AppColors.softgreen.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
               ),
-              8.h.height,
-              Text(
-                "Balance: 1,234.56",
+              child: Center(
+                child: ImageIcon(
+                  AssetImage(AppAssets.arrowsIcon),
+                  size: 25,
+                  color: AppColors.white,
+                ).animate().fadeIn(duration: 600.ms, delay: 300.ms),
+              ),
+            ),
+          ),
 
-                style: AppTextStyles.customText12(
-                  color: Colors.white.withValues(alpha: 0.5),
-                  fontWeight: FontWeight.w300,
-                ),
-              ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-              10.h.height,
-              _buildCoinDropdown(
-                value: toCoin,
-                items: coins,
-                onChanged: (val) {
-                  setState(() {
-                    toCoin = val;
-                  });
-                },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "To",
+                    style: AppTextStyles.customText(
+                      fontSize: 13.sp,
+                      color: AppColors.white.withValues(alpha: 0.5),
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                  10.h.height,
+                  Text(
+                    "0",
+                    style: AppTextStyles.customText22(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    "Balance: 1,234.56",
+                    style: AppTextStyles.customText(
+                      fontSize: 13.sp,
+                      color: Colors.white.withValues(alpha: 0.5),
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                  10.h.height,
+                  _buildCoinDropdown(
+                    value: toCoin,
+                    items: coins,
+                    colors: [
+                      Colors.purple,
+                      Colors.purple,
+                      Colors.amber,
+                    ],
+                    onChanged: (val) {
+                      setState(() {
+                        toCoin = val;
+                      });
+                    },
+                  ),
+                ],
               ),
             ],
           ),
         ],
-      ).paddingAll(12.w),
+      ).paddingAll(10.sp),
     );
   }
 
   Widget _buildCoinDropdown({
     required String value,
     required List<String> items,
+    required List<Color> colors,
     required ValueChanged<String> onChanged,
   }) {
     return Container(
       height: 32.w,
-      width: 115.w,
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      width: 110.w,
+      padding:  EdgeInsets.symmetric(horizontal: 12.w),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.r),
         color: const Color(0xFF0E1A24),
         border: Border.all(color: AppColors.white.withValues(alpha: 0.15)),
       ),
@@ -425,7 +444,7 @@ class _TradeViewState extends State<TradeView> {
           isDense: true,
           isExpanded: true,
           dropdownColor: const Color(0xFF0E1A24),
-          icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
+          icon: Image.asset(AppAssets.downArrow, color: Colors.white, width: 12.w, height: 12.h),
           onChanged: (val) {
             onChanged(val!);
           },
@@ -437,8 +456,8 @@ class _TradeViewState extends State<TradeView> {
                   Container(
                     height: 20.w,
                     width: 20.w,
-                    decoration: const BoxDecoration(
-                      color: Colors.deepPurple,
+                    decoration: BoxDecoration(
+                      color: colors[coins.indexOf(coin)],
                       shape: BoxShape.circle,
                     ),
                   ),

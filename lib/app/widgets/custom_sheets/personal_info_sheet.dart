@@ -129,7 +129,8 @@ class PersonalInfoSheet extends StatelessWidget {
             AppCustomButton(
               title: "Okay",
               onPressed: () {
-                Get.toNamed(AppRoutes.getStartedView);
+                Get.back();
+                // Get.toNamed(AppRoutes.getStartedView);
               },
             ).paddingHorizontal(30.w),
             12.h.height,

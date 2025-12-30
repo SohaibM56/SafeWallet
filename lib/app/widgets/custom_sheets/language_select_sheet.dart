@@ -11,8 +11,11 @@ import 'package:safewallet/app/widgets/app_custom_button.dart';
 import 'package:safewallet/app/widgets/custom_cards/app_custom_card.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
+import '../../config/app_colors.dart';
+
 class LangugaeSelectSheet extends StatelessWidget {
-  const LangugaeSelectSheet({super.key});
+  final bool isFromSettings;
+  const LangugaeSelectSheet({super.key, required this.isFromSettings});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +28,18 @@ class LangugaeSelectSheet extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+           isFromSettings? Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: Icon(Icons.close_rounded, color: AppColors.primary),
+                ).paddingRight(5.w),
+              ],
+            ):SizedBox.shrink().paddingTop(20.h),
             Text(AppStrings.language.tr, style: AppTextStyles.customText28(fontWeight: FontWeight.w600)),
-            15.h.height,
             Obx(
               () => Column(
                 children: [
@@ -44,7 +57,7 @@ class LangugaeSelectSheet extends StatelessWidget {
                           },
                         ),
                       ],
-                    );
+                    ).paddingHorizontal(20.w);
                   }),
                 ],
               ),
@@ -53,12 +66,16 @@ class LangugaeSelectSheet extends StatelessWidget {
             AppCustomButton(
               title: AppStrings.continueText,
               onPressed: () {
+                if(isFromSettings){
+                  Get.back();
+                  return;
+                }
                 Get.toNamed(AppRoutes.getStartedView);
               },
-            ).paddingHorizontal(20.w),
+            ).paddingHorizontal(40.w),
             12.h.height,
           ],
-        ).paddingAll(20.sp),
+        ).paddingBottom(20.h),
       ),
     );
   }

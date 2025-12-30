@@ -42,7 +42,7 @@ class UnlockRewardsSheet extends StatelessWidget {
                       ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
                       5.h.height,
                       Text(
-                        "Available: 567.89 SEC",
+                        "Available: 567.89 SEC",
                         style: AppTextStyles.customText10(
                           color: AppColors.primary,
                           fontWeight: FontWeight.w400,

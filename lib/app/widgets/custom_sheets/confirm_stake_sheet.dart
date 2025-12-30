@@ -59,7 +59,7 @@ class ConfirmStakeSheet extends StatelessWidget {
               Text(
                 "Confirm Stake",
                 style: AppTextStyles.customText24(
-                  color: AppColors.secondary,
+                  color: AppColors.black,
                   fontWeight: FontWeight.w600,
                 ),
               ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
