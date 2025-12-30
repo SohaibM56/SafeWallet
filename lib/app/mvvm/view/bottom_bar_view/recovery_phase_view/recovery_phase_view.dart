@@ -25,39 +25,6 @@ class RecoveryPhaseView extends StatefulWidget {
 class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
   final PhraseController controller = Get.find();
 
-  final List<String> words = [
-    'Adult',
-    'Acid',
-    'Again',
-    'Anxiety',
-    'Alley',
-    'Around',
-    'Around',
-    'Already',
-    'Actress',
-    'Adult',
-    'Acid',
-    'Again',
-    'Apart',
-    'Abstract',
-    'Author',
-  ];
-
-  final List<String> selectionWords = [
-    "Album",
-    "Add",
-    "Account",
-    "Apology",
-    "Athlete",
-    "Another",
-    "Annual",
-    "Action",
-    "Addict",
-    "Artist",
-    "Affair",
-    "Artwork",
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +70,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
             }
           }),
         ],
-      ).paddingSymmetric(horizontal: 20.w, vertical: 10.h)
+      ).paddingSymmetric(horizontal: 20.w, vertical: 10.h),
     );
   }
 
@@ -193,19 +160,33 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
 
             20.h.height,
 
-            Row(children: [
-                    Expanded(
-                      child: _buildWordsWidget("12 Words", "Visible", true),
-                    ),
-                    14.w.width,
-                    Expanded(
-                      child: _buildWordsWidget("24 Words", "Offline", false),
-                    ),
-                  ],
-                )
-                .paddingHorizontal(24.w)
-                .animate()
-                .fadeIn(duration: 400.ms, delay: 200.ms),
+            Obx(
+              () =>
+                  Row(
+                        children: [
+                          Expanded(
+                            child: _buildWordsWidget(
+                              title: "12 Words",
+                              subTitle: "Visible",
+                              isSelected: controller.is12Words.value,
+                              onTap: () => controller.selectWords(true),
+                            ),
+                          ),
+                          14.w.width,
+                          Expanded(
+                            child: _buildWordsWidget(
+                              onTap: () => controller.selectWords(false),
+                              title: "24 Words",
+                              subTitle: "Offline",
+                              isSelected: !controller.is12Words.value,
+                            ),
+                          ),
+                        ],
+                      )
+                      .paddingHorizontal(24.w)
+                      .animate()
+                      .fadeIn(duration: 400.ms, delay: 200.ms),
+            ),
 
             20.h.height,
 
@@ -217,25 +198,25 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
 
                 Column(
                   children: [
-                    GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 10.w,
-                        mainAxisSpacing: 10.h,
-                        mainAxisExtent: 40.h,
+                    Obx(
+                      () => GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 10.w,
+                          mainAxisSpacing: 10.h,
+                          mainAxisExtent: 40.h,
+                        ),
+                        itemCount: controller.words.length,
+                        itemBuilder: (context, index) {
+                          return WordTile(word: controller.words[index])
+                              .animate()
+                              .fadeIn(duration: 300.ms, delay: (50 * index).ms)
+                              .slideY(begin: 0.3, end: 0);
+                        },
                       ),
-                      itemCount: words.length,
-                      itemBuilder: (context, index) {
-                        return WordTile(word: words[index])
-                            .animate()
-                            .fadeIn(duration: 300.ms, delay: (50 * index).ms)
-                            .slideY(begin: 0.3, end: 0);
-                        ;
-                      },
                     ),
-
                     10.h.height,
 
                     Row(
@@ -409,28 +390,30 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
 
                 10.h.height,
 
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 10.w,
-                    mainAxisSpacing: 10.h,
-                    mainAxisExtent: 44.h,
+                Obx(
+                  () => GridView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 10.w,
+                      mainAxisSpacing: 10.h,
+                      mainAxisExtent: 44.h,
+                    ),
+                    itemCount: controller.selectionWords.length,
+                    itemBuilder: (context, index) {
+                      return WordTile(
+                            word: controller.selectionWords[index],
+                            borderColor: AppColors.secondary,
+                          )
+                          .animate()
+                          .fadeIn(duration: 300.ms, delay: (50 * index).ms)
+                          .scale(
+                            begin: const Offset(0.8, 0.8),
+                            end: const Offset(1.0, 1.0),
+                          );
+                    },
                   ),
-                  itemCount: selectionWords.length,
-                  itemBuilder: (context, index) {
-                    return WordTile(
-                          word: selectionWords[index],
-                          borderColor: AppColors.secondary,
-                        )
-                        .animate()
-                        .fadeIn(duration: 300.ms, delay: (50 * index).ms)
-                        .scale(
-                          begin: const Offset(0.8, 0.8),
-                          end: const Offset(1.0, 1.0),
-                        );
-                  },
                 ),
 
                 10.h.height,
@@ -649,21 +632,29 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
     );
   }
 
-  Widget _buildWordsWidget(String title, String subTitle, bool isSelected) {
+  Widget _buildWordsWidget({
+    required String title,
+    required String subTitle,
+    required bool isSelected,
+    required VoidCallback onTap,
+  }) {
     return Column(
       children: [
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 15.sp),
-          decoration: BoxDecoration(
-            color: isSelected ? AppColors.secondary : AppColors.transparent,
-            borderRadius: BorderRadius.circular(10.sp),
-            border: Border.all(color: AppColors.white.withValues(alpha: 0.3)),
-          ),
-          child: Center(
-            child: Text(
-              title,
-              style: AppTextStyles.customText16(
-                color: isSelected ? AppColors.white : AppColors.faintColor,
+        GestureDetector(
+          onTap: onTap,
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 15.sp),
+            decoration: BoxDecoration(
+              color: isSelected ? AppColors.secondary : AppColors.transparent,
+              borderRadius: BorderRadius.circular(10.sp),
+              border: Border.all(color: AppColors.white.withValues(alpha: 0.3)),
+            ),
+            child: Center(
+              child: Text(
+                title,
+                style: AppTextStyles.customText16(
+                  color: isSelected ? AppColors.white : AppColors.faintColor,
+                ),
               ),
             ),
           ),

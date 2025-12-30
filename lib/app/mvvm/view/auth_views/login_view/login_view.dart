@@ -173,7 +173,7 @@ class _LoginViewState extends State<LoginView> {
                       begin: const Offset(0.9, 0.9),
                       curve: Curves.easeOutBack,
                     ),
-                50.h.height,
+                20.h.height,
                 Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
