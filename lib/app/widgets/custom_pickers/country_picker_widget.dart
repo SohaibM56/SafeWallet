@@ -92,7 +92,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
       isRequired: widget.isRequired ?? false,
       keyboardType: TextInputType.phone,
       controller: widget.controller,
-      textColor: AppColors.secondary,
+      textColor: AppColors.white,
       hintText: widget.hintText ?? "Enter Phone Number",
       hintTextFontSize: 14,
       prefixIcon: Padding(

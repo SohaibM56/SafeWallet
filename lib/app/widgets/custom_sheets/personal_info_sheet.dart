@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:safewallet/app/config/app_routes.dart';
 import 'package:safewallet/app/config/app_strings.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
@@ -23,119 +22,128 @@ class PersonalInfoSheet extends StatelessWidget {
     final ProfileController controller = Get.put(ProfileController());
     return WillPopScope(
       onWillPop: () async => false,
-      child: SafeArea(
-        top: false,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: InkWell(
-                onTap: () {
-                  Get.back();
-                },
-                child: Icon(Icons.close, color: AppColors.black, size: 24.sp),
+      child: AnimatedPadding(
+        duration: const Duration(milliseconds: 150),
+        curve: Curves.easeOut,
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: SafeArea(
+          top: false,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: InkWell(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Icon(Icons.close, color: AppColors.black, size: 24.sp),
+                ),
+              ).paddingRight(5.w),
+              Text(
+                AppStrings.personalInfo.tr,
+                style: AppTextStyles.customText24(fontWeight: FontWeight.w600),
               ),
-            ).paddingRight(5.w),
-            Text(
-              AppStrings.personalInfo.tr,
-              style: AppTextStyles.customText24(fontWeight: FontWeight.w600),
-            ),
-            15.h.height,
+              15.h.height,
 
-            Stack(
-              clipBehavior: Clip.none,
-              alignment: Alignment.bottomRight,
-              children: [
-                Obx(() {
-                  return Container(
-                    height: 110.h,
-                    width: 110.w,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey[200],
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 4,
-                      ),
-                      image: controller.rXFile.value != null
-                          ? DecorationImage(
-                        image: FileImage(
-                          controller.rXFile.value!,
+              Stack(
+                clipBehavior: Clip.none,
+                alignment: Alignment.bottomRight,
+                children: [
+                  Obx(() {
+                    return Container(
+                      height: 110.h,
+                      width: 110.w,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey[200],
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 4,
                         ),
-                        fit: BoxFit.cover,
+                        image: controller.rXFile.value != null
+                            ? DecorationImage(
+                          image: FileImage(
+                            controller.rXFile.value!,
+                          ),
+                          fit: BoxFit.cover,
+                        )
+                            : null,
+                      ),
+                      child: controller.rXFile.value == null
+                          ? ClipOval(
+                        child: Image.asset(
+                          AppAssets.placeholder,
+                          fit: BoxFit.cover,
+                        ),
                       )
                           : null,
-                    ),
-                    child: controller.rXFile.value == null
-                        ? ClipOval(
-                      child: Image.asset(
-                        AppAssets.placeholder,
-                        fit: BoxFit.cover,
+                    );
+                  }),
+                  Positioned(
+                    bottom: 5.h,
+                    right: 5.w,
+                    child: GestureDetector(
+                      onTap: () {
+                        Utils.showPickImageOptionsDialog(
+                          context,
+                          onCameraTap: () async {
+                            Navigator.of(context).pop();
+                            await controller
+                                .pickProfileFromCamera();
+                          },
+                          onGalleryTap: () async {
+                            Navigator.of(context).pop();
+                            await controller
+                                .pickProfileFromGallery();
+                          },
+                        );
+                      },
+                      child: SvgPicture.asset(
+                        AppAssets.cameraIc,
+                        height: 25.h,
                       ),
-                    )
-                        : null,
-                  );
-                }),
-                Positioned(
-                  bottom: 5.h,
-                  right: 5.w,
-                  child: GestureDetector(
-                    onTap: () {
-                      Utils.showPickImageOptionsDialog(
-                        context,
-                        onCameraTap: () async {
-                          Navigator.of(context).pop();
-                          await controller
-                              .pickProfileFromCamera();
-                        },
-                        onGalleryTap: () async {
-                          Navigator.of(context).pop();
-                          await controller
-                              .pickProfileFromGallery();
-                        },
-                      );
-                    },
-                    child: SvgPicture.asset(
-                      AppAssets.cameraIc,
-                      height: 25.h,
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
 
-            20.h.height,
+              20.h.height,
 
-            AppCustomField(
-              labelColor: AppColors.black,
-              hintColor: AppColors.hintTextColor,
-              labelTitle: "Full Name",
-              hintText: "Enter Full Name",
-              labelTitleSize : 14.sp
-            ),
+              AppCustomField(
+                labelColor: AppColors.black,
+                hintColor: AppColors.hintTextColor,
+                labelTitle: "Full Name",
+                textColor: AppColors.black,
+                hintText: "Enter Full Name",
+                labelTitleSize : 14.sp
+              ),
 
-            20.h.height,
+              20.h.height,
 
-            AppCustomField(
-              labelColor: AppColors.black,
-              hintColor: AppColors.hintTextColor,
-              labelTitle: "Email Address",
-              hintText: "Enter Email Address",
-              labelTitleSize : 14.sp
-            ),
+              AppCustomField(
+                labelColor: AppColors.black,
+                hintColor: AppColors.hintTextColor,
+                labelTitle: "Email Address",
+                  textColor: AppColors.black,
+                hintText: "Enter Email Address",
+                labelTitleSize : 14.sp
+              ),
 
-            20.h.height,
-            AppCustomButton(
-              title: "Okay",
-              onPressed: () {
-                Get.back();
-                // Get.toNamed(AppRoutes.getStartedView);
-              },
-            ).paddingHorizontal(30.w),
-            12.h.height,
-          ],
-        ).paddingAll(20.sp),
+              20.h.height,
+              AppCustomButton(
+                title: "Okay",
+                onPressed: () {
+                  Get.back();
+                  // Get.toNamed(AppRoutes.getStartedView);
+                },
+              ).paddingHorizontal(30.w),
+              12.h.height,
+            ],
+          ).paddingAll(20.sp),
+        ),
       ),
     );
   }

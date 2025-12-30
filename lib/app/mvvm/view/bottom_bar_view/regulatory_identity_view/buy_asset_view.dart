@@ -15,8 +15,17 @@ import '../../../../widgets/app_custom_button.dart';
 import '../../../../widgets/custom_app_bar.dart';
 import '../../../../widgets/sizedbox_extension.dart';
 
-class BuyAssetView extends StatelessWidget {
+class BuyAssetView extends StatefulWidget {
   const BuyAssetView({super.key});
+
+  @override
+  State<BuyAssetView> createState() => _BuyAssetViewState();
+}
+
+class _BuyAssetViewState extends State<BuyAssetView> {
+
+  String fromCoin = "SOL";
+  final List<String> coins = ["SOL", "BONK", "MEME"];
 
   @override
   Widget build(BuildContext context) {
@@ -132,43 +141,56 @@ class BuyAssetView extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 10.w,
-                                vertical: 6.h,
-                              ),
-                              decoration: BoxDecoration(
-                                color: AppColors.primary.withValues(alpha: 0.5),
-                                borderRadius: BorderRadius.circular(8.r),
-                                border: Border.all(
-                                  color: AppColors.white.withValues(alpha: 0.2),
-                                ),
-                              ),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    AppAssets.bitcoinIcon,
-                                    width: 19.w,
-                                    height: 19.w,
-                                  ),
-                                  5.w.width,
-                                  Text(
-                                    'BTC',
-                                    style: AppTextStyles.customText(
-                                      fontSize: 13.sp,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  10.w.width,
-                                  Image.asset(
-                                    AppAssets.downArrow,
-                                    width: 9.w,
-                                    height: 4.h,
-                                  ),
-                                ],
-                              ),
+
+                            _buildCoinDropdown(
+                              value: fromCoin,
+                              items: coins,
+                              colors: [
+                                Colors.purple,
+                                Colors.amber,
+                                Colors.amber,
+                              ],
+                              onChanged: (val) {
+
+                              },
                             ),
+                            // Container(
+                            //   padding: EdgeInsets.symmetric(
+                            //     horizontal: 10.w,
+                            //     vertical: 6.h,
+                            //   ),
+                            //   decoration: BoxDecoration(
+                            //     color: AppColors.primary.withValues(alpha: 0.5),
+                            //     borderRadius: BorderRadius.circular(8.r),
+                            //     border: Border.all(
+                            //       color: AppColors.white.withValues(alpha: 0.2),
+                            //     ),
+                            //   ),
+                            //   child: Row(
+                            //     children: [
+                            //       Image.asset(
+                            //         AppAssets.bitcoinIcon,
+                            //         width: 19.w,
+                            //         height: 19.w,
+                            //       ),
+                            //       5.w.width,
+                            //       Text(
+                            //         'BTC',
+                            //         style: AppTextStyles.customText(
+                            //           fontSize: 13.sp,
+                            //           color: Colors.white,
+                            //           fontWeight: FontWeight.w400,
+                            //         ),
+                            //       ),
+                            //       10.w.width,
+                            //       Image.asset(
+                            //         AppAssets.downArrow,
+                            //         width: 9.w,
+                            //         height: 4.h,
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
                           ],
                         ),
                       ],
@@ -278,6 +300,100 @@ class BuyAssetView extends StatelessWidget {
             10.h.height,
           ],
         ).paddingSymmetric(horizontal: 20.w, vertical: 10.h),
+      ),
+    );
+  }
+
+  Widget _buildCoinDropdown({
+    required String value,
+    required List<String> items,
+    required List<Color> colors,
+    required ValueChanged<String> onChanged,
+  }) {
+    return Container(
+      height: 32.w,
+      width: 100.w,
+      padding:  EdgeInsets.symmetric(horizontal: 12.w),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.r),
+        color: const Color(0xFF0E1A24),
+        border: Border.all(color: AppColors.white.withValues(alpha: 0.15)),
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          value: value,
+          isDense: true,
+          isExpanded: true,
+          dropdownColor: const Color(0xFF0E1A24),
+          icon: Image.asset(AppAssets.downArrow, color: Colors.white, width: 12.w, height: 12.h),
+          onChanged: (val) {
+            onChanged(val!);
+          },
+          items: items.map((coin) {
+            return DropdownMenuItem<String>(
+              value: coin,
+              child:
+              Row(
+                children: [
+                  Image.asset(
+                    AppAssets.bitcoinIcon,
+                    width: 19.w,
+                    height: 19.w,
+                  ),
+                  5.w.width,
+                  Text(
+                    'BTC',
+                    style: AppTextStyles.customText(
+                      fontSize: 13.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+
+                ],
+              ),
+
+              // Container(
+              //   padding: EdgeInsets.symmetric(
+              //     horizontal: 10.w,
+              //     vertical: 6.h,
+              //   ),
+              //   decoration: BoxDecoration(
+              //     color: AppColors.primary.withValues(alpha: 0.5),
+              //     borderRadius: BorderRadius.circular(8.r),
+              //     border: Border.all(
+              //       color: AppColors.white.withValues(alpha: 0.2),
+              //     ),
+              //   ),
+              //   child:
+              //
+              //
+              // ),
+              // Row(
+              //   children: [
+              //     Container(
+              //       height: 20.w,
+              //       width: 20.w,
+              //       decoration: BoxDecoration(
+              //         color: colors[coins.indexOf(coin)],
+              //         shape: BoxShape.circle,
+              //       ),
+              //     ),
+              //     7.w.width,
+              //     Expanded(
+              //       child: Text(
+              //         coin,
+              //         style: AppTextStyles.customText12(
+              //           color: AppColors.white,
+              //           fontWeight: FontWeight.w600,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

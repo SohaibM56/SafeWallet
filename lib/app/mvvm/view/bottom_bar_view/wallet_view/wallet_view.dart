@@ -161,7 +161,7 @@ class WalletView extends StatelessWidget {
                         10.h.height,
 
                         Container(
-                          padding: EdgeInsets.all(10.sp),
+                          padding: EdgeInsets.symmetric(horizontal:10.w, vertical: 2.h),
                           decoration: BoxDecoration(
                             color: AppColors.primary,
                             borderRadius: BorderRadius.circular(6.r),
@@ -172,14 +172,40 @@ class WalletView extends StatelessWidget {
                           child: Row(
                             children: [
                               Expanded(
-                                child: Text(
-                                  '0.00',
+                                child:
+
+                                TextFormField(
+                                  cursorColor: AppColors.white,
                                   style: AppTextStyles.customText26(
-                                    color: Colors.white,
+                                    color: AppColors.white,
                                     fontWeight: FontWeight.w500,
                                   ),
+                                  decoration: InputDecoration(
+                                    hintText: "0.00",
+                                    hintStyle: AppTextStyles.customText26(
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    filled: false,
+                                    border: InputBorder.none,
+                                    enabledBorder: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    errorBorder: InputBorder.none,
+                                    disabledBorder: InputBorder.none,
+                                  ),
                                 ),
+
+
+                                // Text(
+                                //   '0.00',
+                                //   style: AppTextStyles.customText26(
+                                //     color: Colors.white,
+                                //     fontWeight: FontWeight.w500,
+                                //   ),
+                                // ),
                               ),
+
+
                               Row(
                                 children: [
                                   Text(
@@ -265,7 +291,7 @@ class WalletView extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.symmetric(
                             horizontal: 14.w,
-                            vertical: 18.h,
+                            vertical: 2.h,
                           ),
                           decoration: BoxDecoration(
                             color: AppColors.primary,
@@ -277,13 +303,34 @@ class WalletView extends StatelessWidget {
                           child: Row(
                             children: [
                               Expanded(
-                                child: Text(
-                                  '0x..... or ENS name',
+                                child:
+                                TextFormField(
+                                  cursorColor: AppColors.white,
                                   style: AppTextStyles.customText12(
-                                    color: Colors.white,
+                                    color: AppColors.white,
                                     fontWeight: FontWeight.w500,
                                   ),
+                                  decoration: InputDecoration(
+                                    hintText: "0x..... or ENS name",
+                                    hintStyle: AppTextStyles.customText12(
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    filled: false,
+                                    border: InputBorder.none,
+                                    enabledBorder: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    errorBorder: InputBorder.none,
+                                    disabledBorder: InputBorder.none,
+                                  ),
                                 ),
+                                // Text(
+                                //   '0x..... or ENS name',
+                                //   style: AppTextStyles.customText12(
+                                //     color: Colors.white,
+                                //     fontWeight: FontWeight.w500,
+                                //   ),
+                                // ),
                               ),
                             ],
                           ),

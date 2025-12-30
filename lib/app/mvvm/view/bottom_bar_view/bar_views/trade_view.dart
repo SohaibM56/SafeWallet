@@ -404,9 +404,9 @@ class _TradeViewState extends State<TradeView> {
                     value: toCoin,
                     items: coins,
                     colors: [
-                      Colors.purple,
-                      Colors.purple,
                       Colors.amber,
+                      Colors.purple,
+                      Colors.purple,
                     ],
                     onChanged: (val) {
                       setState(() {
