@@ -268,7 +268,7 @@ class _SignUpViewState extends State<SignUpView> {
                     .slideY(begin: 0.2, curve: Curves.easeOut),
                 50.h.height,
                 AppCustomButton(
-                      title: AppStrings.next,
+                      title: AppStrings.nextBtn,
                       onPressed: () {
                         Get.toNamed(AppRoutes.verificationView);
                       },

@@ -8,6 +8,11 @@ class AppAssets {
   static const String appLogo = '$imagesPath/app_logo.png';
   static const String appHorizontalLogo = '$imagesPath/app_horizontal_logo.png';
   static const String getStartedMain = '$imagesPath/get_started_main.png';
+  static const String finalizeIC = '$imagesPath/finallize_steps.png';
+  static const String scanningIC = '$imagesPath/scanning_ic.png';
+  static const String signalIC = '$imagesPath/signal_ic.png';
+  static const String biometricAuth = '$imagesPath/biometricAuth_ic.png';
+
   static const String selfieVerification =
       '$imagesPath/selfie_verification.png';
   static const String idCardVerification =

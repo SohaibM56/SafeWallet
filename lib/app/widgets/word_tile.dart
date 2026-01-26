@@ -5,14 +5,16 @@ import 'package:safewallet/app/config/app_text_style.dart';
 
 class WordTile extends StatelessWidget {
   final String word;
-  final Color borderColor;
+  final Color? borderColor;
+  final Color? color;
   final IconData? icon;
   final VoidCallback? onTap;
 
   const WordTile({
     super.key,
     required this.word,
-    required this.borderColor,
+    this.borderColor,
+    this.color,
     this.onTap,
     this.icon,
   });
@@ -23,8 +25,11 @@ class WordTile extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.secondary,
-          border: Border.all(color: borderColor, width: 1.w),
+          color: color ?? AppColors.primarySoft,
+          border: Border.all(
+            color: borderColor ?? AppColors.primary.withValues(alpha: 0.3),
+            width: 2.r,
+          ),
           borderRadius: BorderRadius.circular(8.r),
         ),
         child: Row(
@@ -36,7 +41,7 @@ class WordTile extends StatelessWidget {
             Text(
               word,
               style: AppTextStyles.customText10(
-                color: Colors.white.withValues(alpha: 0.7),
+                color: AppColors.white.withValues(alpha: 0.5),
                 fontWeight: FontWeight.w400,
               ),
             ),

@@ -114,7 +114,7 @@ class _VerificationViewState extends State<VerificationView> {
                       Get.toNamed(AppRoutes.doneVerificationView);
                       // Get.toNamed(AppRoutes.biometriVerificationView);
                     },
-                    title: AppStrings.next,
+                    title: AppStrings.nextBtn,
                   )
                   .paddingSymmetric(horizontal: 20.w)
                   .animate(delay: 1000.ms)
