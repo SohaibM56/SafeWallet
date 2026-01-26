@@ -21,7 +21,7 @@ class WalletView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       appBar: CustomAppBar(title: '', backgroundColor: Colors.transparent),
       body: SingleChildScrollView(
         child: Column(
@@ -106,7 +106,7 @@ class WalletView extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(10.sp),
                           decoration: BoxDecoration(
-                            color: AppColors.primary,
+                            color: AppColors.secondary,
                             borderRadius: BorderRadius.circular(6.r),
                             border: Border.all(
                               color: AppColors.white.withValues(alpha: 0.09),
@@ -161,9 +161,12 @@ class WalletView extends StatelessWidget {
                         10.h.height,
 
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal:10.w, vertical: 2.h),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 10.w,
+                            vertical: 2.h,
+                          ),
                           decoration: BoxDecoration(
-                            color: AppColors.primary,
+                            color: AppColors.secondary,
                             borderRadius: BorderRadius.circular(6.r),
                             border: Border.all(
                               color: AppColors.white.withValues(alpha: 0.09),
@@ -172,9 +175,7 @@ class WalletView extends StatelessWidget {
                           child: Row(
                             children: [
                               Expanded(
-                                child:
-
-                                TextFormField(
+                                child: TextFormField(
                                   cursorColor: AppColors.white,
                                   style: AppTextStyles.customText26(
                                     color: AppColors.white,
@@ -195,7 +196,6 @@ class WalletView extends StatelessWidget {
                                   ),
                                 ),
 
-
                                 // Text(
                                 //   '0.00',
                                 //   style: AppTextStyles.customText26(
@@ -204,7 +204,6 @@ class WalletView extends StatelessWidget {
                                 //   ),
                                 // ),
                               ),
-
 
                               Row(
                                 children: [
@@ -220,7 +219,9 @@ class WalletView extends StatelessWidget {
                                     'MAX',
                                     style: AppTextStyles.customText(
                                       fontSize: 7.sp,
-                                      color: Colors.white.withValues(alpha: 0.8),
+                                      color: Colors.white.withValues(
+                                        alpha: 0.8,
+                                      ),
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -294,7 +295,7 @@ class WalletView extends StatelessWidget {
                             vertical: 2.h,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.primary,
+                            color: AppColors.secondary,
                             borderRadius: BorderRadius.circular(6.r),
                             border: Border.all(
                               color: AppColors.white.withValues(alpha: 0.09),
@@ -303,8 +304,7 @@ class WalletView extends StatelessWidget {
                           child: Row(
                             children: [
                               Expanded(
-                                child:
-                                TextFormField(
+                                child: TextFormField(
                                   cursorColor: AppColors.white,
                                   style: AppTextStyles.customText12(
                                     color: AppColors.white,
@@ -348,9 +348,12 @@ class WalletView extends StatelessWidget {
             10.h.height,
 
             Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.w,
+                    vertical: 16.h,
+                  ),
                   decoration: BoxDecoration(
-                    color: AppColors.primary,
+                    color: AppColors.secondary,
                     borderRadius: BorderRadius.circular(6.r),
                     border: Border.all(
                       color: AppColors.white.withValues(alpha: 0.09),

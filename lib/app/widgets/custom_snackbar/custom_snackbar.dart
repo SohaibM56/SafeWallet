@@ -50,8 +50,8 @@ class PremiumSnackbar {
       case AlertStatus.SUCCESS:
         return _SnackbarConfig(
           title: "Success",
-          backgroundColor: AppColors.primary,
-          borderColor: AppColors.primary.withOpacity(0.8),
+          backgroundColor: AppColors.secondary,
+          borderColor: AppColors.secondary.withOpacity(0.8),
           icon: Icons.check_circle_outline_rounded,
           iconColor: Colors.white,
           emoji: "🎉",

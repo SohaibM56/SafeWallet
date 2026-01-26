@@ -33,7 +33,7 @@ class ConfirmStakeSheet extends StatelessWidget {
                     onPressed: () {
                       Get.back();
                     },
-                    icon: Icon(Icons.close_rounded, color: AppColors.primary),
+                    icon: Icon(Icons.close_rounded, color: AppColors.secondary),
                   ),
                 ],
               ),
@@ -67,7 +67,7 @@ class ConfirmStakeSheet extends StatelessWidget {
               Text(
                 "Venty your identity to continue",
                 style: AppTextStyles.customText18(
-                  color: AppColors.primary.withValues(alpha: 0.5),
+                  color: AppColors.secondary.withValues(alpha: 0.5),
                   fontWeight: FontWeight.w300,
                 ),
               ).animate().fadeIn(duration: 600.ms, delay: 400.ms),

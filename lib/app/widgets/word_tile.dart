@@ -23,11 +23,8 @@ class WordTile extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.primary,
-          border: Border.all(
-            color: borderColor,
-            width: 1.w,
-          ),
+          color: AppColors.secondary,
+          border: Border.all(color: borderColor, width: 1.w),
           borderRadius: BorderRadius.circular(8.r),
         ),
         child: Row(
@@ -36,7 +33,9 @@ class WordTile extends StatelessWidget {
           children: [
             if (icon != null) Icon(icon, size: 16.sp, color: Colors.white),
             SizedBox(width: 10.w),
-            Text(word, style: AppTextStyles.customText10(
+            Text(
+              word,
+              style: AppTextStyles.customText10(
                 color: Colors.white.withValues(alpha: 0.7),
                 fontWeight: FontWeight.w400,
               ),

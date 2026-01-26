@@ -2,13 +2,10 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:safewallet/app/mvvm/model/body_model/language_body_model.dart';
 
 import '../../../services/logger_service.dart';
 
 class ProfileController extends GetxController {
-  final RxString selectedLanguage = 'English'.obs;
-
   Rx<File?> rXFile = Rx<File?>(null); // Profile image
 
   final ImagePicker picker = ImagePicker();
@@ -17,22 +14,6 @@ class ProfileController extends GetxController {
   final selectedCurrency = 'Dollar'.obs;
 
   final List<String> currencies = ['Dollar', 'Riyal', 'Naira'];
-
-  RxList<LanguageBodyModel> languages = [
-    LanguageBodyModel(
-      language: 'English',
-      imageUrl:
-          "https://www.flaginstitute.org/wp/wp-content/uploads/flags/UNKG0001.png",
-    ),
-    LanguageBodyModel(
-      language: 'Arabic',
-      imageUrl: "https://cms.saudiflag.sa/uploads/flag_cb4beab1dd.jpg",
-    ),
-  ].obs;
-
-  void selectLanguage(String lang) {
-    selectedLanguage.value = lang;
-  }
 
   void selectCurrency(String currency) {
     selectedCurrency.value = currency;
@@ -63,5 +44,4 @@ class ProfileController extends GetxController {
   /// Pick profile image from camera
   Future<void> pickProfileFromCamera() async =>
       pickImage(target: rXFile, source: ImageSource.camera);
-
 }

@@ -25,7 +25,7 @@ class _IDCardVerificationViewState extends State<IDCardVerificationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

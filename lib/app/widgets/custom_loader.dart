@@ -11,6 +11,9 @@ class CustomLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoActivityIndicator(color: AppColors.primary, radius: 20.sp);
+    return CupertinoActivityIndicator(
+      color: AppColors.secondary,
+      radius: 20.sp,
+    );
   }
 }

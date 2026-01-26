@@ -49,7 +49,10 @@ class AppCustomButton extends StatelessWidget {
           shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius ?? 30.r),
-            side: BorderSide(color: borderColor ?? AppColors.transparent, width: 1.w),
+            side: BorderSide(
+              color: borderColor ?? AppColors.transparent,
+              width: 1.w,
+            ),
           ),
           elevation: 0,
           padding: EdgeInsets.zero,
@@ -57,7 +60,7 @@ class AppCustomButton extends StatelessWidget {
         child: GestureDetector(
           child: Container(
             decoration: BoxDecoration(
-              color: (bgColor ?? AppColors.secondary),
+              color: (bgColor ?? AppColors.primary),
               borderRadius: BorderRadius.circular(borderRadius ?? 30.r),
               border: borderColor != null
                   ? Border.all(color: borderColor!, width: 2.w)

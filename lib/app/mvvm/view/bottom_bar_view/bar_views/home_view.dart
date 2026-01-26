@@ -59,7 +59,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -101,20 +101,20 @@ class _HomeViewState extends State<HomeView> {
                     width: 89.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(55.r)),
-                      color: AppColors.secondary.withValues(alpha: 0.3),
+                      color: AppColors.primary.withValues(alpha: 0.3),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ImageIcon(
                           AssetImage(AppAssets.kycIcon),
-                          color: AppColors.secondary,
+                          color: AppColors.primary,
                         ),
                         6.w.width,
                         Text(
                           "KYC",
                           style: AppTextStyles.customText18(
-                            color: AppColors.secondary,
+                            color: AppColors.primary,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -144,7 +144,7 @@ class _HomeViewState extends State<HomeView> {
                                 width: 10.w,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: AppColors.secondary,
+                                  color: AppColors.primary,
                                 ),
                               ),
                             ),
@@ -392,7 +392,7 @@ class _HomeViewState extends State<HomeView> {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: AppTextStyles.customText12(
-                      color: AppColors.secondary,
+                      color: AppColors.primary,
                       fontWeight: FontWeight.w600,
                     ),
                   ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
@@ -495,7 +495,7 @@ class _HomeViewState extends State<HomeView> {
               width: 50.w,
               decoration: BoxDecoration(
                 color: isRecived == true
-                    ? AppColors.secondary.withValues(alpha: 0.2)
+                    ? AppColors.primary.withValues(alpha: 0.2)
                     : AppColors.red.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),

@@ -6,6 +6,7 @@ class AppAssets {
   // Image Paths
   static const String placeholder = '$imagesPath/placeholder_man.png';
   static const String appLogo = '$imagesPath/app_logo.png';
+  static const String appHorizontalLogo = '$imagesPath/app_horizontal_logo.png';
   static const String getStartedMain = '$imagesPath/get_started_main.png';
   static const String selfieVerification =
       '$imagesPath/selfie_verification.png';
@@ -70,6 +71,7 @@ class AppAssets {
   static const String ovalLockIcon = '$imagesPath/oval_lock_icon.png';
   static const String filledNotificationIcon =
       '$imagesPath/notification_ic.png';
+  static const String oboardingImg = '$imagesPath/onboarding_img.jpg';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';

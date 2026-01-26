@@ -28,7 +28,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       appBar: CustomAppBar(title: '', backgroundColor: Colors.transparent),
       body: Column(
         children: [
@@ -70,7 +70,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
             }
           }),
         ],
-      ).paddingSymmetric(horizontal: 20.w, vertical: 10.h)
+      ).paddingSymmetric(horizontal: 20.w, vertical: 10.h),
     );
   }
 
@@ -90,12 +90,12 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: isCompleted || isActive
-                    ? AppColors.secondary
+                    ? AppColors.primary
                     : Colors.transparent,
                 border: Border.all(
                   width: 2,
                   color: isCompleted || isActive
-                      ? AppColors.secondary
+                      ? AppColors.primary
                       : Colors.white.withValues(alpha: 0.25),
                 ),
               ),
@@ -210,21 +210,25 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                         ),
                         itemCount: controller.words.length,
                         itemBuilder: (context, index) {
+                          return Obx(() {
+                            final word = controller.words[index];
+                            final isSelected = controller.selectionWords
+                                .contains(word);
 
-                        return  Obx(() {
-                          final word = controller.words[index];
-                          final isSelected = controller.selectionWords.contains(word);
-
-                          return WordTile(
-                            word: word,
-                            borderColor: isSelected ? AppColors.secondary :  AppColors.white.withValues(alpha: 0.4),
-                            onTap: () => controller.toggleWord(word),
-                          ).animate()
-                              .fadeIn(duration: 300.ms, delay: (50 * index).ms)
-                              .slideY(begin: 0.3, end: 0);
-
-                          },);
-
+                            return WordTile(
+                                  word: word,
+                                  borderColor: isSelected
+                                      ? AppColors.primary
+                                      : AppColors.white.withValues(alpha: 0.4),
+                                  onTap: () => controller.toggleWord(word),
+                                )
+                                .animate()
+                                .fadeIn(
+                                  duration: 300.ms,
+                                  delay: (50 * index).ms,
+                                )
+                                .slideY(begin: 0.3, end: 0);
+                          });
                         },
                       ),
                     ),
@@ -237,8 +241,12 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                           child: SizedBox(
                             height: 40.h,
                             child: WordTile(
-                                borderColor: AppColors.white.withValues(alpha: 0.4),
-                                word: 'Copy', icon: Icons.copy),
+                              borderColor: AppColors.white.withValues(
+                                alpha: 0.4,
+                              ),
+                              word: 'Copy',
+                              icon: Icons.copy,
+                            ),
                           ),
                         ),
                         12.w.width,
@@ -246,7 +254,9 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                           child: SizedBox(
                             height: 40.h,
                             child: WordTile(
-                              borderColor: AppColors.white.withValues(alpha: 0.4),
+                              borderColor: AppColors.white.withValues(
+                                alpha: 0.4,
+                              ),
                               word: 'Hide',
                               icon: Icons.visibility_off,
                             ),
@@ -419,7 +429,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                     itemBuilder: (context, index) {
                       return WordTile(
                             word: controller.selectionWords[index],
-                            borderColor: AppColors.secondary,
+                            borderColor: AppColors.primary,
                           )
                           .animate()
                           .fadeIn(duration: 300.ms, delay: (50 * index).ms)
@@ -660,7 +670,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 15.sp),
             decoration: BoxDecoration(
-              color: isSelected ? AppColors.secondary : AppColors.transparent,
+              color: isSelected ? AppColors.primary : AppColors.transparent,
               borderRadius: BorderRadius.circular(10.sp),
               border: Border.all(color: AppColors.white.withValues(alpha: 0.3)),
             ),

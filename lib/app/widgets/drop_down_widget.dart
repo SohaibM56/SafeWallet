@@ -50,7 +50,7 @@ class DropDownWidget<T> extends StatelessWidget {
               if (isRequired ?? false)
                 Text(
                   ' *',
-                  style: AppTextStyles.customText14(color: AppColors.primary),
+                  style: AppTextStyles.customText14(color: AppColors.secondary),
                 ),
             ],
           ),
@@ -115,7 +115,7 @@ class DropDownWidget<T> extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: AppColors.white,
                       border: Border.all(
-                        color: AppColors.primary.withOpacity(0.1),
+                        color: AppColors.secondary.withOpacity(0.1),
                       ),
                       borderRadius: BorderRadius.circular(18),
                     ),

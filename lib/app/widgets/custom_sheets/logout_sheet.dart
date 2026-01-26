@@ -81,7 +81,7 @@ class LogoutSheet extends StatelessWidget {
                   //   GlobalVariables.errorMessages.showError();
                   // }
                 },
-                bgColor: AppColors.secondary,
+                bgColor: AppColors.primary,
               )
               .paddingSymmetric(horizontal: 35.w)
               .animate()

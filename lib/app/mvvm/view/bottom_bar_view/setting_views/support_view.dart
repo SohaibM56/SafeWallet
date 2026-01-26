@@ -14,61 +14,61 @@ class SupportView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       appBar: CustomAppBar(
         title: 'Help & Support',
         titleColor: Colors.white,
         backgroundColor: Colors.transparent,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Lorem ipsum',
-            style: AppTextStyles.customText16(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
+      body:
+          Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Lorem ipsum',
+                    style: AppTextStyles.customText16(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
 
-          5.h.height,
+                  5.h.height,
 
-          Text(
-            textAlign: TextAlign.justify,
-            'Dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. ',
-            style: AppTextStyles.customText14(
-              color: Colors.white.withValues(alpha: 0.5),
-              fontWeight: FontWeight.w400,
-            ),
-          ),
+                  Text(
+                    textAlign: TextAlign.justify,
+                    'Dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. ',
+                    style: AppTextStyles.customText14(
+                      color: Colors.white.withValues(alpha: 0.5),
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
 
-          10.h.height,
+                  10.h.height,
 
-          Text(
-            'Lorem ipsum',
-            style: AppTextStyles.customText16(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
+                  Text(
+                    'Lorem ipsum',
+                    style: AppTextStyles.customText16(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
 
-          5.h.height,
+                  5.h.height,
 
-          Text(
-            textAlign: TextAlign.justify,
-            'Dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. ',
-            style: AppTextStyles.customText14(
-              color: Colors.white.withValues(alpha: 0.5),
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ],
-      ).paddingSymmetric(horizontal: 20.w, vertical: 10.h).animate()
-          .fadeIn(duration: 600.ms, delay: 300.ms)
-          .scale(
-        begin: const Offset(0.7, 0.7),
-        curve: Curves.easeOutBack,
-      ),
+                  Text(
+                    textAlign: TextAlign.justify,
+                    'Dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. ',
+                    style: AppTextStyles.customText14(
+                      color: Colors.white.withValues(alpha: 0.5),
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              )
+              .paddingSymmetric(horizontal: 20.w, vertical: 10.h)
+              .animate()
+              .fadeIn(duration: 600.ms, delay: 300.ms)
+              .scale(begin: const Offset(0.7, 0.7), curve: Curves.easeOutBack),
     );
   }
 }

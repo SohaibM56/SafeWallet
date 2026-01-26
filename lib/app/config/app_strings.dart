@@ -5,12 +5,14 @@ abstract class AppStrings {
   // ==================== Splash Screen ====================
   static const String continueText = "Continue";
   static const String language = "Language";
+  static const String selectLangTitle = "Select Language";
+  static const String selectLangSubtitle =
+      "Select language for better experience / اختر لغة النظام";
 
   // ==================== Get Started Screen ====================
-  static const String getStarted = 'Get Started';
-  static const String getStartedText = 'Secure Non-\nCustodial Wallet';
-  static const String getStartedDesc =
-      'Your private keys stay on your device.\nYou have full control over your Bitcoin and assets.';
+  static const String getStartedText = 'ID / Iqama Number ';
+  static const String getStartedBtn = 'Accede via NAFATH';
+  static const String getStartedHintText = 'Enter ID / Iqama';
 
   // ==================== Login Password Screen ====================
   static const String logIn = "Log In";
