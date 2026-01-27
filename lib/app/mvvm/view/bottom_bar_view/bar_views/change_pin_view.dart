@@ -56,7 +56,6 @@ class _ChangePinViewState extends State<ChangePinView> {
                   .fadeIn(delay: 200.ms, duration: 600.ms)
                   .slideX(begin: -0.2, end: 0, delay: 200.ms, duration: 600.ms),
               25.h.height,
-
               Container(
                     margin: EdgeInsets.symmetric(horizontal: 0),
                     decoration: BoxDecoration(
@@ -76,9 +75,12 @@ class _ChangePinViewState extends State<ChangePinView> {
                         AppCustomField(
                               labelTitle: 'Enter PIN',
                               hintText: '••••••',
+                              textSize: 13.sp,
+                              obscuringCharacter: "●",
                               counterColor: AppColors.transparent,
-
+                              maxLength: 6,
                               hintColor: AppColors.white,
+
                               hintFontWeight: FontWeight.w900,
                               hintTextFontSize: 17.sp,
                               obscureText: true,
@@ -103,9 +105,14 @@ class _ChangePinViewState extends State<ChangePinView> {
                         AppCustomField(
                               labelTitle: 'New PIN',
                               hintText: '••••••',
+                              textSize: 13.sp,
+                              obscuringCharacter: "●",
+
                               counterColor: AppColors.transparent,
+                              maxLength: 6,
 
                               hintColor: AppColors.white,
+
                               hintFontWeight: FontWeight.w900,
                               hintTextFontSize: 17.sp,
                               obscureText: true,
@@ -130,8 +137,11 @@ class _ChangePinViewState extends State<ChangePinView> {
                         AppCustomField(
                               labelTitle: 'Confirm New PIN',
                               hintText: '••••••',
-                              counterColor: AppColors.transparent,
+                              textSize: 13.sp,
+                              obscuringCharacter: "●",
 
+                              counterColor: AppColors.transparent,
+                              maxLength: 6,
                               hintColor: AppColors.white,
                               hintFontWeight: FontWeight.w900,
                               hintTextFontSize: 17.sp,
@@ -141,6 +151,7 @@ class _ChangePinViewState extends State<ChangePinView> {
                                 if (value == null || value.trim().isEmpty) {
                                   return 'Confirm Pin is required';
                                 }
+
                                 // else if (value !=
                                 //     authController.passwordController.text) {
                                 //   return 'Passwords do not match';
@@ -170,16 +181,10 @@ class _ChangePinViewState extends State<ChangePinView> {
                     curve: Curves.easeOutBack,
                     delay: 50.ms,
                   ),
-
               56.h.height,
               AppCustomButton(
                     title: 'Save',
                     borderRadius: 100.r,
-                    // backgroundGradient: const LinearGradient(
-                    //   begin: Alignment.centerLeft,
-                    //   end: Alignment.centerRight,
-                    //   colors: [Color(0xFF4AB5B1), Color(0xFF2D5A6E)],
-                    // ),
                     onPressed: () async {},
                     bgColor: AppColors.primary,
                   )
