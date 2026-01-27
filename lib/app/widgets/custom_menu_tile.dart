@@ -57,10 +57,10 @@ class CustomMenuTile extends StatelessWidget {
                   width: 46,
                   thumbMargin: 2,
                   borderRadius: 40,
-                  activeColor: AppColors.primary,
-                  activeTrackColor: Colors.white,
+                  activeColor: AppColors.white,
+                  activeTrackColor: AppColors.primary,
                   inactiveThumbColor: AppColors.primary,
-                  inactiveTrackColor: Color(0xFF111826),
+                  inactiveTrackColor: AppColors.white,
                   borderColor: Colors.white.withValues(alpha: 0.4),
                 ).paddingRight(20.w)
               : isApproved == true

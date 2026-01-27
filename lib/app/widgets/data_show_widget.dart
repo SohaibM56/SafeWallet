@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:safewallet/app/config/app_colors.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
-
 import '../config/app_assets.dart';
 
 class CustomDataShow extends StatelessWidget {

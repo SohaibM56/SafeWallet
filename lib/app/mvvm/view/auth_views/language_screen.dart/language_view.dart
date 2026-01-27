@@ -37,12 +37,22 @@ class _LanguageViewState extends State<LanguageView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.black,
-      appBar: CustomAppBar(
-        appBarType: AppBarType.custom,
-        titleWidget: Image.asset(AppAssets.appHorizontalLogo, height: 44.h),
-        addBackButton: isFromSettings,
-        centerTitle: true,
-      ),
+      appBar: isFromSettings
+          ? CustomAppBar(
+              appBarType: AppBarType.custom,
+              title: AppStrings.selectLangTitle,
+              addBackButton: isFromSettings,
+              centerTitle: true,
+            )
+          : CustomAppBar(
+              appBarType: AppBarType.custom,
+              titleWidget: Image.asset(
+                AppAssets.appHorizontalLogo,
+                height: 44.h,
+              ),
+              addBackButton: isFromSettings,
+              centerTitle: true,
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: AppCustomButton(
         title: AppStrings.continueText,
@@ -60,22 +70,26 @@ class _LanguageViewState extends State<LanguageView> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            30.h.height,
-            Text(
-              AppStrings.selectLangTitle.tr,
-              style: AppTextStyles.customText20(
-                fontWeight: FontWeight.w600,
-                color: AppColors.white,
-              ),
-            ),
+            isFromSettings ? SizedBox.shrink() : 30.h.height,
+            isFromSettings
+                ? SizedBox.shrink()
+                : Text(
+                    AppStrings.selectLangTitle.tr,
+                    style: AppTextStyles.customText20(
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.white,
+                    ),
+                  ),
             3.h.height,
-            Text(
-              AppStrings.selectLangSubtitle.tr,
-              style: AppTextStyles.customText12(
-                fontWeight: FontWeight.w500,
-                color: AppColors.white.withValues(alpha: 0.5),
-              ),
-            ),
+            isFromSettings
+                ? SizedBox.shrink()
+                : Text(
+                    AppStrings.selectLangSubtitle.tr,
+                    style: AppTextStyles.customText12(
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.white.withValues(alpha: 0.5),
+                    ),
+                  ),
             10.h.height,
             Obx(
               () => Column(

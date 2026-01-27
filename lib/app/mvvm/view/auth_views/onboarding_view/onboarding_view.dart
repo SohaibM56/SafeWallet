@@ -142,7 +142,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                 //     curve: Curves.easeOut,
                 //   );
                 // } else {
-                Get.offAllNamed(AppRoutes.bottomBarView);
+                Get.offAllNamed(AppRoutes.languageView);
                 // }
               },
             ).paddingHorizontal(50.w),
