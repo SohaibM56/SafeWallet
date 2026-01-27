@@ -15,8 +15,8 @@ import '../../../../widgets/app_custom_button.dart';
 import '../../../../widgets/custom_app_bar.dart';
 import '../../../../widgets/sizedbox_extension.dart';
 
-class WalletView extends StatelessWidget {
-  const WalletView({super.key});
+class InitiateTransfer extends StatelessWidget {
+  const InitiateTransfer({super.key});
 
   @override
   Widget build(BuildContext context) {

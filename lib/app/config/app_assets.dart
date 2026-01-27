@@ -43,10 +43,12 @@ class AppAssets {
   static const String supportIcon = '$imagesPath/support_icon.png';
   static const String solIcon = '$imagesPath/sol_icon.png';
   static const String snipperIcon = '$imagesPath/snipper_icon.png';
-  static const String volumeIcon = '$imagesPath/volume_icon.png';
+  static const String volumeUpIcon = '$imagesPath/volume_up_icon.png';
+  static const String volumeDownIcon = '$imagesPath/volume_down_icon.png';
   static const String backgroundCardImg = '$imagesPath/background_card.png';
   static const String kycIcon = '$imagesPath/kyc_check.png';
   static const String kycImage = '$imagesPath/kyc_image.png';
+  static const String chatIc = '$imagesPath/chat_ic.png';
 
   static const String biometricIcon = '$imagesPath/biometric_icon.png';
   static const String keyIcon = '$imagesPath/key_icon.png';

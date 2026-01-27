@@ -17,11 +17,11 @@ import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/auto_lock_tim
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/snipper_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/sol_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/volume_tool_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/initiate_transfer/initiate_transfer.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/recovery_phase_view/recovery_phase_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/regulatory_identity_view/buy_asset_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/regulatory_identity_view/regulatory_identity_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/setting_views/currency_view.dart';
-import 'package:safewallet/app/mvvm/view/bottom_bar_view/wallet_view/wallet_view.dart';
 import 'package:safewallet/app/mvvm/view/get_started_view/get_started_view.dart';
 import 'package:safewallet/app/mvvm/view/splash_view/splash_view.dart';
 import 'package:safewallet/app/mvvm/view_model/auth_controller/forgot_password_controller/forgot_password_controller.dart';
@@ -66,7 +66,7 @@ abstract class AppRoutes {
   static const String supportView = '/supportView';
   static const String currencyView = '/currencyView';
   static const String recoveryPhaseView = '/recoveryPhaseView';
-  static const String walletView = '/walletView';
+  static const String initiateTransfer = '/initiateTransfer';
   static const String regulatoryIdentityView = '/regulatoryIdentityView';
   static const String buyAssetView = '/buyAssetView';
   static const String solToolView = '/solToolView';
@@ -222,8 +222,8 @@ abstract class AppPages {
       }),
     ),
     GetPage(
-      name: AppRoutes.walletView,
-      page: () => WalletView(),
+      name: AppRoutes.initiateTransfer,
+      page: () => InitiateTransfer(),
       binding: BindingsBuilder(() {}),
     ),
     GetPage(

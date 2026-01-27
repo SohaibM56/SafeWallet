@@ -26,7 +26,7 @@ abstract class AppColors {
   static const Color borderGrey = Color(0xFFD7DDE5);
   static const Color lightTextColor = Color(0xFF777E90);
   // static const Color green = Color(0xff4CAF50);
-  static const Color softgreen = Color(0xffB6FF57);
+  static const Color softgreen = Color(0xff1CE3A1);
   static const Color fillColor = Color(0x0C132280);
   static const Color hintTextColor = Color(0xff9EA0A5);
   // static const Color scaffoldBgColor = Color(0xff0C1322);
