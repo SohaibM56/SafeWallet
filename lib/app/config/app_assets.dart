@@ -85,14 +85,16 @@ class AppAssets {
   static const String notification = '$imagesPath/notification.png';
   static const String aboutUsIcon = '$imagesPath/about_us_icon.png';
   static const String autoLock = '$imagesPath/auto_lock.png';
-  
+
   static const String langIcon2 = '$imagesPath/lang_icon2.png';
   static const String veitingIcon = '$imagesPath/veiting_icon.png';
   static const String approvalIcon = '$imagesPath/approval_icon.png';
   static const String regionIcon = '$imagesPath/region_icon.png';
-
-
-
+  static const String gradientBorder = '$imagesPath/gradient_border.png';
+  static const String settingsIc = '$imagesPath/settings_ic.png';
+  static const String cardIc = '$imagesPath/card_ic.png';
+  static const String auditIc = '$imagesPath/audit_ic.png';
+  static const String walletIc = '$imagesPath/wallet_ic.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';

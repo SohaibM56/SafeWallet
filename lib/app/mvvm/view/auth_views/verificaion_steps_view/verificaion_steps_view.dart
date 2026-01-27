@@ -84,7 +84,7 @@ class _VerificationStepsViewState extends State<VerificationStepsView> {
 
           63.h.height,
 
-          // Dots indicator
+          // Dots Indicator
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
