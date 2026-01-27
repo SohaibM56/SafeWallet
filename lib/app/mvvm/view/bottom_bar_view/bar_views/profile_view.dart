@@ -25,7 +25,7 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondary,
+      backgroundColor: AppColors.black,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,53 +96,45 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                   ),
                   margin: EdgeInsets.only(top: 30.h),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: 0.h,
-                      // bottom: 30.h,
-                      // left: 10.w,
-                      // right: 20.w,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: customStatus(
-                            status: 'Status',
-                            imagePath: AppAssets.shieldPrivate,
-                            tittle: 'SECURE',
-                          ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: customStatus(
+                          status: 'Status',
+                          imagePath: AppAssets.shieldPrivate,
+                          tittle: 'SECURE',
                         ),
-                        _customDivider(),
+                      ),
+                      _customDivider(),
 
-                        Expanded(
-                          child: customStatus(
-                            status: 'Vetting',
-                            imagePath: AppAssets.veitingIcon,
-                            tittle: 'ACTIVE',
-                          ),
+                      Expanded(
+                        child: customStatus(
+                          status: 'Vetting',
+                          imagePath: AppAssets.veitingIcon,
+                          tittle: 'ACTIVE',
                         ),
-                        _customDivider(),
+                      ),
+                      _customDivider(),
 
-                        Expanded(
-                          child: customStatus(
-                            status: 'Approval',
-                            imagePath: AppAssets.approvalIcon,
-                            tittle: '4-EYES',
-                          ),
+                      Expanded(
+                        child: customStatus(
+                          status: 'Approval',
+                          imagePath: AppAssets.approvalIcon,
+                          tittle: '4-EYES',
                         ),
-                        _customDivider(),
+                      ),
+                      _customDivider(),
 
-                        Expanded(
-                          child: customStatus(
-                            status: 'Region',
-                            imagePath: AppAssets.regionIcon,
-                            tittle: 'KSA',
-                          ),
+                      Expanded(
+                        child: customStatus(
+                          status: 'Region',
+                          imagePath: AppAssets.regionIcon,
+                          tittle: 'KSA',
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 )
                 .animate()
@@ -237,10 +229,11 @@ class _ProfileViewState extends State<ProfileView> {
                               CustomMenuTile(
                                 icon: AppAssets.langIcon2,
                                 title: 'Language',
-
-                                //! hide the button on the flag base .....
                                 onTap: () {
-                                  Get.toNamed(AppRoutes.languageView);
+                                  Get.toNamed(
+                                    AppRoutes.languageView,
+                                    arguments: {'isFromSetting': true},
+                                  );
                                 },
                               ),
                             ],
@@ -269,6 +262,8 @@ class _ProfileViewState extends State<ProfileView> {
                               CustomMenuTile(
                                 icon: AppAssets.termsServiceIcon,
                                 title: 'Terms of Service',
+                                onTap: () =>
+                                    Get.toNamed(AppRoutes.termServiceView),
                               ),
 
                               Divider(
@@ -277,7 +272,7 @@ class _ProfileViewState extends State<ProfileView> {
                               CustomMenuTile(
                                 icon: AppAssets.privacyPolicyIcon,
                                 title: 'Privacy Policy',
-                                onTap: () {},
+                                onTap: () => Get.toNamed(AppRoutes.privacyView),
                               ),
                               Divider(
                                 color: Colors.white.withValues(alpha: 0.1),
@@ -285,7 +280,7 @@ class _ProfileViewState extends State<ProfileView> {
                               CustomMenuTile(
                                 icon: AppAssets.aboutUsIcon,
                                 title: 'About us',
-                                onTap: () {},
+                                onTap: () => Get.toNamed(AppRoutes.aboutusView),
                               ),
                             ],
                           ),
@@ -320,7 +315,7 @@ Widget _customDivider() {
           AppColors.transparent,
 
           Color(0xFF1CE3A1).withOpacity(.8),
-          Color(0xFF1CE3A1), // #1CE3A1    (solid)
+          Color(0xFF1CE3A1),
           Color(0xFF1CE3A1).withOpacity(.5),
           AppColors.transparent,
         ],

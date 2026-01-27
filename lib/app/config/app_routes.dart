@@ -14,8 +14,11 @@ import 'package:safewallet/app/mvvm/view/auth_views/verificaion_steps_view/compl
 import 'package:safewallet/app/mvvm/view/auth_views/verificaion_steps_view/verificaion_steps_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/all_activity_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/auto_lock_time_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/privacy_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/about_us_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/snipper_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/sol_tool_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/terms_service_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/volume_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/recovery_phase_view/recovery_phase_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/regulatory_identity_view/buy_asset_view.dart';
@@ -31,6 +34,7 @@ import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controlle
 import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controller/verification_controllers/done_verification_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controller/verification_controllers/id_card_verfication_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controller/verification_controllers/selfie_verification_controller.dart';
+import 'package:safewallet/app/mvvm/view_model/auto_lock_time/auto_lock_time_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/bottom_bar_controller/trade_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/language_controller/language_controlller.dart';
 import 'package:safewallet/app/mvvm/view_model/profile_controllers/profile_controller.dart';
@@ -73,6 +77,10 @@ abstract class AppRoutes {
   static const String snipperToolView = '/snipperToolView';
   static const String volumeToolView = '/volumeToolView';
   static const String autoLockTimeView = '/autoLocTimeView';
+  static const String aboutusView = '/aboutusView';
+  static const String privacyView = '/privacyView';
+  static const String termServiceView  = '/termServiceView';
+
 }
 
 abstract class AppPages {
@@ -261,7 +269,28 @@ abstract class AppPages {
       name: AppRoutes.autoLockTimeView,
       page: () => AutoLockTimeView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut<LanguageControlller>(() => LanguageControlller());
+        Get.lazyPut<AutoLockController>(() => AutoLockController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.aboutusView,
+      page: () => AboutUsView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<LanguageControlller>(() => LanguageControlller());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.privacyView,
+      page: () => PrivacyView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<LanguageControlller>(() => LanguageControlller());
+      }),
+    ),
+     GetPage(
+      name: AppRoutes.termServiceView,
+      page: () => TermServiceView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<LanguageControlller>(() => LanguageControlller());
       }),
     ),
   ];
