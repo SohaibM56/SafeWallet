@@ -65,6 +65,7 @@ class AppCustomField extends StatelessWidget {
     this.cursorColor,
     this.textSize,
     this.isSecondField = false, // Add onTap to trigger when the field is tapped
+    this.obscuringCharacter, 
   });
 
   final Color? cursorColor;
@@ -124,6 +125,7 @@ class AppCustomField extends StatelessWidget {
   final double? labelTitleSize;
   final VoidCallback? onTap; // New onTap callback for custom action
   final bool? isSecondField;
+  final String? obscuringCharacter; 
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +168,7 @@ class AppCustomField extends StatelessWidget {
             return null;
           },
           style: AppTextStyles.customText(
-            fontSize: textSize ?? 16,
+            fontSize: textSize ?? 16, // 
             color: textColor ?? AppColors.white,
           ).copyWith(letterSpacing: obscureText == true ? 6 : 0),
           textAlignVertical: isSecondField == true
@@ -181,7 +183,7 @@ class AppCustomField extends StatelessWidget {
           // Make field read-only based on isReadOnly property
           keyboardType: keyboardType ?? TextInputType.number,
           obscureText: obscureText ?? false,
-          obscuringCharacter: "•",
+          obscuringCharacter: obscuringCharacter??  "•"  ,  
           focusNode: focusNode,
           onFieldSubmitted: onFieldSubmitted,
           onChanged: onChanged,
