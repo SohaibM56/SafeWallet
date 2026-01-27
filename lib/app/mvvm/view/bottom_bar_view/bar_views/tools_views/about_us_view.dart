@@ -34,7 +34,7 @@ class _AboutUsViewState extends State<AboutUsView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             28.h.height,
-            AppLogoWidget() ,
+            AppLogoWidget().paddingHorizontal(70.w),
             23.h.height,
             customText(),
           ],

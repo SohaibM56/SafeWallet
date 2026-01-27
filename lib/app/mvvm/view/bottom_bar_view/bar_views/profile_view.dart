@@ -8,6 +8,7 @@ import 'package:safewallet/app/config/app_routes.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/widgets/custom_menu_tile.dart';
+import 'package:safewallet/app/widgets/data_show_widget.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 import '../../../../config/app_assets.dart';
 import '../../../view_model/profile_controllers/profile_controller.dart';
@@ -84,69 +85,7 @@ class _ProfileViewState extends State<ProfileView> {
               ],
             ),
 
-            Container(
-                  width: double.infinity,
-                  height: 80.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(13.r),
-                    color: Color(0xff132D28),
-                    border: Border.all(
-                      color: Colors.white.withValues(alpha: 0.2),
-                      width: 1.3.w,
-                    ),
-                  ),
-                  margin: EdgeInsets.only(top: 30.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: customStatus(
-                          status: 'Status',
-                          imagePath: AppAssets.shieldPrivate,
-                          tittle: 'SECURE',
-                        ),
-                      ),
-                      _customDivider(),
-
-                      Expanded(
-                        child: customStatus(
-                          status: 'Vetting',
-                          imagePath: AppAssets.veitingIcon,
-                          tittle: 'ACTIVE',
-                        ),
-                      ),
-                      _customDivider(),
-
-                      Expanded(
-                        child: customStatus(
-                          status: 'Approval',
-                          imagePath: AppAssets.approvalIcon,
-                          tittle: '4-EYES',
-                        ),
-                      ),
-                      _customDivider(),
-
-                      Expanded(
-                        child: customStatus(
-                          status: 'Region',
-                          imagePath: AppAssets.regionIcon,
-                          tittle: 'KSA',
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-                .animate()
-                .fadeIn(duration: 600.ms, delay: 200.ms)
-                .slideY(begin: 0.3, curve: Curves.easeOutCubic)
-                .animate()
-                .fadeIn(duration: 600.ms, delay: 300.ms)
-                .scale(
-                  begin: const Offset(0.7, 0.7),
-                  curve: Curves.easeOutBack,
-                ),
-
+            CustomDataShow(),
             Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -173,10 +112,8 @@ class _ProfileViewState extends State<ProfileView> {
                             children: [
                               CustomMenuTile(
                                 icon: AppAssets.lockTransaction,
-                                onTap: () {
-                                  //!  change Tranasc pin View not available ....
-                                  // Get.toNamed(AppRoutes.) ;
-                                },
+                                onTap: () =>
+                                    Get.toNamed(AppRoutes.changePinView),
                                 title: 'Change Transaction PIN',
                               ),
                               Divider(
@@ -301,66 +238,4 @@ class _ProfileViewState extends State<ProfileView> {
       ),
     );
   }
-}
-
-Widget _customDivider() {
-  return Container(
-    height: 40.h,
-    width: 1.5.w,
-    decoration: BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          AppColors.transparent,
-
-          Color(0xFF1CE3A1).withOpacity(.8),
-          Color(0xFF1CE3A1),
-          Color(0xFF1CE3A1).withOpacity(.5),
-          AppColors.transparent,
-        ],
-      ),
-    ),
-  );
-}
-
-Widget customStatus({
-  required String status,
-  required String imagePath,
-  required String tittle,
-}) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            imagePath,
-            height: 17.h,
-            width: 17.w,
-            color: AppColors.lightTextColor,
-          ),
-
-          4.w.width,
-          Text(
-            status,
-            style: AppTextStyles.customTextRboto(
-              fontWeight: FontWeight.w500,
-              color: AppColors.lightTextColor,
-              fontSize: 12.sp,
-            ),
-          ),
-        ],
-      ),
-      Text(
-        tittle,
-        style: AppTextStyles.customTextRboto(
-          fontWeight: FontWeight.w600,
-          color: AppColors.white,
-          fontSize: 16.sp,
-        ),
-      ),
-    ],
-  );
 }

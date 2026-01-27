@@ -71,8 +71,8 @@ class _HomeViewState extends State<HomeView> {
               CustomDataShow(),
 
               10.h.height,
-              _homeCurrencyWidget(),
 
+              _homeCurrencyWidget(),
               15.h.height,
 
               GridView.builder(

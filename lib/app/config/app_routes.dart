@@ -14,6 +14,7 @@ import 'package:safewallet/app/mvvm/view/auth_views/verificaion_steps_view/compl
 import 'package:safewallet/app/mvvm/view/auth_views/verificaion_steps_view/verificaion_steps_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/all_activity_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/auto_lock_time_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/change_pin_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/privacy_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/about_us_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/snipper_tool_view.dart';
@@ -36,6 +37,7 @@ import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controlle
 import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controller/verification_controllers/selfie_verification_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/auto_lock_time/auto_lock_time_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/bottom_bar_controller/trade_controller.dart';
+import 'package:safewallet/app/mvvm/view_model/change_pin_controller/change_pin_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/language_controller/language_controlller.dart';
 import 'package:safewallet/app/mvvm/view_model/profile_controllers/profile_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/splash_controller/splash_controller.dart';
@@ -80,6 +82,8 @@ abstract class AppRoutes {
   static const String aboutusView = '/aboutusView';
   static const String privacyView = '/privacyView';
   static const String termServiceView  = '/termServiceView';
+  static const String changePinView  = '/changePinView';
+
 
 }
 
@@ -291,6 +295,13 @@ abstract class AppPages {
       page: () => TermServiceView(),
       binding: BindingsBuilder(() {
         // Get.lazyPut<LanguageControlller>(() => LanguageControlller());
+      }),
+    ),
+      GetPage(
+      name: AppRoutes.changePinView,
+      page: () => ChangePinView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<ChangePinController>(() => ChangePinController());
       }),
     ),
   ];
