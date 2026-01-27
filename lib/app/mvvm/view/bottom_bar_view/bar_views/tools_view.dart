@@ -85,7 +85,7 @@ class _ToolsViewState extends State<ToolsView> {
                   onTap: () {
                     Get.toNamed(AppRoutes.volumeToolView);
                   },
-                  toolImg: AppAssets.volumeIcon,
+                  toolImg: AppAssets.volumeUpIcon,
                   toolTitle: "Volume Booster",
                   toolSubtitle: "Simulate trading volume for tokens",
                 )

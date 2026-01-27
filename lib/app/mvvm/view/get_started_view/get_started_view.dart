@@ -95,7 +95,7 @@ class _GetStartedViewState extends State<GetStartedView> {
                       color: AppColors.white,
                     ),
                     onPressed: () {
-                      Get.toNamed(AppRoutes.bottomBarView);
+                      Get.toNamed(AppRoutes.verificationStepsView);
                     },
                     height: 56.h,
                   )

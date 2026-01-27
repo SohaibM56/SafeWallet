@@ -12,6 +12,7 @@ import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 import '../../../../config/app_assets.dart';
 import '../../../../widgets/custom_sheets/recent_transations_sheet.dart';
+import '../../../../widgets/data_show_widget.dart';
 
 class CardView extends StatefulWidget {
   const CardView({super.key});
@@ -26,20 +27,17 @@ class _CardViewState extends State<CardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondary,
+      backgroundColor: AppColors.black,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildHeader()
+              _customHomeAppBar()
                   .animate()
                   .fadeIn(duration: 600.ms, delay: 100.ms)
                   .slideY(begin: -0.2, curve: Curves.easeOut),
-
-              20.h.height,
-
-              _buildStatusIndicators()
+              CustomDataShow()
                   .animate()
                   .fadeIn(duration: 600.ms, delay: 200.ms)
                   .slideY(begin: 0.3, curve: Curves.easeOutCubic),
@@ -104,7 +102,7 @@ class _CardViewState extends State<CardView> {
     );
   }
 
-  Widget _buildHeader() {
+  Row _customHomeAppBar() {
     return Row(
       children: [
         Expanded(
@@ -139,23 +137,27 @@ class _CardViewState extends State<CardView> {
         Container(
           height: 44.w,
           width: 89.w,
+
           decoration: BoxDecoration(
+            color: AppColors.primarySoft,
+            border: Border.all(
+              color: AppColors.primary.withValues(alpha: 0.5.sp),
+              width: 2.w,
+            ),
             borderRadius: BorderRadius.all(Radius.circular(55.r)),
-            color: Color(0x1F1CE3A1),
-            border: Border.all(color: Color(0x14FFFFFF)),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ImageIcon(
                 AssetImage(AppAssets.kycIcon),
-                color: Color(0xff1CE3A1),
+                color: AppColors.softgreen,
               ),
               6.w.width,
               Text(
                 "KYC",
                 style: AppTextStyles.customText18(
-                  color: Color(0xff1CE3A1),
+                  color: AppColors.softgreen,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -169,8 +171,12 @@ class _CardViewState extends State<CardView> {
             width: 44.w,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Color(0x1F1CE3A1),
-              border: Border.all(color: Color(0x14FFFFFF)),
+              color: AppColors.primarySoft,
+              border: Border.all(
+                color: AppColors.primary.withValues(alpha: 0.5.sp),
+                // width: 2.w,
+              ),
+              // border: Border.all(color: AppColors.white),
             ),
             child: Center(
               child: Stack(
@@ -199,97 +205,16 @@ class _CardViewState extends State<CardView> {
     );
   }
 
-  Widget _buildStatusIndicators() {
-    return             Container(
-      width: double.infinity,
-      height: 80.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(13.r),
-        color: Color(0x1f1CE3A1),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.2),
-          width: 1.3.w,
-        ),
-      ),
-      margin: EdgeInsets.only(top: 30.h),
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: 0.h,
-          // bottom: 30.h,
-          // left: 10.w,
-          // right: 20.w,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: customStatus(
-                status: 'Status',
-                imagePath: AppAssets.shieldPrivate,
-                tittle: 'SECURE',
-              ),
-            ),
-            _customDivider(),
-
-            Expanded(
-              child: customStatus(
-                status: 'Vetting',
-                imagePath: AppAssets.veitingIcon,
-                tittle: 'ACTIVE',
-              ),
-            ),
-            _customDivider(),
-
-            Expanded(
-              child: customStatus(
-                status: 'Approval',
-                imagePath: AppAssets.approvalIcon,
-                tittle: '4-EYES',
-              ),
-            ),
-            _customDivider(),
-
-            Expanded(
-              child: customStatus(
-                status: 'Region',
-                imagePath: AppAssets.regionIcon,
-                tittle: 'KSA',
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _customDivider() {
-    return Container(
-      height: 40.h,
-      width: 1.5.w,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            AppColors.transparent,
-
-            Color(0xFF1CE3A1).withOpacity(.8),
-            Color(0xFF1CE3A1), // #1CE3A1    (solid)
-            Color(0xFF1CE3A1).withOpacity(.5),
-            AppColors.transparent,
-          ],
-        ),
-      ),
-    );
-  }
-
-
   Widget _buildCreditCardSection() {
     return Container(
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
+        // color: AppColors.primarySoft,
+        // border: Border.all(
+        //   color: AppColors.primary.withValues(alpha: 0.5.sp),
+        //   width: 2.w,
+        // ),
         image: DecorationImage(
           image: AssetImage(AppAssets.cardBg),
           fit: BoxFit.cover,
@@ -557,8 +482,11 @@ class _CardViewState extends State<CardView> {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 16.h),
         decoration: BoxDecoration(
-          color: const Color(0xFF1CE3A1).withValues(alpha: 0.12),
-          border: Border.all(color: Color(0x14FFFFFF)),
+          color: AppColors.primarySoft,
+          border: Border.all(
+            color: AppColors.primary.withValues(alpha: 0.5.sp),
+            width: 2.w,
+          ),
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Column(

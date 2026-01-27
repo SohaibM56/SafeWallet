@@ -44,10 +44,12 @@ class AppAssets {
   static const String supportIcon = '$imagesPath/support_icon.png';
   static const String solIcon = '$imagesPath/sol_icon.png';
   static const String snipperIcon = '$imagesPath/snipper_icon.png';
-  static const String volumeIcon = '$imagesPath/volume_icon.png';
+  static const String volumeUpIcon = '$imagesPath/volume_up_icon.png';
+  static const String volumeDownIcon = '$imagesPath/volume_down_icon.png';
   static const String backgroundCardImg = '$imagesPath/background_card.png';
   static const String kycIcon = '$imagesPath/kyc_check.png';
   static const String kycImage = '$imagesPath/kyc_image.png';
+  static const String chatIc = '$imagesPath/chat_ic.png';
 
   static const String biometricIcon = '$imagesPath/biometric_icon.png';
   static const String keyIcon = '$imagesPath/key_icon.png';
@@ -86,11 +88,16 @@ class AppAssets {
   static const String notification = '$imagesPath/notification.png';
   static const String aboutUsIcon = '$imagesPath/about_us_icon.png';
   static const String autoLock = '$imagesPath/auto_lock.png';
-  
+
   static const String langIcon2 = '$imagesPath/lang_icon2.png';
   static const String veitingIcon = '$imagesPath/veiting_icon.png';
   static const String approvalIcon = '$imagesPath/approval_icon.png';
   static const String regionIcon = '$imagesPath/region_icon.png';
+  static const String gradientBorder = '$imagesPath/gradient_border.png';
+  static const String settingsIc = '$imagesPath/settings_ic.png';
+  static const String cardIc = '$imagesPath/card_ic.png';
+  static const String auditIc = '$imagesPath/audit_ic.png';
+  static const String walletIc = '$imagesPath/wallet_ic.png';
   static const String statusIc = '$imagesPath/status_icon.png';
   static const String cardBg = '$imagesPath/bg_card.png';
 

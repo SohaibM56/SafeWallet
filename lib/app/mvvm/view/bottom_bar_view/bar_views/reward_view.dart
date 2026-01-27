@@ -413,7 +413,7 @@ class _RewardViewState extends State<RewardView> {
                 AppCustomButton(
                   title: "Stake More SEC",
                   prefixIcon: ImageIcon(
-                    AssetImage(AppAssets.volumeIcon),
+                    AssetImage(AppAssets.volumeUpIcon),
                     size: 25,
                     color: AppColors.white,
                   ),
