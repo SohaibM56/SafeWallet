@@ -190,85 +190,84 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
 
             20.h.height,
 
-            Stack(
-              children: [
-                Positioned.fill(
-                  child: Image.asset(AppAssets.bgGradient, fit: BoxFit.fill),
-                ),
-
-                Column(
-                  children: [
-                    Obx(
-                      () => GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 10.w,
-                          mainAxisSpacing: 10.h,
-                          mainAxisExtent: 40.h,
-                        ),
-                        itemCount: controller.words.length,
-                        itemBuilder: (context, index) {
-                          return Obx(() {
-                            final word = controller.words[index];
-                            final isSelected = controller.selectionWords
-                                .contains(word);
-
-                            return WordTile(
-                                  word: word,
-                                  borderColor: isSelected
-                                      ? AppColors.primary
-                                      : AppColors.white.withValues(alpha: 0.4),
-                                  onTap: () => controller.toggleWord(word),
-                                )
-                                .animate()
-                                .fadeIn(
-                                  duration: 300.ms,
-                                  delay: (50 * index).ms,
-                                )
-                                .slideY(begin: 0.3, end: 0);
-                          });
-                        },
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: AppColors.grey, width: 2.w),
+                borderRadius: BorderRadius.all(Radius.circular(10.r)),
+              ),
+              child: Column(
+                children: [
+                  Obx(
+                    () => GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 10.w,
+                        mainAxisSpacing: 10.h,
+                        mainAxisExtent: 40.h,
                       ),
+                      itemCount: controller.words.length,
+                      itemBuilder: (context, index) {
+                        return Obx(() {
+                          final word = controller.words[index];
+                          final isSelected = controller.selectedWords.contains(
+                            word,
+                          );
+
+                          return WordTile(
+                                word: word,
+                                textColor: isSelected
+                                    ? Colors.white
+                                    : AppColors.white.withValues(alpha: 0.5),
+                                borderColor: isSelected
+                                    ? AppColors.primary
+                                    : AppColors.primary.withValues(alpha: 0.3),
+                                color: isSelected
+                                    ? AppColors.primary
+                                    : AppColors.primarySoft,
+
+                                onTap: () => controller.toggleWord(word),
+                              )
+                              .animate()
+                              .fadeIn(duration: 300.ms, delay: (50 * index).ms)
+                              .slideY(begin: 0.3, end: 0);
+                        });
+                      },
                     ),
+                  ),
 
-                    10.h.height,
+                  10.h.height,
 
-                    Row(
-                      children: [
-                        Expanded(
-                          child: SizedBox(
-                            height: 40.h,
-                            child: WordTile(
-                              color: AppColors.black,
-                              borderColor: AppColors.white.withValues(
-                                alpha: 0.4,
-                              ),
-                              word: 'Copy',
-                              icon: Icons.copy,
-                            ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: 40.h,
+                          child: WordTile(
+                            color: AppColors.black,
+                            borderColor: AppColors.white.withValues(alpha: 0.4),
+                            word: 'Copy',
+                            icon: Icons.copy,
                           ),
                         ),
-                        12.w.width,
-                        Expanded(
-                          child: SizedBox(
-                            height: 40.h,
-                            child: WordTile(
-                              color: AppColors.black,
-                              borderColor: AppColors.white.withValues(
-                                alpha: 0.4,
-                              ),
-                              word: 'Hide',
-                              icon: Icons.visibility_off,
-                            ),
+                      ),
+                      12.w.width,
+                      Expanded(
+                        child: SizedBox(
+                          height: 40.h,
+                          child: WordTile(
+                            color: AppColors.black,
+                            borderColor: AppColors.white.withValues(alpha: 0.4),
+                            word: 'Hide',
+                            icon: Icons.visibility_off,
                           ),
                         ),
-                      ],
-                    ).animate().fadeIn(duration: 400.ms, delay: 800.ms),
-                  ],
-                ).paddingAll(10.sp),
-              ],
+                      ),
+                    ],
+                  ).animate().fadeIn(duration: 400.ms, delay: 800.ms),
+                ],
+              ).paddingAll(10.sp),
             ).animate().fadeIn(duration: 500.ms, delay: 300.ms),
 
             10.h.height,
@@ -397,55 +396,57 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
 
         Stack(
           children: [
-            Positioned.fill(
-              child: Image.asset(AppAssets.bgGradient, fit: BoxFit.fill),
-            ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: AppColors.grey, width: 2.w),
+                borderRadius: BorderRadius.all(Radius.circular(10.r)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  10.h.height,
 
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                10.h.height,
-
-                Text(
-                  "Your selection:",
-                  style: AppTextStyles.customText(
-                    fontSize: 15.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-
-                10.h.height,
-
-                Obx(
-                  () => GridView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 10.w,
-                      mainAxisSpacing: 10.h,
-                      mainAxisExtent: 44.h,
+                  Text(
+                    "Your selection:",
+                    style: AppTextStyles.customText(
+                      fontSize: 15.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
                     ),
-                    itemCount: controller.selectionWords.length,
-                    itemBuilder: (context, index) {
-                      return WordTile(
-                            word: controller.selectionWords[index],
-                            borderColor: AppColors.primary,
-                          )
-                          .animate()
-                          .fadeIn(duration: 300.ms, delay: (50 * index).ms)
-                          .scale(
-                            begin: const Offset(0.8, 0.8),
-                            end: const Offset(1.0, 1.0),
-                          );
-                    },
                   ),
-                ),
 
-                10.h.height,
-              ],
-            ).paddingAll(10.sp),
+                  10.h.height,
+
+                  Obx(
+                    () => GridView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 10.w,
+                        mainAxisSpacing: 10.h,
+                        mainAxisExtent: 44.h,
+                      ),
+                      itemCount: controller.selectedWords.length,
+                      itemBuilder: (context, index) {
+                        return WordTile(
+                              word: controller.selectedWords[index],
+                              borderColor: AppColors.primary,
+                            )
+                            .animate()
+                            .fadeIn(duration: 300.ms, delay: (50 * index).ms)
+                            .scale(
+                              begin: const Offset(0.8, 0.8),
+                              end: const Offset(1.0, 1.0),
+                            );
+                      },
+                    ),
+                  ),
+
+                  10.h.height,
+                ],
+              ).paddingAll(10.sp),
+            ),
           ],
         ).animate().fadeIn(duration: 500.ms, delay: 400.ms),
 
@@ -673,8 +674,8 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
             height: 60,
             // padding: EdgeInsets.symmetric(vertical: 15.sp),
             decoration: BoxDecoration(
-              color: isSelected ? AppColors.primary : AppColors.primarySoft,
               borderRadius: BorderRadius.circular(10.sp),
+              color: isSelected ? AppColors.primary : AppColors.primarySoft,
               border: isSelected
                   ? null
                   : Border.all(

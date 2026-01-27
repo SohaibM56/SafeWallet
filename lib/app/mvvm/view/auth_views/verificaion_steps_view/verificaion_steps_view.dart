@@ -93,7 +93,7 @@ class _VerificationStepsViewState extends State<VerificationStepsView> {
                   AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
                         margin: const EdgeInsets.symmetric(horizontal: 4),
-                        width: currentIndex == index ? 14 : 6,
+                        width: currentIndex == index ? 14.w : 14.w,
                         height: 6,
                         decoration: BoxDecoration(
                           color: currentIndex == index
@@ -118,6 +118,11 @@ class _VerificationStepsViewState extends State<VerificationStepsView> {
           // Next Button
           AppCustomButton(
                 title: AppStrings.nextBtn,
+                suffixIcon: Icon(
+                  Icons.arrow_forward,
+                  size: 25.sp,
+                  color: AppColors.white,
+                ),
                 onPressed: () {
                   if (currentIndex < onboardingData.length - 1) {
                     _pageController.nextPage(

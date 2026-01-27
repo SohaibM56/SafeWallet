@@ -6,6 +6,7 @@ import 'package:safewallet/app/config/app_text_style.dart';
 class WordTile extends StatelessWidget {
   final String word;
   final Color? borderColor;
+  final Color? textColor;
   final Color? color;
   final IconData? icon;
   final VoidCallback? onTap;
@@ -17,6 +18,7 @@ class WordTile extends StatelessWidget {
     this.color,
     this.onTap,
     this.icon,
+    this.textColor,
   });
 
   @override
@@ -41,7 +43,7 @@ class WordTile extends StatelessWidget {
             Text(
               word,
               style: AppTextStyles.customText10(
-                color: AppColors.white.withValues(alpha: 0.5),
+                color: textColor ?? AppColors.white.withValues(alpha: 0.5),
                 fontWeight: FontWeight.w400,
               ),
             ),

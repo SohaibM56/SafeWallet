@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:get/get.dart';
+import 'package:safewallet/app/widgets/custom_snackbar/custom_snackbar.dart';
 
 class PhraseController extends GetxController {
   final phase = RecoveryPhase.generate.obs;
@@ -23,23 +22,25 @@ class PhraseController extends GetxController {
     'Author',
   ].obs..shuffle();
 
-  RxList<String> selectionWords = <String>[].obs;
+  RxList<String> selectedWords = <String>[].obs;
 
   RxBool is12Words = true.obs;
   void selectWords(bool value) {
-    log("message");
     is12Words.value = value;
   }
 
   void toggleWord(String word) {
-    if (selectionWords.contains(word)) {
-      selectionWords.remove(word);
+    if (selectedWords.contains(word)) {
+      selectedWords.remove(word);
     } else {
-      if (selectionWords.length >= 12) {
-        Get.snackbar("Limit reached", "You can select max 12 words", snackPosition: SnackPosition.BOTTOM);
+      if (selectedWords.length >= 12) {
+        PremiumSnackbar.warning([
+          "Limit reached - You can select max 12 words",
+        ]);
+
         return;
       }
-      selectionWords.add(word); // select
+      selectedWords.add(word); // select
     }
   }
 }
