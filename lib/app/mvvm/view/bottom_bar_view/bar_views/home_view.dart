@@ -31,11 +31,8 @@ class _HomeViewState extends State<HomeView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _customHomeAppBar(),
-              15.h.height,
-              CustomDataShow(),
+              CommonAppBar(),
 
-              10.h.height,
               _homeCurrencyWidget(),
 
               16.h.height,
@@ -151,109 +148,6 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Row _customHomeAppBar() {
-    return Row(
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                    "Welcome Back",
-                    style: AppTextStyles.customText14(
-                      color: Colors.white.withValues(alpha: 0.7),
-                      fontWeight: FontWeight.w400,
-                    ),
-                  )
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 200.ms)
-                  .slideY(begin: -0.1, curve: Curves.easeOut),
-              5.h.height,
-
-              Text(
-                    "SEC Wallet",
-                    style: AppTextStyles.customText26(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  )
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 100.ms)
-                  .slideY(begin: -0.2, curve: Curves.easeOut),
-            ],
-          ),
-        ),
-        Container(
-          height: 44.w,
-          width: 89.w,
-
-          decoration: BoxDecoration(
-            color: AppColors.primarySoft,
-            border: Border.all(
-              color: AppColors.primary.withValues(alpha: 0.5.sp),
-              width: 2.w,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(55.r)),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ImageIcon(
-                AssetImage(AppAssets.kycIcon),
-                color: AppColors.softgreen,
-              ),
-              6.w.width,
-              Text(
-                "KYC",
-                style: AppTextStyles.customText18(
-                  color: AppColors.softgreen,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: Container(
-            height: 44.w,
-            width: 44.w,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.primarySoft,
-              border: Border.all(
-                color: AppColors.primary.withValues(alpha: 0.5.sp),
-                // width: 2.w,
-              ),
-              // border: Border.all(color: AppColors.white),
-            ),
-            child: Center(
-              child: Stack(
-                children: [
-                  ImageIcon(
-                    AssetImage(AppAssets.filledNotificationIcon),
-                    color: AppColors.white,
-                  ),
-                  Positioned(
-                    right: 0,
-                    child: Container(
-                      height: 10.w,
-                      width: 10.w,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.primary,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
   // Widget _transactionMethods({
   //   required String methodImg,
   //   required String methtodTitle,
@@ -294,7 +188,6 @@ class _HomeViewState extends State<HomeView> {
   Widget _homeCurrencyWidget() {
     return Container(
           width: double.infinity,
-
           decoration: BoxDecoration(
             color: AppColors.primarySoft,
             border: Border.all(

@@ -30,47 +30,49 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
     return Scaffold(
       backgroundColor: AppColors.black,
       appBar: CustomAppBar(),
-      body: Column(
-        children: [
-          Obx(
-            () => Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildCircularView(
-                  step: 1,
-                  title: "Generate",
-                  currentStep: controller.phase.value.index + 1,
-                ),
-                30.w.width,
-                _buildCircularView(
-                  step: 2,
-                  title: "Verify",
-                  currentStep: controller.phase.value.index + 1,
-                ),
-                30.w.width,
-                _buildCircularView(
-                  step: 3,
-                  title: "Complete",
-                  currentStep: controller.phase.value.index + 1,
-                ),
-              ],
-            ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.2, end: 0),
-          ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Obx(
+              () => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildCircularView(
+                    step: 1,
+                    title: "Generate",
+                    currentStep: controller.phase.value.index + 1,
+                  ),
+                  30.w.width,
+                  _buildCircularView(
+                    step: 2,
+                    title: "Verify",
+                    currentStep: controller.phase.value.index + 1,
+                  ),
+                  30.w.width,
+                  _buildCircularView(
+                    step: 3,
+                    title: "Complete",
+                    currentStep: controller.phase.value.index + 1,
+                  ),
+                ],
+              ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.2, end: 0),
+            ),
 
-          20.h.height,
+            20.h.height,
 
-          Obx(() {
-            switch (controller.phase.value) {
-              case RecoveryPhase.generate:
-                return _buildRecoveryPhase();
-              case RecoveryPhase.verify:
-                return _buildVerificationPhase();
-              case RecoveryPhase.complete:
-                return _buildCompletePhase();
-            }
-          }),
-        ],
-      ).paddingSymmetric(horizontal: 20.w, vertical: 10.h),
+            Obx(() {
+              switch (controller.phase.value) {
+                case RecoveryPhase.generate:
+                  return _buildRecoveryPhase();
+                case RecoveryPhase.verify:
+                  return _buildVerificationPhase();
+                case RecoveryPhase.complete:
+                  return _buildCompletePhase();
+              }
+            }),
+          ],
+        ).paddingSymmetric(horizontal: 20.w, vertical: 10.h),
+      ),
     );
   }
 

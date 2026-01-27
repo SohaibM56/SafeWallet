@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/config/app_colors.dart';
 import 'package:safewallet/app/config/app_routes.dart';
@@ -10,6 +9,7 @@ import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/widgets/custom_menu_tile.dart';
 import 'package:safewallet/app/widgets/data_show_widget.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
+
 import '../../../../config/app_assets.dart';
 import '../../../view_model/profile_controllers/profile_controller.dart';
 
@@ -32,60 +32,7 @@ class _ProfileViewState extends State<ProfileView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             20.h.height,
-
-            Text(
-              'Welcome Back',
-              style: AppTextStyles.customTextRboto(
-                fontSize: 15.sp,
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            Row(
-              children: [
-                Text(
-                  'SEC Wallet',
-                  style: AppTextStyles.customTextRboto(
-                    fontSize: 28.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-                Spacer(),
-
-                Image.asset(AppAssets.kycImage, height: 44.h, width: 89.w),
-                9.w.width,
-                Stack(
-                  children: [
-                    Container(
-                      height: 44.r,
-                      width: 44.r,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: AppColors.borderGrey.withOpacity(.3),
-                          width: 1.5,
-                        ),
-                        shape: BoxShape.circle,
-                        color: Color(0xff132D28),
-                      ),
-                      child: Center(
-                        child: Image.asset(
-                          AppAssets.filledNotificationIcon,
-                          height: 21.sp,
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      right: 12.w,
-                      top: 13.h,
-                      child: SvgPicture.asset(AppAssets.solidDot, height: 8.h),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-
-            CustomDataShow(),
+            CommonAppBar(),
             Expanded(
                   child: SingleChildScrollView(
                     child: Column(

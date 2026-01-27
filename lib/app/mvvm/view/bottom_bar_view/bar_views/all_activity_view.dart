@@ -3,7 +3,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/config/app_assets.dart';
-import 'package:safewallet/app/mvvm/view_model/auth_controller/login_controller/login_controller.dart';
 import 'package:safewallet/app/widgets/custom_back_button.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
@@ -18,24 +17,63 @@ class AllActivityView extends StatefulWidget {
 }
 
 class _AllActivityViewState extends State<AllActivityView> {
-  final LoginController authController = Get.find();
   final List<Map<String, dynamic>> transactions = [
-    {"title": "Received", "subtitle": "tb1qxy2k...Owlh", "isRecived": true},
-    {"title": "Sent", "subtitle": "tb1qxy2k...Owlh", "isRecived": false},
-    {"title": "Received", "subtitle": "tb1qxy2k...Owlh", "isRecived": true},
-    {"title": "Sent", "subtitle": "tb1qxy2k...Owlh", "isRecived": false},
-    {"title": "Received", "subtitle": "tb1qxy2k...Owlh", "isRecived": true},
-    {"title": "Sent", "subtitle": "tb1qxy2k...Owlh", "isRecived": false},
-    {"title": "Received", "subtitle": "tb1qxy2k...Owlh", "isRecived": true},
-    {"title": "Sent", "subtitle": "tb1qxy2k...Owlh", "isRecived": false},
-    {"title": "Received", "subtitle": "tb1qxy2k...Owlh", "isRecived": true},
-    {"title": "Sent", "subtitle": "tb1qxy2k...Owlh", "isRecived": false},
+    {
+      "title": "Incoming Transfer",
+      "subtitle": "tb1qxy2k...Owlh",
+      "isRecived": true,
+    },
+    {
+      "title": "Outgoing Transfer",
+      "subtitle": "tb1qxy2k...Owlh",
+      "isRecived": false,
+    },
+    {
+      "title": "Incoming Transfer",
+      "subtitle": "tb1qxy2k...Owlh",
+      "isRecived": true,
+    },
+    {
+      "title": "Outgoing Transfer",
+      "subtitle": "tb1qxy2k...Owlh",
+      "isRecived": false,
+    },
+    {
+      "title": "Incoming Transfer",
+      "subtitle": "tb1qxy2k...Owlh",
+      "isRecived": true,
+    },
+    {
+      "title": "Outgoing Transfer",
+      "subtitle": "tb1qxy2k...Owlh",
+      "isRecived": false,
+    },
+    {
+      "title": "Incoming Transfer",
+      "subtitle": "tb1qxy2k...Owlh",
+      "isRecived": true,
+    },
+    {
+      "title": "Outgoing Transfer",
+      "subtitle": "tb1qxy2k...Owlh",
+      "isRecived": false,
+    },
+    {
+      "title": "Incoming Transfer",
+      "subtitle": "tb1qxy2k...Owlh",
+      "isRecived": true,
+    },
+    {
+      "title": "Outgoing Transfer",
+      "subtitle": "tb1qxy2k...Owlh",
+      "isRecived": false,
+    },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondary,
+      backgroundColor: AppColors.black,
       body: SafeArea(
         child: SizedBox(
           height: Get.height,
@@ -71,12 +109,9 @@ class _AllActivityViewState extends State<AllActivityView> {
                       itemBuilder: (context, index) {
                         final tx = transactions[index];
                         return _homeCardWidget(
-                          cardIcon: tx['isRecived']
-                              ? AppAssets.greenArrow
-                              : AppAssets.redArrow,
                           cardTitle: tx['title'],
                           cardSubtitle: tx['subtitle'],
-                          isRecived: tx['isRecived'],
+                          isIncomming: tx['isRecived'],
                         );
                       },
                     )
@@ -92,10 +127,9 @@ class _AllActivityViewState extends State<AllActivityView> {
   }
 
   Widget _homeCardWidget({
-    required String cardIcon,
     required String cardTitle,
     required String cardSubtitle,
-    required bool isRecived,
+    required bool isIncomming,
   }) {
     return Container(
       width: double.infinity,
@@ -106,7 +140,7 @@ class _AllActivityViewState extends State<AllActivityView> {
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.w),
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -115,21 +149,23 @@ class _AllActivityViewState extends State<AllActivityView> {
               height: 50.w,
               width: 50.w,
               decoration: BoxDecoration(
-                color: isRecived == true
-                    ? AppColors.primary.withValues(alpha: 0.2)
+                color: isIncomming == true
+                    ? AppColors.primary.withValues(alpha: 0.5)
                     : AppColors.red.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
               child: Center(
-                child: ImageIcon(
-                  AssetImage(cardIcon),
-                  size: isRecived == true ? 25 : 35,
-                  color: isRecived == true ? AppColors.green : AppColors.red,
-                ),
+                child: isIncomming == true
+                    ? Icon(Icons.add, size: 35, color: AppColors.green)
+                    : ImageIcon(
+                        AssetImage(AppAssets.redArrow),
+                        size: 35,
+                        color: AppColors.red,
+                      ),
               ),
             ),
 
-            12.w.width,
+            5.w.width,
 
             /// ✅ Text Area (Expanded FIX)
             Expanded(
@@ -163,11 +199,13 @@ class _AllActivityViewState extends State<AllActivityView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "${isRecived == true ? '+' : '-'}75.8 BTC",
+                  "${isIncomming == true ? '+' : '-'}75.8 BTC",
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.customText16(
-                    color: isRecived == true ? AppColors.green : AppColors.red,
-                    fontWeight: FontWeight.w400,
+                    color: isIncomming == true
+                        ? AppColors.softgreen
+                        : AppColors.red,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 Text(

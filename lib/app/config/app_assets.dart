@@ -100,8 +100,10 @@ class AppAssets {
   static const String walletIc = '$imagesPath/wallet_ic.png';
   static const String statusIc = '$imagesPath/status_icon.png';
   static const String cardBg = '$imagesPath/bg_card.png';
-
   static const String glassRoundCard = '$imagesPath/glass_round_card.png';
+  static const String passedIc = '$imagesPath/passed_ic.png';
+  static const String pendingIc = '$imagesPath/pending_ic.png';
+  static const String rejectedIc = '$imagesPath/rejected_ic.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';
