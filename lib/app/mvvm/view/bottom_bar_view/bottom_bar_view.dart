@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/config/app_assets.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/card_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/home_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/profile_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/reward_view.dart';
@@ -25,7 +26,7 @@ class _BottomBarViewState extends State<BottomBarView> {
   List screens = <Widget>[
     HomeView(),
     TradeView(),
-    RewardView(),
+    CardView(),
     // ToolsView(),
     ProfileView(),
   ];

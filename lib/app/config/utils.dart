@@ -3,6 +3,7 @@ library;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 import '../services/logger_service.dart';
@@ -127,6 +128,18 @@ class Utils {
           child: const Text("Cancel"),
         ),
       ),
+    );
+  }
+
+  static void showToast(String message) {
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0
     );
   }
 
