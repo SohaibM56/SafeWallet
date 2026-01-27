@@ -153,7 +153,7 @@ class AppCustomField extends StatelessWidget {
         if (titleWidget != null) titleWidget!,
         isSecondField ?? false ? 4.h.height : 0.h.height,
         TextFormField(
-          maxLength: maxLength ?? 6,
+          maxLength: maxLength,
           cursorColor: cursorColor ?? AppColors.primary,
           enabled: enabled,
           autovalidateMode: AutovalidateMode.onUserInteraction,

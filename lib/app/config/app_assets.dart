@@ -97,6 +97,7 @@ class AppAssets {
   static const String cardIc = '$imagesPath/card_ic.png';
   static const String auditIc = '$imagesPath/audit_ic.png';
   static const String walletIc = '$imagesPath/wallet_ic.png';
+  static const String glassRoundCard = '$imagesPath/glass_round_card.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';

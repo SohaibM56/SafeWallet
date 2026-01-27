@@ -136,14 +136,14 @@ class _OnboardingViewState extends State<OnboardingView> {
             AppCustomButton(
               title: "Next",
               onPressed: () {
-                if (currentIndex < onboardingData.length - 1) {
-                  _pageController.nextPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeOut,
-                  );
-                } else {
-                  Get.offAllNamed(AppRoutes.languageView);
-                }
+                // if (currentIndex < onboardingData.length - 1) {
+                //   _pageController.nextPage(
+                //     duration: const Duration(milliseconds: 300),
+                //     curve: Curves.easeOut,
+                //   );
+                // } else {
+                Get.offAllNamed(AppRoutes.bottomBarView);
+                // }
               },
             ).paddingHorizontal(50.w),
 

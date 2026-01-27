@@ -16,12 +16,7 @@ class CustomDataShow extends StatelessWidget {
           width: double.infinity,
           height: 80.h,
           decoration: BoxDecoration(
-            color: AppColors.primarySoft,
-            border: Border.all(
-              color: AppColors.primary.withValues(alpha: 0.5.sp),
-              width: 2.w,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(13.r)),
+            image: DecorationImage(image: AssetImage(AppAssets.glassRoundCard)),
           ),
           margin: EdgeInsets.only(top: 30.h),
           child: Row(

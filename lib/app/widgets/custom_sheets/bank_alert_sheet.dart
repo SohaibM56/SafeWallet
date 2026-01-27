@@ -38,6 +38,7 @@ class BankAlertSheet extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   Get.back();
+                  Get.offAllNamed(AppRoutes.bottomBarView);
                 },
                 child: Icon(Icons.close, color: AppColors.black, size: 22.sp),
               ),
@@ -58,7 +59,7 @@ class BankAlertSheet extends StatelessWidget {
               borderRadius: 80.r,
               onPressed: () {
                 Get.back();
-                Get.toNamed(AppRoutes.regulatoryIdentityView);
+                Get.offAllNamed(AppRoutes.bottomBarView);
               },
               bgColor: AppColors.primary,
             ).paddingHorizontal(30.w),
