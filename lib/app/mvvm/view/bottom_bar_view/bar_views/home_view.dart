@@ -8,6 +8,7 @@ import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/config/utils.dart';
 import 'package:safewallet/app/widgets/custom_sheets/receive_sheet.dart';
+import 'package:safewallet/app/widgets/data_show_widget.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 import '../../../../config/app_assets.dart';
@@ -59,108 +60,18 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondary,
+      backgroundColor: AppColors.black,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                              "Welcome Back",
-                              style: AppTextStyles.customText14(
-                                color: Colors.white.withValues(alpha: 0.7),
-                                fontWeight: FontWeight.w400,
-                              ),
-                            )
-                            .animate()
-                            .fadeIn(duration: 600.ms, delay: 200.ms)
-                            .slideY(begin: -0.1, curve: Curves.easeOut),
-                        5.h.height,
-
-                        Text(
-                              "SEC Wallet",
-                              style: AppTextStyles.customText26(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            )
-                            .animate()
-                            .fadeIn(duration: 600.ms, delay: 100.ms)
-                            .slideY(begin: -0.2, curve: Curves.easeOut),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 44.w,
-                    width: 89.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(55.r)),
-                      color: AppColors.primary.withValues(alpha: 0.3),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ImageIcon(
-                          AssetImage(AppAssets.kycIcon),
-                          color: AppColors.primary,
-                        ),
-                        6.w.width,
-                        Text(
-                          "KYC",
-                          style: AppTextStyles.customText18(
-                            color: AppColors.primary,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Container(
-                      height: 44.w,
-                      width: 44.w,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: AppColors.white),
-                      ),
-                      child: Center(
-                        child: Stack(
-                          children: [
-                            ImageIcon(
-                              AssetImage(AppAssets.filledNotificationIcon),
-                              color: AppColors.white,
-                            ),
-                            Positioned(
-                              right: 0,
-                              child: Container(
-                                height: 10.w,
-                                width: 10.w,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.primary,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              _customHomeAppBar(),
+              15.h.height,
+              CustomDataShow(),
 
               10.h.height,
-              _homeCurrencyWidget()
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 200.ms)
-                  .slideY(begin: 0.3, curve: Curves.easeOutCubic),
+              _homeCurrencyWidget(),
 
               15.h.height,
 
@@ -311,6 +222,109 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
+  Row _customHomeAppBar() {
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                    "Welcome Back",
+                    style: AppTextStyles.customText14(
+                      color: Colors.white.withValues(alpha: 0.7),
+                      fontWeight: FontWeight.w400,
+                    ),
+                  )
+                  .animate()
+                  .fadeIn(duration: 600.ms, delay: 200.ms)
+                  .slideY(begin: -0.1, curve: Curves.easeOut),
+              5.h.height,
+
+              Text(
+                    "SEC Wallet",
+                    style: AppTextStyles.customText26(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )
+                  .animate()
+                  .fadeIn(duration: 600.ms, delay: 100.ms)
+                  .slideY(begin: -0.2, curve: Curves.easeOut),
+            ],
+          ),
+        ),
+        Container(
+          height: 44.w,
+          width: 89.w,
+
+          decoration: BoxDecoration(
+            color: AppColors.primarySoft,
+            border: Border.all(
+              color: AppColors.primary.withValues(alpha: 0.5.sp),
+              width: 2.w,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(55.r)),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ImageIcon(
+                AssetImage(AppAssets.kycIcon),
+                color: Color(0xff1CE3A1),
+              ),
+              6.w.width,
+              Text(
+                "KYC",
+                style: AppTextStyles.customText18(
+                  color: Color(0xff1CE3A1),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: Container(
+            height: 44.w,
+            width: 44.w,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColors.primarySoft,
+              border: Border.all(
+                color: AppColors.primary.withValues(alpha: 0.5.sp),
+                // width: 2.w,
+              ),
+              // border: Border.all(color: AppColors.white),
+            ),
+            child: Center(
+              child: Stack(
+                children: [
+                  ImageIcon(
+                    AssetImage(AppAssets.filledNotificationIcon),
+                    color: AppColors.white,
+                  ),
+                  Positioned(
+                    right: 0,
+                    child: Container(
+                      height: 10.w,
+                      width: 10.w,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _transactionMethods({
     required String methodImg,
     required String methtodTitle,
@@ -350,124 +364,286 @@ class _HomeViewState extends State<HomeView> {
 
   Widget _homeCurrencyWidget() {
     return Container(
-      width: double.infinity,
-      margin: EdgeInsets.only(top: 20.h),
+          width: double.infinity,
 
-      decoration: BoxDecoration(
-        border: Border.all(width: 1, color: AppColors.darkGrey),
-        borderRadius: BorderRadius.all(Radius.circular(10.r)),
-        image: DecorationImage(
-          image: AssetImage(AppAssets.backgroundCardImg),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              /// Icon
-              Image.asset(AppAssets.bitCoinLogo, width: 50.w),
-
-              12.w.width,
-
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Bitcoin",
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.customText20(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-
-                  4.h.height,
-
-                  Text(
-                    "Testnet",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.customText12(
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
-                ],
-              ),
-              Spacer(),
-              Container(
-                height: 32.w,
-                width: 32.w,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(width: 1, color: AppColors.darkGrey),
-                ),
-                child: Icon(
-                  Icons.remove_red_eye_outlined,
-                  color: AppColors.white,
-                  size: 18,
-                ),
-              ),
-            ],
+          decoration: BoxDecoration(
+            color: AppColors.primarySoft,
+            border: Border.all(
+              color: AppColors.primary.withValues(alpha: 0.5.sp),
+              width: 2.w,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(13.r)),
           ),
-          12.h.height,
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "0.0236",
-                overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.customText36(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-              7.w.width,
-              Text(
-                "BTC",
-                overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.customText24(
-                  color: Colors.white.withValues(alpha: 0.5),
-                  fontWeight: FontWeight.w300,
-                ),
-              ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-            ],
-          ),
-          8.h.height,
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "\$745.80",
-                overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.customText18(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                ),
-              ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-              8.w.width,
-              ImageIcon(
-                AssetImage(AppAssets.volumeIcon),
-                color: AppColors.green,
-              ),
-              2.w.width,
-              Text(
-                "\$745.80",
-                overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.customText18(
-                  color: AppColors.green,
-                  fontWeight: FontWeight.w400,
-                ),
-              ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-            ],
-          ),
-        ],
-      ).paddingSymmetric(horizontal: 15.w, vertical: 20.w),
-    );
+          child:
+              Row(
+                    children: [
+                      Column(
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              /// Icon
+                              Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.white.withValues(alpha: 0.2),
+                                ),
+                                child: Center(
+                                  child: Image.asset(
+                                    AppAssets.walletIc,
+                                    height: 20.w,
+                                  ).paddingAll(10),
+                                ),
+                              ).animate().fadeIn(
+                                duration: 600.ms,
+                                delay: 400.ms,
+                              ),
+
+                              12.w.width,
+
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Wallet",
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppTextStyles.customText20(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ).animate().fadeIn(
+                                    duration: 600.ms,
+                                    delay: 400.ms,
+                                  ),
+
+                                  4.h.height,
+
+                                  Text(
+                                    "Sovereign Rails",
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppTextStyles.customText10(
+                                      color: AppColors.white.withValues(
+                                        alpha: 0.6,
+                                      ),
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ).animate().fadeIn(
+                                    duration: 600.ms,
+                                    delay: 500.ms,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          12.h.height,
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "0.0236",
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextStyles.customText36(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ).animate().fadeIn(
+                                duration: 600.ms,
+                                delay: 400.ms,
+                              ),
+                              7.w.width,
+                              Text(
+                                "BTC",
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextStyles.customText24(
+                                  color: Colors.white.withValues(alpha: 0.5),
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ).animate().fadeIn(
+                                duration: 600.ms,
+                                delay: 400.ms,
+                              ),
+                            ],
+                          ),
+                          8.h.height,
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "\$745.80",
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextStyles.customText18(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ).animate().fadeIn(
+                                duration: 600.ms,
+                                delay: 400.ms,
+                              ),
+                              8.w.width,
+                              ImageIcon(
+                                AssetImage(AppAssets.volumeIcon),
+                                color: AppColors.green,
+                              ),
+                              2.w.width,
+                              Text(
+                                "\$745.80",
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextStyles.customText18(
+                                  color: AppColors.green,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ).animate().fadeIn(
+                                duration: 600.ms,
+                                delay: 400.ms,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Image.asset(
+                        AppAssets.gradientBorder,
+                        height: 120.h,
+                        width: 2.5.w,
+                      ),
+                      Column(
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              /// Icon
+                              Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.white.withValues(alpha: 0.2),
+                                ),
+                                child: Center(
+                                  child: Image.asset(
+                                    AppAssets.walletIc,
+                                    height: 20.w,
+                                  ).paddingAll(10),
+                                ),
+                              ).animate().fadeIn(
+                                duration: 600.ms,
+                                delay: 400.ms,
+                              ),
+
+                              12.w.width,
+
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Wallet",
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppTextStyles.customText20(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ).animate().fadeIn(
+                                    duration: 600.ms,
+                                    delay: 400.ms,
+                                  ),
+
+                                  4.h.height,
+
+                                  Text(
+                                    "Sovereign Rails",
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppTextStyles.customText10(
+                                      color: AppColors.white.withValues(
+                                        alpha: 0.6,
+                                      ),
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ).animate().fadeIn(
+                                    duration: 600.ms,
+                                    delay: 500.ms,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          12.h.height,
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "0.0236",
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextStyles.customText36(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ).animate().fadeIn(
+                                duration: 600.ms,
+                                delay: 400.ms,
+                              ),
+                              7.w.width,
+                              Text(
+                                "BTC",
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextStyles.customText24(
+                                  color: Colors.white.withValues(alpha: 0.5),
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ).animate().fadeIn(
+                                duration: 600.ms,
+                                delay: 400.ms,
+                              ),
+                            ],
+                          ),
+                          8.h.height,
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "\$745.80",
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextStyles.customText18(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ).animate().fadeIn(
+                                duration: 600.ms,
+                                delay: 400.ms,
+                              ),
+                              8.w.width,
+                              ImageIcon(
+                                AssetImage(AppAssets.volumeIcon),
+                                color: AppColors.green,
+                              ),
+                              2.w.width,
+                              Text(
+                                "\$745.80",
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextStyles.customText18(
+                                  color: AppColors.green,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ).animate().fadeIn(
+                                duration: 600.ms,
+                                delay: 400.ms,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                  .paddingSymmetric(horizontal: 15.w, vertical: 20.w)
+                  .animate()
+                  .fadeIn(duration: 600.ms, delay: 200.ms)
+                  .slideY(begin: 0.3, curve: Curves.easeOutCubic),
+        )
+        .animate()
+        .fadeIn(duration: 600.ms, delay: 200.ms)
+        .slideY(begin: 0.3, curve: Curves.easeOutCubic);
   }
 
   Widget _homeCardWidget({
