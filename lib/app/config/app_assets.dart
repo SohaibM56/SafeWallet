@@ -35,6 +35,7 @@ class AppAssets {
   static const String homeActive = '$imagesPath/home_active.png';
   static const String profileActive = '$imagesPath/profile_active.png';
   static const String rewardsActive = '$imagesPath/rewards_active.png';
+  static const String cardIcon = '$imagesPath/card_ic.png';
   static const String toolActive = '$imagesPath/tool_active.png';
   static const String tradeActive = '$imagesPath/trade_active.png';
   static const String langIcon = '$imagesPath/lang_icon.png';
@@ -90,6 +91,8 @@ class AppAssets {
   static const String veitingIcon = '$imagesPath/veiting_icon.png';
   static const String approvalIcon = '$imagesPath/approval_icon.png';
   static const String regionIcon = '$imagesPath/region_icon.png';
+  static const String statusIc = '$imagesPath/status_icon.png';
+  static const String cardBg = '$imagesPath/bg_card.png';
 
 
 

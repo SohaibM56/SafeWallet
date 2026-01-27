@@ -14,6 +14,7 @@ import '../../../config/app_assets.dart';
 import '../../../config/app_colors.dart';
 import '../../../config/app_text_style.dart';
 import '../../view_model/bottom_bar_controller/bottom_bar_controller.dart';
+import 'bar_views/card_view.dart';
 
 class BottomBarView extends StatefulWidget {
   const BottomBarView({super.key});
@@ -26,7 +27,7 @@ class _BottomBarViewState extends State<BottomBarView> {
   List screens = <Widget>[
     HomeView(),
     TradeView(),
-    RewardView(),
+    CardView(),
     ToolsView(),
     ProfileView(),
   ];
@@ -75,8 +76,8 @@ class _BottomBarViewState extends State<BottomBarView> {
                   _bottomIconBuilder(
                     index: 2,
                     icon: AppAssets.rewards,
-                    label: 'Rewards',
-                    activeIcon: AppAssets.rewardsActive,
+                    label: 'Card',
+                    activeIcon: AppAssets.cardIcon,
                   ),
                   _bottomIconBuilder(
                     index: 3,
