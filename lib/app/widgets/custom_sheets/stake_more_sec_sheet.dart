@@ -39,7 +39,7 @@ class StakeMoreSECSheet extends StatelessWidget {
                       Text(
                         "Stake SEC",
                         style: AppTextStyles.customText18(
-                          color: AppColors.primary,
+                          color: AppColors.secondary,
                           fontWeight: FontWeight.w800,
                         ),
                       ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
@@ -47,7 +47,7 @@ class StakeMoreSECSheet extends StatelessWidget {
                       Text(
                         "Available: 567.89 SEC",
                         style: AppTextStyles.customText10(
-                          color: AppColors.primary,
+                          color: AppColors.secondary,
                           fontWeight: FontWeight.w400,
                         ),
                       ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
@@ -57,7 +57,7 @@ class StakeMoreSECSheet extends StatelessWidget {
                     onPressed: () {
                       Get.back();
                     },
-                    icon: Icon(Icons.close_rounded, color: AppColors.primary),
+                    icon: Icon(Icons.close_rounded, color: AppColors.secondary),
                   ),
                 ],
               ),
@@ -70,14 +70,14 @@ class StakeMoreSECSheet extends StatelessWidget {
                 ),
                 child: TextFormField(
                   style: AppTextStyles.customText14(
-                    color: AppColors.secondary,
+                    color: AppColors.primary,
                     fontWeight: FontWeight.w400,
                   ),
 
                   decoration: InputDecoration(
                     hintText: "Enter Amount",
                     hintStyle: AppTextStyles.customText12(
-                      color: AppColors.primary,
+                      color: AppColors.secondary,
                       fontWeight: FontWeight.w400,
                     ),
                     filled: false,

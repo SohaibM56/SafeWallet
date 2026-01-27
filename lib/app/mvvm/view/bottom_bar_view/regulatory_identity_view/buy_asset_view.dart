@@ -23,14 +23,13 @@ class BuyAssetView extends StatefulWidget {
 }
 
 class _BuyAssetViewState extends State<BuyAssetView> {
-
   String fromCoin = "SOL";
   final List<String> coins = ["SOL", "BONK", "MEME"];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       appBar: CustomAppBar(title: '', backgroundColor: Colors.transparent),
       body: SingleChildScrollView(
         child: Column(
@@ -150,9 +149,7 @@ class _BuyAssetViewState extends State<BuyAssetView> {
                                 Colors.amber,
                                 Colors.amber,
                               ],
-                              onChanged: (val) {
-
-                              },
+                              onChanged: (val) {},
                             ),
                             // Container(
                             //   padding: EdgeInsets.symmetric(
@@ -313,7 +310,7 @@ class _BuyAssetViewState extends State<BuyAssetView> {
     return Container(
       height: 32.w,
       width: 100.w,
-      padding:  EdgeInsets.symmetric(horizontal: 12.w),
+      padding: EdgeInsets.symmetric(horizontal: 12.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
         color: const Color(0xFF0E1A24),
@@ -325,21 +322,21 @@ class _BuyAssetViewState extends State<BuyAssetView> {
           isDense: true,
           isExpanded: true,
           dropdownColor: const Color(0xFF0E1A24),
-          icon: Image.asset(AppAssets.downArrow, color: Colors.white, width: 12.w, height: 12.h),
+          icon: Image.asset(
+            AppAssets.downArrow,
+            color: Colors.white,
+            width: 12.w,
+            height: 12.h,
+          ),
           onChanged: (val) {
             onChanged(val!);
           },
           items: items.map((coin) {
             return DropdownMenuItem<String>(
               value: coin,
-              child:
-              Row(
+              child: Row(
                 children: [
-                  Image.asset(
-                    AppAssets.bitcoinIcon,
-                    width: 19.w,
-                    height: 19.w,
-                  ),
+                  Image.asset(AppAssets.bitcoinIcon, width: 19.w, height: 19.w),
                   5.w.width,
                   Text(
                     'BTC',
@@ -349,7 +346,6 @@ class _BuyAssetViewState extends State<BuyAssetView> {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-
                 ],
               ),
 

@@ -40,7 +40,7 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       body: SafeArea(
         child: SizedBox(
           height: Get.height,

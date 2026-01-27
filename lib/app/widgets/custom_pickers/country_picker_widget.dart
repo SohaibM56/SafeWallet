@@ -85,7 +85,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
           widget.contentPadding ??
           EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
       filled: true,
-      fillColor: AppColors.primary,
+      fillColor: AppColors.secondary,
       isReadOnly: widget.isReadOnly,
       validator: _validatePhoneNumber,
       labelTitle: widget.labelText,

@@ -52,7 +52,11 @@ class _SecurityCheckSheetState extends State<SecurityCheckSheet> {
                       onTap: () {
                         Get.back();
                       },
-                      child: Icon(Icons.close, color: AppColors.black, size: 22.sp),
+                      child: Icon(
+                        Icons.close,
+                        color: AppColors.black,
+                        size: 22.sp,
+                      ),
                     ),
                   ],
                 ).paddingRight(5.w),
@@ -69,13 +73,17 @@ class _SecurityCheckSheetState extends State<SecurityCheckSheet> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset(AppAssets.tickIcon, width: 18.w, height: 18.h),
+                      Image.asset(
+                        AppAssets.tickIcon,
+                        width: 18.w,
+                        height: 18.h,
+                      ),
                       8.w.width,
                       Text(
                         "Low Risk",
                         style: AppTextStyles.customText(
                           fontSize: 16.sp,
-                          color: AppColors.secondary,
+                          color: AppColors.primary,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -180,7 +188,10 @@ class _SecurityCheckSheetState extends State<SecurityCheckSheet> {
 
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 16.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10.sp,
+                    vertical: 16.h,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.faintBgColor,
                     borderRadius: BorderRadius.circular(10.sp),
@@ -209,16 +220,19 @@ class _SecurityCheckSheetState extends State<SecurityCheckSheet> {
                               side: BorderSide.none,
                             ),
                           ),
-                          child: Obx(() => Checkbox(
-                            value: isChecked.value,
-                            onChanged: (value) {
-                              isChecked.value =  !isChecked.value;
-                            },
-                            activeColor: Colors.transparent,
-                            checkColor: Colors.black,
-                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            visualDensity: VisualDensity.compact,
-                          )),
+                          child: Obx(
+                            () => Checkbox(
+                              value: isChecked.value,
+                              onChanged: (value) {
+                                isChecked.value = !isChecked.value;
+                              },
+                              activeColor: Colors.transparent,
+                              checkColor: Colors.black,
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.shrinkWrap,
+                              visualDensity: VisualDensity.compact,
+                            ),
+                          ),
                         ),
                       ),
                       10.w.width,
@@ -242,7 +256,10 @@ class _SecurityCheckSheetState extends State<SecurityCheckSheet> {
                   title: "Confirm & Continue",
                   onPressed: () {
                     Get.back();
-                    Utils.showBottomSheet(context: context, child: TransactionSentSheet());
+                    Utils.showBottomSheet(
+                      context: context,
+                      child: TransactionSentSheet(),
+                    );
                   },
                 ).paddingHorizontal(30.w),
 

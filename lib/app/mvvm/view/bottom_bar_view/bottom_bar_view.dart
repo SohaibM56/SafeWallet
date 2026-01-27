@@ -28,7 +28,7 @@ class _BottomBarViewState extends State<BottomBarView> {
     TradeView(),
     RewardView(),
     ToolsView(),
-    ProfileView()
+    ProfileView(),
   ];
 
   final BottomBarController barController = Get.find();
@@ -45,7 +45,7 @@ class _BottomBarViewState extends State<BottomBarView> {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           extendBody: true,
-          backgroundColor: AppColors.primary,
+          backgroundColor: AppColors.secondary,
           body: Obx(() => screens[barController.selectedIndex.value]),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
@@ -54,7 +54,7 @@ class _BottomBarViewState extends State<BottomBarView> {
             height: 70.h,
             decoration: BoxDecoration(
               color: AppColors.bgSecondary,
-              border: Border.all(color: AppColors.primary),
+              border: Border.all(color: AppColors.secondary),
             ),
             child: Obx(
               () => Row(
@@ -118,7 +118,7 @@ class _BottomBarViewState extends State<BottomBarView> {
               8.h.height,
               Image.asset(
                 isSelected ? activeIcon : icon,
-                color: isSelected ? AppColors.secondary : AppColors.iconColor,
+                color: isSelected ? AppColors.primary : AppColors.iconColor,
                 height: 25.h,
               ),
               8.h.height,
@@ -127,7 +127,7 @@ class _BottomBarViewState extends State<BottomBarView> {
                 style: AppTextStyles.customText(
                   fontSize: 10,
                   fontWeight: FontWeight.w400,
-                  color: isSelected ? AppColors.secondary : AppColors.iconColor,
+                  color: isSelected ? AppColors.primary : AppColors.iconColor,
                 ),
               ),
             ],

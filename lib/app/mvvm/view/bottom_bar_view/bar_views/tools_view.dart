@@ -26,7 +26,7 @@ class _ToolsViewState extends State<ToolsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       body: SafeArea(
         child: Column(
           children: [

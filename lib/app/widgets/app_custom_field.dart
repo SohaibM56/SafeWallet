@@ -38,6 +38,11 @@ class AppCustomField extends StatelessWidget {
     this.suffixIconColor,
     this.onChanged,
     this.onPressed,
+    this.focusedBorder,
+    this.enabledBorder,
+    this.errorBorder,
+    this.disabledBorder,
+    this.focusErrorBorder,
     this.labelText,
     this.labelColor,
     this.labelFontWeight,
@@ -59,8 +64,7 @@ class AppCustomField extends StatelessWidget {
     this.labelTitleSize,
     this.cursorColor,
     this.textSize,
-    this.isOutlineBorder = false,
-    this.noBorder = false,
+    this.isSecondField = false, // Add onTap to trigger when the field is tapped
   });
 
   final Color? cursorColor;
@@ -75,7 +79,7 @@ class AppCustomField extends StatelessWidget {
   final bool? obscureText;
   final FontWeight? hintFontWeight;
   final Color? hintColor;
-  final bool? isReadOnly;
+  final bool? isReadOnly; // Check if the field is read-only
   final TextOverflow? hintTextOverflow;
   final String? hintTextFontFamily;
   final double? hintTextFontSize;
@@ -91,9 +95,14 @@ class AppCustomField extends StatelessWidget {
   final Color? focusedBorderColor;
   final Color? enabledBorderColor;
   final Color? errorBorderColor;
-  final Color? counterColor;
   final Color? disabledBorderColor;
   final Color? focusErrorBorderColor;
+  final double? focusedBorder;
+  final double? enabledBorder;
+  final double? errorBorder;
+  final Color? counterColor;
+  final double? disabledBorder;
+  final double? focusErrorBorder;
   final FocusNode? focusNode;
   final TextInputAction? textInputAction;
   final void Function(String)? onFieldSubmitted;
@@ -113,15 +122,13 @@ class AppCustomField extends StatelessWidget {
   final bool isRequired;
   final bool enabled;
   final double? labelTitleSize;
-  final VoidCallback? onTap;
-  final bool isOutlineBorder;
-  final bool noBorder;
+  final VoidCallback? onTap; // New onTap callback for custom action
+  final bool? isSecondField;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         if (labelTitle != null)
           Row(
@@ -130,8 +137,10 @@ class AppCustomField extends StatelessWidget {
                 labelTitle ?? '',
                 style: AppTextStyles.customText(
                   fontSize: labelTitleSize ?? 16,
-                  color: labelColor ?? AppColors.white.withValues(alpha: 0.5),
-                  fontWeight: FontWeight.w400,
+                  color: labelColor ?? AppColors.white,
+                  fontWeight: isSecondField == true
+                      ? FontWeight.w500
+                      : FontWeight.w400,
                 ),
               ),
               if (isRequired)
@@ -142,33 +151,35 @@ class AppCustomField extends StatelessWidget {
             ],
           ),
         if (titleWidget != null) titleWidget!,
-        0.h.height,
+        isSecondField ?? false ? 4.h.height : 0.h.height,
         TextFormField(
-          maxLength: maxLength,
-          cursorColor: cursorColor ?? AppColors.secondary,
+          maxLength: maxLength ?? 6,
+          cursorColor: cursorColor ?? AppColors.primary,
           enabled: enabled,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-
           validator: (value) {
             if (validator != null) {
               return validator!(value);
             } else if (value == null || value.isEmpty) {
-              return validationText ?? "This field cannot be empty";
+              return validationText ?? "This field is required";
             }
             return null;
           },
           style: AppTextStyles.customText(
             fontSize: textSize ?? 16,
             color: textColor ?? AppColors.white,
-          ),
-
+          ).copyWith(letterSpacing: obscureText == true ? 6 : 0),
+          textAlignVertical: isSecondField == true
+              ? TextAlignVertical.center
+              : TextAlignVertical.top,
           initialValue: initialValue,
-          textAlign: fieldsTextAlign ?? TextAlign.start,
+          textAlign: fieldsTextAlign ?? TextAlign.center,
           maxLines: maxLines ?? 1,
           controller: controller,
           minLines: minLines ?? 1,
           readOnly: isReadOnly ?? false,
-          keyboardType: keyboardType,
+          // Make field read-only based on isReadOnly property
+          keyboardType: keyboardType ?? TextInputType.number,
           obscureText: obscureText ?? false,
           obscuringCharacter: "•",
           focusNode: focusNode,
@@ -179,118 +190,102 @@ class AppCustomField extends StatelessWidget {
           onTapOutside: (event) {
             FocusScope.of(context).unfocus();
           },
-
           decoration: InputDecoration(
             counterStyle: AppTextStyles.customText12(
-              color: counterColor ?? AppColors.black,
+              color: counterColor ?? AppColors.white,
             ),
             hintText: hintText,
             hintStyle: AppTextStyles.customText(
               fontSize: hintTextFontSize ?? 14.sp,
               fontWeight: hintFontWeight ?? FontWeight.w400,
-              color: hintColor ?? AppColors.white.withOpacity(0.9),
-            ),
+              color: hintColor ?? AppColors.white.withValues(alpha: 0.5),
+            ).copyWith(letterSpacing: obscureText == true ? 6 : 0),
             prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,
             floatingLabelStyle: const TextStyle(color: Colors.grey),
             floatingLabelBehavior: FloatingLabelBehavior.auto,
             filled: filled ?? true,
-            fillColor: fillColor ?? AppColors.transparent,
-
+            fillColor: fillColor ?? AppColors.primarySoft,
+            border: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: enabledBorderColor ?? AppColors.transparent,
+              ),
+            ),
             prefixIconColor: prefixIconColor,
             suffixIconColor: suffixIconColor,
-            contentPadding: EdgeInsets.symmetric(
-              vertical: 15.h,
-              horizontal: isOutlineBorder ? 10.w : 1.w,
-            ),
-            prefixIconConstraints: BoxConstraints(
-              minWidth: 40.w,
-              minHeight: 40.h,
-            ),
-            suffixIconConstraints: BoxConstraints(
-              minWidth: 40.w,
-              minHeight: 40.h,
-            ),
-
-            /// ✅ Conditional Borders
-            border: _buildBorder(
-              enabledBorderColor ??
-                  AppColors.textLightBlack.withValues(alpha: 0.4),
-            ),
-            enabledBorder: _buildBorder(
-              enabledBorderColor ??
-                  AppColors.textLightBlack.withValues(alpha: 0.4),
-            ),
-            focusedBorder: _buildBorder(
-              focusedBorderColor ?? AppColors.secondary,
-            ),
-            errorBorder: _buildBorder(
-              errorBorderColor ?? AppColors.negativeRed,
-            ),
-            focusedErrorBorder: _buildBorder(
-              focusErrorBorderColor ?? AppColors.negativeRed,
-            ),
-            disabledBorder: _buildBorder(
-              disabledBorderColor ??
-                  AppColors.textLightBlack.withValues(alpha: 0.4),
-            ),
-
-            // border: UnderlineInputBorder(
-            //   borderSide: BorderSide(
-            //     color:
-            //         enabledBorderColor ??
-            //         AppColors.textLightBlack.withValues(alpha:0.4),
-            //   ),
+            contentPadding:
+                contentPadding ??
+                (isSecondField == true
+                    ? EdgeInsets.symmetric(vertical: 18.h)
+                    : EdgeInsets.symmetric(horizontal: 0, vertical: 15.h)),
+            // contentPadding:
+            // contentPadding ?? EdgeInsets.symmetric(vertical: 20.h),
+            // EdgeInsets.symmetric(
+            //   horizontal: isSecondField ?? false ? 15.w : 0,
+            //   vertical: 15.h,
             // ),
-            // focusedBorder: UnderlineInputBorder(
-            //   borderSide: BorderSide(
-            //     color: focusedBorderColor ?? AppColors.secondary,
-            //     width: 2.0,
-            //   ),
-            // ),
-            // enabledBorder: UnderlineInputBorder(
-            //   borderSide: BorderSide(
-            //     width: 2.0,
-            //     color:
-            //         enabledBorderColor ??
-            //         AppColors.textLightBlack.withOpacity(0.4),
-            //   ),
-            // ),
-            // focusedErrorBorder: UnderlineInputBorder(
-            //   borderSide: BorderSide(
-            //     color: focusErrorBorderColor ?? AppColors.negativeRed,
-            //     width: 2.0,
-            //   ),
-            // ),
-            // disabledBorder: UnderlineInputBorder(
-            //   borderSide: BorderSide(
-            //     width: 2.0,
-            //     color:
-            //         disabledBorderColor ??
-            //         AppColors.textLightBlack.withOpacity(0.3),
-            //   ),
-            // ),
+            focusedBorder: isSecondField == true
+                ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.sp),
+                    borderSide: BorderSide(color: AppColors.primary),
+                  )
+                : UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: focusedBorderColor ?? AppColors.primary,
+                    ),
+                  ),
+            enabledBorder: isSecondField == true
+                ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(enabledBorder ?? 12.r),
+                    borderSide: BorderSide(
+                      color: enabledBorderColor ?? AppColors.transparent,
+                      width: 1.2,
+                    ),
+                  )
+                : UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: enabledBorderColor ?? AppColors.transparent,
+                    ),
+                  ),
+            errorBorder: isSecondField == true
+                ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.sp),
+                    borderSide: BorderSide(color: AppColors.negativeRed),
+                  )
+                : UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: errorBorderColor ?? AppColors.negativeRed,
+                    ),
+                  ),
+            disabledBorder: isSecondField == true
+                ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.sp),
+                    borderSide: BorderSide(
+                      color: AppColors.black.withOpacity(0.09),
+                    ),
+                  )
+                : UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color:
+                          disabledBorderColor ??
+                          AppColors.textLightBlack.withOpacity(0.4),
+                    ),
+                  ),
+            focusedErrorBorder: isSecondField == true
+                ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.sp),
+                    borderSide: BorderSide(color: AppColors.primary),
+                  )
+                : UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: focusedBorderColor ?? AppColors.primary,
+                    ),
+                  ),
             errorMaxLines: 2,
             errorStyle: TextStyle(color: Colors.red, fontSize: 12.sp),
           ),
         ),
       ],
     );
-  }
-
-  InputBorder _buildBorder(Color color) {
-    if (noBorder) {
-      return InputBorder.none;
-    }
-    if (isOutlineBorder) {
-      return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.r),
-        borderSide: BorderSide(color: color, width: 2),
-      );
-    } else {
-      return UnderlineInputBorder(
-        borderSide: BorderSide(color: color, width: 2),
-      );
-    }
   }
 }

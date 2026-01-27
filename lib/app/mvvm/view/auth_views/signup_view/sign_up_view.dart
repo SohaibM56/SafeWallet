@@ -31,7 +31,7 @@ class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       appBar: CustomAppBar(title: '', backgroundColor: Colors.transparent),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -268,7 +268,7 @@ class _SignUpViewState extends State<SignUpView> {
                     .slideY(begin: 0.2, curve: Curves.easeOut),
                 50.h.height,
                 AppCustomButton(
-                      title: AppStrings.next,
+                      title: AppStrings.nextBtn,
                       onPressed: () {
                         Get.toNamed(AppRoutes.verificationView);
                       },

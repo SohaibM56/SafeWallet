@@ -35,7 +35,7 @@ class _AllActivityViewState extends State<AllActivityView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       body: SafeArea(
         child: SizedBox(
           height: Get.height,
@@ -116,7 +116,7 @@ class _AllActivityViewState extends State<AllActivityView> {
               width: 50.w,
               decoration: BoxDecoration(
                 color: isRecived == true
-                    ? AppColors.secondary.withValues(alpha: 0.2)
+                    ? AppColors.primary.withValues(alpha: 0.2)
                     : AppColors.red.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),

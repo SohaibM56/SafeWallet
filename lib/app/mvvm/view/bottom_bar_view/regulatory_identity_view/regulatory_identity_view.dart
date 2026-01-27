@@ -20,7 +20,7 @@ class RegulatoryIdentityView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       appBar: CustomAppBar(title: '', backgroundColor: Colors.transparent),
       body: SingleChildScrollView(
         child: SizedBox(
@@ -196,7 +196,7 @@ class RegulatoryIdentityView extends StatelessWidget {
                           14.h.height,
 
                           AppCustomButton(
-                            bgColor: AppColors.primary,
+                            bgColor: AppColors.secondary,
                             borderColor: AppColors.white.withValues(alpha: 0.3),
                             title: "Initiate Full Vetting",
                             onPressed: () {

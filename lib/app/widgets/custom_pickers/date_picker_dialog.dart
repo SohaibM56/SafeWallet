@@ -26,7 +26,7 @@ Future<DateTime?> ShowDatePicker(BuildContext context) {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 decoration: BoxDecoration(
-                  color: AppColors.primary,
+                  color: AppColors.secondary,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 ),
                 child: Row(
@@ -36,14 +36,20 @@ Future<DateTime?> ShowDatePicker(BuildContext context) {
                       onTap: () => Navigator.pop(context, null),
                       child: Text(
                         "Cancel",
-                        style: AppTextStyles.customText16(color: AppColors.white, fontWeight: FontWeight.w500),
+                        style: AppTextStyles.customText16(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                     GestureDetector(
                       onTap: () => Navigator.pop(context, selectedDate),
                       child: Text(
                         "Select",
-                        style: AppTextStyles.customText16(color: AppColors.white, fontWeight: FontWeight.w600),
+                        style: AppTextStyles.customText16(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ],
@@ -54,9 +60,12 @@ Future<DateTime?> ShowDatePicker(BuildContext context) {
               Expanded(
                 child: CupertinoTheme(
                   data: CupertinoThemeData(
-                    primaryColor: AppColors.primary,
+                    primaryColor: AppColors.secondary,
                     textTheme: CupertinoTextThemeData(
-                      dateTimePickerTextStyle: AppTextStyles.customText20(color: AppColors.primary, fontWeight: FontWeight.w500),
+                      dateTimePickerTextStyle: AppTextStyles.customText20(
+                        color: AppColors.secondary,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   child: CupertinoDatePicker(
@@ -95,7 +104,7 @@ Future<String?> showCustomTimePicker(BuildContext context) {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 decoration: BoxDecoration(
-                  color: AppColors.primary,
+                  color: AppColors.secondary,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 ),
                 child: Row(
@@ -105,18 +114,32 @@ Future<String?> showCustomTimePicker(BuildContext context) {
                       onTap: () => Navigator.pop(context, null),
                       child: Text(
                         "Cancel",
-                        style: AppTextStyles.customText16(color: AppColors.white, fontWeight: FontWeight.w500),
+                        style: AppTextStyles.customText16(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                     GestureDetector(
                       onTap: () {
                         final now = DateTime.now();
-                        final formatted = DateFormat.jm().format(DateTime(now.year, now.month, now.day, selectedTime.hour, selectedTime.minute));
+                        final formatted = DateFormat.jm().format(
+                          DateTime(
+                            now.year,
+                            now.month,
+                            now.day,
+                            selectedTime.hour,
+                            selectedTime.minute,
+                          ),
+                        );
                         Navigator.pop(context, formatted);
                       },
                       child: Text(
                         "Select",
-                        style: AppTextStyles.customText16(color: AppColors.white, fontWeight: FontWeight.w600),
+                        style: AppTextStyles.customText16(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ],
@@ -127,9 +150,12 @@ Future<String?> showCustomTimePicker(BuildContext context) {
               Expanded(
                 child: CupertinoTheme(
                   data: CupertinoThemeData(
-                    primaryColor: AppColors.primary,
+                    primaryColor: AppColors.secondary,
                     textTheme: CupertinoTextThemeData(
-                      dateTimePickerTextStyle: AppTextStyles.customText20(color: AppColors.primary, fontWeight: FontWeight.w500),
+                      dateTimePickerTextStyle: AppTextStyles.customText20(
+                        color: AppColors.secondary,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   child: CupertinoDatePicker(
@@ -137,7 +163,10 @@ Future<String?> showCustomTimePicker(BuildContext context) {
                     initialDateTime: DateTime.now(),
                     use24hFormat: false, // ✅ Show AM/PM
                     onDateTimeChanged: (DateTime dateTime) {
-                      selectedTime = TimeOfDay(hour: dateTime.hour, minute: dateTime.minute);
+                      selectedTime = TimeOfDay(
+                        hour: dateTime.hour,
+                        minute: dateTime.minute,
+                      );
                     },
                   ),
                 ),

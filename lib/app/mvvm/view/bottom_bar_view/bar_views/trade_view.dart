@@ -33,7 +33,7 @@ class _TradeViewState extends State<TradeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -152,7 +152,7 @@ class _TradeViewState extends State<TradeView> {
                               Text(
                                 "+0 SEC",
                                 style: AppTextStyles.customText16(
-                                  color: AppColors.secondary,
+                                  color: AppColors.primary,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -331,11 +331,7 @@ class _TradeViewState extends State<TradeView> {
                   _buildCoinDropdown(
                     value: fromCoin,
                     items: coins,
-                    colors: [
-                      Colors.purple,
-                      Colors.amber,
-                      Colors.amber,
-                    ],
+                    colors: [Colors.purple, Colors.amber, Colors.amber],
                     onChanged: (val) {
                       setState(() {
                         fromCoin = val;
@@ -403,11 +399,7 @@ class _TradeViewState extends State<TradeView> {
                   _buildCoinDropdown(
                     value: toCoin,
                     items: coins,
-                    colors: [
-                      Colors.amber,
-                      Colors.purple,
-                      Colors.purple,
-                    ],
+                    colors: [Colors.amber, Colors.purple, Colors.purple],
                     onChanged: (val) {
                       setState(() {
                         toCoin = val;
@@ -432,7 +424,7 @@ class _TradeViewState extends State<TradeView> {
     return Container(
       height: 32.w,
       width: 110.w,
-      padding:  EdgeInsets.symmetric(horizontal: 12.w),
+      padding: EdgeInsets.symmetric(horizontal: 12.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
         color: const Color(0xFF0E1A24),
@@ -444,7 +436,12 @@ class _TradeViewState extends State<TradeView> {
           isDense: true,
           isExpanded: true,
           dropdownColor: const Color(0xFF0E1A24),
-          icon: Image.asset(AppAssets.downArrow, color: Colors.white, width: 12.w, height: 12.h),
+          icon: Image.asset(
+            AppAssets.downArrow,
+            color: Colors.white,
+            width: 12.w,
+            height: 12.h,
+          ),
           onChanged: (val) {
             onChanged(val!);
           },
@@ -506,11 +503,11 @@ class _TradeViewState extends State<TradeView> {
                 decoration: BoxDecoration(
                   border: isSelected
                       ? Border.all(
-                          color: AppColors.secondary.withValues(alpha: 0.3),
+                          color: AppColors.primary.withValues(alpha: 0.3),
                         )
                       : null,
                   color: isSelected
-                      ? AppColors.secondary.withValues(alpha: 0.1)
+                      ? AppColors.primary.withValues(alpha: 0.1)
                       : Colors.transparent,
                   borderRadius: BorderRadius.circular(25.r),
                 ),

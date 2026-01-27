@@ -60,7 +60,7 @@ class BankAlertSheet extends StatelessWidget {
                 Get.back();
                 Get.toNamed(AppRoutes.regulatoryIdentityView);
               },
-              bgColor: AppColors.secondary,
+              bgColor: AppColors.primary,
             ).paddingHorizontal(30.w),
 
             10.h.height,

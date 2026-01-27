@@ -35,7 +35,7 @@ class CurrencyToggleTile extends StatelessWidget {
           children: [
             Text(
               currencyName,
-              style:  AppTextStyles.customText(
+              style: AppTextStyles.customText(
                 color: Colors.white,
                 fontSize: 13.sp,
                 fontWeight: FontWeight.w400,
@@ -47,22 +47,22 @@ class CurrencyToggleTile extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: AppColors.secondary.withValues(alpha: 0.5),
+                  color: AppColors.primary.withValues(alpha: 0.5),
                   width: 2.w,
                 ),
                 color: Colors.transparent,
               ),
               child: isSelected
                   ? Center(
-                child: Container(
-                  width: 14,
-                  height: 14,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.secondary,
-                  ),
-                ),
-              )
+                      child: Container(
+                        width: 14,
+                        height: 14,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.primary,
+                        ),
+                      ),
+                    )
                   : null,
             ),
           ],

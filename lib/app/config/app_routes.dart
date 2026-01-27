@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/forgot_password_view/forgot_password_view.dart';
+import 'package:safewallet/app/mvvm/view/auth_views/language_screen.dart/language_view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/login_view/login_view.dart';
+import 'package:safewallet/app/mvvm/view/auth_views/onboarding_view/onboarding_view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/setup_wallet_view/setup_wallet_view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/sign_up_view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_view.dart';
@@ -8,6 +10,8 @@ import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_vie
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/done_verification.view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/id_card_verification_view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/selfie_verification_view.dart';
+import 'package:safewallet/app/mvvm/view/auth_views/verificaion_steps_view/complete_verfication_view.dart';
+import 'package:safewallet/app/mvvm/view/auth_views/verificaion_steps_view/verificaion_steps_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/all_activity_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/snipper_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/sol_tool_view.dart';
@@ -27,6 +31,7 @@ import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controlle
 import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controller/verification_controllers/id_card_verfication_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controller/verification_controllers/selfie_verification_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/bottom_bar_controller/trade_controller.dart';
+import 'package:safewallet/app/mvvm/view_model/language_controller/language_controlller.dart';
 import 'package:safewallet/app/mvvm/view_model/profile_controllers/profile_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/splash_controller/splash_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/tools_controller/snipper_tool_controller.dart';
@@ -41,7 +46,11 @@ abstract class AppRoutes {
   AppRoutes._();
 
   static const String splashView = '/splashView';
+  static const String onboardingView = '/onboardingView';
+  static const String languageView = '/languageView';
   static const String getStartedView = '/getStartedView';
+  static const String verificationStepsView = '/verificationStepsView';
+  static const String completeVerificationView = '/completeVerificationView';
   static const String setupWalletView = '/setupWalletView';
   static const String loginView = '/loginView';
   static const String signUpView = '/signUpView';
@@ -73,12 +82,37 @@ abstract class AppPages {
       page: () => SplashView(),
       binding: BindingsBuilder(() {
         Get.lazyPut<SplashController>(() => SplashController());
-        Get.lazyPut<ProfileController>(() => ProfileController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.onboardingView,
+      page: () => OnboardingView(),
+      binding: BindingsBuilder(() {}),
+    ),
+    GetPage(
+      name: AppRoutes.languageView,
+      page: () => LanguageView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<LanguageControlller>(() => LanguageControlller());
       }),
     ),
     GetPage(
       name: AppRoutes.getStartedView,
       page: () => GetStartedView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<SplashController>(() => SplashController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.verificationStepsView,
+      page: () => VerificationStepsView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<SplashController>(() => SplashController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.completeVerificationView,
+      page: () => ComleteVerificationView(),
       binding: BindingsBuilder(() {
         // Get.lazyPut<SplashController>(() => SplashController());
       }),
