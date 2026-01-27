@@ -21,7 +21,7 @@ class _SetupWalletViewState extends State<SetupWalletView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       appBar: CustomAppBar(title: '', backgroundColor: Colors.transparent),
       body: Column(
         children: [

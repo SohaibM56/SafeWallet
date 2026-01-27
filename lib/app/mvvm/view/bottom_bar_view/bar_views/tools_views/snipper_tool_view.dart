@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/mvvm/view_model/tools_controller/snipper_tool_controller.dart';
 import 'package:safewallet/app/widgets/app_custom_button.dart';
-import 'package:safewallet/app/widgets/app_custom_field.dart';
 import 'package:safewallet/app/widgets/custom_back_button.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
@@ -24,7 +23,7 @@ class _SnipperToolViewState extends State<SnipperToolView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -88,14 +87,14 @@ class _SnipperToolViewState extends State<SnipperToolView> {
                     .fadeIn(duration: 600.ms, delay: 100.ms)
                     .slideY(begin: -0.2, curve: Curves.easeOut),
 
-                AppCustomField(
-                      labelTitle: "",
-                      hintText: 'Token address or name',
-                      isOutlineBorder: true,
-                    )
-                    .animate(delay: 400.ms)
-                    .fadeIn(duration: 500.ms)
-                    .slideY(begin: 0.2, curve: Curves.easeOut),
+                // AppCustomField(
+                //       labelTitle: "",
+                //       hintText: 'Token address or name',
+                //       isOutlineBorder: true,
+                //     )
+                //     .animate(delay: 400.ms)
+                //     .fadeIn(duration: 500.ms)
+                //     .slideY(begin: 0.2, curve: Curves.easeOut),
                 25.h.height,
                 Text(
                       "Trigger Condition",
@@ -235,7 +234,7 @@ class _SnipperToolViewState extends State<SnipperToolView> {
               shape: BoxShape.circle,
               border: Border.all(
                 color: isActive
-                    ? AppColors.secondary
+                    ? AppColors.primary
                     : Colors.white.withValues(alpha: 0.3),
                 width: 2,
               ),
@@ -246,7 +245,7 @@ class _SnipperToolViewState extends State<SnipperToolView> {
                       height: 8.w,
                       width: 8.w,
                       decoration: const BoxDecoration(
-                        color: AppColors.secondary,
+                        color: AppColors.primary,
                         shape: BoxShape.circle,
                       ),
                     ),

@@ -20,7 +20,7 @@ class SafeWalletApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: AppColors.secondary),
+            colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
             useMaterial3: true,
           ),
           initialRoute: AppRoutes.splashView,

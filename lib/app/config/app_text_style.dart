@@ -214,4 +214,22 @@ abstract class AppTextStyles {
   }) {
     return GoogleFonts.montserrat(fontSize: 28, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, shadows: shadow);
   }
+
+  static TextStyle customTextRboto({
+    Color? color,
+    double? fontSize,
+    FontWeight fontWeight = FontWeight.normal,
+    double letterSpacing = 0,
+    double? height, 
+  }) {
+    return GoogleFonts.urbanist(
+    
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      color: color,
+      letterSpacing: letterSpacing,
+      height: height,
+    );
+
+  }
 }

@@ -36,7 +36,7 @@ class UnlockRewardsSheet extends StatelessWidget {
                       Text(
                         "Unlock Rewards",
                         style: AppTextStyles.customText18(
-                          color: AppColors.primary,
+                          color: AppColors.secondary,
                           fontWeight: FontWeight.w800,
                         ),
                       ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
@@ -44,7 +44,7 @@ class UnlockRewardsSheet extends StatelessWidget {
                       Text(
                         "Available: 567.89 SEC",
                         style: AppTextStyles.customText10(
-                          color: AppColors.primary,
+                          color: AppColors.secondary,
                           fontWeight: FontWeight.w400,
                         ),
                       ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
@@ -54,7 +54,7 @@ class UnlockRewardsSheet extends StatelessWidget {
                     onPressed: () {
                       Get.back();
                     },
-                    icon: Icon(Icons.close_rounded, color: AppColors.primary),
+                    icon: Icon(Icons.close_rounded, color: AppColors.secondary),
                   ),
                 ],
               ),
@@ -76,7 +76,7 @@ class UnlockRewardsSheet extends StatelessWidget {
                     labelText: 'Amount to unlock',
                     hintText: "Enter amount",
                     labelStyle: AppTextStyles.customText16(
-                      color: AppColors.primary,
+                      color: AppColors.secondary,
                       fontWeight: FontWeight.w400,
                     ),
                     filled: false,
@@ -100,7 +100,7 @@ class UnlockRewardsSheet extends StatelessWidget {
                   Text(
                     "Unlock fee",
                     style: AppTextStyles.customText16(
-                      color: AppColors.primary.withValues(alpha: 0.4),
+                      color: AppColors.secondary.withValues(alpha: 0.4),
                       fontWeight: FontWeight.w500,
                     ),
                   ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
@@ -108,7 +108,7 @@ class UnlockRewardsSheet extends StatelessWidget {
                   Text(
                     "0.1 SEC",
                     style: AppTextStyles.customText14(
-                      color: AppColors.primary,
+                      color: AppColors.secondary,
                       fontWeight: FontWeight.w800,
                     ),
                   ).animate().fadeIn(duration: 600.ms, delay: 400.ms),

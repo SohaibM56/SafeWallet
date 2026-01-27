@@ -18,52 +18,57 @@ class CurrencyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final ProfileController controller = Get.find();
 
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       appBar: CustomAppBar(
         title: 'Currency',
         titleColor: Colors.white,
         backgroundColor: Colors.transparent,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          16.h.height,
-          Text(
-            'Select currency display',
-            style: AppTextStyles.customText16(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          10.h.height,
-          Obx(() => CurrencyToggleTile(
-            currencyName: "Dollar",
-            isSelected: controller.isSelected('Dollar'),
-            onTap: () => controller.selectCurrency('Dollar'),
-          )),
+      body:
+          Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  16.h.height,
+                  Text(
+                    'Select currency display',
+                    style: AppTextStyles.customText16(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  10.h.height,
+                  Obx(
+                    () => CurrencyToggleTile(
+                      currencyName: "Dollar",
+                      isSelected: controller.isSelected('Dollar'),
+                      onTap: () => controller.selectCurrency('Dollar'),
+                    ),
+                  ),
 
-          Obx(() => CurrencyToggleTile(
-            currencyName: "Riyal",
-            isSelected: controller.isSelected('Riyal'),
-            onTap: () => controller.selectCurrency('Riyal'),
-          )),
+                  Obx(
+                    () => CurrencyToggleTile(
+                      currencyName: "Riyal",
+                      isSelected: controller.isSelected('Riyal'),
+                      onTap: () => controller.selectCurrency('Riyal'),
+                    ),
+                  ),
 
-          Obx(() => CurrencyToggleTile(
-            currencyName: "Naira",
-            isSelected: controller.isSelected('Naira'),
-            onTap: () => controller.selectCurrency('Naira'),
-          )),
-        ],
-      ).paddingSymmetric(horizontal: 20.w, vertical: 10.h).animate()
-          .fadeIn(duration: 600.ms, delay: 300.ms)
-          .scale(
-        begin: const Offset(0.7, 0.7),
-        curve: Curves.easeOutBack,
-      ),
+                  Obx(
+                    () => CurrencyToggleTile(
+                      currencyName: "Naira",
+                      isSelected: controller.isSelected('Naira'),
+                      onTap: () => controller.selectCurrency('Naira'),
+                    ),
+                  ),
+                ],
+              )
+              .paddingSymmetric(horizontal: 20.w, vertical: 10.h)
+              .animate()
+              .fadeIn(duration: 600.ms, delay: 300.ms)
+              .scale(begin: const Offset(0.7, 0.7), curve: Curves.easeOutBack),
     );
   }
 }

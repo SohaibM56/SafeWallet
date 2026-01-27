@@ -6,7 +6,13 @@ class AppAssets {
   // Image Paths
   static const String placeholder = '$imagesPath/placeholder_man.png';
   static const String appLogo = '$imagesPath/app_logo.png';
+  static const String appHorizontalLogo = '$imagesPath/app_horizontal_logo.png';
   static const String getStartedMain = '$imagesPath/get_started_main.png';
+  static const String finalizeIC = '$imagesPath/finallize_steps.png';
+  static const String scanningIC = '$imagesPath/scanning_ic.png';
+  static const String signalIC = '$imagesPath/signal_ic.png';
+  static const String biometricAuth = '$imagesPath/biometricAuth_ic.png';
+
   static const String selfieVerification =
       '$imagesPath/selfie_verification.png';
   static const String idCardVerification =
@@ -40,6 +46,8 @@ class AppAssets {
   static const String volumeIcon = '$imagesPath/volume_icon.png';
   static const String backgroundCardImg = '$imagesPath/background_card.png';
   static const String kycIcon = '$imagesPath/kyc_check.png';
+  static const String kycImage = '$imagesPath/kyc_image.png';
+
   static const String biometricIcon = '$imagesPath/biometric_icon.png';
   static const String keyIcon = '$imagesPath/key_icon.png';
   static const String privacyIcon = '$imagesPath/privacy_icon.png';
@@ -70,6 +78,21 @@ class AppAssets {
   static const String ovalLockIcon = '$imagesPath/oval_lock_icon.png';
   static const String filledNotificationIcon =
       '$imagesPath/notification_ic.png';
+  static const String oboardingImg = '$imagesPath/onboarding_img.jpg';
+  static const String lockTransaction = '$imagesPath/lock_transaction.png';
+  static const String termsServiceIcon = '$imagesPath/terms_service_icon.png';
+  static const String privacyPolicyIcon = '$imagesPath/privacy_policy_icon.png';
+  static const String notification = '$imagesPath/notification.png';
+  static const String aboutUsIcon = '$imagesPath/about_us_icon.png';
+  static const String autoLock = '$imagesPath/auto_lock.png';
+  
+  static const String langIcon2 = '$imagesPath/lang_icon2.png';
+  static const String veitingIcon = '$imagesPath/veiting_icon.png';
+  static const String approvalIcon = '$imagesPath/approval_icon.png';
+  static const String regionIcon = '$imagesPath/region_icon.png';
+
+
+
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';
@@ -86,4 +109,5 @@ class AppAssets {
   static const String transferIcon = '$svgsPath/transfer_icon.svg';
   static const String transparentFill = '$svgsPath/transparent_fill.svg';
   static const String smallTransferIcon = '$svgsPath/small_transfer_icon.svg';
+  static const String statusIcon = '$svgsPath/status_icon.svg';
 }

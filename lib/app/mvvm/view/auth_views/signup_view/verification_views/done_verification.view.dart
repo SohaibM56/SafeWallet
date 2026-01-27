@@ -24,7 +24,7 @@ class _DoneVerificationViewState extends State<DoneVerificationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       body: SafeArea(
         child: SizedBox(
           height: Get.height,

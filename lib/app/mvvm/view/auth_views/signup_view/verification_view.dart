@@ -26,7 +26,7 @@ class _VerificationViewState extends State<VerificationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       body: SafeArea(
         child: SizedBox(
           height: Get.height,
@@ -114,7 +114,7 @@ class _VerificationViewState extends State<VerificationView> {
                       Get.toNamed(AppRoutes.doneVerificationView);
                       // Get.toNamed(AppRoutes.biometriVerificationView);
                     },
-                    title: AppStrings.next,
+                    title: AppStrings.nextBtn,
                   )
                   .paddingSymmetric(horizontal: 20.w)
                   .animate(delay: 1000.ms)
@@ -180,7 +180,7 @@ class _VerificationViewState extends State<VerificationView> {
               alignment: Alignment.center,
               child: Icon(
                 Icons.check_circle_rounded,
-                color: isSelected ? AppColors.secondary : AppColors.darkGrey,
+                color: isSelected ? AppColors.primary : AppColors.darkGrey,
                 size: 24.w,
               ),
             ),

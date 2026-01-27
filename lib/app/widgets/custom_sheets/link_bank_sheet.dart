@@ -46,7 +46,11 @@ class LinkBankSheet extends StatelessWidget {
                       onTap: () {
                         Get.back();
                       },
-                      child: Icon(Icons.close, color: AppColors.black, size: 22.sp),
+                      child: Icon(
+                        Icons.close,
+                        color: AppColors.black,
+                        size: 22.sp,
+                      ),
                     ),
                   ],
                 ).paddingRight(5.w),
@@ -99,7 +103,7 @@ class LinkBankSheet extends StatelessWidget {
                   "Enter your Saudi Arabian IBAN (24 characters)",
                   style: AppTextStyles.customText(
                     fontSize: 12.sp,
-                    color: AppColors.primary.withValues(alpha: 0.3),
+                    color: AppColors.secondary.withValues(alpha: 0.3),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -119,7 +123,11 @@ class LinkBankSheet extends StatelessWidget {
                       ),
                     ),
 
-                   Image.asset(AppAssets.nafathBadge, width: 110.w, height: 27.h),
+                    Image.asset(
+                      AppAssets.nafathBadge,
+                      width: 110.w,
+                      height: 27.h,
+                    ),
                   ],
                 ).paddingRight(5.w),
 
@@ -131,8 +139,7 @@ class LinkBankSheet extends StatelessWidget {
                     color: AppColors.faintBgColor,
                     borderRadius: BorderRadius.circular(10.sp),
                   ),
-                  child:
-                  TextFormField(
+                  child: TextFormField(
                     style: AppTextStyles.customText(
                       fontSize: 13.sp,
                       color: AppColors.black,
@@ -194,17 +201,22 @@ class LinkBankSheet extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  Image.asset(AppAssets.shieldPrivate, width: 20.w, height: 20.h),
+                    Image.asset(
+                      AppAssets.shieldPrivate,
+                      width: 20.w,
+                      height: 20.h,
+                    ),
                     5.w.width,
                     Text(
-                    "Transaction secured under SAMA and MOF compliance\nframeworks.",
-                    style: AppTextStyles.customText(
-                      fontSize: 10.sp,
-                      color: AppColors.secondary,
-                      fontWeight: FontWeight.w500,
+                      "Transaction secured under SAMA and MOF compliance\nframeworks.",
+                      style: AppTextStyles.customText(
+                        fontSize: 10.sp,
+                        color: AppColors.primary,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                ],),
+                  ],
+                ),
 
                 5.h.height,
               ],

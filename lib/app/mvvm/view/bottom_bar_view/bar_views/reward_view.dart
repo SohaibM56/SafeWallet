@@ -35,7 +35,7 @@ class _RewardViewState extends State<RewardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -205,22 +205,30 @@ class _RewardViewState extends State<RewardView> {
                                   numberedText(
                                     1,
                                     "Get 25% of the fee back as SEC tokens!.",
-                                  ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
+                                  ).animate().fadeIn(
+                                    duration: 600.ms,
+                                    delay: 500.ms,
+                                  ),
 
                                   4.h.height,
 
                                   numberedText(
                                     2,
                                     "A 1% transaction fee is applied to each swap.",
-                                  ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
+                                  ).animate().fadeIn(
+                                    duration: 600.ms,
+                                    delay: 500.ms,
+                                  ),
 
                                   4.h.height,
 
                                   numberedText(
                                     3,
                                     "Trade meme coins on Pump.fun, Moonshot, or raydium.",
-                                  ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
-
+                                  ).animate().fadeIn(
+                                    duration: 600.ms,
+                                    delay: 500.ms,
+                                  ),
                                 ],
                               ),
                             ),
@@ -375,7 +383,7 @@ class _RewardViewState extends State<RewardView> {
                             LinearProgressIndicator(
                               value: 0.6,
                               minHeight: 7.0,
-                              backgroundColor: AppColors.secondary.withValues(
+                              backgroundColor: AppColors.primary.withValues(
                                 alpha: 0.2,
                               ),
                               borderRadius: BorderRadius.all(
@@ -522,11 +530,11 @@ class _RewardViewState extends State<RewardView> {
                 decoration: BoxDecoration(
                   border: isSelected
                       ? Border.all(
-                          color: AppColors.secondary.withValues(alpha: 0.3),
+                          color: AppColors.primary.withValues(alpha: 0.3),
                         )
                       : null,
                   color: isSelected
-                      ? AppColors.secondary.withValues(alpha: 0.1)
+                      ? AppColors.primary.withValues(alpha: 0.1)
                       : Colors.transparent,
                   borderRadius: BorderRadius.circular(25.r),
                 ),
@@ -558,7 +566,7 @@ class _RewardViewState extends State<RewardView> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.primary,
+        color: AppColors.secondary,
         border: Border.all(width: 1.w, color: AppColors.darkGrey),
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
       ),
@@ -617,8 +625,7 @@ class _RewardViewState extends State<RewardView> {
     );
   }
 
-
-// Widget _buildStakeMoreSheet(){
+  // Widget _buildStakeMoreSheet(){
   //   return
   // }
 }

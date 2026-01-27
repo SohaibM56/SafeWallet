@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -36,7 +35,9 @@ class CustomMenuTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           20.w.width,
-          icon.endsWith(".svg")? SvgPicture.asset(icon, width: 40.w, height: 40.w): Image.asset(icon, width: 40.w, height: 40.w),
+          icon.endsWith(".svg")
+              ? SvgPicture.asset(icon, width: 40.w, height: 40.w)
+              : Image.asset(icon, width: 40.w, height: 40.w),
           12.w.width,
           Expanded(
             child: Text(
@@ -47,22 +48,21 @@ class CustomMenuTile extends StatelessWidget {
               ),
             ),
           ),
-          isToggle!=null
-      ?
-          RiffSwitch(
-            value: isToggle!,
-            onChanged: (value) => onToggle?.call(),
-            type: RiffSwitchType.decorative,
-            height: 23,
-            width: 46,
-            thumbMargin:2,
-            borderRadius: 40,
-            activeColor: AppColors.secondary,
-            activeTrackColor: Colors.white,
-            inactiveThumbColor: AppColors.secondary,
-            inactiveTrackColor: Color(0xFF111826),
-            borderColor: Colors.white.withValues(alpha: 0.4),
-          ).paddingRight(20.w)
+          isToggle != null
+              ? RiffSwitch(
+                  value: isToggle!,
+                  onChanged: (value) => onToggle?.call(),
+                  type: RiffSwitchType.decorative,
+                  height: 23,
+                  width: 46,
+                  thumbMargin: 2,
+                  borderRadius: 40,
+                  activeColor: AppColors.primary,
+                  activeTrackColor: Colors.white,
+                  inactiveThumbColor: AppColors.primary,
+                  inactiveTrackColor: Color(0xFF111826),
+                  borderColor: Colors.white.withValues(alpha: 0.4),
+                ).paddingRight(20.w)
               : isApproved == true
               ? SvgPicture.asset(AppAssets.kycLogo).paddingRight(20.w)
               : Icon(

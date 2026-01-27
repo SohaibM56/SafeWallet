@@ -3,7 +3,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/widgets/app_custom_button.dart';
-import 'package:safewallet/app/widgets/app_custom_field.dart';
 import 'package:safewallet/app/widgets/custom_back_button.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
@@ -21,7 +20,7 @@ class _VolumeToolViewState extends State<VolumeToolView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -85,14 +84,14 @@ class _VolumeToolViewState extends State<VolumeToolView> {
                     .fadeIn(duration: 600.ms, delay: 100.ms)
                     .slideY(begin: -0.2, curve: Curves.easeOut),
 
-                AppCustomField(
-                      labelTitle: "",
-                      hintText: 'Enter token address',
-                      isOutlineBorder: true,
-                    )
-                    .animate(delay: 400.ms)
-                    .fadeIn(duration: 500.ms)
-                    .slideY(begin: 0.2, curve: Curves.easeOut),
+                // AppCustomField(
+                //       labelTitle: "",
+                //       hintText: 'Enter token address',
+                //       isOutlineBorder: true,
+                //     )
+                //     .animate(delay: 400.ms)
+                //     .fadeIn(duration: 500.ms)
+                //     .slideY(begin: 0.2, curve: Curves.easeOut),
                 25.h.height,
                 Text(
                       "Volume Budget (SOL)",
@@ -105,15 +104,15 @@ class _VolumeToolViewState extends State<VolumeToolView> {
                     .fadeIn(duration: 600.ms, delay: 100.ms)
                     .slideY(begin: -0.2, curve: Curves.easeOut),
 
-                AppCustomField(
-                      labelTitle: "",
-                      hintText: 'Enter budget amount',
-                      isOutlineBorder: true,
-                      // controller:,
-                    )
-                    .animate(delay: 400.ms)
-                    .fadeIn(duration: 500.ms)
-                    .slideY(begin: 0.2, curve: Curves.easeOut),
+                // AppCustomField(
+                //       labelTitle: "",
+                //       hintText: 'Enter budget amount',
+                //       isOutlineBorder: true,
+                //       // controller:,
+                //     )
+                //     .animate(delay: 400.ms)
+                //     .fadeIn(duration: 500.ms)
+                //     .slideY(begin: 0.2, curve: Curves.easeOut),
                 25.h.height,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

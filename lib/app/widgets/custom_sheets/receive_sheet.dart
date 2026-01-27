@@ -33,7 +33,7 @@ class ReceiveSheet extends StatelessWidget {
                 onPressed: () {
                   Get.back();
                 },
-                icon: Icon(Icons.close_rounded, color: AppColors.primary),
+                icon: Icon(Icons.close_rounded, color: AppColors.secondary),
               ),
             ),
 
