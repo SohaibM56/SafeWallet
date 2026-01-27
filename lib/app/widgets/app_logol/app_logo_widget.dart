@@ -15,7 +15,7 @@ class AppLogoWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        /// LOGO
+        /// Logos
         Image.asset(AppAssets.appLogo, width: double.infinity, height: 130.h)
             .paddingSymmetric(horizontal: 10.w)
             .animate()
