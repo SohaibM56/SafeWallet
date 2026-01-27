@@ -2,6 +2,12 @@
 abstract class AppStrings {
   AppStrings._();
 
+  // ==================== Buttons Text ====================
+
+  static const String getStartedBtn = 'Accede via NAFATH';
+  static const String nextBtn = 'Next';
+  static const String createWalletBtn = "Create Wallet";
+
   // ==================== Splash Screen ====================
   static const String continueText = "Continue";
   static const String language = "Language";
@@ -11,8 +17,22 @@ abstract class AppStrings {
 
   // ==================== Get Started Screen ====================
   static const String getStartedText = 'ID / Iqama Number ';
-  static const String getStartedBtn = 'Accede via NAFATH';
   static const String getStartedHintText = 'Enter ID / Iqama';
+
+  // =================== Verification Steps View ====================
+  static const String seccureConneciton = "Initiating secure connection...";
+  static const String nafathIdentity = "Verifying NAFATH identity...";
+  static const String biometric = "Authenticating biometric";
+  static const String finalizeStep = "Authorisation Finalised";
+
+  // =================== Verification Steps View ====================
+
+  static const String completeVerificationTitle = "Preparing your Vault";
+  static const String completeVerificationDesc =
+      "Your Sovereign Vault is being generated using 2-of-3 MPC security. To ensure total ownership, we will now guide you through the Recovery Protocol";
+  static const String nonCustodialTitle = "Non-Custodial Security";
+  static const String nonCustodialText =
+      "Your private keys are stored securely on\nyour device. You own your keys.";
 
   // ==================== Login Password Screen ====================
   static const String logIn = "Log In";
@@ -36,7 +56,6 @@ abstract class AppStrings {
   // ==================== Sign Up Password Screen ====================
   static const String signUp = "Sign Up";
   static const String signUpText = "Complete the form and join Safe Wallet";
-  static const String next = "Next";
   static const String signIn = "Sign In";
   static const String fullName = "Full Name";
   static const String confirmPassword = 'Confirm Password';

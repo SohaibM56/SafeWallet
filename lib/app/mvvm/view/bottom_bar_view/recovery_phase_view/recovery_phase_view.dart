@@ -28,8 +28,8 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondary,
-      appBar: CustomAppBar(title: '', backgroundColor: Colors.transparent),
+      backgroundColor: AppColors.black,
+      appBar: CustomAppBar(),
       body: Column(
         children: [
           Obx(
@@ -241,6 +241,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                           child: SizedBox(
                             height: 40.h,
                             child: WordTile(
+                              color: AppColors.black,
                               borderColor: AppColors.white.withValues(
                                 alpha: 0.4,
                               ),
@@ -254,6 +255,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                           child: SizedBox(
                             height: 40.h,
                             child: WordTile(
+                              color: AppColors.black,
                               borderColor: AppColors.white.withValues(
                                 alpha: 0.4,
                               ),
@@ -668,17 +670,25 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
         GestureDetector(
           onTap: onTap,
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 15.sp),
+            height: 60,
+            // padding: EdgeInsets.symmetric(vertical: 15.sp),
             decoration: BoxDecoration(
-              color: isSelected ? AppColors.primary : AppColors.transparent,
+              color: isSelected ? AppColors.primary : AppColors.primarySoft,
               borderRadius: BorderRadius.circular(10.sp),
-              border: Border.all(color: AppColors.white.withValues(alpha: 0.3)),
+              border: isSelected
+                  ? null
+                  : Border.all(
+                      color: AppColors.primary.withValues(alpha: 0.3),
+                      width: 2.r,
+                    ),
             ),
             child: Center(
               child: Text(
                 title,
                 style: AppTextStyles.customText16(
-                  color: isSelected ? AppColors.white : AppColors.faintColor,
+                  color: isSelected
+                      ? AppColors.white
+                      : AppColors.white.withValues(alpha: 0.5),
                 ),
               ),
             ),

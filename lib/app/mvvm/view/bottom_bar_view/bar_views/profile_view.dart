@@ -4,16 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/config/app_colors.dart';
+import 'package:safewallet/app/config/app_routes.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/widgets/custom_menu_tile.dart';
-import 'package:safewallet/app/widgets/custom_sheets/personal_info_sheet.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
-
 import '../../../../config/app_assets.dart';
-import '../../../../config/app_routes.dart';
-import '../../../../config/utils.dart';
-import '../../../../widgets/custom_sheets/logout_sheet.dart';
 import '../../../view_model/profile_controllers/profile_controller.dart';
 
 class ProfileView extends StatefulWidget {
@@ -95,24 +91,26 @@ class _ProfileViewState extends State<ProfileView> {
                     borderRadius: BorderRadius.circular(13.r),
                     color: Color(0xff132D28),
                     border: Border.all(
-                      color: Colors.white.withValues(alpha: 0.24),
+                      color: Colors.white.withValues(alpha: 0.2),
                       width: 1.3.w,
                     ),
                   ),
                   margin: EdgeInsets.only(top: 30.h),
                   child: Padding(
                     padding: EdgeInsets.only(
-                      // top: 85.h,
+                      top: 0.h,
                       // bottom: 30.h,
                       // left: 10.w,
                       // right: 20.w,
                     ),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
                           child: customStatus(
                             status: 'Status',
-                            imagePath: AppAssets.statusIcon,
+                            imagePath: AppAssets.shieldPrivate,
                             tittle: 'SECURE',
                           ),
                         ),
@@ -121,21 +119,25 @@ class _ProfileViewState extends State<ProfileView> {
                         Expanded(
                           child: customStatus(
                             status: 'Vetting',
-                            imagePath: '',
+                            imagePath: AppAssets.veitingIcon,
                             tittle: 'ACTIVE',
                           ),
                         ),
+                        _customDivider(),
+
                         Expanded(
                           child: customStatus(
                             status: 'Approval',
-                            imagePath: '',
+                            imagePath: AppAssets.approvalIcon,
                             tittle: '4-EYES',
                           ),
                         ),
+                        _customDivider(),
+
                         Expanded(
                           child: customStatus(
                             status: 'Region',
-                            imagePath: '',
+                            imagePath: AppAssets.regionIcon,
                             tittle: 'KSA',
                           ),
                         ),
@@ -158,193 +160,139 @@ class _ProfileViewState extends State<ProfileView> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            8.h.height,
-                            Text(
-                              'Security',
-                              style: AppTextStyles.customTextRboto(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.white,
-                              ),
-                            ).paddingVertical(8.h),
-                            Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                border: Border.all(
-                                  color: Colors.white.withValues(alpha: 0.1),
-                                  width: 1.w,
-                                ),
-                              ),
-                              child: Column(
-                                children: [
-                                  CustomMenuTile(
-                                    icon: AppAssets.lockTransaction,
-
-                                    title: 'Change Transaction PIN',
-
-                                    // isToggle:
-                                    //     controller.isToggleEnabled.value,
-                                    // onToggle: () {
-                                    //   controller.isToggleEnabled.value =
-                                    //       !controller.isToggleEnabled.value;
-                                    // },
-                                  ),
-                                  Divider(
-                                    color: Colors.white.withValues(alpha: 0.1),
-                                  ).paddingHorizontal(10.w),
-                                  CustomMenuTile(
-                                    icon: AppAssets.autoLock,
-                                    title: 'Auto Lock',
-                                    onTap: () {},
-                                    // Utils.showBottomSheet(
-                                    //   context: context,
-                                    //   child: LangugaeSelectSheet(isFromSettings: true),
-                                    // ),
-                                  ),
-                                ],
-                              ),
+                        Text(
+                          'Security',
+                          style: AppTextStyles.customTextRboto(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.white,
+                          ),
+                        ).paddingVertical(8.h),
+                        Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            border: Border.all(
+                              color: Colors.white.withValues(alpha: 0.1),
+                              width: 1.w,
                             ),
-
-                            Text(
-                              'Preferences ',
-                              style: AppTextStyles.customTextRboto(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.white,
+                          ),
+                          child: Column(
+                            children: [
+                              CustomMenuTile(
+                                icon: AppAssets.lockTransaction,
+                                onTap: () {
+                                  //!  change Tranasc pin View not available ....
+                                  // Get.toNamed(AppRoutes.) ;
+                                },
+                                title: 'Change Transaction PIN',
                               ),
-                            ).paddingVertical(8.h),
-                            Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                border: Border.all(
-                                  color: Colors.white.withValues(alpha: 0.1),
-                                  width: 1.w,
-                                ),
+                              Divider(
+                                color: Colors.white.withValues(alpha: 0.1),
+                              ).paddingHorizontal(10.w),
+                              CustomMenuTile(
+                                icon: AppAssets.autoLock,
+                                title: 'Auto Lock',
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.autoLockTimeView);
+                                },
                               ),
-                              child: Column(
-                                children: [
-                                  Obx(
-                                    () => CustomMenuTile(
-                                      icon: AppAssets.notification,
-                                      title: 'Push Notifications',
-                                      isToggle:
-                                          controller.isToggleEnabled.value,
-                                      onToggle: () {
-                                        controller.isToggleEnabled.value =
-                                            !controller.isToggleEnabled.value;
-                                      },
-                                    ),
-                                  ),
-                                  Divider(
-                                    color: Colors.white.withValues(alpha: 0.1),
-                                  ).paddingHorizontal(10.w),
-                                  CustomMenuTile(
-                                    icon: AppAssets.langIcon2,
-                                    title: 'Language',
-                                    onTap: () {},
-                                    // Utils.showBottomSheet(
-                                    //   context: context,
-                                    //   child: LangugaeSelectSheet(isFromSettings: true),
-                                    // ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            Text(
-                              'Support',
-                              style: AppTextStyles.customTextRboto(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.white,
-                              ),
-                            ).paddingVertical(8.h),
-                            Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                border: Border.all(
-                                  color: Colors.white.withValues(alpha: 0.1),
-                                  width: 1.w,
-                                ),
-                              ),
-                              child: Column(
-                                children: [
-                                  CustomMenuTile(
-                                    icon: AppAssets.termsServiceIcon,
-                                    title: 'Terms of Service',
-                                  ),
-
-                                  Divider(
-                                    color: Colors.white.withValues(alpha: 0.1),
-                                  ).paddingHorizontal(10.w),
-                                  CustomMenuTile(
-                                    icon: AppAssets.privacyPolicyIcon,
-                                    title: 'Privacy Policy',
-                                    onTap: () {},
-                                    // Utils.showBottomSheet(
-                                    //   context: context,
-                                    //   child: LangugaeSelectSheet(isFromSettings: true),
-                                    // ),
-                                  ),
-                                  Divider(
-                                    color: Colors.white.withValues(alpha: 0.1),
-                                  ).paddingHorizontal(10.w),
-                                  CustomMenuTile(
-                                    icon: AppAssets.aboutUsIcon,
-                                    title: 'About us',
-                                    onTap: () {},
-                                    // Utils.showBottomSheet(
-                                    //   context: context,
-                                    //   child: LangugaeSelectSheet(isFromSettings: true),
-                                    // ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
 
-                        // CustomMenuTile(
-                        //   icon: AppAssets.shieldIcon,
-                        //   title: 'KYC Status',
-                        //   isApproved: true,
-                        // ),
-                        // Divider(
-                        //   color: Colors.white.withValues(alpha: 0.1),
-                        // ).paddingHorizontal(10.w),
-                        // CustomMenuTile(
-                        //   icon: AppAssets.currencyIcon,
-                        //   title: 'Currency',
-                        //   onTap: () => Get.toNamed(AppRoutes.currencyView),
-                        // ),
-                        // Divider(
-                        //   color: Colors.white.withValues(alpha: 0.1),
-                        // ).paddingHorizontal(10.w),
-                        // CustomMenuTile(
-                        //   icon: AppAssets.supportIcon,
-                        //   title: 'Help & Support',
-                        //   onTap: () => Get.toNamed(AppRoutes.supportView),
-                        // ),
-                        // Divider(
-                        //   color: Colors.white.withValues(alpha: 0.1),
-                        // ).paddingHorizontal(10.w),
-                        // CustomMenuTile(
-                        //   icon: AppAssets.logoutIcon,
-                        //   title: 'Logout',
-                        //   onTap: () => Utils.showBottomSheet(
-                        //     context: context,
-                        //     child: LogoutSheet(),
-                        //   ),
-                        // ).paddingBottom(5.h),
+                        Text(
+                          'Preferences ',
+                          style: AppTextStyles.customTextRboto(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.white,
+                          ),
+                        ).paddingVertical(8.h),
+                        Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            border: Border.all(
+                              color: Colors.white.withValues(alpha: 0.1),
+                              width: 1.w,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              Obx(
+                                () => CustomMenuTile(
+                                  icon: AppAssets.notification,
+                                  title: 'Push Notifications',
+                                  isToggle: controller.isToggleEnabled.value,
+                                  onToggle: () {
+                                    controller.isToggleEnabled.value =
+                                        !controller.isToggleEnabled.value;
+                                  },
+                                ),
+                              ),
+                              Divider(
+                                color: Colors.white.withValues(alpha: 0.1),
+                              ).paddingHorizontal(10.w),
+                              CustomMenuTile(
+                                icon: AppAssets.langIcon2,
+                                title: 'Language',
+
+                                //! hide the button on the flag base .....
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.languageView);
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Text(
+                          'Support',
+                          style: AppTextStyles.customTextRboto(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.white,
+                          ),
+                        ).paddingVertical(8.h),
+                        Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            border: Border.all(
+                              color: Colors.white.withValues(alpha: 0.1),
+                              width: 1.w,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              CustomMenuTile(
+                                icon: AppAssets.termsServiceIcon,
+                                title: 'Terms of Service',
+                              ),
+
+                              Divider(
+                                color: Colors.white.withValues(alpha: 0.1),
+                              ).paddingHorizontal(10.w),
+                              CustomMenuTile(
+                                icon: AppAssets.privacyPolicyIcon,
+                                title: 'Privacy Policy',
+                                onTap: () {},
+                              ),
+                              Divider(
+                                color: Colors.white.withValues(alpha: 0.1),
+                              ).paddingHorizontal(10.w),
+                              CustomMenuTile(
+                                icon: AppAssets.aboutUsIcon,
+                                title: 'About us',
+                                onTap: () {},
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                  ),
+                  ).paddingTop(15.h),
                 )
                 .animate()
                 .fadeIn(duration: 600.ms, delay: 300.ms)
@@ -362,16 +310,19 @@ class _ProfileViewState extends State<ProfileView> {
 
 Widget _customDivider() {
   return Container(
-    height: 35.h,
+    height: 40.h,
     width: 1.5.w,
     decoration: BoxDecoration(
       gradient: LinearGradient(
-        begin: Alignment.centerLeft,
-        end: Alignment.centerRight,
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
         colors: [
+          AppColors.transparent,
+
           Color(0xFF1CE3A1).withOpacity(.8),
           Color(0xFF1CE3A1), // #1CE3A1    (solid)
           Color(0xFF1CE3A1).withOpacity(.5),
+          AppColors.transparent,
         ],
       ),
     ),
@@ -384,21 +335,24 @@ Widget customStatus({
   required String tittle,
 }) {
   return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(
+          Image.asset(
             imagePath,
-            height: 15.sp,
-            width: 15.w,
-            color: AppColors.white,
+            height: 17.h,
+            width: 17.w,
+            color: AppColors.lightTextColor,
           ),
-          5.w.width,
+
+          4.w.width,
           Text(
             status,
             style: AppTextStyles.customTextRboto(
-              fontWeight: FontWeight.w400,
-              color: AppColors.white,
+              fontWeight: FontWeight.w500,
+              color: AppColors.lightTextColor,
               fontSize: 12.sp,
             ),
           ),

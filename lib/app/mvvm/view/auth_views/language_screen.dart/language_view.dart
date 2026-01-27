@@ -37,7 +37,6 @@ class _LanguageViewState extends State<LanguageView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.black,
-
       appBar: CustomAppBar(
         appBarType: AppBarType.custom,
         titleWidget: Image.asset(AppAssets.appHorizontalLogo, height: 44.h),

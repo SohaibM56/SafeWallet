@@ -10,7 +10,10 @@ import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_vie
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/done_verification.view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/id_card_verification_view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_views/selfie_verification_view.dart';
+import 'package:safewallet/app/mvvm/view/auth_views/verificaion_steps_view/complete_verfication_view.dart';
+import 'package:safewallet/app/mvvm/view/auth_views/verificaion_steps_view/verificaion_steps_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/all_activity_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/auto_lock_time_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/snipper_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/sol_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/volume_tool_view.dart';
@@ -47,6 +50,8 @@ abstract class AppRoutes {
   static const String onboardingView = '/onboardingView';
   static const String languageView = '/languageView';
   static const String getStartedView = '/getStartedView';
+  static const String verificationStepsView = '/verificationStepsView';
+  static const String completeVerificationView = '/completeVerificationView';
   static const String setupWalletView = '/setupWalletView';
   static const String loginView = '/loginView';
   static const String signUpView = '/signUpView';
@@ -67,6 +72,7 @@ abstract class AppRoutes {
   static const String solToolView = '/solToolView';
   static const String snipperToolView = '/snipperToolView';
   static const String volumeToolView = '/volumeToolView';
+  static const String autoLockTimeView = '/autoLocTimeView';
 }
 
 abstract class AppPages {
@@ -95,6 +101,20 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.getStartedView,
       page: () => GetStartedView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<SplashController>(() => SplashController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.verificationStepsView,
+      page: () => VerificationStepsView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<SplashController>(() => SplashController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.completeVerificationView,
+      page: () => ComleteVerificationView(),
       binding: BindingsBuilder(() {
         // Get.lazyPut<SplashController>(() => SplashController());
       }),
@@ -235,6 +255,13 @@ abstract class AppPages {
       page: () => VolumeToolView(),
       binding: BindingsBuilder(() {
         // Get.lazyPut<BottomBarController>(() => BottomBarController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.autoLockTimeView,
+      page: () => AutoLockTimeView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<LanguageControlller>(() => LanguageControlller());
       }),
     ),
   ];

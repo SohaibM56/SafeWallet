@@ -8,6 +8,11 @@ class AppAssets {
   static const String appLogo = '$imagesPath/app_logo.png';
   static const String appHorizontalLogo = '$imagesPath/app_horizontal_logo.png';
   static const String getStartedMain = '$imagesPath/get_started_main.png';
+  static const String finalizeIC = '$imagesPath/finallize_steps.png';
+  static const String scanningIC = '$imagesPath/scanning_ic.png';
+  static const String signalIC = '$imagesPath/signal_ic.png';
+  static const String biometricAuth = '$imagesPath/biometricAuth_ic.png';
+
   static const String selfieVerification =
       '$imagesPath/selfie_verification.png';
   static const String idCardVerification =
@@ -80,7 +85,14 @@ class AppAssets {
   static const String notification = '$imagesPath/notification.png';
   static const String aboutUsIcon = '$imagesPath/about_us_icon.png';
   static const String autoLock = '$imagesPath/auto_lock.png';
+  
   static const String langIcon2 = '$imagesPath/lang_icon2.png';
+  static const String veitingIcon = '$imagesPath/veiting_icon.png';
+  static const String approvalIcon = '$imagesPath/approval_icon.png';
+  static const String regionIcon = '$imagesPath/region_icon.png';
+
+
+
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';

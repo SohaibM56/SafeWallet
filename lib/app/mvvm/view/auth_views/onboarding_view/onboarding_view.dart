@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:safewallet/app/config/app_assets.dart';
 import 'package:safewallet/app/config/app_colors.dart';
 import 'package:safewallet/app/config/app_routes.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/widgets/app_custom_button.dart';
+import 'package:safewallet/app/widgets/app_logol/app_logo_widget.dart';
+import 'package:safewallet/app/widgets/custom_app_bar.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -50,18 +51,14 @@ class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(AppAssets.oboardingImg),
-            fit: BoxFit.cover,
-          ),
-        ),
+      backgroundColor: AppColors.black,
+      appBar: CustomAppBar(appBarType: AppBarType.custom, addBackButton: false),
+      body: SafeArea(
         child: Column(
           children: [
-            Expanded(
+            AppLogoWidget(),
+            SizedBox(
+              height: 200.h,
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: onboardingData.length,
@@ -71,52 +68,47 @@ class _OnboardingViewState extends State<OnboardingView> {
                 itemBuilder: (context, index) {
                   final item = onboardingData[index];
 
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          item["title"]!,
-                          style: AppTextStyles.customText22(
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.white,
-                          ),
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        item["title"] ?? "",
+                        style: AppTextStyles.customText22(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.white,
                         ),
-                        5.h.height,
-                        Text(
-                          item["arabicTitle"]!,
-                          style: AppTextStyles.customText22(
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.white,
-                          ),
+                      ),
+                      5.h.height,
+                      Text(
+                        item["arabicTitle"] ?? "",
+                        style: AppTextStyles.customText22(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.white,
                         ),
-                        5.h.height,
-                        Text(
-                          item["desc"]!,
-                          textAlign: TextAlign.center,
-                          style: AppTextStyles.customText14(
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.white.withValues(alpha: 0.8),
-                          ),
+                      ),
+                      5.h.height,
+                      Text(
+                        item["desc"] ?? "",
+                        textAlign: TextAlign.center,
+                        style: AppTextStyles.customText14(
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.white.withValues(alpha: 0.8),
                         ),
-                        5.h.height,
-                        Text(
-                          item["arabicDesc"]!,
-                          textAlign: TextAlign.center,
-                          style: AppTextStyles.customText14(
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.white.withValues(alpha: 0.8),
-                          ),
+                      ),
+                      5.h.height,
+                      Text(
+                        item["arabicDesc"] ?? "",
+                        textAlign: TextAlign.center,
+                        style: AppTextStyles.customText14(
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.white.withValues(alpha: 0.8),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   );
                 },
               ),
-            ),
-
-            63.h.height,
+            ).paddingVertical(90.h),
 
             // Dots indicator
             Row(
@@ -155,7 +147,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               },
             ).paddingHorizontal(50.w),
 
-            40.h.height,
+            // 40.h.height,
           ],
         ).paddingHorizontal(20.w),
       ),
