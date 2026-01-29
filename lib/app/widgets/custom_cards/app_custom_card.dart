@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:safewallet/app/config/utils.dart';
 
 import '../../config/app_colors.dart';
 import '../../config/app_text_style.dart';
 
 class AppCustomCard extends StatelessWidget {
   final String language;
-  final String imageUrl;
   final VoidCallback onPressed;
   final bool isSelected;
 
   const AppCustomCard({
     super.key,
     required this.language,
-    required this.imageUrl,
     required this.onPressed,
     required this.isSelected,
   });
@@ -26,7 +25,7 @@ class AppCustomCard extends StatelessWidget {
       child: Container(
         height: 70.h,
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.primarySoft, width: 2.w),
+          border: Utils.greenBorder,
           color: AppColors.primarySoft,
           borderRadius: BorderRadius.circular(12.r),
         ),

@@ -32,7 +32,7 @@ class _ChangePinViewState extends State<ChangePinView> {
               80.h.height,
 
               Text(
-                    'Change PIN',
+                    'Change Transaction PIN',
                     style: AppTextStyles.customText24(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
@@ -80,7 +80,6 @@ class _ChangePinViewState extends State<ChangePinView> {
                               counterColor: AppColors.transparent,
                               maxLength: 6,
                               hintColor: AppColors.white,
-
                               hintFontWeight: FontWeight.w900,
                               hintTextFontSize: 17.sp,
                               obscureText: true,

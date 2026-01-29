@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:safewallet/app/config/app_colors.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
-import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 class RecentTransactionsSheet extends StatelessWidget {
@@ -71,11 +69,7 @@ class RecentTransactionsSheet extends StatelessWidget {
                   },
                   child: Container(
                     padding: EdgeInsets.all(4.w),
-                    child: Icon(
-                      Icons.close,
-                      color: Colors.black,
-                      size: 28.sp,
-                    ),
+                    child: Icon(Icons.close, color: Colors.black, size: 28.sp),
                   ),
                 ),
               ],
@@ -134,11 +128,7 @@ class RecentTransactionsSheet extends StatelessWidget {
               color: const Color(0xFFB8F4E4),
               shape: BoxShape.circle,
             ),
-            child: Icon(
-              icon,
-              color: Colors.black,
-              size: 22.sp,
-            ),
+            child: Icon(icon, color: Colors.black, size: 22.sp),
           ),
 
           14.w.width,
@@ -187,7 +177,7 @@ class RecentTransactionsSheet extends StatelessWidget {
                 style: AppTextStyles.customText(
                   fontSize: 13,
                   color: Colors.grey[600]!,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ],

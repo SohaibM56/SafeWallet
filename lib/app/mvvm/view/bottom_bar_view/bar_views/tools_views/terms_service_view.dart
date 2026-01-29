@@ -20,8 +20,7 @@ class _TermServiceViewState extends State<TermServiceView> {
       backgroundColor: AppColors.black,
       appBar: CustomAppBar(
         appBarType: AppBarType.custom,
-
-        title: 'Help & Support',
+        title: 'Terms of Service',
         addBackButton: true,
         centerTitle: true,
       ),

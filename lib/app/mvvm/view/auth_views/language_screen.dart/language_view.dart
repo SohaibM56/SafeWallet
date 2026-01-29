@@ -37,7 +37,7 @@ class _LanguageViewState extends State<LanguageView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.black,
-      appBar: isFromSettings
+      appBar: isFromSettings == true
           ? CustomAppBar(
               appBarType: AppBarType.custom,
               title: AppStrings.selectLangTitle,
@@ -54,16 +54,18 @@ class _LanguageViewState extends State<LanguageView> {
               centerTitle: true,
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: AppCustomButton(
-        title: AppStrings.continueText,
-        onPressed: () {
-          if (isFromSettings) {
-            Get.back();
-            return;
-          }
-          Get.toNamed(AppRoutes.getStartedView);
-        },
-      ).paddingOnly(bottom: 30.h, right: 25.w, left: 25.w),
+      floatingActionButton: isFromSettings == true
+          ? null
+          : AppCustomButton(
+              title: AppStrings.continueText,
+              onPressed: () {
+                if (isFromSettings == true) {
+                  Get.back();
+                  return;
+                }
+                Get.toNamed(AppRoutes.getStartedView);
+              },
+            ).paddingOnly(bottom: 30.h, right: 25.w, left: 25.w),
       body: SafeArea(
         top: false,
         child: Column(
@@ -101,7 +103,6 @@ class _LanguageViewState extends State<LanguageView> {
                         10.h.height,
                         AppCustomCard(
                           language: language.language,
-                          imageUrl: language.imageUrl,
                           isSelected:
                               controller.selectedLanguage.value ==
                               language.language,

@@ -55,7 +55,6 @@ class _AutoLockTimeViewState extends State<AutoLockTimeView> {
                         10.h.height,
                         AppCustomCard(
                           language: lockTime.timeLabel,
-                          imageUrl: lockTime.imageUrl,
                           isSelected:
                               controller.selectedLockTime.value ==
                               lockTime.timeLabel,

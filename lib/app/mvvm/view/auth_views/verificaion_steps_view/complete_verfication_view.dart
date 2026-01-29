@@ -42,6 +42,7 @@ class _ComleteVerificationViewState extends State<ComleteVerificationView> {
                     fontWeight: FontWeight.w700,
                   ),
                 )
+                .paddingSymmetric(horizontal: 30.w)
                 .animate()
                 .fadeIn(duration: 100.ms, delay: 100.ms)
                 .slideY(
@@ -55,11 +56,13 @@ class _ComleteVerificationViewState extends State<ComleteVerificationView> {
 
             Text(
                   AppStrings.completeVerificationDesc,
+                  textAlign: TextAlign.center,
                   style: AppTextStyles.customText14(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
                   ),
                 )
+                .paddingSymmetric(horizontal: 20.w)
                 .animate()
                 .fadeIn(duration: 150.ms, delay: 150.ms)
                 .slideY(
@@ -69,7 +72,7 @@ class _ComleteVerificationViewState extends State<ComleteVerificationView> {
                   curve: Curves.easeOutCubic,
                 )
                 .then(),
-            80.h.height,
+            75.h.height,
 
             AppCustomButton(
                   title: AppStrings.createWalletBtn,
@@ -136,27 +139,33 @@ class _ComleteVerificationViewState extends State<ComleteVerificationView> {
               SvgPicture.asset(
                 AppAssets.securityIcon,
                 height: 22.h,
-              ).paddingTop(10.h),
+              ).paddingTop(7.h),
+
               10.w.width,
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    AppStrings.nonCustodialTitle,
-                    style: AppTextStyles.customText16(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
+
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppStrings.nonCustodialTitle,
+                      style: AppTextStyles.customText16(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                  Text(
-                    AppStrings.nonCustodialText,
-                    style: AppTextStyles.customText12(
-                      color: Colors.white.withValues(alpha: 0.5),
+                    Text(
+                      AppStrings.nonCustodialText,
+                      overflow: TextOverflow.visible,
+                      maxLines: 2,
+                      style: AppTextStyles.customText12(
+                        color: Colors.white.withValues(alpha: 0.5),
+                      ),
                     ),
-                  ),
-                  12.h.height,
-                ],
+                    12.h.height,
+                  ],
+                ),
               ),
             ],
           ).paddingTop(15.sp).paddingHorizontal(15.w),

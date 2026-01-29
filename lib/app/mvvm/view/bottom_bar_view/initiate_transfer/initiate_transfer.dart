@@ -96,9 +96,7 @@ class InitiateTransfer extends StatelessWidget {
                                     Text(
                                       'Main Wallet',
                                       style: AppTextStyles.customText12(
-                                        color: Colors.white.withValues(
-                                          alpha: 0.5,
-                                        ),
+                                        color: Colors.white,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -196,7 +194,7 @@ class InitiateTransfer extends StatelessWidget {
                                       "ETH",
                                       style: AppTextStyles.customText(
                                         color: Colors.white70,
-                                        fontSize: 12.sp,
+                                        fontSize: 18.sp,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -205,7 +203,7 @@ class InitiateTransfer extends StatelessWidget {
                                       "MAX",
                                       style: AppTextStyles.customText(
                                         color: AppColors.grey,
-                                        fontSize: 12.sp,
+                                        fontSize: 14.sp,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -258,9 +256,7 @@ class InitiateTransfer extends StatelessWidget {
                                     Text(
                                       'Scan QR',
                                       style: AppTextStyles.customText12(
-                                        color: Colors.white.withValues(
-                                          alpha: 0.5,
-                                        ),
+                                        color: Colors.white,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),

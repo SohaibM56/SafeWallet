@@ -34,7 +34,7 @@ class _SplashViewState extends State<SplashView> {
         children: [
           Center(
             child: Text(
-              "v 1.2",
+              "v-1.5",
               style: TextStyle(fontSize: 18, color: AppColors.white),
             ),
           ),

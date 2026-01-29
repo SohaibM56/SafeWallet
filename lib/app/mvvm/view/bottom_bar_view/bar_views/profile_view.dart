@@ -6,8 +6,8 @@ import 'package:safewallet/app/config/app_colors.dart';
 import 'package:safewallet/app/config/app_routes.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
+import 'package:safewallet/app/widgets/common_app_bar.dart';
 import 'package:safewallet/app/widgets/custom_menu_tile.dart';
-import 'package:safewallet/app/widgets/data_show_widget.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 import '../../../../config/app_assets.dart';
@@ -41,8 +41,8 @@ class _ProfileViewState extends State<ProfileView> {
                         Text(
                           'Security',
                           style: AppTextStyles.customTextRboto(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w400,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
                             color: AppColors.white,
                           ),
                         ).paddingVertical(8.h),
@@ -51,8 +51,8 @@ class _ProfileViewState extends State<ProfileView> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.r),
                             border: Border.all(
-                              color: Colors.white.withValues(alpha: 0.1),
                               width: 1.w,
+                              color: AppColors.darkGrey,
                             ),
                           ),
                           child: Column(
@@ -64,7 +64,8 @@ class _ProfileViewState extends State<ProfileView> {
                                 title: 'Change Transaction PIN',
                               ),
                               Divider(
-                                color: Colors.white.withValues(alpha: 0.1),
+                                color: AppColors.darkGrey,
+                                thickness: 1.h,
                               ).paddingHorizontal(10.w),
                               CustomMenuTile(
                                 icon: AppAssets.autoLock,
@@ -80,8 +81,8 @@ class _ProfileViewState extends State<ProfileView> {
                         Text(
                           'Preferences ',
                           style: AppTextStyles.customTextRboto(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w400,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
                             color: AppColors.white,
                           ),
                         ).paddingVertical(8.h),
@@ -90,8 +91,8 @@ class _ProfileViewState extends State<ProfileView> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.r),
                             border: Border.all(
-                              color: Colors.white.withValues(alpha: 0.1),
                               width: 1.w,
+                              color: AppColors.darkGrey,
                             ),
                           ),
                           child: Column(
@@ -108,7 +109,8 @@ class _ProfileViewState extends State<ProfileView> {
                                 ),
                               ),
                               Divider(
-                                color: Colors.white.withValues(alpha: 0.1),
+                                color: AppColors.darkGrey,
+                                thickness: 1.h,
                               ).paddingHorizontal(10.w),
                               CustomMenuTile(
                                 icon: AppAssets.langIcon2,
@@ -127,8 +129,8 @@ class _ProfileViewState extends State<ProfileView> {
                         Text(
                           'Support',
                           style: AppTextStyles.customTextRboto(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w400,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
                             color: AppColors.white,
                           ),
                         ).paddingVertical(8.h),
@@ -137,8 +139,8 @@ class _ProfileViewState extends State<ProfileView> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.r),
                             border: Border.all(
-                              color: Colors.white.withValues(alpha: 0.1),
                               width: 1.w,
+                              color: AppColors.darkGrey,
                             ),
                           ),
                           child: Column(
@@ -151,7 +153,8 @@ class _ProfileViewState extends State<ProfileView> {
                               ),
 
                               Divider(
-                                color: Colors.white.withValues(alpha: 0.1),
+                                color: AppColors.darkGrey,
+                                thickness: 1.h,
                               ).paddingHorizontal(10.w),
                               CustomMenuTile(
                                 icon: AppAssets.privacyPolicyIcon,
@@ -159,7 +162,8 @@ class _ProfileViewState extends State<ProfileView> {
                                 onTap: () => Get.toNamed(AppRoutes.privacyView),
                               ),
                               Divider(
-                                color: Colors.white.withValues(alpha: 0.1),
+                                color: AppColors.darkGrey,
+                                thickness: 1.h,
                               ).paddingHorizontal(10.w),
                               CustomMenuTile(
                                 icon: AppAssets.aboutUsIcon,
@@ -174,11 +178,8 @@ class _ProfileViewState extends State<ProfileView> {
                   ).paddingTop(15.h),
                 )
                 .animate()
-                .fadeIn(duration: 600.ms, delay: 300.ms)
-                .scale(
-                  begin: const Offset(0.7, 0.7),
-                  curve: Curves.easeOutBack,
-                ),
+                .fadeIn(duration: 600.ms, delay: 150.ms)
+                .slideY(begin: -0.2, curve: Curves.easeOut),
             20.h.height,
           ],
         ).paddingHorizontal(20.w),

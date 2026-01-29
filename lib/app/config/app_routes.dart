@@ -72,6 +72,8 @@ abstract class AppRoutes {
   static const String currencyView = '/currencyView';
   static const String recoveryPhaseView = '/recoveryPhaseView';
   static const String initiateTransfer = '/initiateTransfer';
+  // static const String obsidianView = '/obsidianView';
+  // static const String notificationView = '/notificationView';
   static const String regulatoryIdentityView = '/regulatoryIdentityView';
   static const String buyAssetView = '/buyAssetView';
   static const String solToolView = '/solToolView';
@@ -234,6 +236,16 @@ abstract class AppPages {
       page: () => InitiateTransfer(),
       binding: BindingsBuilder(() {}),
     ),
+    // GetPage(
+    //   name: AppRoutes.obsidianView,
+    //   page: () => ObsidianView(),
+    //   binding: BindingsBuilder(() {}),
+    // ),
+    // GetPage(
+    //   name: AppRoutes.notificationView,
+    //   page: () => NotificationView(),
+    //   binding: BindingsBuilder(() {}),
+    // ),
     GetPage(
       name: AppRoutes.regulatoryIdentityView,
       page: () => RegulatoryIdentityView(),

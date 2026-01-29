@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,6 +10,7 @@ import 'package:safewallet/app/config/app_assets.dart';
 import 'package:safewallet/app/config/app_routes.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
+import 'package:safewallet/app/config/utils.dart';
 import 'package:safewallet/app/mvvm/view_model/phrase_controller/phrase_controller.dart';
 import 'package:safewallet/app/widgets/app_custom_button.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
@@ -151,7 +155,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Write down these words in the exact order and\nstore them in a secure location.',
+                'Write down these words in the exact order and store them in a secure location.',
                 style: AppTextStyles.customText(
                   fontSize: 11.sp,
                   color: Colors.white.withValues(alpha: 0.5),
@@ -218,7 +222,9 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                           );
 
                           return WordTile(
-                                word: word,
+                                word: controller.isWordHide.value == true
+                                    ? "*****"
+                                    : word,
                                 textColor: isSelected
                                     ? Colors.white
                                     : AppColors.white.withValues(alpha: 0.5),
@@ -244,25 +250,43 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                   Row(
                     children: [
                       Expanded(
-                        child: SizedBox(
-                          height: 40.h,
-                          child: WordTile(
-                            color: AppColors.black,
-                            borderColor: AppColors.white.withValues(alpha: 0.4),
-                            word: 'Copy',
-                            icon: Icons.copy,
+                        child: GestureDetector(
+                          onTap: () {
+                            Clipboard.setData(
+                              ClipboardData(
+                                text: "${controller.selectedWords}",
+                              ),
+                            );
+                            Utils.showToast("All Words copied");
+                            log("${controller.selectedWords}");
+                          },
+                          child: SizedBox(
+                            height: 40.h,
+                            child: WordTile(
+                              color: AppColors.black,
+                              borderColor: AppColors.white.withValues(
+                                alpha: 0.4,
+                              ),
+                              word: 'Copy',
+                              icon: Icons.copy,
+                            ),
                           ),
                         ),
                       ),
                       12.w.width,
                       Expanded(
-                        child: SizedBox(
-                          height: 40.h,
-                          child: WordTile(
-                            color: AppColors.black,
-                            borderColor: AppColors.white.withValues(alpha: 0.4),
-                            word: 'Hide',
-                            icon: Icons.visibility_off,
+                        child: GestureDetector(
+                          onTap: () => controller.hideWords(),
+                          child: SizedBox(
+                            height: 40.h,
+                            child: WordTile(
+                              color: AppColors.black,
+                              borderColor: AppColors.white.withValues(
+                                alpha: 0.4,
+                              ),
+                              word: 'Hide',
+                              icon: Icons.visibility_off,
+                            ),
                           ),
                         ),
                       ),
@@ -294,7 +318,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                       ),
                       2.h.height,
                       Text(
-                        "Anyone with access to this phrase can steal your funds.\nStore it offline and never enter it on any website.",
+                        "Anyone with access to this phrase can steal your funds.Store it offline and never enter it on any website.",
                         style: AppTextStyles.customText(
                           fontSize: 10.sp,
                           color: Colors.white.withValues(alpha: 0.5),
@@ -357,7 +381,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
         Align(
           alignment: Alignment.topLeft,
           child: Text(
-            "Select the words in the correct order to verify you've\nsaved your recovery phrase.",
+            "Select the words in the correct order to verify you've saved your recovery phrase.",
             style: AppTextStyles.customText(
               fontSize: 11.sp,
               color: Colors.white.withValues(alpha: 0.5),
@@ -503,7 +527,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Your wallet has been created and your recovery\nphrase has been verified successfully.',
+                'Your wallet has been created and your recovery phrase has been verified successfully.',
                 style: AppTextStyles.customText(
                   fontSize: 11.sp,
                   color: Colors.white.withValues(alpha: 0.5),

@@ -48,7 +48,7 @@ class BankAlertSheet extends StatelessWidget {
 
             Text(
               textAlign: TextAlign.center,
-              "Your bank account follows financial\nregulations. Your wallet keys are\npersonal and ensure your assets stay\nprotected and accessible.",
+              "Your bank account follows financial regulations. Your wallet keys are personal and ensure your assets stay protected and accessible.",
               style: AppTextStyles.customText18(fontWeight: FontWeight.w600),
             ),
 

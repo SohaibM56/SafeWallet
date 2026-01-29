@@ -104,6 +104,14 @@ class AppAssets {
   static const String passedIc = '$imagesPath/passed_ic.png';
   static const String pendingIc = '$imagesPath/pending_ic.png';
   static const String rejectedIc = '$imagesPath/rejected_ic.png';
+  static const String bitcoinIc = '$imagesPath/bitcoin_ic.png';
+  static const String lockIc = '$imagesPath/lock_ic.png';
+  static const String protectedIc = '$imagesPath/protected_ic.png';
+  static const String dotLockIc = '$imagesPath/dot_lock_ic.png';
+  static const String limitsIc = '$imagesPath/limits_ic.png';
+  static const String copyIc = '$imagesPath/copy_ic.png';
+  static const String freezeIc = '$imagesPath/freeze_ic.png';
+  static const String globeIc = '$imagesPath/globe_ic.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';

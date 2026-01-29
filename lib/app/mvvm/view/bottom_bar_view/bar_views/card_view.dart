@@ -7,12 +7,11 @@ import 'package:safewallet/app/config/app_colors.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/config/utils.dart';
-import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/profile_view.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 import '../../../../config/app_assets.dart';
+import '../../../../widgets/common_app_bar.dart';
 import '../../../../widgets/custom_sheets/recent_transations_sheet.dart';
-import '../../../../widgets/data_show_widget.dart';
 
 class CardView extends StatefulWidget {
   const CardView({super.key});
@@ -33,16 +32,7 @@ class _CardViewState extends State<CardView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _customHomeAppBar()
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 100.ms)
-                  .slideY(begin: -0.2, curve: Curves.easeOut),
-              CustomDataShow()
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 200.ms)
-                  .slideY(begin: 0.3, curve: Curves.easeOutCubic),
-
-              20.h.height,
+              CommonAppBar(),
 
               _buildCreditCardSection()
                   .animate()
@@ -72,12 +62,7 @@ class _CardViewState extends State<CardView> {
 
               20.h.height,
 
-              _buildActionItem(
-                title: "Request a physical Card",
-                onTap: () {
-
-                },
-              )
+              _buildActionItem(title: "Request a physical Card", onTap: () {})
                   .animate()
                   .fadeIn(duration: 600.ms, delay: 700.ms)
                   .slideY(begin: 0.3, curve: Curves.easeOutCubic),
@@ -85,11 +70,14 @@ class _CardViewState extends State<CardView> {
               10.h.height,
 
               _buildActionItem(
-                title: "View Transactions",
-                onTap: () {
-                  Utils.showBottomSheet(context: context, child: RecentTransactionsSheet());
-                },
-              )
+                    title: "View Transactions",
+                    onTap: () {
+                      Utils.showBottomSheet(
+                        context: context,
+                        child: RecentTransactionsSheet(),
+                      );
+                    },
+                  )
                   .animate()
                   .fadeIn(duration: 600.ms, delay: 800.ms)
                   .slideY(begin: 0.3, curve: Curves.easeOutCubic),
@@ -102,116 +90,14 @@ class _CardViewState extends State<CardView> {
     );
   }
 
-  Row _customHomeAppBar() {
-    return Row(
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Welcome Back",
-                style: AppTextStyles.customText14(
-                  color: Colors.white.withValues(alpha: 0.7),
-                  fontWeight: FontWeight.w400,
-                ),
-              )
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 200.ms)
-                  .slideY(begin: -0.1, curve: Curves.easeOut),
-              5.h.height,
-
-              Text(
-                "SEC Wallet",
-                style: AppTextStyles.customText26(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
-              )
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 100.ms)
-                  .slideY(begin: -0.2, curve: Curves.easeOut),
-            ],
-          ),
-        ),
-        Container(
-          height: 44.w,
-          width: 89.w,
-
-          decoration: BoxDecoration(
-            color: AppColors.primarySoft,
-            border: Border.all(
-              color: AppColors.primary.withValues(alpha: 0.5.sp),
-              width: 2.w,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(55.r)),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ImageIcon(
-                AssetImage(AppAssets.kycIcon),
-                color: AppColors.softgreen,
-              ),
-              6.w.width,
-              Text(
-                "KYC",
-                style: AppTextStyles.customText18(
-                  color: AppColors.softgreen,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: Container(
-            height: 44.w,
-            width: 44.w,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.primarySoft,
-              border: Border.all(
-                color: AppColors.primary.withValues(alpha: 0.5.sp),
-                // width: 2.w,
-              ),
-              // border: Border.all(color: AppColors.white),
-            ),
-            child: Center(
-              child: Stack(
-                children: [
-                  ImageIcon(
-                    AssetImage(AppAssets.filledNotificationIcon),
-                    color: AppColors.white,
-                  ),
-                  Positioned(
-                    right: 0,
-                    child: Container(
-                      height: 10.w,
-                      width: 10.w,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.primary,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildCreditCardSection() {
     return Container(
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
         // color: AppColors.primarySoft,
-        // border: Border.all(
+        border: Utils.greenBorder,
+        // Border.all(
         //   color: AppColors.primary.withValues(alpha: 0.5.sp),
         //   width: 2.w,
         // ),
@@ -241,7 +127,10 @@ class _CardViewState extends State<CardView> {
                   });
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 14.w,
+                    vertical: 8.h,
+                  ),
                   decoration: BoxDecoration(
                     color: const Color(0xFF1CE3A1).withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(20.r),
@@ -412,7 +301,7 @@ class _CardViewState extends State<CardView> {
           LinearProgressIndicator(
             value: 0.09,
             minHeight: 8.0,
-            backgroundColor:  Color(0x1F1CE3A1),
+            backgroundColor: Color(0x1F1CE3A1),
             color: Color(0xff005430),
             borderRadius: BorderRadius.circular(10.r),
           ),
@@ -438,7 +327,7 @@ class _CardViewState extends State<CardView> {
       children: [
         Expanded(
           child: _buildActionButton(
-            icon: Icons.settings_outlined,
+            icon: AppAssets.limitsIc,
             label: "Limits",
             onTap: () {
               // Handle limits
@@ -448,12 +337,10 @@ class _CardViewState extends State<CardView> {
         10.w.width,
         Expanded(
           child: _buildActionButton(
-            icon: Icons.copy,
+            icon: AppAssets.copyIc,
             label: "Copy",
             onTap: () {
-              Clipboard.setData(
-                ClipboardData(text: "4532123456789012"),
-              );
+              Clipboard.setData(ClipboardData(text: "4532123456789012"));
               Utils.showToast("Card details copied");
             },
           ),
@@ -461,7 +348,7 @@ class _CardViewState extends State<CardView> {
         10.w.width,
         Expanded(
           child: _buildActionButton(
-            icon: Icons.ac_unit,
+            icon: AppAssets.freezeIc,
             label: "Freeze",
             onTap: () {
               // Handle freeze
@@ -473,7 +360,7 @@ class _CardViewState extends State<CardView> {
   }
 
   Widget _buildActionButton({
-    required IconData icon,
+    required String icon,
     required String label,
     required VoidCallback onTap,
   }) {
@@ -483,19 +370,13 @@ class _CardViewState extends State<CardView> {
         padding: EdgeInsets.symmetric(vertical: 16.h),
         decoration: BoxDecoration(
           color: AppColors.primarySoft,
-          border: Border.all(
-            color: AppColors.primary.withValues(alpha: 0.5.sp),
-            width: 2.w,
-          ),
+          border: Utils.greenBorder,
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Column(
           children: [
-            Icon(
-              icon,
-              color: AppColors.white,
-              size: 24.sp,
-            ),
+            // Icon(icon, color: AppColors.white, size: 24.sp),
+            Image.asset(icon, color: AppColors.white, height: 22.sp),
             8.h.height,
             Text(
               label,
@@ -517,7 +398,7 @@ class _CardViewState extends State<CardView> {
         Text(
           "SECURITY FEATURES",
           style: AppTextStyles.customText(
-            fontSize: 11,
+            fontSize: 14,
             color: Colors.white.withValues(alpha: 0.5),
             fontWeight: FontWeight.w600,
             letterSpacing: 0.5,
@@ -526,15 +407,13 @@ class _CardViewState extends State<CardView> {
         15.h.height,
         Container(
           decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.white.withValues(alpha: 0.08),
-            ),
+            border: Border.all(color: AppColors.darkGrey),
             borderRadius: BorderRadius.circular(12.r),
           ),
           child: Column(
             children: [
               _buildSecurityItem(
-                icon: Icons.shield_outlined,
+                icon: AppAssets.protectedIc,
                 title: "AML Protected",
                 status: "Active",
                 statusColor: Colors.white.withValues(alpha: 0.5),
@@ -542,11 +421,11 @@ class _CardViewState extends State<CardView> {
                 isLast: false,
               ),
               Divider(
-                color: Colors.white.withValues(alpha: 0.08),
-                thickness: 1,
+                color: AppColors.darkGrey,
+                thickness: 1.h,
               ).paddingSymmetric(horizontal: 15.w),
               _buildSecurityItem(
-                icon: Icons.lock_outline,
+                icon: AppAssets.dotLockIc,
                 title: "Biometric Lock",
                 status: "Enabled",
                 statusColor: Colors.white.withValues(alpha: 0.5),
@@ -554,11 +433,11 @@ class _CardViewState extends State<CardView> {
                 isLast: false,
               ),
               Divider(
-                color: Colors.white.withValues(alpha: 0.08),
-                thickness: 1,
+                color: AppColors.darkGrey,
+                thickness: 1.h,
               ).paddingSymmetric(horizontal: 15.w),
               _buildSecurityItem(
-                icon: Icons.ac_unit,
+                icon: AppAssets.freezeIc,
                 title: "Instant Freeze",
                 status: "Ready",
                 statusColor: Colors.white.withValues(alpha: 0.5),
@@ -566,11 +445,11 @@ class _CardViewState extends State<CardView> {
                 isLast: false,
               ),
               Divider(
-                color: Colors.white.withValues(alpha: 0.08),
-                thickness: 1,
+                color: AppColors.darkGrey,
+                thickness: 1.h,
               ).paddingSymmetric(horizontal: 15.w),
               _buildSecurityItem(
-                icon: Icons.public,
+                icon: AppAssets.globeIc,
                 title: "Global Access",
                 status: "KSA Region",
                 statusColor: Colors.white.withValues(alpha: 0.5),
@@ -585,7 +464,7 @@ class _CardViewState extends State<CardView> {
   }
 
   Widget _buildSecurityItem({
-    required IconData icon,
+    required String icon,
     required String title,
     required String status,
     required Color statusColor,
@@ -603,10 +482,8 @@ class _CardViewState extends State<CardView> {
               color: const Color(0xFF414345),
               borderRadius: BorderRadius.circular(24.r),
             ),
-            child: Icon(
-              icon,
-              color: AppColors.white,
-              size: 22.sp,
+            child: Center(
+              child: Image.asset(icon, color: AppColors.white, height: 22.sp),
             ),
           ),
           16.w.width,
@@ -642,9 +519,7 @@ class _CardViewState extends State<CardView> {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
         decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.white.withValues(alpha: 0.08),
-          ),
+          border: Border.all(color: AppColors.darkGrey),
           borderRadius: BorderRadius.circular(12.r),
         ),
         child: Row(

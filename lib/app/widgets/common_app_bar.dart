@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:safewallet/app/config/app_colors.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
+import 'package:safewallet/app/config/utils.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
 import '../config/app_assets.dart';
@@ -46,72 +48,71 @@ class CommonAppBar extends StatelessWidget {
               ),
             ),
             Container(
-              height: 44.w,
-              width: 89.w,
-
-              decoration: BoxDecoration(
-                color: AppColors.primarySoft,
-                border: Border.all(
-                  color: AppColors.primary.withValues(alpha: 0.5.sp),
-                  width: 2.w,
-                ),
-                borderRadius: BorderRadius.all(Radius.circular(55.r)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ImageIcon(
-                    AssetImage(AppAssets.kycIcon),
-                    color: AppColors.softgreen,
+                  // height: 44.w,
+                  // width: 89.w,
+                  decoration: BoxDecoration(
+                    color: AppColors.primarySoft,
+                    border: Utils.greenBorder,
+                    borderRadius: BorderRadius.all(Radius.circular(55.r)),
                   ),
-                  6.w.width,
-                  Text(
-                    "KYC",
-                    style: AppTextStyles.customText18(
-                      color: AppColors.softgreen,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Container(
-                height: 44.w,
-                width: 44.w,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.primarySoft,
-                  border: Border.all(
-                    color: AppColors.primary.withValues(alpha: 0.5.sp),
-                    // width: 2.w,
-                  ),
-                  // border: Border.all(color: AppColors.white),
-                ),
-                child: Center(
-                  child: Stack(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ImageIcon(
-                        AssetImage(AppAssets.filledNotificationIcon),
-                        color: AppColors.white,
+                        AssetImage(AppAssets.kycIcon),
+                        color: AppColors.softgreen,
                       ),
-                      Positioned(
-                        right: 0,
-                        child: Container(
-                          height: 10.w,
-                          width: 10.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.primary,
-                          ),
+                      6.w.width,
+                      Text(
+                        "Verified",
+                        style: AppTextStyles.customText18(
+                          color: AppColors.softgreen,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],
-                  ),
-                ),
-              ),
-            ),
+                  ).paddingSymmetric(horizontal: 10.w, vertical: 14.h),
+                )
+                .animate()
+                .fadeIn(duration: 600.ms, delay: 100.ms)
+                .slideY(begin: -0.2, curve: Curves.easeOut),
+            // IconButton(
+            //   onPressed: () {},
+            //   icon: Container(
+            //     height: 44.w,
+            //     width: 44.w,
+            //     decoration: BoxDecoration(
+            //       shape: BoxShape.circle,
+            //       color: AppColors.primarySoft,
+            //       border: Border.all(
+            //         color: AppColors.primary.withValues(alpha: 0.5.sp),
+            //         // width: 2.w,
+            //       ),
+            //       // border: Border.all(color: AppColors.white),
+            //     ),
+            //     child: Center(
+            //       child: Stack(
+            //         children: [
+            //           ImageIcon(
+            //             AssetImage(AppAssets.filledNotificationIcon),
+            //             color: AppColors.white,
+            //           ),
+            //           Positioned(
+            //             right: 0,
+            //             child: Container(
+            //               height: 10.w,
+            //               width: 10.w,
+            //               decoration: BoxDecoration(
+            //                 shape: BoxShape.circle,
+            //                 color: AppColors.primary,
+            //               ),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
         15.h.height,

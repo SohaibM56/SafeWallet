@@ -47,7 +47,7 @@ class LogoutSheet extends StatelessWidget {
           // Title
           Text(
                 textAlign: TextAlign.center,
-                'Are you sure you want\nto logout from this account?',
+                'Are you sure you want to logout from this account?',
                 style: AppTextStyles.customText(
                   color: Colors.black,
                   fontSize: 16.sp,
