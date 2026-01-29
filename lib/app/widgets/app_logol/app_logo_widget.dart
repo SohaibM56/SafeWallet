@@ -15,81 +15,45 @@ class AppLogoWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        /// Logos
+        /// APP LOGO — Trust Anchor
         Image.asset(AppAssets.appLogo, width: double.infinity, height: 130.h)
-            .paddingSymmetric(horizontal: 10.w)
+            .paddingSymmetric(horizontal: 12.w)
             .animate()
+            .fadeIn(duration: 700.ms)
             .scale(
-              duration: 1200.ms,
-              begin: const Offset(0.5, 0.5),
+              begin: const Offset(0.97, 0.97),
               end: const Offset(1, 1),
-              curve: Curves.elasticOut,
-            )
-            .then(delay: 100.ms)
-            .shake(duration: 800.ms, hz: 4, curve: Curves.elasticOut)
-            .then(delay: 200.ms)
-            .scale(
-              duration: 600.ms,
-              begin: const Offset(1, 1),
-              end: const Offset(0.95, 0.95),
-              curve: Curves.easeInOut,
+              curve: Curves.easeOutCubic,
             ),
 
-        5.h.height,
+        10.h.height,
 
-        /// APP NAME
+        /// ENGLISH TAGLINE
         Text(
               "The national gateway for secure digital asset management and institutional governance.",
               textAlign: TextAlign.center,
               style: AppTextStyles.customText12(
-                color: AppColors.white.withValues(alpha: 0.8),
+                color: AppColors.white.withValues(alpha: 0.85),
                 fontWeight: FontWeight.w500,
+                height: 1.4,
               ),
             )
-            .animate()
-            .scale(
-              duration: 1200.ms,
-              begin: const Offset(0.5, 0.5),
-              end: const Offset(1, 1),
-              curve: Curves.elasticOut,
-            )
-            .then(delay: 100.ms)
-            .shake(duration: 800.ms, hz: 4, curve: Curves.elasticOut)
-            .then(delay: 200.ms)
-            .scale(
-              duration: 600.ms,
-              begin: const Offset(1, 1),
-              end: const Offset(0.95, 0.95),
-              curve: Curves.easeInOut,
-            ),
+            .animate(delay: 250.ms)
+            .fadeIn(duration: 550.ms)
+            .slideY(begin: 0.06, end: 0, curve: Curves.easeOut),
 
-        5.h.height,
+        6.h.height,
 
-        /// TAGLINE
+        /// ARABIC TAGLINE
         Text(
-              "البوابة الوطنية لإدارة الأصول الرقمية والحوكمة المؤسسية",
-              textAlign: TextAlign.center,
-              style: AppTextStyles.customText12(
-                color: AppColors.white.withValues(alpha: 0.8),
-                fontWeight: FontWeight.w500,
-              ),
-            )
-            .animate()
-            .scale(
-              duration: 1200.ms,
-              begin: const Offset(0.5, 0.5),
-              end: const Offset(1, 1),
-              curve: Curves.elasticOut,
-            )
-            .then(delay: 100.ms)
-            .shake(duration: 800.ms, hz: 4, curve: Curves.elasticOut)
-            .then(delay: 200.ms)
-            .scale(
-              duration: 600.ms,
-              begin: const Offset(1, 1),
-              end: const Offset(0.95, 0.95),
-              curve: Curves.easeInOut,
-            ),
+          "البوابة الوطنية لإدارة الأصول الرقمية والحوكمة المؤسسية",
+          textAlign: TextAlign.center,
+          style: AppTextStyles.customText12(
+            color: AppColors.white.withValues(alpha: 0.82),
+            fontWeight: FontWeight.w500,
+            height: 1.4,
+          ),
+        ).animate(delay: 400.ms).fadeIn(duration: 550.ms),
       ],
     );
   }

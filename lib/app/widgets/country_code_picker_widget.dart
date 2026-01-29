@@ -79,7 +79,9 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
   Widget build(BuildContext context) {
     return AppCustomField(
       suffixIcon: widget.suffixIcon,
-      // contentPadding: widget.contentPadding ?? EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+      contentPadding:
+          widget.contentPadding ??
+          EdgeInsets.symmetric(vertical: 20.h, horizontal: 16.w),
       filled: true,
       fillColor: widget.fillColor ?? AppColors.white,
       isReadOnly: widget.isReadOnly,
@@ -91,7 +93,6 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
       textColor: Colors.black,
       hintText: widget.hintText ?? "Enter Phone Number Here",
       hintTextFontSize: 14,
-      contentPadding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 16.w),
       prefixIcon: Padding(
         padding: EdgeInsets.zero,
         child: GestureDetector(
