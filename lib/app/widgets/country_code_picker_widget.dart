@@ -84,12 +84,6 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
       fillColor: widget.fillColor ?? AppColors.white,
       isReadOnly: widget.isReadOnly,
       validator: _validatePhoneNumber,
-      //  (validator) {
-      //   if (validator == null || validator.isEmpty || validator.length <= 6) {
-      //     return "Please Enter Phone Number";
-      //   }
-      //   return null;
-      // },
       labelTitle: widget.labelText,
       isRequired: widget.isRequired ?? false,
       keyboardType: TextInputType.phone,
