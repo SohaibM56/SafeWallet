@@ -27,12 +27,12 @@ abstract class AppStrings {
 
   // =================== Verification Steps View ====================
 
-  static const String completeVerificationTitle = "Preparing your Vault";
+  static const String completeVerificationTitle = "Preparing Your Vault";
   static const String completeVerificationDesc =
       "Your Sovereign Vault is being generated using 2-of-3 MPC security. To ensure total ownership, we will now guide you through the Recovery Protocol";
   static const String nonCustodialTitle = "Non-Custodial Security";
   static const String nonCustodialText =
-      "Your private keys are stored securely on\nyour device. You own your keys.";
+      "Your private keys are stored securely on your device. You own your keys.";
 
   // ==================== Login Password Screen ====================
   static const String logIn = "Log In";

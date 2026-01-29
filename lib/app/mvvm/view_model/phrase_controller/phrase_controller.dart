@@ -2,7 +2,10 @@ import 'package:get/get.dart';
 import 'package:safewallet/app/widgets/custom_snackbar/custom_snackbar.dart';
 
 class PhraseController extends GetxController {
-  final phase = RecoveryPhase.generate.obs;
+  Rx<RecoveryPhase> phase = RecoveryPhase.generate.obs;
+  RxList<String> selectedWords = <String>[].obs;
+  RxBool is12Words = true.obs;
+  RxBool isWordHide = false.obs;
 
   RxList<String> words = [
     'Adult',
@@ -22,11 +25,12 @@ class PhraseController extends GetxController {
     'Author',
   ].obs..shuffle();
 
-  RxList<String> selectedWords = <String>[].obs;
-
-  RxBool is12Words = true.obs;
   void selectWords(bool value) {
     is12Words.value = value;
+  }
+
+  void hideWords() {
+    isWordHide.value = !isWordHide.value;
   }
 
   void toggleWord(String word) {
@@ -40,7 +44,7 @@ class PhraseController extends GetxController {
 
         return;
       }
-      selectedWords.add(word); // select
+      selectedWords.add(word);
     }
   }
 }

@@ -65,6 +65,7 @@ class AppCustomField extends StatelessWidget {
     this.cursorColor,
     this.textSize,
     this.isSecondField = false, // Add onTap to trigger when the field is tapped
+    this.obscuringCharacter,
   });
 
   final Color? cursorColor;
@@ -124,6 +125,7 @@ class AppCustomField extends StatelessWidget {
   final double? labelTitleSize;
   final VoidCallback? onTap; // New onTap callback for custom action
   final bool? isSecondField;
+  final String? obscuringCharacter;
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +155,7 @@ class AppCustomField extends StatelessWidget {
         if (titleWidget != null) titleWidget!,
         isSecondField ?? false ? 4.h.height : 0.h.height,
         TextFormField(
-          maxLength: maxLength ?? 6,
+          maxLength: maxLength,
           cursorColor: cursorColor ?? AppColors.primary,
           enabled: enabled,
           autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -166,7 +168,7 @@ class AppCustomField extends StatelessWidget {
             return null;
           },
           style: AppTextStyles.customText(
-            fontSize: textSize ?? 16,
+            fontSize: textSize ?? 16, //
             color: textColor ?? AppColors.white,
           ).copyWith(letterSpacing: obscureText == true ? 6 : 0),
           textAlignVertical: isSecondField == true
@@ -181,7 +183,7 @@ class AppCustomField extends StatelessWidget {
           // Make field read-only based on isReadOnly property
           keyboardType: keyboardType ?? TextInputType.number,
           obscureText: obscureText ?? false,
-          obscuringCharacter: "•",
+          obscuringCharacter: obscuringCharacter ?? "•",
           focusNode: focusNode,
           onFieldSubmitted: onFieldSubmitted,
           onChanged: onChanged,
@@ -227,7 +229,10 @@ class AppCustomField extends StatelessWidget {
             focusedBorder: isSecondField == true
                 ? OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.sp),
-                    borderSide: BorderSide(color: AppColors.primary),
+                    borderSide: BorderSide(
+                      color: AppColors.white.withValues(alpha: 0.08),
+                      width: 2.w,
+                    ),
                   )
                 : UnderlineInputBorder(
                     borderSide: BorderSide(

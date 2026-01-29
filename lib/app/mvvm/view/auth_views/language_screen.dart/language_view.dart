@@ -37,45 +37,61 @@ class _LanguageViewState extends State<LanguageView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.black,
-      appBar: CustomAppBar(
-        appBarType: AppBarType.custom,
-        titleWidget: Image.asset(AppAssets.appHorizontalLogo, height: 44.h),
-        addBackButton: isFromSettings,
-        centerTitle: true,
-      ),
+      appBar: isFromSettings == true
+          ? CustomAppBar(
+              appBarType: AppBarType.custom,
+              title: AppStrings.selectLangTitle,
+              addBackButton: isFromSettings,
+              centerTitle: true,
+            )
+          : CustomAppBar(
+              appBarType: AppBarType.custom,
+              titleWidget: Image.asset(
+                AppAssets.appHorizontalLogo,
+                height: 44.h,
+              ),
+              addBackButton: isFromSettings,
+              centerTitle: true,
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: AppCustomButton(
-        title: AppStrings.continueText,
-        onPressed: () {
-          if (isFromSettings) {
-            Get.back();
-            return;
-          }
-          Get.toNamed(AppRoutes.getStartedView);
-        },
-      ).paddingOnly(bottom: 30.h, right: 25.w, left: 25.w),
+      floatingActionButton: isFromSettings == true
+          ? null
+          : AppCustomButton(
+              title: AppStrings.continueText,
+              onPressed: () {
+                if (isFromSettings == true) {
+                  Get.back();
+                  return;
+                }
+                Get.toNamed(AppRoutes.getStartedView);
+              },
+            ).paddingOnly(bottom: 30.h, right: 25.w, left: 25.w),
       body: SafeArea(
         top: false,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            30.h.height,
-            Text(
-              AppStrings.selectLangTitle.tr,
-              style: AppTextStyles.customText20(
-                fontWeight: FontWeight.w600,
-                color: AppColors.white,
-              ),
-            ),
+            isFromSettings ? SizedBox.shrink() : 30.h.height,
+            isFromSettings
+                ? SizedBox.shrink()
+                : Text(
+                    AppStrings.selectLangTitle.tr,
+                    style: AppTextStyles.customText20(
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.white,
+                    ),
+                  ),
             3.h.height,
-            Text(
-              AppStrings.selectLangSubtitle.tr,
-              style: AppTextStyles.customText12(
-                fontWeight: FontWeight.w500,
-                color: AppColors.white.withValues(alpha: 0.5),
-              ),
-            ),
+            isFromSettings
+                ? SizedBox.shrink()
+                : Text(
+                    AppStrings.selectLangSubtitle.tr,
+                    style: AppTextStyles.customText12(
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.white.withValues(alpha: 0.5),
+                    ),
+                  ),
             10.h.height,
             Obx(
               () => Column(
@@ -87,7 +103,6 @@ class _LanguageViewState extends State<LanguageView> {
                         10.h.height,
                         AppCustomCard(
                           language: language.language,
-                          imageUrl: language.imageUrl,
                           isSelected:
                               controller.selectedLanguage.value ==
                               language.language,

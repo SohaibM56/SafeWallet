@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../config/app_colors.dart';
 import '../config/app_text_style.dart';
 import '../config/padding_extensions.dart';
@@ -82,12 +83,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
       filled: true,
       fillColor: widget.fillColor ?? AppColors.white,
       isReadOnly: widget.isReadOnly,
-      validator: (validator) {
-        if (validator == null || validator.isEmpty || validator.length <= 6) {
-          return "Please Enter Phone Number";
-        }
-        return null;
-      },
+      validator: _validatePhoneNumber,
       labelTitle: widget.labelText,
       isRequired: widget.isRequired ?? false,
       keyboardType: TextInputType.phone,
@@ -105,14 +101,24 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
               countryListTheme: CountryListThemeData(
                 flagSize: 25,
                 backgroundColor: widget.fillColor ?? Colors.white,
-                textStyle: const TextStyle(fontSize: 16, color: Colors.blueGrey),
+                textStyle: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.blueGrey,
+                ),
                 bottomSheetHeight: 500,
-                borderRadius: const BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0),
+                ),
                 inputDecoration: InputDecoration(
                   labelText: "Search",
                   hintText: 'Start typing to search.....',
                   prefixIcon: const Icon(Icons.search),
-                  border: OutlineInputBorder(borderSide: BorderSide(color: const Color(0xFF8C98A8).withOpacity(0.2))),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: const Color(0xFF8C98A8).withOpacity(0.2),
+                    ),
+                  ),
                 ),
               ),
               onSelect: (Country country) {
@@ -127,15 +133,30 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              if (widget.selectedCountry != null) Text(widget.selectedCountry!.flagEmoji, style: const TextStyle(fontSize: 16)) else const SizedBox(width: 24),
               if (widget.selectedCountry != null)
-                Text("  + ${widget.selectedCountry!.phoneCode}", style: AppTextStyles.customText14(color: Colors.black))
+                Text(
+                  widget.selectedCountry!.flagEmoji,
+                  style: const TextStyle(fontSize: 16),
+                )
+              else
+                const SizedBox(width: 24),
+              if (widget.selectedCountry != null)
+                Text(
+                  "  + ${widget.selectedCountry!.phoneCode}",
+                  style: AppTextStyles.customText14(color: Colors.black),
+                )
               else
                 const SizedBox(width: 14),
-              Icon(Icons.arrow_drop_down_rounded, size: 20, color: AppColors.black),
+              Icon(
+                Icons.arrow_drop_down_rounded,
+                size: 20,
+                color: AppColors.black,
+              ),
               SizedBox(
                 height: 50.h,
-                child: VerticalDivider(color: Colors.black.withOpacity(0.1)).paddingVertical(12.h),
+                child: VerticalDivider(
+                  color: Colors.black.withOpacity(0.1),
+                ).paddingVertical(12.h),
               ),
             ],
           ).paddingLeft(10.w),

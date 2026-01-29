@@ -35,6 +35,7 @@ class AppAssets {
   static const String homeActive = '$imagesPath/home_active.png';
   static const String profileActive = '$imagesPath/profile_active.png';
   static const String rewardsActive = '$imagesPath/rewards_active.png';
+  static const String cardIcon = '$imagesPath/card_ic.png';
   static const String toolActive = '$imagesPath/tool_active.png';
   static const String tradeActive = '$imagesPath/trade_active.png';
   static const String langIcon = '$imagesPath/lang_icon.png';
@@ -43,9 +44,13 @@ class AppAssets {
   static const String supportIcon = '$imagesPath/support_icon.png';
   static const String solIcon = '$imagesPath/sol_icon.png';
   static const String snipperIcon = '$imagesPath/snipper_icon.png';
-  static const String volumeIcon = '$imagesPath/volume_icon.png';
+  static const String volumeUpIcon = '$imagesPath/volume_up_icon.png';
+  static const String volumeDownIcon = '$imagesPath/volume_down_icon.png';
   static const String backgroundCardImg = '$imagesPath/background_card.png';
   static const String kycIcon = '$imagesPath/kyc_check.png';
+  static const String kycImage = '$imagesPath/kyc_image.png';
+  static const String chatIc = '$imagesPath/chat_ic.png';
+
   static const String biometricIcon = '$imagesPath/biometric_icon.png';
   static const String keyIcon = '$imagesPath/key_icon.png';
   static const String privacyIcon = '$imagesPath/privacy_icon.png';
@@ -77,6 +82,36 @@ class AppAssets {
   static const String filledNotificationIcon =
       '$imagesPath/notification_ic.png';
   static const String oboardingImg = '$imagesPath/onboarding_img.jpg';
+  static const String lockTransaction = '$imagesPath/lock_transaction.png';
+  static const String termsServiceIcon = '$imagesPath/terms_service_icon.png';
+  static const String privacyPolicyIcon = '$imagesPath/privacy_policy_icon.png';
+  static const String notification = '$imagesPath/notification.png';
+  static const String aboutUsIcon = '$imagesPath/about_us_icon.png';
+  static const String autoLock = '$imagesPath/auto_lock.png';
+
+  static const String langIcon2 = '$imagesPath/lang_icon2.png';
+  static const String veitingIcon = '$imagesPath/veiting_icon.png';
+  static const String approvalIcon = '$imagesPath/approval_icon.png';
+  static const String regionIcon = '$imagesPath/region_icon.png';
+  static const String gradientBorder = '$imagesPath/gradient_border.png';
+  static const String settingsIc = '$imagesPath/settings_ic.png';
+  static const String cardIc = '$imagesPath/card_ic.png';
+  static const String auditIc = '$imagesPath/audit_ic.png';
+  static const String walletIc = '$imagesPath/wallet_ic.png';
+  static const String statusIc = '$imagesPath/status_icon.png';
+  static const String cardBg = '$imagesPath/bg_card.png';
+  static const String glassRoundCard = '$imagesPath/glass_round_card.png';
+  static const String passedIc = '$imagesPath/passed_ic.png';
+  static const String pendingIc = '$imagesPath/pending_ic.png';
+  static const String rejectedIc = '$imagesPath/rejected_ic.png';
+  static const String bitcoinIc = '$imagesPath/bitcoin_ic.png';
+  static const String lockIc = '$imagesPath/lock_ic.png';
+  static const String protectedIc = '$imagesPath/protected_ic.png';
+  static const String dotLockIc = '$imagesPath/dot_lock_ic.png';
+  static const String limitsIc = '$imagesPath/limits_ic.png';
+  static const String copyIc = '$imagesPath/copy_ic.png';
+  static const String freezeIc = '$imagesPath/freeze_ic.png';
+  static const String globeIc = '$imagesPath/globe_ic.png';
 
   // Svgs Paths
   static const String getStartedLogo = '$svgsPath/get_started_logo.svg';
@@ -93,4 +128,5 @@ class AppAssets {
   static const String transferIcon = '$svgsPath/transfer_icon.svg';
   static const String transparentFill = '$svgsPath/transparent_fill.svg';
   static const String smallTransferIcon = '$svgsPath/small_transfer_icon.svg';
+  static const String statusIcon = '$svgsPath/status_icon.svg';
 }

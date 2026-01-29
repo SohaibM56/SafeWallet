@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,6 +10,7 @@ import 'package:safewallet/app/config/app_assets.dart';
 import 'package:safewallet/app/config/app_routes.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
+import 'package:safewallet/app/config/utils.dart';
 import 'package:safewallet/app/mvvm/view_model/phrase_controller/phrase_controller.dart';
 import 'package:safewallet/app/widgets/app_custom_button.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
@@ -30,47 +34,49 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
     return Scaffold(
       backgroundColor: AppColors.black,
       appBar: CustomAppBar(),
-      body: Column(
-        children: [
-          Obx(
-            () => Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildCircularView(
-                  step: 1,
-                  title: "Generate",
-                  currentStep: controller.phase.value.index + 1,
-                ),
-                30.w.width,
-                _buildCircularView(
-                  step: 2,
-                  title: "Verify",
-                  currentStep: controller.phase.value.index + 1,
-                ),
-                30.w.width,
-                _buildCircularView(
-                  step: 3,
-                  title: "Complete",
-                  currentStep: controller.phase.value.index + 1,
-                ),
-              ],
-            ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.2, end: 0),
-          ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Obx(
+              () => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildCircularView(
+                    step: 1,
+                    title: "Generate",
+                    currentStep: controller.phase.value.index + 1,
+                  ),
+                  30.w.width,
+                  _buildCircularView(
+                    step: 2,
+                    title: "Verify",
+                    currentStep: controller.phase.value.index + 1,
+                  ),
+                  30.w.width,
+                  _buildCircularView(
+                    step: 3,
+                    title: "Complete",
+                    currentStep: controller.phase.value.index + 1,
+                  ),
+                ],
+              ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.2, end: 0),
+            ),
 
-          20.h.height,
+            20.h.height,
 
-          Obx(() {
-            switch (controller.phase.value) {
-              case RecoveryPhase.generate:
-                return _buildRecoveryPhase();
-              case RecoveryPhase.verify:
-                return _buildVerificationPhase();
-              case RecoveryPhase.complete:
-                return _buildCompletePhase();
-            }
-          }),
-        ],
-      ).paddingSymmetric(horizontal: 20.w, vertical: 10.h),
+            Obx(() {
+              switch (controller.phase.value) {
+                case RecoveryPhase.generate:
+                  return _buildRecoveryPhase();
+                case RecoveryPhase.verify:
+                  return _buildVerificationPhase();
+                case RecoveryPhase.complete:
+                  return _buildCompletePhase();
+              }
+            }),
+          ],
+        ).paddingSymmetric(horizontal: 20.w, vertical: 10.h),
+      ),
     );
   }
 
@@ -149,7 +155,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Write down these words in the exact order and\nstore them in a secure location.',
+                'Write down these words in the exact order and store them in a secure location.',
                 style: AppTextStyles.customText(
                   fontSize: 11.sp,
                   color: Colors.white.withValues(alpha: 0.5),
@@ -216,7 +222,9 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                           );
 
                           return WordTile(
-                                word: word,
+                                word: controller.isWordHide.value == true
+                                    ? "*****"
+                                    : word,
                                 textColor: isSelected
                                     ? Colors.white
                                     : AppColors.white.withValues(alpha: 0.5),
@@ -242,25 +250,43 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                   Row(
                     children: [
                       Expanded(
-                        child: SizedBox(
-                          height: 40.h,
-                          child: WordTile(
-                            color: AppColors.black,
-                            borderColor: AppColors.white.withValues(alpha: 0.4),
-                            word: 'Copy',
-                            icon: Icons.copy,
+                        child: GestureDetector(
+                          onTap: () {
+                            Clipboard.setData(
+                              ClipboardData(
+                                text: "${controller.selectedWords}",
+                              ),
+                            );
+                            Utils.showToast("All Words copied");
+                            log("${controller.selectedWords}");
+                          },
+                          child: SizedBox(
+                            height: 40.h,
+                            child: WordTile(
+                              color: AppColors.black,
+                              borderColor: AppColors.white.withValues(
+                                alpha: 0.4,
+                              ),
+                              word: 'Copy',
+                              icon: Icons.copy,
+                            ),
                           ),
                         ),
                       ),
                       12.w.width,
                       Expanded(
-                        child: SizedBox(
-                          height: 40.h,
-                          child: WordTile(
-                            color: AppColors.black,
-                            borderColor: AppColors.white.withValues(alpha: 0.4),
-                            word: 'Hide',
-                            icon: Icons.visibility_off,
+                        child: GestureDetector(
+                          onTap: () => controller.hideWords(),
+                          child: SizedBox(
+                            height: 40.h,
+                            child: WordTile(
+                              color: AppColors.black,
+                              borderColor: AppColors.white.withValues(
+                                alpha: 0.4,
+                              ),
+                              word: 'Hide',
+                              icon: Icons.visibility_off,
+                            ),
                           ),
                         ),
                       ),
@@ -292,7 +318,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                       ),
                       2.h.height,
                       Text(
-                        "Anyone with access to this phrase can steal your funds.\nStore it offline and never enter it on any website.",
+                        "Anyone with access to this phrase can steal your funds.Store it offline and never enter it on any website.",
                         style: AppTextStyles.customText(
                           fontSize: 10.sp,
                           color: Colors.white.withValues(alpha: 0.5),
@@ -355,7 +381,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
         Align(
           alignment: Alignment.topLeft,
           child: Text(
-            "Select the words in the correct order to verify you've\nsaved your recovery phrase.",
+            "Select the words in the correct order to verify you've saved your recovery phrase.",
             style: AppTextStyles.customText(
               fontSize: 11.sp,
               color: Colors.white.withValues(alpha: 0.5),
@@ -501,7 +527,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Your wallet has been created and your recovery\nphrase has been verified successfully.',
+                'Your wallet has been created and your recovery phrase has been verified successfully.',
                 style: AppTextStyles.customText(
                   fontSize: 11.sp,
                   color: Colors.white.withValues(alpha: 0.5),
@@ -512,146 +538,132 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
 
             20.h.height,
 
-            Stack(
-              children: [
-                Positioned.fill(
-                  child: SvgPicture.asset(
-                    AppAssets.completeGradient,
-                    fit: BoxFit.fill,
-                  ),
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.primarySoft,
+                border: Border.all(
+                  color: AppColors.primary.withValues(alpha: 0.5.sp),
+                  width: 2.w,
                 ),
+                borderRadius: BorderRadius.all(Radius.circular(10.r)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  18.h.height,
 
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    8.h.height,
+                  Text(
+                        'Security Summary',
+                        style: AppTextStyles.customText16(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      )
+                      .animate()
+                      .fadeIn(duration: 300.ms, delay: 200.ms)
+                      .slideX(begin: -0.1, end: 0),
 
-                    Text(
-                          'Security Summary',
-                          style: AppTextStyles.customText16(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        )
-                        .animate()
-                        .fadeIn(duration: 300.ms, delay: 200.ms)
-                        .slideX(begin: -0.1, end: 0),
+                  16.h.height,
 
-                    16.h.height,
+                  _buildSummaryTile(
+                        AppAssets.checkIcon,
+                        "Recovery phrase saved",
+                        "Your 12/24 words have been securely generated",
+                      )
+                      .animate()
+                      .fadeIn(duration: 300.ms, delay: 300.ms)
+                      .slideX(begin: -0.1, end: 0),
 
-                    _buildSummaryTile(
-                          AppAssets.checkIcon,
-                          "Recovery phrase saved",
-                          "Your 12/24 words have been securely generated",
-                        )
-                        .animate()
-                        .fadeIn(duration: 300.ms, delay: 300.ms)
-                        .slideX(begin: -0.1, end: 0),
+                  20.h.height,
 
-                    20.h.height,
+                  _buildSummaryTile(
+                        AppAssets.checkIcon,
+                        "Verification complete",
+                        "You've confirmed you can access your backup",
+                      )
+                      .animate()
+                      .fadeIn(duration: 300.ms, delay: 400.ms)
+                      .slideX(begin: -0.1, end: 0),
 
-                    _buildSummaryTile(
-                          AppAssets.checkIcon,
-                          "Verification complete",
-                          "You've confirmed you can access your backup",
-                        )
-                        .animate()
-                        .fadeIn(duration: 300.ms, delay: 400.ms)
-                        .slideX(begin: -0.1, end: 0),
+                  20.h.height,
 
-                    20.h.height,
+                  _buildSummaryTile(
+                    AppAssets.lockIcon,
+                    "Wallet protected",
+                    "Your assets are now secured by your recovery phrase",
+                  ),
 
-                    _buildSummaryTile(
-                      AppAssets.lockIcon,
-                      "Wallet protected",
-                      "Your assets are now secured by your recovery phrase",
-                    ),
-
-                    10.h.height,
-                  ],
-                ).paddingAll(10.sp),
-              ],
+                  18.h.height,
+                ],
+              ).paddingOnly(left: 14.sp, right: 20.sp),
             ).animate().fadeIn(duration: 500.ms, delay: 100.ms),
 
             12.h.height,
 
-            Stack(
-              children: [
-                Positioned.fill(
-                  child: SvgPicture.asset(
-                    AppAssets.completeGradient,
-                    fit: BoxFit.fill,
-                  ),
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.primarySoft,
+                border: Border.all(
+                  color: AppColors.primary.withValues(alpha: 0.5.sp),
+                  width: 2.w,
                 ),
+                borderRadius: BorderRadius.all(Radius.circular(10.r)),
+              ),
+              child:
+                  Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          18.h.height,
 
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    8.h.height,
+                          Text(
+                            'Security Tips',
+                            style: AppTextStyles.customText16(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
 
-                    Text(
-                      'Security Tips',
-                      style: AppTextStyles.customText16(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                          16.h.height,
 
-                    16.h.height,
+                          _buildSecurityTile(
+                            AppAssets.solidDot,
+                            "Consider using a hardware wallet for large holdings ",
+                          ).animate().fadeIn(duration: 300.ms, delay: 600.ms),
 
-                    _buildSecurityTile(
-                      AppAssets.solidDot,
-                      "Consider using a hardware wallet for large holdings",
-                    ).animate().fadeIn(duration: 300.ms, delay: 600.ms),
+                          14.h.height,
 
-                    14.h.height,
+                          _buildSecurityTile(
+                            AppAssets.solidDot,
+                            "Never share it with anyone, including support staff",
+                          ).animate().fadeIn(duration: 300.ms, delay: 700.ms),
 
-                    _buildSecurityTile(
-                      AppAssets.solidDot,
-                      "Never share it with anyone, including support staff",
-                    ).animate().fadeIn(duration: 300.ms, delay: 700.ms),
+                          14.h.height,
 
-                    14.h.height,
+                          _buildSecurityTile(
+                            AppAssets.solidDot,
+                            "Store your recovery phrase in multiple secure locations",
+                          ).animate().fadeIn(duration: 300.ms, delay: 800.ms),
 
-                    _buildSecurityTile(
-                      AppAssets.solidDot,
-                      "Store your recovery phrase in multiple secure locations",
-                    ).animate().fadeIn(duration: 300.ms, delay: 800.ms),
-
-                    10.h.height,
-                  ],
-                ).paddingAll(10.sp),
-              ],
-            ).animate().fadeIn(duration: 500.ms, delay: 500.ms),
+                          18.h.height,
+                        ],
+                      )
+                      .paddingOnly(left: 14.sp, right: 20.sp)
+                      .animate()
+                      .fadeIn(duration: 500.ms, delay: 500.ms),
+            ),
 
             40.h.height,
 
             AppCustomButton(
-                  title: "Go to Wallet",
+                  title: "Return Home",
                   onPressed: () {
-                    Get.toNamed(AppRoutes.walletView);
+                    Get.toNamed(AppRoutes.bottomBarView);
                   },
                 )
                 .paddingHorizontal(30.w)
                 .animate()
                 .fadeIn(duration: 400.ms, delay: 1000.ms)
                 .slideY(begin: 0.2, end: 0),
-
-            20.h.height,
-
-            GestureDetector(
-              onTap: () {
-                controller.phase.value = RecoveryPhase.generate;
-              },
-              child: Text(
-                "Return Home",
-                style: AppTextStyles.customText(
-                  fontSize: 13.sp,
-                  color: Colors.white.withValues(alpha: 0.5),
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ).animate().fadeIn(duration: 400.ms, delay: 1100.ms),
 
             20.h.height,
           ],
@@ -749,9 +761,10 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
         Expanded(
           child: Text(
             title,
-            style: AppTextStyles.customText10(
-              color: Colors.white.withValues(alpha: 0.5),
-              fontWeight: FontWeight.w500,
+            style: AppTextStyles.customText(
+              color: Colors.white,
+              fontSize: 11.sp,
+              fontWeight: FontWeight.w400,
             ),
           ),
         ),

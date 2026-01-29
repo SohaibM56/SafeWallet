@@ -13,14 +13,19 @@ import 'package:safewallet/app/mvvm/view/auth_views/signup_view/verification_vie
 import 'package:safewallet/app/mvvm/view/auth_views/verificaion_steps_view/complete_verfication_view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/verificaion_steps_view/verificaion_steps_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/all_activity_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/auto_lock_time_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/change_pin_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/privacy_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/about_us_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/snipper_tool_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/sol_tool_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/terms_service_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/bar_views/tools_views/volume_tool_view.dart';
+import 'package:safewallet/app/mvvm/view/bottom_bar_view/initiate_transfer/initiate_transfer.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/recovery_phase_view/recovery_phase_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/regulatory_identity_view/buy_asset_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/regulatory_identity_view/regulatory_identity_view.dart';
 import 'package:safewallet/app/mvvm/view/bottom_bar_view/setting_views/currency_view.dart';
-import 'package:safewallet/app/mvvm/view/bottom_bar_view/wallet_view/wallet_view.dart';
 import 'package:safewallet/app/mvvm/view/get_started_view/get_started_view.dart';
 import 'package:safewallet/app/mvvm/view/splash_view/splash_view.dart';
 import 'package:safewallet/app/mvvm/view_model/auth_controller/forgot_password_controller/forgot_password_controller.dart';
@@ -30,7 +35,8 @@ import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controlle
 import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controller/verification_controllers/done_verification_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controller/verification_controllers/id_card_verfication_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/auth_controller/sign_up_controller/verification_controllers/selfie_verification_controller.dart';
-import 'package:safewallet/app/mvvm/view_model/bottom_bar_controller/trade_controller.dart';
+import 'package:safewallet/app/mvvm/view_model/auto_lock_time/auto_lock_time_controller.dart';
+import 'package:safewallet/app/mvvm/view_model/change_pin_controller/change_pin_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/language_controller/language_controlller.dart';
 import 'package:safewallet/app/mvvm/view_model/profile_controllers/profile_controller.dart';
 import 'package:safewallet/app/mvvm/view_model/splash_controller/splash_controller.dart';
@@ -65,12 +71,19 @@ abstract class AppRoutes {
   static const String supportView = '/supportView';
   static const String currencyView = '/currencyView';
   static const String recoveryPhaseView = '/recoveryPhaseView';
-  static const String walletView = '/walletView';
+  static const String initiateTransfer = '/initiateTransfer';
+  // static const String obsidianView = '/obsidianView';
+  // static const String notificationView = '/notificationView';
   static const String regulatoryIdentityView = '/regulatoryIdentityView';
   static const String buyAssetView = '/buyAssetView';
   static const String solToolView = '/solToolView';
   static const String snipperToolView = '/snipperToolView';
   static const String volumeToolView = '/volumeToolView';
+  static const String autoLockTimeView = '/autoLocTimeView';
+  static const String aboutusView = '/aboutusView';
+  static const String privacyView = '/privacyView';
+  static const String termServiceView = '/termServiceView';
+  static const String changePinView = '/changePinView';
 }
 
 abstract class AppPages {
@@ -193,7 +206,6 @@ abstract class AppPages {
       page: () => BottomBarView(),
       binding: BindingsBuilder(() {
         Get.lazyPut<BottomBarController>(() => BottomBarController());
-        Get.lazyPut<TradeController>(() => TradeController());
         Get.lazyPut<ProfileController>(() => ProfileController());
       }),
     ),
@@ -220,10 +232,20 @@ abstract class AppPages {
       }),
     ),
     GetPage(
-      name: AppRoutes.walletView,
-      page: () => WalletView(),
+      name: AppRoutes.initiateTransfer,
+      page: () => InitiateTransfer(),
       binding: BindingsBuilder(() {}),
     ),
+    // GetPage(
+    //   name: AppRoutes.obsidianView,
+    //   page: () => ObsidianView(),
+    //   binding: BindingsBuilder(() {}),
+    // ),
+    // GetPage(
+    //   name: AppRoutes.notificationView,
+    //   page: () => NotificationView(),
+    //   binding: BindingsBuilder(() {}),
+    // ),
     GetPage(
       name: AppRoutes.regulatoryIdentityView,
       page: () => RegulatoryIdentityView(),
@@ -253,6 +275,41 @@ abstract class AppPages {
       page: () => VolumeToolView(),
       binding: BindingsBuilder(() {
         // Get.lazyPut<BottomBarController>(() => BottomBarController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.autoLockTimeView,
+      page: () => AutoLockTimeView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<AutoLockController>(() => AutoLockController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.aboutusView,
+      page: () => AboutUsView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<LanguageControlller>(() => LanguageControlller());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.privacyView,
+      page: () => PrivacyView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<LanguageControlller>(() => LanguageControlller());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.termServiceView,
+      page: () => TermServiceView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<LanguageControlller>(() => LanguageControlller());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.changePinView,
+      page: () => ChangePinView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<ChangePinController>(() => ChangePinController());
       }),
     ),
   ];

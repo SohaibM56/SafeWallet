@@ -55,6 +55,7 @@ dependencies:
   camera: any
   country_picker: ^2.0.27
   riff_switch: ^0.0.4
+  fluttertoast: ^9.0.0
 
 
 dev_dependencies:

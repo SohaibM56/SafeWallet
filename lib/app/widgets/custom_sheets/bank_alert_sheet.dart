@@ -38,6 +38,7 @@ class BankAlertSheet extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   Get.back();
+                  Get.offAllNamed(AppRoutes.bottomBarView);
                 },
                 child: Icon(Icons.close, color: AppColors.black, size: 22.sp),
               ),
@@ -47,7 +48,7 @@ class BankAlertSheet extends StatelessWidget {
 
             Text(
               textAlign: TextAlign.center,
-              "Your bank account follows financial\nregulations. Your wallet keys are\npersonal and ensure your assets stay\nprotected and accessible.",
+              "Your bank account follows financial regulations. Your wallet keys are personal and ensure your assets stay protected and accessible.",
               style: AppTextStyles.customText18(fontWeight: FontWeight.w600),
             ),
 
@@ -58,7 +59,7 @@ class BankAlertSheet extends StatelessWidget {
               borderRadius: 80.r,
               onPressed: () {
                 Get.back();
-                Get.toNamed(AppRoutes.regulatoryIdentityView);
+                Get.offAllNamed(AppRoutes.bottomBarView);
               },
               bgColor: AppColors.primary,
             ).paddingHorizontal(30.w),
