@@ -1,3 +1,4 @@
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/forgot_password_view/forgot_password_view.dart';
 import 'package:safewallet/app/mvvm/view/auth_views/language_screen.dart/language_view.dart';
@@ -47,7 +48,6 @@ import '../mvvm/view/bottom_bar_view/setting_views/support_view.dart';
 import '../mvvm/view_model/bottom_bar_controller/bottom_bar_controller.dart';
 import '../mvvm/view_model/phrase_controller/phrase_controller.dart';
 
-/// Defines navigation routes for the LayerX app.
 abstract class AppRoutes {
   AppRoutes._();
 
@@ -93,224 +93,516 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.splashView,
       page: () => SplashView(),
+      transition: Transition.fadeIn,
+      transitionDuration: 600.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<SplashController>(() => SplashController());
       }),
     ),
+
     GetPage(
       name: AppRoutes.onboardingView,
       page: () => OnboardingView(),
+      transition: Transition.rightToLeft,
+      transitionDuration: 400.ms,
       binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.languageView,
       page: () => LanguageView(),
+      transition: Transition.rightToLeft,
+      transitionDuration: 400.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<LanguageControlller>(() => LanguageControlller());
       }),
     ),
+
     GetPage(
       name: AppRoutes.getStartedView,
       page: () => GetStartedView(),
-      binding: BindingsBuilder(() {
-        // Get.lazyPut<SplashController>(() => SplashController());
-      }),
+      transition: Transition.fadeIn,
+      transitionDuration: 400.ms,
+      binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.verificationStepsView,
       page: () => VerificationStepsView(),
-      binding: BindingsBuilder(() {
-        // Get.lazyPut<SplashController>(() => SplashController());
-      }),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: 450.ms,
+      binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.completeVerificationView,
       page: () => ComleteVerificationView(),
-      binding: BindingsBuilder(() {
-        // Get.lazyPut<SplashController>(() => SplashController());
-      }),
+      transition: Transition.fadeIn,
+      transitionDuration: 400.ms,
+      binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.setupWalletView,
       page: () => SetupWalletView(),
-      binding: BindingsBuilder(() {
-        // Get.lazyPut<SplashController>(() => SplashController());
-      }),
+      transition: Transition.rightToLeft,
+      transitionDuration: 450.ms,
+      binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.loginView,
       page: () => LoginView(),
+      transition: Transition.rightToLeft,
+      transitionDuration: 400.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<LoginController>(() => LoginController());
       }),
     ),
+
     GetPage(
       name: AppRoutes.signUpView,
       page: () => SignUpView(),
+      transition: Transition.rightToLeft,
+      transitionDuration: 400.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<SignUpController>(() => SignUpController());
       }),
     ),
+
     GetPage(
       name: AppRoutes.forgotPasswordView,
       page: () => ForgotPasswordView(),
+      transition: Transition.downToUp,
+      transitionDuration: 350.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<ForgotPasswordController>(() => ForgotPasswordController());
       }),
     ),
+
     GetPage(
       name: AppRoutes.verificationView,
       page: () => VerificationView(),
-      binding: BindingsBuilder(() {
-        // Get.lazyPut<ForgotPasswordController>(() => ForgotPasswordController());
-      }),
+      transition: Transition.fadeIn,
+      transitionDuration: 350.ms,
+      binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.selfieVerificationView,
       page: () => SelfieVerificationView(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: 450.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<SelfieVerificationController>(
           () => SelfieVerificationController(),
         );
       }),
     ),
+
     GetPage(
       name: AppRoutes.idCardVerificationView,
       page: () => IDCardVerificationView(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: 450.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<IDCardVerificationController>(
           () => IDCardVerificationController(),
         );
       }),
     ),
+
     GetPage(
       name: AppRoutes.biometricVerificationView,
       page: () => BioMetricVerificationView(),
+      transition: Transition.fadeIn,
+      transitionDuration: 400.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<BiometricVerificationController>(
           () => BiometricVerificationController(),
         );
       }),
     ),
+
     GetPage(
       name: AppRoutes.doneVerificationView,
       page: () => DoneVerificationView(),
+      transition: Transition.fadeIn,
+      transitionDuration: 400.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<DoneVerificationController>(
           () => DoneVerificationController(),
         );
       }),
     ),
+
     GetPage(
       name: AppRoutes.bottomBarView,
       page: () => BottomBarView(),
+      transition: Transition.fadeIn,
+      transitionDuration: 500.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<BottomBarController>(() => BottomBarController());
         Get.lazyPut<ProfileController>(() => ProfileController());
       }),
     ),
+
     GetPage(
       name: AppRoutes.allActivityView,
       page: () => AllActivityView(),
+      transition: Transition.rightToLeft,
+      transitionDuration: 350.ms,
       binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.supportView,
       page: () => SupportView(),
+      transition: Transition.rightToLeft,
+      transitionDuration: 350.ms,
       binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.currencyView,
       page: () => CurrencyView(),
+      transition: Transition.rightToLeft,
+      transitionDuration: 350.ms,
       binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.recoveryPhaseView,
       page: () => RecoveryPhaseView(),
+      transition: Transition.fadeIn,
+      transitionDuration: 400.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<PhraseController>(() => PhraseController());
       }),
     ),
+
     GetPage(
       name: AppRoutes.initiateTransfer,
       page: () => InitiateTransfer(),
+      transition: Transition.rightToLeft,
+      transitionDuration: 350.ms,
       binding: BindingsBuilder(() {}),
     ),
-    // GetPage(
-    //   name: AppRoutes.obsidianView,
-    //   page: () => ObsidianView(),
-    //   binding: BindingsBuilder(() {}),
-    // ),
-    // GetPage(
-    //   name: AppRoutes.notificationView,
-    //   page: () => NotificationView(),
-    //   binding: BindingsBuilder(() {}),
-    // ),
+
+    // commented routes intentionally preserved
     GetPage(
       name: AppRoutes.regulatoryIdentityView,
       page: () => RegulatoryIdentityView(),
+      transition: Transition.fadeIn,
+      transitionDuration: 400.ms,
       binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.buyAssetView,
       page: () => BuyAssetView(),
+      transition: Transition.rightToLeft,
+      transitionDuration: 350.ms,
       binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.solToolView,
       page: () => SolToolView(),
-      binding: BindingsBuilder(() {
-        // Get.lazyPut<BottomBarController>(() => BottomBarController());
-      }),
+      transition: Transition.rightToLeft,
+      transitionDuration: 350.ms,
+      binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.snipperToolView,
       page: () => SnipperToolView(),
+      transition: Transition.rightToLeft,
+      transitionDuration: 350.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<SnipperToolController>(() => SnipperToolController());
       }),
     ),
+
     GetPage(
       name: AppRoutes.volumeToolView,
       page: () => VolumeToolView(),
-      binding: BindingsBuilder(() {
-        // Get.lazyPut<BottomBarController>(() => BottomBarController());
-      }),
+      transition: Transition.rightToLeft,
+      transitionDuration: 350.ms,
+      binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.autoLockTimeView,
       page: () => AutoLockTimeView(),
+      transition: Transition.rightToLeft,
+      transitionDuration: 350.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<AutoLockController>(() => AutoLockController());
       }),
     ),
+
     GetPage(
       name: AppRoutes.aboutusView,
       page: () => AboutUsView(),
-      binding: BindingsBuilder(() {
-        // Get.lazyPut<LanguageControlller>(() => LanguageControlller());
-      }),
+      transition: Transition.fadeIn,
+      transitionDuration: 350.ms,
+      binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.privacyView,
       page: () => PrivacyView(),
-      binding: BindingsBuilder(() {
-        // Get.lazyPut<LanguageControlller>(() => LanguageControlller());
-      }),
+      transition: Transition.fadeIn,
+      transitionDuration: 350.ms,
+      binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.termServiceView,
       page: () => TermServiceView(),
-      binding: BindingsBuilder(() {
-        // Get.lazyPut<LanguageControlller>(() => LanguageControlller());
-      }),
+      transition: Transition.fadeIn,
+      transitionDuration: 350.ms,
+      binding: BindingsBuilder(() {}),
     ),
+
     GetPage(
       name: AppRoutes.changePinView,
       page: () => ChangePinView(),
+      transition: Transition.rightToLeft,
+      transitionDuration: 350.ms,
       binding: BindingsBuilder(() {
         Get.lazyPut<ChangePinController>(() => ChangePinController());
       }),
     ),
   ];
 }
+
+// abstract class AppPages {
+//   AppPages._();
+
+//   static final routes = <GetPage>[
+//     GetPage(
+//       name: AppRoutes.splashView,
+//       page: () => SplashView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<SplashController>(() => SplashController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.onboardingView,
+//       page: () => OnboardingView(),
+//       binding: BindingsBuilder(() {}),
+//     ),
+//     GetPage(
+//       name: AppRoutes.languageView,
+//       page: () => LanguageView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<LanguageControlller>(() => LanguageControlller());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.getStartedView,
+//       page: () => GetStartedView(),
+//       binding: BindingsBuilder(() {
+//         // Get.lazyPut<SplashController>(() => SplashController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.verificationStepsView,
+//       page: () => VerificationStepsView(),
+//       binding: BindingsBuilder(() {
+//         // Get.lazyPut<SplashController>(() => SplashController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.completeVerificationView,
+//       page: () => ComleteVerificationView(),
+//       binding: BindingsBuilder(() {
+//         // Get.lazyPut<SplashController>(() => SplashController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.setupWalletView,
+//       page: () => SetupWalletView(),
+//       binding: BindingsBuilder(() {
+//         // Get.lazyPut<SplashController>(() => SplashController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.loginView,
+//       page: () => LoginView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<LoginController>(() => LoginController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.signUpView,
+//       page: () => SignUpView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<SignUpController>(() => SignUpController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.forgotPasswordView,
+//       page: () => ForgotPasswordView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<ForgotPasswordController>(() => ForgotPasswordController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.verificationView,
+//       page: () => VerificationView(),
+//       binding: BindingsBuilder(() {
+//         // Get.lazyPut<ForgotPasswordController>(() => ForgotPasswordController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.selfieVerificationView,
+//       page: () => SelfieVerificationView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<SelfieVerificationController>(
+//           () => SelfieVerificationController(),
+//         );
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.idCardVerificationView,
+//       page: () => IDCardVerificationView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<IDCardVerificationController>(
+//           () => IDCardVerificationController(),
+//         );
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.biometricVerificationView,
+//       page: () => BioMetricVerificationView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<BiometricVerificationController>(
+//           () => BiometricVerificationController(),
+//         );
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.doneVerificationView,
+//       page: () => DoneVerificationView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<DoneVerificationController>(
+//           () => DoneVerificationController(),
+//         );
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.bottomBarView,
+//       page: () => BottomBarView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<BottomBarController>(() => BottomBarController());
+//         Get.lazyPut<ProfileController>(() => ProfileController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.allActivityView,
+//       page: () => AllActivityView(),
+//       binding: BindingsBuilder(() {}),
+//     ),
+//     GetPage(
+//       name: AppRoutes.supportView,
+//       page: () => SupportView(),
+//       binding: BindingsBuilder(() {}),
+//     ),
+//     GetPage(
+//       name: AppRoutes.currencyView,
+//       page: () => CurrencyView(),
+//       binding: BindingsBuilder(() {}),
+//     ),
+//     GetPage(
+//       name: AppRoutes.recoveryPhaseView,
+//       page: () => RecoveryPhaseView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<PhraseController>(() => PhraseController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.initiateTransfer,
+//       page: () => InitiateTransfer(),
+//       binding: BindingsBuilder(() {}),
+//     ),
+//     // GetPage(
+//     //   name: AppRoutes.obsidianView,
+//     //   page: () => ObsidianView(),
+//     //   binding: BindingsBuilder(() {}),
+//     // ),
+//     // GetPage(
+//     //   name: AppRoutes.notificationView,
+//     //   page: () => NotificationView(),
+//     //   binding: BindingsBuilder(() {}),
+//     // ),
+//     GetPage(
+//       name: AppRoutes.regulatoryIdentityView,
+//       page: () => RegulatoryIdentityView(),
+//       binding: BindingsBuilder(() {}),
+//     ),
+//     GetPage(
+//       name: AppRoutes.buyAssetView,
+//       page: () => BuyAssetView(),
+//       binding: BindingsBuilder(() {}),
+//     ),
+//     GetPage(
+//       name: AppRoutes.solToolView,
+//       page: () => SolToolView(),
+//       binding: BindingsBuilder(() {
+//         // Get.lazyPut<BottomBarController>(() => BottomBarController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.snipperToolView,
+//       page: () => SnipperToolView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<SnipperToolController>(() => SnipperToolController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.volumeToolView,
+//       page: () => VolumeToolView(),
+//       binding: BindingsBuilder(() {
+//         // Get.lazyPut<BottomBarController>(() => BottomBarController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.autoLockTimeView,
+//       page: () => AutoLockTimeView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<AutoLockController>(() => AutoLockController());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.aboutusView,
+//       page: () => AboutUsView(),
+//       binding: BindingsBuilder(() {
+//         // Get.lazyPut<LanguageControlller>(() => LanguageControlller());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.privacyView,
+//       page: () => PrivacyView(),
+//       binding: BindingsBuilder(() {
+//         // Get.lazyPut<LanguageControlller>(() => LanguageControlller());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.termServiceView,
+//       page: () => TermServiceView(),
+//       binding: BindingsBuilder(() {
+//         // Get.lazyPut<LanguageControlller>(() => LanguageControlller());
+//       }),
+//     ),
+//     GetPage(
+//       name: AppRoutes.changePinView,
+//       page: () => ChangePinView(),
+//       binding: BindingsBuilder(() {
+//         Get.lazyPut<ChangePinController>(() => ChangePinController());
+//       }),
+//     ),
+//   ];
+// }

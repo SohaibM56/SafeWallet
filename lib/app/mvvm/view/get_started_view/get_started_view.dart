@@ -33,24 +33,16 @@ class _GetStartedViewState extends State<GetStartedView> {
             mainAxisSize: MainAxisSize.min,
             children: [
               150.h.height,
-              AppLogoWidget()
-                  .animate()
-                  .fadeIn(duration: 1000.ms, delay: 300.ms)
-                  .scale(
-                    begin: const Offset(0.3, 0.3),
-                    end: const Offset(1, 1),
-                    duration: 1200.ms,
-                    curve: Curves.elasticOut,
-                  )
-                  .then()
-                  .shimmer(
-                    delay: 1800.ms,
-                    duration: 1200.ms,
-                    color: AppColors.secondary.withValues(alpha: 0.4),
-                  )
-                  .then(),
+
+              // Logo Animation
+              AppLogoWidget(),
+
+              // .animate()
+              // .fadeIn(duration: 500.ms) // faster
+              // .scaleXY(begin: 0.85, end: 1.0, curve: Curves.easeOutBack),
               140.h.height,
 
+              // Title Text
               Text(
                     AppStrings.getStartedText,
                     style: AppTextStyles.customText16(
@@ -59,16 +51,17 @@ class _GetStartedViewState extends State<GetStartedView> {
                     ),
                   )
                   .animate()
-                  .fadeIn(duration: 700.ms, delay: 1400.ms)
+                  .fadeIn(duration: 500.ms, delay: 200.ms)
                   .slideY(
-                    begin: 0.5,
+                    begin: 0.3,
                     end: 0,
-                    duration: 800.ms,
+                    duration: 600.ms,
                     curve: Curves.easeOutCubic,
-                  )
-                  .then(),
+                  ),
+
               10.h.height,
 
+              // Input Field
               AppCustomField(
                     hintText: AppStrings.getStartedHintText.tr,
                     isSecondField: true,
@@ -78,15 +71,17 @@ class _GetStartedViewState extends State<GetStartedView> {
                     maxLength: 10,
                   )
                   .animate()
-                  .fadeIn(duration: 700.ms, delay: 1400.ms)
+                  .fadeIn(duration: 500.ms, delay: 350.ms)
                   .slideY(
-                    begin: 0.5,
+                    begin: 0.3,
                     end: 0,
-                    duration: 800.ms,
+                    duration: 600.ms,
                     curve: Curves.easeOutCubic,
-                  )
-                  .then(),
+                  ),
+
               20.h.height,
+
+              // Get Started Button
               AppCustomButton(
                     title: AppStrings.getStartedBtn,
                     suffixIcon: Icon(
@@ -100,40 +95,19 @@ class _GetStartedViewState extends State<GetStartedView> {
                     height: 56.h,
                   )
                   .animate()
-                  .fadeIn(duration: 800.ms, delay: 1800.ms)
+                  .fadeIn(duration: 500.ms, delay: 500.ms)
                   .slideY(
-                    begin: 1.0,
+                    begin: 0.8,
                     end: 0,
-                    duration: 900.ms,
+                    duration: 700.ms,
                     curve: Curves.easeOutBack,
                   )
                   .then()
-                  .shimmer(
-                    delay: 2600.ms,
-                    duration: 1800.ms,
-                    color: Colors.white.withOpacity(0.4),
-                  )
-                  .then()
                   .scaleXY(
-                    delay: 3200.ms,
-                    duration: 800.ms,
-                    begin: 1,
-                    end: 1.03,
+                    duration: 400.ms,
+                    begin: 0.98,
+                    end: 1.0,
                     curve: Curves.easeInOut,
-                  )
-                  .then()
-                  .scaleXY(
-                    duration: 800.ms,
-                    begin: 1.03,
-                    end: 1,
-                    curve: Curves.easeInOut,
-                  )
-                  .then()
-                  .shake(
-                    delay: 4500.ms,
-                    hz: 3,
-                    duration: 1000.ms,
-                    curve: Curves.elasticOut,
                   ),
             ],
           ).paddingHorizontal(30.w),

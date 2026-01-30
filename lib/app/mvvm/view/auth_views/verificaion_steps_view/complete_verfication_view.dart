@@ -44,7 +44,7 @@ class _ComleteVerificationViewState extends State<ComleteVerificationView> {
                 )
                 .paddingSymmetric(horizontal: 30.w)
                 .animate()
-                .fadeIn(duration: 100.ms, delay: 100.ms)
+                .fadeIn(duration: 100.ms, delay: 500.ms)
                 .slideY(
                   begin: 0.5,
                   end: 0,
@@ -64,7 +64,7 @@ class _ComleteVerificationViewState extends State<ComleteVerificationView> {
                 )
                 .paddingSymmetric(horizontal: 20.w)
                 .animate()
-                .fadeIn(duration: 150.ms, delay: 150.ms)
+                .fadeIn(duration: 150.ms, delay: 700.ms)
                 .slideY(
                   begin: 0.5,
                   end: 0,
@@ -75,48 +75,64 @@ class _ComleteVerificationViewState extends State<ComleteVerificationView> {
             75.h.height,
 
             AppCustomButton(
-                  title: AppStrings.createWalletBtn,
+                  title: "Create Wallet",
+
                   onPressed: () {
                     Get.toNamed(AppRoutes.recoveryPhaseView);
                   },
-                  height: 56.h,
                 )
                 .animate()
-                .fadeIn(duration: 200.ms, delay: 200.ms)
+                .fadeIn(duration: 150.ms, delay: 900.ms)
                 .slideY(
-                  begin: 1.0,
+                  begin: 0.5,
                   end: 0,
-                  duration: 900.ms,
-                  curve: Curves.easeOutBack,
-                )
-                .then()
-                .shimmer(
-                  delay: 2600.ms,
-                  duration: 1800.ms,
-                  color: Colors.white.withValues(alpha: 0.4),
-                )
-                .then()
-                .scaleXY(
-                  delay: 3200.ms,
                   duration: 800.ms,
-                  begin: 1,
-                  end: 1.03,
-                  curve: Curves.easeInOut,
-                )
-                .then()
-                .scaleXY(
-                  duration: 800.ms,
-                  begin: 1.03,
-                  end: 1,
-                  curve: Curves.easeInOut,
-                )
-                .then()
-                .shake(
-                  delay: 4500.ms,
-                  hz: 3,
-                  duration: 1000.ms,
-                  curve: Curves.elasticOut,
+                  curve: Curves.easeOutCubic,
                 ),
+
+            // AppCustomButton(
+            //       title: AppStrings.createWalletBtn,
+            //       onPressed: () {
+            //         Get.toNamed(AppRoutes.recoveryPhaseView);
+            //       },
+            //       height: 56.h,
+            //     )
+            //     .animate()
+            //     .fadeIn(duration: 200.ms, delay: 200.ms)
+            //     .slideY(
+            //       begin: 1.0,
+            //       end: 0,
+            //       duration: 900.ms,
+            //       curve: Curves.easeOutBack,
+            //     )
+            //     .then()
+            //     .shimmer(
+            //       delay: 2600.ms,
+            //       duration: 1800.ms,
+            //       color: Colors.white.withValues(alpha: 0.4),
+            //     )
+            //     .then()
+            //     .scaleXY(
+            //       delay: 3200.ms,
+            //       duration: 800.ms,
+            //       begin: 1,
+            //       end: 1.03,
+            //       curve: Curves.easeInOut,
+            //     )
+            //     .then()
+            //     .scaleXY(
+            //       duration: 800.ms,
+            //       begin: 1.03,
+            //       end: 1,
+            //       curve: Curves.easeInOut,
+            //     )
+            //     .then()
+            //     .shake(
+            //       delay: 4500.ms,
+            //       hz: 3,
+            //       duration: 1000.ms,
+            //       curve: Curves.elasticOut,
+            //     ),
           ],
         ).paddingHorizontal(30.w),
       ),

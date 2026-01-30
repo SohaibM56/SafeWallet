@@ -12,6 +12,7 @@ import 'package:safewallet/app/config/app_text_style.dart';
 import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/config/utils.dart';
 import 'package:safewallet/app/mvvm/view_model/phrase_controller/phrase_controller.dart';
+import 'package:safewallet/app/widgets/app_animation/app_animation.dart';
 import 'package:safewallet/app/widgets/app_custom_button.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
@@ -38,28 +39,32 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
         child: Column(
           children: [
             Obx(
-              () => Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildCircularView(
-                    step: 1,
-                    title: "Generate",
-                    currentStep: controller.phase.value.index + 1,
-                  ),
-                  30.w.width,
-                  _buildCircularView(
-                    step: 2,
-                    title: "Verify",
-                    currentStep: controller.phase.value.index + 1,
-                  ),
-                  30.w.width,
-                  _buildCircularView(
-                    step: 3,
-                    title: "Complete",
-                    currentStep: controller.phase.value.index + 1,
-                  ),
-                ],
-              ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.2, end: 0),
+              () =>
+                  Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildCircularView(
+                            step: 1,
+                            title: "Generate",
+                            currentStep: controller.phase.value.index + 1,
+                          ),
+                          30.w.width,
+                          _buildCircularView(
+                            step: 2,
+                            title: "Verify",
+                            currentStep: controller.phase.value.index + 1,
+                          ),
+                          30.w.width,
+                          _buildCircularView(
+                            step: 3,
+                            title: "Complete",
+                            currentStep: controller.phase.value.index + 1,
+                          ),
+                        ],
+                      )
+                      .animate()
+                      .fadeIn(duration: AppAnimations.slow)
+                      .slideY(begin: -0.2, end: 0),
             ),
 
             20.h.height,
@@ -120,9 +125,9 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
               ),
             )
             .animate(target: isActive ? 1 : 0)
-            .scale(end: const Offset(1.05, 1.05), duration: 600.ms)
+            .scale(end: const Offset(1.05, 1.05), duration: AppAnimations.slow)
             .then()
-            .scale(end: const Offset(1.0, 1.0), duration: 600.ms),
+            .scale(end: const Offset(1.0, 1.0), duration: AppAnimations.slow),
         8.h.height,
         Text(
           title,
@@ -142,15 +147,18 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
         child: Column(
           children: [
             Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'Your Recovery Phrase',
-                style: AppTextStyles.customText20(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1, end: 0),
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Your Recovery Phrase',
+                    style: AppTextStyles.customText20(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                )
+                .animate()
+                .fadeIn(duration: AppAnimations.slow)
+                .slideX(begin: -0.1, end: 0),
             5.h.height,
             Align(
               alignment: Alignment.topLeft,
@@ -162,7 +170,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-            ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
+            ).animate().fadeIn(duration: AppAnimations.normal, delay: 100.ms),
 
             20.h.height,
 
@@ -191,7 +199,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                       )
                       .paddingHorizontal(24.w)
                       .animate()
-                      .fadeIn(duration: 400.ms, delay: 200.ms),
+                      .fadeIn(duration: AppAnimations.normal, delay: 200.ms),
             ),
 
             20.h.height,
@@ -238,7 +246,10 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                                 onTap: () => controller.toggleWord(word),
                               )
                               .animate()
-                              .fadeIn(duration: 300.ms, delay: (50 * index).ms)
+                              .fadeIn(
+                                duration: AppAnimations.fast,
+                                delay: (50 * index).ms,
+                              )
                               .slideY(begin: 0.3, end: 0);
                         });
                       },
@@ -291,10 +302,13 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                         ),
                       ),
                     ],
-                  ).animate().fadeIn(duration: 400.ms, delay: 800.ms),
+                  ).animate().fadeIn(
+                    duration: AppAnimations.normal,
+                    delay: 800.ms,
+                  ),
                 ],
               ).paddingAll(10.sp),
-            ).animate().fadeIn(duration: 500.ms, delay: 300.ms),
+            ).animate().fadeIn(duration: AppAnimations.slow, delay: 300.ms),
 
             10.h.height,
 
@@ -329,7 +343,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                   ),
                 )
                 .animate()
-                .fadeIn(duration: 400.ms, delay: 1000.ms)
+                .fadeIn(duration: AppAnimations.normal, delay: 1000.ms)
                 .slideY(begin: 0.2, end: 0),
 
             14.h.height,
@@ -342,7 +356,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                 )
                 .paddingHorizontal(30.w)
                 .animate()
-                .fadeIn(duration: 400.ms, delay: 1100.ms),
+                .fadeIn(duration: AppAnimations.normal, delay: 1100.ms),
 
             10.h.height,
 
@@ -357,7 +371,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                 )
                 .paddingHorizontal(30.w)
                 .animate()
-                .fadeIn(duration: 400.ms, delay: 1200.ms),
+                .fadeIn(duration: AppAnimations.normal, delay: 1200.ms),
           ],
         ),
       ),
@@ -368,15 +382,18 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
     return Column(
       children: [
         Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            'Verify Your Phrase',
-            style: AppTextStyles.customText20(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1, end: 0),
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Verify Your Phrase',
+                style: AppTextStyles.customText20(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            )
+            .animate()
+            .fadeIn(duration: AppAnimations.slow)
+            .slideX(begin: -0.1, end: 0),
         5.h.height,
         Align(
           alignment: Alignment.topLeft,
@@ -388,7 +405,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
               fontWeight: FontWeight.w400,
             ),
           ),
-        ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
+        ).animate().fadeIn(duration: AppAnimations.normal, delay: 100.ms),
 
         30.h.height,
 
@@ -409,14 +426,14 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
               ),
             ),
           ],
-        ).animate().fadeIn(duration: 400.ms, delay: 200.ms),
+        ).animate().fadeIn(duration: AppAnimations.normal, delay: 200.ms),
 
         8.h.height,
 
         _buildProgressHeader(
           current: 10,
           total: 12,
-        ).animate().fadeIn(duration: 400.ms, delay: 300.ms),
+        ).animate().fadeIn(duration: AppAnimations.normal, delay: 300.ms),
 
         30.h.height,
 
@@ -460,7 +477,10 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                               borderColor: AppColors.primary,
                             )
                             .animate()
-                            .fadeIn(duration: 300.ms, delay: (50 * index).ms)
+                            .fadeIn(
+                              duration: AppAnimations.fast,
+                              delay: (50 * index).ms,
+                            )
                             .scale(
                               begin: const Offset(0.8, 0.8),
                               end: const Offset(1.0, 1.0),
@@ -474,7 +494,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
               ).paddingAll(10.sp),
             ),
           ],
-        ).animate().fadeIn(duration: 500.ms, delay: 400.ms),
+        ).animate().fadeIn(duration: AppAnimations.slow, delay: 400.ms),
 
         70.h.height,
 
@@ -486,7 +506,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
             )
             .paddingHorizontal(30.w)
             .animate()
-            .fadeIn(duration: 400.ms, delay: 800.ms),
+            .fadeIn(duration: AppAnimations.normal, delay: 800.ms),
 
         20.h.height,
 
@@ -502,7 +522,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
               fontWeight: FontWeight.w400,
             ),
           ),
-        ).animate().fadeIn(duration: 400.ms, delay: 900.ms),
+        ).animate().fadeIn(duration: AppAnimations.normal, delay: 900.ms),
       ],
     );
   }
@@ -514,15 +534,18 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
         child: Column(
           children: [
             Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'Backup Complete!',
-                style: AppTextStyles.customText20(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1, end: 0),
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Backup Complete!',
+                    style: AppTextStyles.customText20(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                )
+                .animate()
+                .fadeIn(duration: AppAnimations.slow)
+                .slideX(begin: -0.1, end: 0),
             5.h.height,
             Align(
               alignment: Alignment.topLeft,
@@ -534,7 +557,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-            ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
+            ).animate().fadeIn(duration: AppAnimations.normal, delay: 100.ms),
 
             20.h.height,
 
@@ -560,7 +583,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                         ),
                       )
                       .animate()
-                      .fadeIn(duration: 300.ms, delay: 200.ms)
+                      .fadeIn(duration: AppAnimations.fast, delay: 200.ms)
                       .slideX(begin: -0.1, end: 0),
 
                   16.h.height,
@@ -571,7 +594,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                         "Your 12/24 words have been securely generated",
                       )
                       .animate()
-                      .fadeIn(duration: 300.ms, delay: 300.ms)
+                      .fadeIn(duration: AppAnimations.fast, delay: 300.ms)
                       .slideX(begin: -0.1, end: 0),
 
                   20.h.height,
@@ -582,7 +605,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                         "You've confirmed you can access your backup",
                       )
                       .animate()
-                      .fadeIn(duration: 300.ms, delay: 400.ms)
+                      .fadeIn(duration: AppAnimations.fast, delay: 400.ms)
                       .slideX(begin: -0.1, end: 0),
 
                   20.h.height,
@@ -596,7 +619,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                   18.h.height,
                 ],
               ).paddingOnly(left: 14.sp, right: 20.sp),
-            ).animate().fadeIn(duration: 500.ms, delay: 100.ms),
+            ).animate().fadeIn(duration: AppAnimations.slow, delay: 100.ms),
 
             12.h.height,
 
@@ -628,28 +651,37 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                           _buildSecurityTile(
                             AppAssets.solidDot,
                             "Consider using a hardware wallet for large holdings ",
-                          ).animate().fadeIn(duration: 300.ms, delay: 600.ms),
+                          ).animate().fadeIn(
+                            duration: AppAnimations.fast,
+                            delay: 600.ms,
+                          ),
 
                           14.h.height,
 
                           _buildSecurityTile(
                             AppAssets.solidDot,
                             "Never share it with anyone, including support staff",
-                          ).animate().fadeIn(duration: 300.ms, delay: 700.ms),
+                          ).animate().fadeIn(
+                            duration: AppAnimations.fast,
+                            delay: 700.ms,
+                          ),
 
                           14.h.height,
 
                           _buildSecurityTile(
                             AppAssets.solidDot,
                             "Store your recovery phrase in multiple secure locations",
-                          ).animate().fadeIn(duration: 300.ms, delay: 800.ms),
+                          ).animate().fadeIn(
+                            duration: AppAnimations.fast,
+                            delay: 800.ms,
+                          ),
 
                           18.h.height,
                         ],
                       )
                       .paddingOnly(left: 14.sp, right: 20.sp)
                       .animate()
-                      .fadeIn(duration: 500.ms, delay: 500.ms),
+                      .fadeIn(duration: AppAnimations.slow, delay: 500.ms),
             ),
 
             40.h.height,
@@ -662,7 +694,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                 )
                 .paddingHorizontal(30.w)
                 .animate()
-                .fadeIn(duration: 400.ms, delay: 1000.ms)
+                .fadeIn(duration: AppAnimations.normal, delay: 1000.ms)
                 .slideY(begin: 0.2, end: 0),
 
             20.h.height,
@@ -805,7 +837,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
               ).animate().slideX(
                 begin: -1,
                 end: 0,
-                duration: 600.ms,
+                duration: AppAnimations.slow,
                 curve: Curves.easeOut,
               ),
 
@@ -821,7 +853,7 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
                   ),
                 ),
               ).animate().scale(
-                duration: 400.ms,
+                duration: AppAnimations.normal,
                 delay: 600.ms,
                 curve: Curves.elasticOut,
               ),

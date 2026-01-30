@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/config/app_colors.dart';
@@ -69,43 +70,46 @@ class _OnboardingViewState extends State<OnboardingView> {
                   final item = onboardingData[index];
 
                   return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        item["title"] ?? "",
-                        style: AppTextStyles.customText22(
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.white,
-                        ),
-                      ),
-                      5.h.height,
-                      Text(
-                        item["arabicTitle"] ?? "",
-                        style: AppTextStyles.customText22(
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.white,
-                        ),
-                      ),
-                      5.h.height,
-                      Text(
-                        item["desc"] ?? "",
-                        textAlign: TextAlign.center,
-                        style: AppTextStyles.customText14(
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.white.withValues(alpha: 0.8),
-                        ),
-                      ),
-                      5.h.height,
-                      Text(
-                        item["arabicDesc"] ?? "",
-                        textAlign: TextAlign.center,
-                        style: AppTextStyles.customText14(
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.white.withValues(alpha: 0.8),
-                        ),
-                      ),
-                    ],
-                  );
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            item["title"] ?? "",
+                            style: AppTextStyles.customText22(
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.white,
+                            ),
+                          ),
+                          5.h.height,
+                          Text(
+                            item["arabicTitle"] ?? "",
+                            style: AppTextStyles.customText22(
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.white,
+                            ),
+                          ),
+                          5.h.height,
+                          Text(
+                            item["desc"] ?? "",
+                            textAlign: TextAlign.center,
+                            style: AppTextStyles.customText14(
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.white.withValues(alpha: 0.8),
+                            ),
+                          ),
+                          5.h.height,
+                          Text(
+                            item["arabicDesc"] ?? "",
+                            textAlign: TextAlign.center,
+                            style: AppTextStyles.customText14(
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.white.withValues(alpha: 0.8),
+                            ),
+                          ),
+                        ],
+                      )
+                      .animate(delay: 250.ms)
+                      .fadeIn(duration: 550.ms)
+                      .slideY(begin: 0.06, end: 0, curve: Curves.easeOut);
                 },
               ),
             ).paddingVertical(90.h),
