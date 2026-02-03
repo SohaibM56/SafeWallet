@@ -277,110 +277,115 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
   }
 
   Widget _buildVerificationPhase() {
-    return Column(
-      children: [
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            'Verify Your Phrase',
-            style: AppTextStyles.customText22(color: Colors.white, fontWeight: FontWeight.w500),
-          ),
-        ).animate().fadeIn(duration: AppAnimations.slow).slideX(begin: -0.1, end: 0),
-        5.h.height,
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            "Select the words in the correct order to verify you've saved your recovery phrase.",
-            style: AppTextStyles.customText(fontSize: 13, color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.w400),
-          ),
-        ).animate().fadeIn(duration: AppAnimations.normal, delay: 100.ms),
-
-        30.h.height,
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Expanded(
+      child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
           children: [
-            Text("Progress", style: AppTextStyles.customText14(color: Colors.white.withValues(alpha: 0.6))),
-            Text(
-              "10/12",
-              style: AppTextStyles.customText14(color: Colors.white, fontWeight: FontWeight.w500),
-            ),
-          ],
-        ).animate().fadeIn(duration: AppAnimations.normal, delay: 200.ms),
-
-        8.h.height,
-
-        _buildProgressHeader(current: 10, total: 12).animate().fadeIn(duration: AppAnimations.normal, delay: 300.ms),
-
-        30.h.height,
-
-        Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: AppColors.grey, width: 2.w),
-                borderRadius: BorderRadius.all(Radius.circular(10.r)),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Verify Your Phrase',
+                style: AppTextStyles.customText22(color: Colors.white, fontWeight: FontWeight.w500),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  10.h.height,
+            ).animate().fadeIn(duration: AppAnimations.slow).slideX(begin: -0.1, end: 0),
+            5.h.height,
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Select the words in the correct order to verify you've saved your recovery phrase.",
+                style: AppTextStyles.customText(fontSize: 13, color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.w400),
+              ),
+            ).animate().fadeIn(duration: AppAnimations.normal, delay: 100.ms),
 
-                  Text(
-                    "Your selection:",
-                    style: AppTextStyles.customText(fontSize: 15.sp, color: Colors.white, fontWeight: FontWeight.w600),
+            30.h.height,
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Progress", style: AppTextStyles.customText14(color: Colors.white.withValues(alpha: 0.6))),
+                Text(
+                  "10/12",
+                  style: AppTextStyles.customText14(color: Colors.white, fontWeight: FontWeight.w500),
+                ),
+              ],
+            ).animate().fadeIn(duration: AppAnimations.normal, delay: 200.ms),
+
+            8.h.height,
+
+            _buildProgressHeader(current: 10, total: 12).animate().fadeIn(duration: AppAnimations.normal, delay: 300.ms),
+
+            30.h.height,
+
+            Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.grey, width: 2.w),
+                    borderRadius: BorderRadius.all(Radius.circular(10.r)),
                   ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      10.h.height,
 
-                  10.h.height,
-
-                  Obx(
-                    () => GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 10.w,
-                        mainAxisSpacing: 10.h,
-                        mainAxisExtent: 44.h,
+                      Text(
+                        "Your selection:",
+                        style: AppTextStyles.customText(fontSize: 15.sp, color: Colors.white, fontWeight: FontWeight.w600),
                       ),
-                      itemCount: controller.selectedWords.length,
-                      itemBuilder: (context, index) {
-                        return WordTile(word: controller.selectedWords[index], borderColor: AppColors.primary)
-                            .animate()
-                            .fadeIn(duration: AppAnimations.fast, delay: (50 * index).ms)
-                            .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0));
-                      },
-                    ),
-                  ),
 
-                  10.h.height,
-                ],
-              ).paddingAll(10.sp),
-            ),
+                      10.h.height,
+
+                      Obx(
+                        () => GridView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 10.w,
+                            mainAxisSpacing: 10.h,
+                            mainAxisExtent: 44.h,
+                          ),
+                          itemCount: controller.selectedWords.length,
+                          itemBuilder: (context, index) {
+                            return WordTile(word: controller.selectedWords[index], borderColor: AppColors.primary)
+                                .animate()
+                                .fadeIn(duration: AppAnimations.fast, delay: (50 * index).ms)
+                                .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0));
+                          },
+                        ),
+                      ),
+
+                      10.h.height,
+                    ],
+                  ).paddingAll(10.sp),
+                ),
+              ],
+            ).animate().fadeIn(duration: AppAnimations.slow, delay: 400.ms),
+
+            70.h.height,
+
+            AppCustomButton(
+              title: "Continue to Wallet",
+              onPressed: () {
+                controller.phase.value = RecoveryPhase.complete;
+              },
+            ).paddingHorizontal(30.w).animate().fadeIn(duration: AppAnimations.normal, delay: 800.ms),
+
+            20.h.height,
+
+            GestureDetector(
+              onTap: () {
+                controller.phase.value = RecoveryPhase.generate;
+              },
+              child: Text(
+                "Back to Seed Phase",
+                style: AppTextStyles.customText(fontSize: 13.sp, color: Colors.white.withValues(alpha: 0.5), fontWeight: FontWeight.w400),
+              ),
+            ).animate().fadeIn(duration: AppAnimations.normal, delay: 900.ms),
           ],
-        ).animate().fadeIn(duration: AppAnimations.slow, delay: 400.ms),
-
-        70.h.height,
-
-        AppCustomButton(
-          title: "Continue to Wallet",
-          onPressed: () {
-            controller.phase.value = RecoveryPhase.complete;
-          },
-        ).paddingHorizontal(30.w).animate().fadeIn(duration: AppAnimations.normal, delay: 800.ms),
-
-        20.h.height,
-
-        GestureDetector(
-          onTap: () {
-            controller.phase.value = RecoveryPhase.generate;
-          },
-          child: Text(
-            "Back to Seed Phase",
-            style: AppTextStyles.customText(fontSize: 13.sp, color: Colors.white.withValues(alpha: 0.5), fontWeight: FontWeight.w400),
-          ),
-        ).animate().fadeIn(duration: AppAnimations.normal, delay: 900.ms),
-      ],
+        ),
+      ),
     );
   }
 
