@@ -28,23 +28,18 @@ class _SplashViewState extends State<SplashView> {
     return Scaffold(
       backgroundColor: AppColors.black,
       extendBodyBehindAppBar: true,
-      extendBody: true,
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Center(
-            child: Text(
-              "v-1.5",
-              style: TextStyle(fontSize: 18, color: AppColors.white),
+      bottomNavigationBar: SafeArea(
+        bottom: true,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Center(
+              child: Text("v-1.5", style: TextStyle(fontSize: 18, color: AppColors.white)),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-      appBar: CustomAppBar(
-        backgroundColor: AppColors.transparent,
-        title: '',
-        leading: SizedBox.shrink(),
-      ),
+      appBar: CustomAppBar(backgroundColor: AppColors.transparent, title: '', leading: SizedBox.shrink()),
       body: Center(child: AppLogoWidget().paddingHorizontal(50.w)),
     );
   }

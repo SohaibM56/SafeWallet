@@ -34,152 +34,88 @@ class _ProfileViewState extends State<ProfileView> {
             20.h.height,
             CommonAppBar(),
             Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Security',
-                          style: AppTextStyles.customTextRboto(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.white,
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Security', style: AppTextStyles.customText(fontSize: 16, color: AppColors.white)),
+                    8.h.height,
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14.sp),
+                        border: Border.all(color: AppColors.white.withOpacity(0.2)),
+                      ),
+                      child: Column(
+                        children: [
+                          CustomMenuTile(icon: AppAssets.lockTransaction, onTap: () => Get.toNamed(AppRoutes.changePinView), title: 'Change Transaction PIN'),
+                          Divider(color: AppColors.white.withOpacity(0.1), thickness: 1.h).paddingHorizontal(10.w),
+                          CustomMenuTile(
+                            icon: AppAssets.autoLock,
+                            title: 'Auto Lock',
+                            onTap: () {
+                              Get.toNamed(AppRoutes.autoLockTimeView);
+                            },
                           ),
-                        ).paddingVertical(8.h),
-                        Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.r),
-                            border: Border.all(
-                              width: 1.w,
-                              color: AppColors.darkGrey,
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              CustomMenuTile(
-                                icon: AppAssets.lockTransaction,
-                                onTap: () =>
-                                    Get.toNamed(AppRoutes.changePinView),
-                                title: 'Change Transaction PIN',
-                              ),
-                              Divider(
-                                color: AppColors.darkGrey,
-                                thickness: 1.h,
-                              ).paddingHorizontal(10.w),
-                              CustomMenuTile(
-                                icon: AppAssets.autoLock,
-                                title: 'Auto Lock',
-                                onTap: () {
-                                  Get.toNamed(AppRoutes.autoLockTimeView);
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        Text(
-                          'Preferences ',
-                          style: AppTextStyles.customTextRboto(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.white,
-                          ),
-                        ).paddingVertical(8.h),
-                        Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.r),
-                            border: Border.all(
-                              width: 1.w,
-                              color: AppColors.darkGrey,
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              Obx(
-                                () => CustomMenuTile(
-                                  icon: AppAssets.notification,
-                                  title: 'Push Notifications',
-                                  isToggle: controller.isToggleEnabled.value,
-                                  onToggle: () {
-                                    controller.isToggleEnabled.value =
-                                        !controller.isToggleEnabled.value;
-                                  },
-                                ),
-                              ),
-                              Divider(
-                                color: AppColors.darkGrey,
-                                thickness: 1.h,
-                              ).paddingHorizontal(10.w),
-                              CustomMenuTile(
-                                icon: AppAssets.langIcon2,
-                                title: 'Language',
-                                onTap: () {
-                                  Get.toNamed(
-                                    AppRoutes.languageView,
-                                    arguments: {'isFromSetting': true},
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        Text(
-                          'Support',
-                          style: AppTextStyles.customTextRboto(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.white,
-                          ),
-                        ).paddingVertical(8.h),
-                        Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.r),
-                            border: Border.all(
-                              width: 1.w,
-                              color: AppColors.darkGrey,
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              CustomMenuTile(
-                                icon: AppAssets.termsServiceIcon,
-                                title: 'Terms of Service',
-                                onTap: () =>
-                                    Get.toNamed(AppRoutes.termServiceView),
-                              ),
-
-                              Divider(
-                                color: AppColors.darkGrey,
-                                thickness: 1.h,
-                              ).paddingHorizontal(10.w),
-                              CustomMenuTile(
-                                icon: AppAssets.privacyPolicyIcon,
-                                title: 'Privacy Policy',
-                                onTap: () => Get.toNamed(AppRoutes.privacyView),
-                              ),
-                              Divider(
-                                color: AppColors.darkGrey,
-                                thickness: 1.h,
-                              ).paddingHorizontal(10.w),
-                              CustomMenuTile(
-                                icon: AppAssets.aboutUsIcon,
-                                title: 'About us',
-                                onTap: () => Get.toNamed(AppRoutes.aboutusView),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ).paddingTop(15.h),
-                )
-                .animate()
-                .fadeIn(duration: 600.ms, delay: 150.ms)
-                .slideY(begin: -0.2, curve: Curves.easeOut),
+                    15.h.height,
+                    Text('Preferences ', style: AppTextStyles.customText(fontSize: 16, color: AppColors.white)),
+                    10.h.height,
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14.sp),
+                        border: Border.all(color: AppColors.white.withOpacity(0.2)),
+                      ),
+                      child: Column(
+                        children: [
+                          Obx(
+                            () => CustomMenuTile(
+                              icon: AppAssets.notification,
+                              title: 'Push Notifications',
+                              isToggle: controller.isToggleEnabled.value,
+                              onToggle: () {
+                                controller.isToggleEnabled.value = !controller.isToggleEnabled.value;
+                              },
+                            ),
+                          ),
+                          Divider(color: AppColors.white.withOpacity(0.1), thickness: 1.h).paddingHorizontal(10.w),
+                          CustomMenuTile(
+                            icon: AppAssets.langIcon2,
+                            title: 'Language',
+                            onTap: () {
+                              Get.toNamed(AppRoutes.languageView, arguments: {'isFromSetting': true});
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    15.h.height,
+                    Text('Support', style: AppTextStyles.customText(fontSize: 16, color: AppColors.white)),
+                    15.h.height,
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14.sp),
+                        border: Border.all(color: AppColors.white.withOpacity(0.2)),
+                      ),
+                      child: Column(
+                        children: [
+                          CustomMenuTile(icon: AppAssets.termsServiceIcon, title: 'Terms of Service', onTap: () => Get.toNamed(AppRoutes.termServiceView)),
+                          Divider(color: AppColors.white.withOpacity(0.1), thickness: 1.h).paddingHorizontal(10.w),
+                          CustomMenuTile(icon: AppAssets.privacyPolicyIcon, title: 'Privacy Policy', onTap: () => Get.toNamed(AppRoutes.privacyView)),
+                          Divider(color: AppColors.white.withOpacity(0.1), thickness: 1.h).paddingHorizontal(10.w),
+                          CustomMenuTile(icon: AppAssets.aboutUsIcon, title: 'About us', onTap: () => Get.toNamed(AppRoutes.aboutusView)),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ).paddingTop(15.h),
+            ).animate().fadeIn(duration: 600.ms, delay: 150.ms).slideY(begin: -0.2, curve: Curves.easeOut),
             20.h.height,
           ],
         ).paddingHorizontal(20.w),

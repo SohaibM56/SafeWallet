@@ -21,17 +21,13 @@ class Utils {
     return formatter.format(date ?? DateTime.now());
   }
 
-  static Border greenBorder = Border.all(
-    color: AppColors.white.withValues(alpha: 0.1),
-    width: 2.w,
-  );
+  static Border greenBorder = Border.all(color: AppColors.white.withOpacity(0.08));
 
   static int calculateAge(DateTime birthDate) {
     DateTime today = DateTime.now();
     int age = today.year - birthDate.year;
 
-    if (today.month < birthDate.month ||
-        (today.month == birthDate.month && today.day < birthDate.day)) {
+    if (today.month < birthDate.month || (today.month == birthDate.month && today.day < birthDate.day)) {
       age--;
     }
     return age;
@@ -54,26 +50,19 @@ class Utils {
       final DateTime today = DateTime.now();
       final DateTime currentDate = DateTime(today.year, today.month, today.day);
 
-      return inputDate.isAfter(currentDate) ||
-          inputDate.isAtSameMomentAs(currentDate);
+      return inputDate.isAfter(currentDate) || inputDate.isAtSameMomentAs(currentDate);
     } catch (e) {
       LoggerService.i("Invalid date format or error parsing date: e");
       return false;
     }
   }
 
-  static void showBottomSheet({
-    required BuildContext context,
-    required Widget child,
-  }) {
+  static void showBottomSheet({required BuildContext context, required Widget child}) {
     showModalBottomSheet(
       backgroundColor: Colors.white,
       isScrollControlled: true,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(30.sp),
-          topLeft: Radius.circular(30.sp),
-        ),
+        borderRadius: BorderRadius.only(topRight: Radius.circular(30.sp), topLeft: Radius.circular(30.sp)),
       ),
       context: context,
       builder: (context) {
@@ -82,10 +71,7 @@ class Utils {
     );
   }
 
-  static void showCustomDialog({
-    required BuildContext context,
-    required Widget child,
-  }) {
+  static void showCustomDialog({required BuildContext context, required Widget child}) {
     showDialog(
       context: context,
       barrierDismissible: true, // Allows dismissing when tapping outside
@@ -93,9 +79,7 @@ class Utils {
         return Dialog(
           backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              22.sp,
-            ), // Rounded corners for the dialog
+            borderRadius: BorderRadius.circular(22.sp), // Rounded corners for the dialog
           ),
           child: child, // Your custom widget inside the dialog
         );
@@ -114,19 +98,10 @@ class Utils {
       context: context,
       builder: (context) => CupertinoActionSheet(
         actions: [
-          CupertinoActionSheetAction(
-            onPressed: onCameraTap,
-            child: const Text("Camera"),
-          ),
-          CupertinoActionSheetAction(
-            onPressed: onGalleryTap,
-            child: const Text("Gallery"),
-          ),
+          CupertinoActionSheetAction(onPressed: onCameraTap, child: const Text("Camera")),
+          CupertinoActionSheetAction(onPressed: onGalleryTap, child: const Text("Gallery")),
           if (hasFile == true && onFileTap != null) // <-- safe null check
-            CupertinoActionSheetAction(
-              onPressed: onFileTap,
-              child: const Text("Pick File (PDF, DOC)"),
-            ),
+            CupertinoActionSheetAction(onPressed: onFileTap, child: const Text("Pick File (PDF, DOC)")),
         ],
         cancelButton: CupertinoActionSheetAction(
           onPressed: () {

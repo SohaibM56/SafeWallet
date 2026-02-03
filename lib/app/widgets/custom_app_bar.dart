@@ -7,13 +7,7 @@ import 'package:safewallet/app/widgets/custom_back_button.dart';
 import '../config/app_colors.dart';
 import '../config/app_text_style.dart';
 
-enum AppBarType {
-  backWithLogo,
-  homeWithActions,
-  centeredTitle,
-  leftTitle,
-  custom,
-}
+enum AppBarType { backWithLogo, homeWithActions, centeredTitle, leftTitle, custom }
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
@@ -96,32 +90,39 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     switch (appBarType) {
       case AppBarType.backWithLogo:
-        return CustomBackButton(
-          onTap: onBackPressed ?? () => Navigator.of(context).maybePop(),
-        ).paddingLeft(15.w);
+        return Container(
+          child: SizedBox(
+            height: 25.sp,
+            width: 25.sp,
+            child: CustomBackButton(onTap: onBackPressed ?? () => Navigator.of(context).maybePop()).paddingLeft(15.w),
+          ),
+        );
 
       case AppBarType.homeWithActions:
-        return logoWidget != null
-            ? Padding(
-                padding: EdgeInsets.only(left: 16.w),
-                child: logoWidget,
-              )
-            : null;
+        return logoWidget != null ? Padding(padding: EdgeInsets.only(), child: logoWidget) : null;
 
       case AppBarType.centeredTitle:
       case AppBarType.leftTitle:
         if (addBackButton) {
-          return CustomBackButton(
-            onTap: onBackPressed ?? () => Navigator.of(context).maybePop(),
-          ).paddingLeft(15.w);
+          return Container(
+            child: SizedBox(
+              height: 25.sp,
+              width: 25.sp,
+              child: CustomBackButton(onTap: onBackPressed ?? () => Navigator.of(context).maybePop()).paddingLeft(15.w),
+            ),
+          );
         }
         return null;
 
       case AppBarType.custom:
         if (addBackButton) {
-          return CustomBackButton(
-            onTap: onBackPressed ?? () => Navigator.of(context).maybePop(),
-          ).paddingLeft(15.w);
+          return Container(
+            child: SizedBox(
+              height: 25.sp,
+              width: 25.sp,
+              child: CustomBackButton(onTap: onBackPressed ?? () => Navigator.of(context).maybePop()).paddingLeft(15.w),
+            ),
+          );
         }
         return const SizedBox.shrink();
     }
@@ -142,11 +143,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ? Text(
                 title!,
                 textAlign: TextAlign.center,
-                style: AppTextStyles.customText(
-                  fontSize: titleTextFont ?? 20.sp,
-                  color: titleColor,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: AppTextStyles.customText(fontSize: titleTextFont ?? 22, color: titleColor, fontWeight: FontWeight.w600),
               )
             : null;
 
@@ -156,11 +153,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   title!,
-                  style: AppTextStyles.customText(
-                    fontSize: titleTextFont ?? 20.sp,
-                    color: titleColor,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: AppTextStyles.customText(fontSize: titleTextFont ?? 22, color: titleColor, fontWeight: FontWeight.w600),
                 ),
               )
             : null;
@@ -170,11 +163,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ? Text(
                 title!,
                 textAlign: centerTitle ? TextAlign.center : TextAlign.start,
-                style: AppTextStyles.customText(
-                  fontSize: titleTextFont ?? 20.sp,
-                  color: titleColor,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: AppTextStyles.customText(fontSize: titleTextFont ?? 22, color: titleColor, fontWeight: FontWeight.w600),
               )
             : null;
     }
@@ -194,27 +183,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               onTap: onWalletTap,
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
+                decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(12.r)),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       walletName!,
-                      style: TextStyle(
-                        color: AppColors.white,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: TextStyle(color: AppColors.white, fontSize: 14.sp, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(width: 8.w),
-                    Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: AppColors.white,
-                      size: 20.sp,
-                    ),
+                    Icon(Icons.keyboard_arrow_down_rounded, color: AppColors.white, size: 20.sp),
                   ],
                 ),
               ),
@@ -229,15 +207,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             child: Container(
               width: 44.sp,
               height: 44.sp,
-              decoration: BoxDecoration(
-                color: AppColors.primary,
-                borderRadius: BorderRadius.circular(12.r),
-              ),
-              child: Icon(
-                Icons.settings_outlined,
-                color: AppColors.white,
-                size: 22.sp,
-              ),
+              decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(12.r)),
+              child: Icon(Icons.settings_outlined, color: AppColors.white, size: 22.sp),
             ),
           ),
         );
@@ -294,24 +265,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(borderRadius ?? 0),
-        ),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(borderRadius ?? 0))),
       automaticallyImplyLeading: false,
       titleSpacing: _shouldCenterTitle() ? 0 : 10,
-      toolbarHeight: toolBarHeight ?? kToolbarHeight,
+      toolbarHeight: toolBarHeight ?? kToolbarHeight + 15.h,
       scrolledUnderElevation: 0.0,
       systemOverlayStyle:
           statusBarStyle ??
-          SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-            statusBarIconBrightness: isWhite
-                ? Brightness.light
-                : Brightness.dark,
-            statusBarBrightness: isWhite ? Brightness.light : Brightness.dark,
-          ),
+          SystemUiOverlayStyle(statusBarColor: Colors.transparent, statusBarIconBrightness: Brightness.light, statusBarBrightness: Brightness.dark),
       backgroundColor: backgroundColor,
       surfaceTintColor: Colors.transparent,
       leadingWidth: _getLeadingWidth(),
@@ -328,21 +289,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 alignment: Alignment.bottomCenter,
                 child: Container(
                   width: double.infinity,
-                  padding: EdgeInsets.only(
-                    left: 30.w,
-                    right: 30.w,
-                    top: 2.h,
-                    bottom: 20.h,
-                  ),
+                  padding: EdgeInsets.only(left: 30.w, right: 30.w, top: 2.h, bottom: 20.h),
                   child: Text(
                     subtitle!,
                     textAlign: TextAlign.center,
-                    style: AppTextStyles.customText(
-                      fontSize: 15.sp,
-                      color: AppColors.white,
-                      fontWeight: FontWeight.w400,
-                      height: 1.5,
-                    ),
+                    style: AppTextStyles.customText(fontSize: 15.sp, color: AppColors.white, fontWeight: FontWeight.w400, height: 1.5),
                   ),
                 ),
               ),
@@ -364,10 +315,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(
-    (toolBarHeight ?? kToolbarHeight) +
-        (subtitle != null
-            ? _calculateSubtitleHeight()
-            : (addBottomPadding ? (bottomPadding ?? 10.h) : 0)),
-  );
+  Size get preferredSize =>
+      Size.fromHeight((toolBarHeight ?? kToolbarHeight) + (subtitle != null ? _calculateSubtitleHeight() : (addBottomPadding ? (bottomPadding ?? 10.h) : 0)));
 }

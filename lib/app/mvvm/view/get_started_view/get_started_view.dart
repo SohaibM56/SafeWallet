@@ -35,29 +35,23 @@ class _GetStartedViewState extends State<GetStartedView> {
               150.h.height,
 
               // Logo Animation
-              AppLogoWidget(),
+              AppLogoWidget()
+                  .animate()
+                  .fadeIn(duration: 400.ms)
+                  .scaleXY(begin: 0.9, end: 1.0, curve: Curves.easeOutBack)
+                  .moveY(begin: -20, end: 0, curve: Curves.easeOutCubic),
 
-              // .animate()
-              // .fadeIn(duration: 500.ms) // faster
-              // .scaleXY(begin: 0.85, end: 1.0, curve: Curves.easeOutBack),
               140.h.height,
 
               // Title Text
               Text(
                     AppStrings.getStartedText,
-                    style: AppTextStyles.customText16(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: AppTextStyles.customText16(color: Colors.white, fontWeight: FontWeight.w600),
                   )
                   .animate()
-                  .fadeIn(duration: 500.ms, delay: 200.ms)
-                  .slideY(
-                    begin: 0.3,
-                    end: 0,
-                    duration: 600.ms,
-                    curve: Curves.easeOutCubic,
-                  ),
+                  .fadeIn(duration: 400.ms, delay: 150.ms)
+                  .slideY(begin: 0.25, end: 0, duration: 500.ms, curve: Curves.easeOutCubic)
+                  .scaleXY(begin: 0.98, end: 1.0, curve: Curves.easeOutBack),
 
               10.h.height,
 
@@ -67,50 +61,34 @@ class _GetStartedViewState extends State<GetStartedView> {
                     isSecondField: true,
                     keyboardType: TextInputType.text,
                     fieldsTextAlign: TextAlign.left,
+                    textInputAction: TextInputAction.done,
                     contentPadding: EdgeInsets.all(20.sp),
                     maxLength: 10,
                   )
                   .animate()
-                  .fadeIn(duration: 500.ms, delay: 350.ms)
-                  .slideY(
-                    begin: 0.3,
-                    end: 0,
-                    duration: 600.ms,
-                    curve: Curves.easeOutCubic,
-                  ),
+                  .fadeIn(duration: 400.ms, delay: 250.ms)
+                  .slideY(begin: 0.25, end: 0, duration: 500.ms, curve: Curves.easeOutCubic)
+                  .scaleXY(begin: 0.98, end: 1.0, curve: Curves.easeOutBack),
 
               20.h.height,
 
               // Get Started Button
               AppCustomButton(
                     title: AppStrings.getStartedBtn,
-                    suffixIcon: Icon(
-                      Icons.arrow_forward,
-                      size: 25.sp,
-                      color: AppColors.white,
-                    ),
+                    showShadow: true,
+                    suffixIcon: Icon(Icons.arrow_forward, size: 25.sp, color: AppColors.white),
                     onPressed: () {
                       Get.toNamed(AppRoutes.verificationStepsView);
                     },
                     height: 56.h,
                   )
+                  .paddingHorizontal(20.w)
                   .animate()
-                  .fadeIn(duration: 500.ms, delay: 500.ms)
-                  .slideY(
-                    begin: 0.8,
-                    end: 0,
-                    duration: 700.ms,
-                    curve: Curves.easeOutBack,
-                  )
-                  .then()
-                  .scaleXY(
-                    duration: 400.ms,
-                    begin: 0.98,
-                    end: 1.0,
-                    curve: Curves.easeInOut,
-                  ),
+                  .fadeIn(duration: 400.ms, delay: 350.ms)
+                  .slideY(begin: 0.5, end: 0, duration: 600.ms, curve: Curves.easeOutBack)
+                  .scaleXY(begin: 0.97, end: 1.0, curve: Curves.easeInOut),
             ],
-          ).paddingHorizontal(30.w),
+          ).paddingHorizontal(15.w),
         ),
       ),
     );

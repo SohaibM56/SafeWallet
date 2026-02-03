@@ -42,6 +42,7 @@ class _AuditViewState extends State<AuditView> {
       "usd": "\$34.74",
     },
   ];
+
   Color _statusColor(String status) {
     switch (status) {
       case 'Passed':
@@ -67,32 +68,16 @@ class _AuditViewState extends State<AuditView> {
   Widget _statusIcon(String status) {
     switch (status) {
       case 'Passed':
-        return ImageIcon(
-          AssetImage(AppAssets.passedIc),
-          size: 22,
-          color: AppColors.softgreen,
-        );
+        return ImageIcon(AssetImage(AppAssets.passedIc), size: 22, color: AppColors.softgreen);
 
       case 'Pending':
-        return ImageIcon(
-          AssetImage(AppAssets.pendingIc),
-          size: 22,
-          color: AppColors.softgreen,
-        );
+        return ImageIcon(AssetImage(AppAssets.pendingIc), size: 22, color: AppColors.softgreen);
 
       case 'Rejected':
-        return ImageIcon(
-          AssetImage(AppAssets.rejectedIc),
-          size: 22,
-          color: AppColors.red,
-        );
+        return ImageIcon(AssetImage(AppAssets.rejectedIc), size: 22, color: AppColors.red);
 
       default:
-        return ImageIcon(
-          AssetImage(AppAssets.passedIc),
-          size: 25,
-          color: AppColors.softgreen,
-        );
+        return ImageIcon(AssetImage(AppAssets.passedIc), size: 25, color: AppColors.softgreen);
     }
   }
 
@@ -110,60 +95,57 @@ class _AuditViewState extends State<AuditView> {
     return Scaffold(
       backgroundColor: AppColors.black,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CommonAppBar(),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Recent Activity",
-                    style: AppTextStyles.customText20(
-                      color: AppColors.white,
-                      fontWeight: FontWeight.w500,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            15.h.height,
+            CommonAppBar(),
+            Expanded(
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Recent Activity",
+                          style: AppTextStyles.customText20(color: AppColors.white, fontWeight: FontWeight.w500),
+                        ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                        Row(
+                          children: [
+                            Image.asset(AppAssets.lockIc, height: 15.w, color: AppColors.white.withValues(alpha: 0.9)),
+                            Text(
+                              "Immutable Record",
+                              style: AppTextStyles.customText14(color: AppColors.white.withValues(alpha: 0.5), fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+                      ],
                     ),
-                  ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-                  Row(
-                    children: [
-                      Image.asset(
-                        AppAssets.lockIc,
-                        height: 15.w,
-                        color: AppColors.white.withValues(alpha: 0.9),
-                      ),
-                      Text(
-                        "Immutable Record",
-                        style: AppTextStyles.customText14(
-                          color: AppColors.white.withValues(alpha: 0.5),
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-                ],
+                    15.h.height,
+                    ListView.builder(
+                      itemCount: transactions.length,
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        final tx = transactions[index];
+                        return _homeCardWidget(
+                          cardTitle: tx['title'],
+                          cardSubtitle: tx['subtitle'],
+                          hashKey: tx['hash'],
+                          amount: tx['amount'],
+                          usd: tx['usd'],
+                          status: tx['status'],
+                        ).paddingBottom(10.h);
+                      },
+                    ),
+                  ],
+                ),
               ),
-              15.h.height,
-              ListView.builder(
-                itemCount: transactions.length,
-                shrinkWrap: true,
-                physics: ScrollPhysics(),
-                itemBuilder: (context, index) {
-                  final tx = transactions[index];
-                  return _homeCardWidget(
-                    cardTitle: tx['title'],
-                    cardSubtitle: tx['subtitle'],
-                    hashKey: tx['hash'],
-                    amount: tx['amount'],
-                    usd: tx['usd'],
-                    status: tx['status'],
-                  ).paddingBottom(10.h);
-                },
-              ),
-            ],
-          ).paddingHorizontal(20.w),
-        ),
+            ),
+          ],
+        ).paddingHorizontal(20.w),
       ),
     );
   }
@@ -177,124 +159,94 @@ class _AuditViewState extends State<AuditView> {
     required String usd,
   }) {
     return Container(
-          width: double.infinity,
+      width: double.infinity,
 
-          decoration: BoxDecoration(
-            border: Border.all(width: 1, color: AppColors.darkGrey),
-            borderRadius: BorderRadius.all(Radius.circular(10.r)),
-          ),
-          child: Column(
+      decoration: BoxDecoration(
+        border: Border.all(width: 1, color: AppColors.white.withOpacity(0.2)),
+        borderRadius: BorderRadius.all(Radius.circular(14.sp)),
+      ),
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  /// STATUS ICON
-                  Container(
-                    height: 50.w,
-                    width: 50.w,
-                    decoration: BoxDecoration(
-                      color: _iconBgColor(status),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(child: _statusIcon(status)),
-                  ),
-
-                  5.w.width,
-
-                  /// ✅ Text Area (Expanded FIX)
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          cardTitle,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.customText16(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
-
-                        4.h.height,
-
-                        Text(
-                          cardSubtitle,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.customText10(
-                            color: Colors.white.withValues(alpha: 0.6),
-                          ),
-                        ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
-                      ],
-                    ),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        amount,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.customText16(
-                          color: _textColor(status),
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        usd,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.customText12(
-                          color: AppColors.darkGrey,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+              /// STATUS ICON
+              Container(
+                height: 50.w,
+                width: 50.w,
+                decoration: BoxDecoration(color: _iconBgColor(status), shape: BoxShape.circle),
+                child: Center(child: _statusIcon(status)),
               ),
-              Divider(
-                color: AppColors.grey,
-              ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      hashKey,
-                      maxLines: 1,
+
+              5.w.width,
+
+              /// ✅ Text Area (Expanded FIX)
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      cardTitle,
                       overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.customText10(
-                        color: Colors.white.withValues(alpha: 0.6),
-                      ),
+                      style: AppTextStyles.customText16(color: Colors.white, fontWeight: FontWeight.w400),
+                    ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
+
+                    4.h.height,
+
+                    Text(
+                      cardSubtitle,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyles.customText10(color: Colors.white.withValues(alpha: 0.6)),
                     ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
+                  ],
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    amount,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyles.customText16(color: _textColor(status), fontWeight: FontWeight.w600),
                   ),
-                  20.h.height,
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 14.w,
-                      vertical: 7.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: _statusColor(status),
-                      borderRadius: BorderRadius.all(Radius.circular(55.r)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        status,
-                        style: AppTextStyles.customText12(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
+                  Text(
+                    usd,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyles.customText12(color: AppColors.darkGrey, fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
             ],
-          ).paddingFromAll(12.sp),
-        )
-        .animate()
-        .fadeIn(duration: 600.ms, delay: 150.ms)
-        .slideY(begin: -0.2, curve: Curves.easeOut);
+          ),
+          Divider(color: AppColors.grey).animate().fadeIn(duration: 600.ms, delay: 500.ms),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  hashKey,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyles.customText10(color: Colors.white.withValues(alpha: 0.6)),
+                ).animate().fadeIn(duration: 600.ms, delay: 500.ms),
+              ),
+              20.h.height,
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 7.h),
+                decoration: BoxDecoration(color: _statusColor(status), borderRadius: BorderRadius.all(Radius.circular(55.r))),
+                child: Center(
+                  child: Text(
+                    status,
+                    style: AppTextStyles.customText12(color: AppColors.white, fontWeight: FontWeight.w400),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ).paddingFromAll(12.sp),
+    ).animate().fadeIn(duration: 600.ms, delay: 150.ms).slideY(begin: -0.2, curve: Curves.easeOut);
   }
 }

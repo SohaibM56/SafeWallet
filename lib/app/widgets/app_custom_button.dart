@@ -49,8 +49,7 @@ class AppCustomButton extends StatefulWidget {
   State<AppCustomButton> createState() => _AppCustomButtonState();
 }
 
-class _AppCustomButtonState extends State<AppCustomButton>
-    with SingleTickerProviderStateMixin {
+class _AppCustomButtonState extends State<AppCustomButton> with SingleTickerProviderStateMixin {
   late AnimationController _pressController;
 
   late Animation<double> _scaleAnimation;
@@ -69,60 +68,31 @@ class _AppCustomButtonState extends State<AppCustomButton>
   void initState() {
     super.initState();
 
-    _pressController = AnimationController(
-      duration: const Duration(milliseconds: 80),
-      vsync: this,
-    );
+    _pressController = AnimationController(duration: const Duration(milliseconds: 80), vsync: this);
 
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.96).animate(
-      CurvedAnimation(parent: _pressController, curve: Curves.easeInOutCubic),
-    );
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.96).animate(CurvedAnimation(parent: _pressController, curve: Curves.easeInOutCubic));
 
-    _heightAnimation = Tween<double>(begin: 1.0, end: 0.97).animate(
-      CurvedAnimation(parent: _pressController, curve: Curves.easeOutQuart),
-    );
+    _heightAnimation = Tween<double>(begin: 1.0, end: 0.97).animate(CurvedAnimation(parent: _pressController, curve: Curves.easeOutQuart));
 
-    _widthAnimation = Tween<double>(begin: 1.0, end: 1.02).animate(
-      CurvedAnimation(parent: _pressController, curve: Curves.easeOutBack),
-    );
+    _widthAnimation = Tween<double>(begin: 1.0, end: 1.02).animate(CurvedAnimation(parent: _pressController, curve: Curves.easeOutBack));
 
-    _elevationAnimation = Tween<double>(begin: 6.0, end: 1.0).animate(
-      CurvedAnimation(parent: _pressController, curve: Curves.easeInOutCubic),
-    );
+    _elevationAnimation = Tween<double>(begin: 6.0, end: 1.0).animate(CurvedAnimation(parent: _pressController, curve: Curves.easeInOutCubic));
 
-    _colorAnimation =
-        ColorTween(
-          begin: widget.bgColor ?? AppColors.primary,
-          end: (widget.bgColor ?? AppColors.primary).withOpacity(0.85),
-        ).animate(
-          CurvedAnimation(
-            parent: _pressController,
-            curve: Curves.easeInOutCubic,
-          ),
-        );
+    _colorAnimation = ColorTween(
+      begin: widget.bgColor ?? AppColors.primary,
+      end: (widget.bgColor ?? AppColors.primary).withOpacity(0.85),
+    ).animate(CurvedAnimation(parent: _pressController, curve: Curves.easeInOutCubic));
 
-    _paddingAnimation = Tween<double>(begin: 0.0, end: 4.0).animate(
-      CurvedAnimation(parent: _pressController, curve: Curves.easeOutCubic),
-    );
+    _paddingAnimation = Tween<double>(begin: 0.0, end: 4.0).animate(CurvedAnimation(parent: _pressController, curve: Curves.easeOutCubic));
 
-    _shadowBlurAnimation = Tween<double>(begin: 12.0, end: 4.0).animate(
-      CurvedAnimation(parent: _pressController, curve: Curves.easeInOutCubic),
-    );
+    _shadowBlurAnimation = Tween<double>(begin: 12.0, end: 4.0).animate(CurvedAnimation(parent: _pressController, curve: Curves.easeInOutCubic));
 
-    _shadowOffsetAnimation =
-        Tween<Offset>(
-          begin: const Offset(0, 6),
-          end: const Offset(0, 2),
-        ).animate(
-          CurvedAnimation(
-            parent: _pressController,
-            curve: Curves.easeInOutCubic,
-          ),
-        );
+    _shadowOffsetAnimation = Tween<Offset>(
+      begin: const Offset(0, 6),
+      end: const Offset(0, 2),
+    ).animate(CurvedAnimation(parent: _pressController, curve: Curves.easeInOutCubic));
 
-    _innerShadowAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _pressController, curve: Curves.easeInOutCubic),
-    );
+    _innerShadowAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _pressController, curve: Curves.easeInOutCubic));
   }
 
   @override
@@ -174,32 +144,14 @@ class _AppCustomButtonState extends State<AppCustomButton>
                 child: Container(
                   height: h * _heightAnimation.value,
                   width: w == double.infinity ? w : w * _widthAnimation.value,
-                  padding:
-                      widget.padding ??
-                      EdgeInsets.symmetric(
-                        horizontal: 16.w + _paddingAnimation.value,
-                        vertical: 10.h,
-                      ),
+                  padding: widget.padding ?? EdgeInsets.symmetric(horizontal: 16.w + _paddingAnimation.value, vertical: 10.h),
                   decoration: BoxDecoration(
-                    color: widget.isGradientEnabled
-                        ? null
-                        : _colorAnimation.value,
+                    color: widget.isGradientEnabled ? null : _colorAnimation.value,
                     gradient: widget.isGradientEnabled ? widget.gradient : null,
                     borderRadius: BorderRadius.circular(radius),
-                    border: Border.all(
-                      color: widget.borderColor ?? AppColors.transparent,
-                      width: _isPressed ? 0.5 : 1,
-                    ),
+                    border: Border.all(color: widget.borderColor ?? AppColors.transparent, width: _isPressed ? 0.5 : 1),
                     boxShadow: widget.showShadow
-                        ? [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(
-                                0.15 * (1 - _innerShadowAnimation.value),
-                              ),
-                              blurRadius: _shadowBlurAnimation.value,
-                              offset: _shadowOffsetAnimation.value,
-                            ),
-                          ]
+                        ? [BoxShadow(color: AppColors.primary.withOpacity(0.24), blurRadius: _shadowBlurAnimation.value, offset: _shadowOffsetAnimation.value)]
                         : [],
                   ),
                   alignment: Alignment.center,
@@ -215,12 +167,7 @@ class _AppCustomButtonState extends State<AppCustomButton>
                           key: widget.textKey,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style:
-                              widget.textStyle ??
-                              AppTextStyles.customText16(
-                                color: AppColors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
+                          style: widget.textStyle ?? AppTextStyles.customText16(color: AppColors.white, fontWeight: FontWeight.w600),
                         ),
                       ),
                       if (widget.suffixIcon != null) SizedBox(width: 6.w),

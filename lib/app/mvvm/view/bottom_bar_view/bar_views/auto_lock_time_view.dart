@@ -35,7 +35,6 @@ class _AutoLockTimeViewState extends State<AutoLockTimeView> {
       appBar: CustomAppBar(
         appBarType: AppBarType.custom,
         title: 'Auto Lock Time',
-        addBackButton: true,
         centerTitle: true,
       ),
       body: SafeArea(

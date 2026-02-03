@@ -7,8 +7,7 @@ abstract class AppColors {
 
   static const Color secondary = Color(0xff0C1322);
   static const Color primary = Color(0xff005430);
-  static const Color primarySoft = Color(0xFF0B2E20);
-  //  Color(0xff005430).withValues(alpha: 0.2);
+  static Color primarySoft = Color(0xff1CE3A1).withOpacity(0.12);
   static const Color bgSecondary = Color(0xff151F24);
   static const Color iconColor = Color(0xffA2A2A2);
   static const Color white = Color(0xffffffff);
@@ -29,6 +28,7 @@ abstract class AppColors {
   static const Color softgreen = Color(0xff1CE3A1);
   static const Color fillColor = Color(0x0C132280);
   static const Color hintTextColor = Color(0xff9EA0A5);
+
   // static const Color scaffoldBgColor = Color(0xff0C1322);
   static const Color grey = Color(0xff424243);
   static const Color lightGrey = Color(0xffD5D9E2);

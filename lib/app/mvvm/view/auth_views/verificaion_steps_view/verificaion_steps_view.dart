@@ -36,15 +36,13 @@ class _VerificationStepsViewState extends State<VerificationStepsView> {
       backgroundColor: AppColors.black,
       appBar: CustomAppBar(
         appBarType: AppBarType.centeredTitle,
+        toolBarHeight: 80.h,
         titleWidget: Image.asset(AppAssets.appHorizontalLogo, height: 44.h),
         onBackPressed: () {
           if (currentIndex == 0) {
             Get.back();
           } else {
-            _pageController.previousPage(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeIn,
-            );
+            _pageController.previousPage(duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
           }
         },
       ),
@@ -66,33 +64,22 @@ class _VerificationStepsViewState extends State<VerificationStepsView> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Image.asset(
-                              item["icon"] ?? "",
-                              width: double.infinity,
-                              height: 225.h,
-                            ),
+                            Image.asset(item["icon"] ?? "", width: double.infinity, height: 225.h),
                             25.h.height,
 
                             Text(
                               item["text"] ?? "",
                               textAlign: TextAlign.center,
-                              style: AppTextStyles.customText32(
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.white,
-                              ),
+                              style: AppTextStyles.customText24(fontWeight: FontWeight.w600, color: AppColors.white),
                             ),
                             5.h.height,
                           ],
                         ),
                       )
                       .animate()
-                      .fadeIn(duration: 150.ms, delay: 150.ms)
-                      .slideY(
-                        begin: 0.5,
-                        end: 0,
-                        duration: 800.ms,
-                        curve: Curves.easeInOut,
-                      );
+                      .fadeIn(duration: 500.ms, curve: Curves.easeOut)
+                      .slideY(begin: 0.15, end: 0, duration: 650.ms, curve: Curves.easeOutCubic)
+                      .scale(begin: const Offset(0.96, 0.96), end: const Offset(1, 1), duration: 650.ms, curve: Curves.easeOutCubic);
                 },
               ),
             ),
@@ -104,27 +91,13 @@ class _VerificationStepsViewState extends State<VerificationStepsView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 onboardingData.length,
-                (index) =>
-                    AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
-                          margin: const EdgeInsets.symmetric(horizontal: 4),
-                          width: currentIndex == index ? 14.w : 14.w,
-                          height: 6,
-                          decoration: BoxDecoration(
-                            color: currentIndex == index
-                                ? Colors.white
-                                : Colors.white38,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        )
-                        .animate()
-                        .fadeIn(duration: 150.ms, delay: 150.ms)
-                        .slideY(
-                          begin: 0.5,
-                          end: 0,
-                          duration: 300.ms,
-                          curve: Curves.easeOutCubic,
-                        ),
+                (index) => AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  width: currentIndex == index ? 14.w : 14.w,
+                  height: 6,
+                  decoration: BoxDecoration(color: currentIndex == index ? Colors.white : Colors.white38, borderRadius: BorderRadius.circular(10)),
+                ).animate().fadeIn(duration: 150.ms, delay: 150.ms).slideY(begin: 0.5, end: 0, duration: 300.ms, curve: Curves.easeOutCubic),
               ),
             ),
 
@@ -133,17 +106,10 @@ class _VerificationStepsViewState extends State<VerificationStepsView> {
             // Next Button
             AppCustomButton(
                   title: AppStrings.nextBtn,
-                  suffixIcon: Icon(
-                    Icons.arrow_forward,
-                    size: 25.sp,
-                    color: AppColors.white,
-                  ),
+                  suffixIcon: Icon(Icons.arrow_forward, size: 25.sp, color: AppColors.white),
                   onPressed: () {
                     if (currentIndex < onboardingData.length - 1) {
-                      _pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeOut,
-                      );
+                      _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
                     } else {
                       Get.toNamed(AppRoutes.completeVerificationView);
                     }
@@ -152,40 +118,15 @@ class _VerificationStepsViewState extends State<VerificationStepsView> {
                 .paddingHorizontal(50.w)
                 .animate()
                 .fadeIn(duration: 200.ms, delay: 200.ms)
-                .slideY(
-                  begin: 1.0,
-                  end: 0,
-                  duration: 900.ms,
-                  curve: Curves.easeOutBack,
-                )
+                .slideY(begin: 1.0, end: 0, duration: 900.ms, curve: Curves.easeOutBack)
                 .then()
-                .shimmer(
-                  delay: 2600.ms,
-                  duration: 1800.ms,
-                  color: Colors.white.withValues(alpha: 0.4),
-                )
+                .shimmer(delay: 2600.ms, duration: 1800.ms, color: Colors.white.withValues(alpha: 0.4))
                 .then()
-                .scaleXY(
-                  delay: 3200.ms,
-                  duration: 800.ms,
-                  begin: 1,
-                  end: 1.03,
-                  curve: Curves.easeInOut,
-                )
+                .scaleXY(delay: 3200.ms, duration: 800.ms, begin: 1, end: 1.03, curve: Curves.easeInOut)
                 .then()
-                .scaleXY(
-                  duration: 800.ms,
-                  begin: 1.03,
-                  end: 1,
-                  curve: Curves.easeInOut,
-                )
+                .scaleXY(duration: 800.ms, begin: 1.03, end: 1, curve: Curves.easeInOut)
                 .then()
-                .shake(
-                  delay: 4500.ms,
-                  hz: 3,
-                  duration: 1000.ms,
-                  curve: Curves.elasticOut,
-                ),
+                .shake(delay: 4500.ms, hz: 3, duration: 1000.ms, curve: Curves.elasticOut),
 
             40.h.height,
           ],

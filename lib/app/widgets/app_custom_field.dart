@@ -140,16 +140,10 @@ class AppCustomField extends StatelessWidget {
                 style: AppTextStyles.customText(
                   fontSize: labelTitleSize ?? 16,
                   color: labelColor ?? AppColors.white,
-                  fontWeight: isSecondField == true
-                      ? FontWeight.w500
-                      : FontWeight.w400,
+                  fontWeight: isSecondField == true ? FontWeight.w500 : FontWeight.w400,
                 ),
               ),
-              if (isRequired)
-                Text(
-                  ' *',
-                  style: AppTextStyles.customText16(color: AppColors.primary),
-                ),
+              if (isRequired) Text(' *', style: AppTextStyles.customText16(color: AppColors.primary)),
             ],
           ),
         if (titleWidget != null) titleWidget!,
@@ -171,9 +165,7 @@ class AppCustomField extends StatelessWidget {
             fontSize: textSize ?? 16, //
             color: textColor ?? AppColors.white,
           ).copyWith(letterSpacing: obscureText == true ? 6 : 0),
-          textAlignVertical: isSecondField == true
-              ? TextAlignVertical.center
-              : TextAlignVertical.top,
+          textAlignVertical: isSecondField == true ? TextAlignVertical.center : TextAlignVertical.top,
           initialValue: initialValue,
           textAlign: fieldsTextAlign ?? TextAlign.center,
           maxLines: maxLines ?? 1,
@@ -193,9 +185,7 @@ class AppCustomField extends StatelessWidget {
             FocusScope.of(context).unfocus();
           },
           decoration: InputDecoration(
-            counterStyle: AppTextStyles.customText12(
-              color: counterColor ?? AppColors.white,
-            ),
+            counterStyle: AppTextStyles.customText12(color: counterColor ?? AppColors.white),
             hintText: hintText,
             hintStyle: AppTextStyles.customText(
               fontSize: hintTextFontSize ?? 14.sp,
@@ -208,18 +198,11 @@ class AppCustomField extends StatelessWidget {
             floatingLabelBehavior: FloatingLabelBehavior.auto,
             filled: filled ?? true,
             fillColor: fillColor ?? AppColors.primarySoft,
-            border: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: enabledBorderColor ?? AppColors.transparent,
-              ),
-            ),
+            border: UnderlineInputBorder(borderSide: BorderSide(color: enabledBorderColor ?? AppColors.transparent)),
             prefixIconColor: prefixIconColor,
             suffixIconColor: suffixIconColor,
             contentPadding:
-                contentPadding ??
-                (isSecondField == true
-                    ? EdgeInsets.symmetric(vertical: 18.h)
-                    : EdgeInsets.symmetric(horizontal: 0, vertical: 15.h)),
+                contentPadding ?? (isSecondField == true ? EdgeInsets.symmetric(vertical: 18.h) : EdgeInsets.symmetric(horizontal: 0, vertical: 15.h)),
             // contentPadding:
             // contentPadding ?? EdgeInsets.symmetric(vertical: 20.h),
             // EdgeInsets.symmetric(
@@ -228,64 +211,34 @@ class AppCustomField extends StatelessWidget {
             // ),
             focusedBorder: isSecondField == true
                 ? OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.sp),
-                    borderSide: BorderSide(
-                      color: AppColors.white.withValues(alpha: 0.08),
-                      width: 2.w,
-                    ),
+                    borderRadius: BorderRadius.circular(16.sp),
+                    borderSide: BorderSide(color: AppColors.white.withValues(alpha: 0.08), width: 2.w),
                   )
-                : UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: focusedBorderColor ?? AppColors.primary,
-                    ),
-                  ),
+                : UnderlineInputBorder(borderSide: BorderSide(color: focusedBorderColor ?? AppColors.primary)),
             enabledBorder: isSecondField == true
                 ? OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(enabledBorder ?? 12.r),
-                    borderSide: BorderSide(
-                      color: enabledBorderColor ?? AppColors.transparent,
-                      width: 1.2,
-                    ),
+                    borderRadius: BorderRadius.circular(enabledBorder ?? 16.sp),
+                    borderSide: BorderSide(color: enabledBorderColor ?? AppColors.white.withOpacity(0.08)),
                   )
-                : UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: enabledBorderColor ?? AppColors.transparent,
-                    ),
-                  ),
+                : UnderlineInputBorder(borderSide: BorderSide(color: enabledBorderColor ?? AppColors.transparent)),
             errorBorder: isSecondField == true
                 ? OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.sp),
+                    borderRadius: BorderRadius.circular(16.sp),
                     borderSide: BorderSide(color: AppColors.negativeRed),
                   )
-                : UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: errorBorderColor ?? AppColors.negativeRed,
-                    ),
-                  ),
+                : UnderlineInputBorder(borderSide: BorderSide(color: errorBorderColor ?? AppColors.negativeRed)),
             disabledBorder: isSecondField == true
                 ? OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.sp),
-                    borderSide: BorderSide(
-                      color: AppColors.black.withOpacity(0.09),
-                    ),
+                    borderRadius: BorderRadius.circular(16.sp),
+                    borderSide: BorderSide(color: AppColors.black.withOpacity(0.09)),
                   )
-                : UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color:
-                          disabledBorderColor ??
-                          AppColors.textLightBlack.withOpacity(0.4),
-                    ),
-                  ),
+                : UnderlineInputBorder(borderSide: BorderSide(color: disabledBorderColor ?? AppColors.white.withOpacity(0.08))),
             focusedErrorBorder: isSecondField == true
                 ? OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.sp),
                     borderSide: BorderSide(color: AppColors.primary),
                   )
-                : UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: focusedBorderColor ?? AppColors.primary,
-                    ),
-                  ),
+                : UnderlineInputBorder(borderSide: BorderSide(color: focusedBorderColor ?? AppColors.primary)),
             errorMaxLines: 2,
             errorStyle: TextStyle(color: Colors.red, fontSize: 12.sp),
           ),

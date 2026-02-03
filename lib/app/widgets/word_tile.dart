@@ -11,15 +11,7 @@ class WordTile extends StatelessWidget {
   final IconData? icon;
   final VoidCallback? onTap;
 
-  const WordTile({
-    super.key,
-    required this.word,
-    this.borderColor,
-    this.color,
-    this.onTap,
-    this.icon,
-    this.textColor,
-  });
+  const WordTile({super.key, required this.word, this.borderColor, this.color, this.onTap, this.icon, this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +20,7 @@ class WordTile extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: color ?? AppColors.primarySoft,
-          border: Border.all(
-            color: borderColor ?? AppColors.primary.withValues(alpha: 0.3),
-            width: 2.r,
-          ),
+          border: Border.all(color: borderColor ?? AppColors.white.withOpacity(0.13)),
           borderRadius: BorderRadius.circular(8.r),
         ),
         child: Row(
@@ -39,13 +28,10 @@ class WordTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (icon != null) Icon(icon, size: 16.sp, color: Colors.white),
-            SizedBox(width: 10.w),
+            if (icon != null) SizedBox(width: 10.w),
             Text(
               word,
-              style: AppTextStyles.customText10(
-                color: textColor ?? AppColors.white.withValues(alpha: 0.5),
-                fontWeight: FontWeight.w400,
-              ),
+              style: AppTextStyles.customText10(color: textColor ?? AppColors.white.withValues(alpha: 0.5), fontWeight: FontWeight.w400),
             ),
           ],
         ),

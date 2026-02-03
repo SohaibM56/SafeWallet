@@ -38,20 +38,13 @@ class _LanguageViewState extends State<LanguageView> {
     return Scaffold(
       backgroundColor: AppColors.black,
       appBar: isFromSettings == true
-          ? CustomAppBar(
-              appBarType: AppBarType.custom,
-              title: AppStrings.selectLangTitle,
-              addBackButton: isFromSettings,
-              centerTitle: true,
-            )
+          ? CustomAppBar(appBarType: AppBarType.custom, title: AppStrings.selectLangTitle, addBackButton: true, centerTitle: true, toolBarHeight: 80.h)
           : CustomAppBar(
               appBarType: AppBarType.custom,
-              titleWidget: Image.asset(
-                AppAssets.appHorizontalLogo,
-                height: 44.h,
-              ),
-              addBackButton: isFromSettings,
+              titleWidget: Image.asset(AppAssets.appHorizontalLogo, height: 44.h),
+              addBackButton: false,
               centerTitle: true,
+              toolBarHeight: 80.h,
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: isFromSettings == true
@@ -72,25 +65,19 @@ class _LanguageViewState extends State<LanguageView> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            isFromSettings ? SizedBox.shrink() : 30.h.height,
+            isFromSettings ? SizedBox.shrink() : 20.h.height,
             isFromSettings
                 ? SizedBox.shrink()
                 : Text(
                     AppStrings.selectLangTitle.tr,
-                    style: AppTextStyles.customText20(
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.white,
-                    ),
+                    style: AppTextStyles.customText20(fontWeight: FontWeight.w600, color: AppColors.white),
                   ),
             3.h.height,
             isFromSettings
                 ? SizedBox.shrink()
                 : Text(
                     AppStrings.selectLangSubtitle.tr,
-                    style: AppTextStyles.customText12(
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.white.withValues(alpha: 0.5),
-                    ),
+                    style: AppTextStyles.customText12(fontWeight: FontWeight.w500, color: AppColors.white.withValues(alpha: 0.5)),
                   ),
             10.h.height,
             Obx(
@@ -103,9 +90,7 @@ class _LanguageViewState extends State<LanguageView> {
                         10.h.height,
                         AppCustomCard(
                           language: language.language,
-                          isSelected:
-                              controller.selectedLanguage.value ==
-                              language.language,
+                          isSelected: controller.selectedLanguage.value == language.language,
                           onPressed: () {
                             controller.selectLanguage(language.language);
                           },

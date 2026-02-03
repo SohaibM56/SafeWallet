@@ -23,59 +23,36 @@ class CommonAppBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                        "Welcome Back",
-                        style: AppTextStyles.customText14(
-                          color: Colors.white.withValues(alpha: 0.7),
-                          fontWeight: FontWeight.w400,
-                        ),
-                      )
-                      .animate()
-                      .fadeIn(duration: 600.ms, delay: 200.ms)
-                      .slideY(begin: -0.1, curve: Curves.easeOut),
-                  5.h.height,
-
+                    "Welcome Back",
+                    style: AppTextStyles.customText16(color: Colors.white.withValues(alpha: 0.7), fontWeight: FontWeight.w400),
+                  ).animate().fadeIn(duration: 600.ms, delay: 200.ms).slideY(begin: -0.1, curve: Curves.easeOut),
                   Text(
-                        "SEC Wallet",
-                        style: AppTextStyles.customText26(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                      .animate()
-                      .fadeIn(duration: 600.ms, delay: 100.ms)
-                      .slideY(begin: -0.2, curve: Curves.easeOut),
+                    "SEC Wallet",
+                    style: AppTextStyles.customText26(color: Colors.white, fontWeight: FontWeight.w600),
+                  ).animate().fadeIn(duration: 600.ms, delay: 100.ms).slideY(begin: -0.2, curve: Curves.easeOut),
                 ],
               ),
             ),
             Container(
-                  // height: 44.w,
-                  // width: 89.w,
-                  decoration: BoxDecoration(
-                    color: AppColors.primarySoft,
-                    border: Utils.greenBorder,
-                    borderRadius: BorderRadius.all(Radius.circular(55.r)),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ImageIcon(
-                        AssetImage(AppAssets.kycIcon),
-                        color: AppColors.softgreen,
-                      ),
-                      6.w.width,
-                      Text(
-                        "Verified",
-                        style: AppTextStyles.customText18(
-                          color: AppColors.softgreen,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ).paddingSymmetric(horizontal: 10.w, vertical: 14.h),
-                )
-                .animate()
-                .fadeIn(duration: 600.ms, delay: 100.ms)
-                .slideY(begin: -0.2, curve: Curves.easeOut),
+              decoration: BoxDecoration(
+                color: AppColors.primarySoft,
+                border: Border.all(color: Colors.white.withOpacity(0.08)),
+                borderRadius: BorderRadius.circular(50.sp),
+              ),
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ImageIcon(AssetImage(AppAssets.kycIcon), color: AppColors.softgreen),
+                    6.w.width,
+                    Text(
+                      "Verified",
+                      style: AppTextStyles.customText16(color: AppColors.softgreen, fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ).paddingSymmetric(horizontal: 16.w, vertical: 14.h),
+              ),
+            ).animate().fadeIn(duration: 600.ms, delay: 100.ms).slideY(begin: -0.2, curve: Curves.easeOut),
             // IconButton(
             //   onPressed: () {},
             //   icon: Container(
@@ -129,108 +106,75 @@ class CustomDataShow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-          width: double.infinity,
-          height: 80.h,
-          decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage(AppAssets.glassRoundCard)),
+      width: double.infinity,
+      height: 80.h,
+      decoration: BoxDecoration(image: DecorationImage(image: AssetImage(AppAssets.glassRoundCard))),
+
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Flexible(
+            fit: FlexFit.tight,
+            child: customStatus(status: 'Status', imagePath: AppAssets.shieldPrivate, tittle: 'SECURE'),
           ),
 
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: customStatus(
-                  status: 'Status',
-                  imagePath: AppAssets.shieldPrivate,
-                  tittle: 'SECURE',
-                ),
-              ),
+          _customDivider(),
 
-              _customDivider(),
-
-              Expanded(
-                child: customStatus(
-                  status: 'Vetting',
-                  imagePath: AppAssets.veitingIcon,
-                  tittle: 'ACTIVE',
-                ),
-              ),
-
-              _customDivider(),
-
-              Expanded(
-                child: customStatus(
-                  status: 'Approval',
-                  imagePath: AppAssets.approvalIcon,
-                  tittle: '4-EYES',
-                ),
-              ),
-
-              _customDivider(),
-
-              Expanded(
-                child: customStatus(
-                  status: 'Region',
-                  imagePath: AppAssets.regionIcon,
-                  tittle: 'KSA',
-                ),
-              ),
-            ],
+          Flexible(
+            fit: FlexFit.tight,
+            child: customStatus(status: 'Vetting', imagePath: AppAssets.veitingIcon, tittle: 'ACTIVE'),
           ),
-        )
-        .animate()
-        .fadeIn(duration: 600.ms, delay: 200.ms)
-        .slideY(begin: 0.3, curve: Curves.easeOutCubic)
-        .animate()
-        .fadeIn(duration: 600.ms, delay: 300.ms)
-        .scale(begin: const Offset(0.7, 0.7), curve: Curves.easeOutBack);
+
+          _customDivider(),
+
+          Flexible(
+            fit: FlexFit.tight,
+            child: customStatus(status: 'Approval', imagePath: AppAssets.approvalIcon, tittle: '4-EYES'),
+          ),
+
+          _customDivider(),
+
+          Flexible(
+            fit: FlexFit.tight,
+            child: customStatus(status: 'Region', imagePath: AppAssets.regionIcon, tittle: 'KSA'),
+          ),
+        ],
+      ),
+    ).animate().fadeIn(duration: 600.ms, delay: 200.ms).slideY(begin: 0.3, curve: Curves.easeOutCubic);
+    // .animate()
+    // .fadeIn(duration: 600.ms, delay: 300.ms)
+    // .scale(begin: const Offset(0.7, 0.7), curve: Curves.easeOutBack);
   }
 
   Widget _customDivider({double? height, double? width}) {
-    return Image.asset(
-      AppAssets.gradientBorder,
-      height: height ?? 40.h,
-      width: width ?? 1.5.w,
-    );
+    return SizedBox(height: height ?? 40.h, width: width ?? 1.w, child: Image.asset(AppAssets.gradientBorder));
+    // Image.asset(
+    //   AppAssets.gradientBorder,
+    //   height: height ?? 40.h,
+    //   width: width ?? 1.5.w,
+    // );
   }
 
-  Widget customStatus({
-    required String status,
-    required String imagePath,
-    required String tittle,
-  }) {
+  Widget customStatus({required String status, required String imagePath, required String tittle}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              imagePath,
-              height: 17.h,
-              width: 17.w,
-              color: AppColors.lightTextColor,
-            ),
+            Image.asset(imagePath, height: 15.h, width: 15.w, color: AppColors.lightTextColor),
 
             4.w.width,
             Text(
               status,
-              style: AppTextStyles.customTextRboto(
-                fontWeight: FontWeight.w500,
-                color: AppColors.lightTextColor,
-                fontSize: 12.sp,
-              ),
+              style: AppTextStyles.customTextRboto(fontWeight: FontWeight.w500, color: AppColors.lightTextColor, fontSize: 11.sp),
             ),
           ],
         ),
         Text(
           tittle,
-          style: AppTextStyles.customTextRboto(
-            fontWeight: FontWeight.w600,
-            color: AppColors.white,
-            fontSize: 16.sp,
-          ),
+          style: AppTextStyles.customTextRboto(fontWeight: FontWeight.w600, color: AppColors.white, fontSize: 14),
         ),
       ],
     );

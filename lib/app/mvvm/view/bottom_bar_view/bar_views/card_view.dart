@@ -28,64 +28,45 @@ class _CardViewState extends State<CardView> {
     return Scaffold(
       backgroundColor: AppColors.black,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CommonAppBar(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            15.h.height,
+            CommonAppBar(),
+            Expanded(
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    _buildCreditCardSection().animate().fadeIn(duration: 600.ms, delay: 300.ms).slideY(begin: 0.3, curve: Curves.easeOutCubic),
+                    20.h.height,
+                    _buildCardStatusSection().animate().fadeIn(duration: 600.ms, delay: 400.ms).slideY(begin: 0.3, curve: Curves.easeOutCubic),
+                    20.h.height,
+                    _buildActionButtons().animate().fadeIn(duration: 600.ms, delay: 500.ms).slideY(begin: 0.3, curve: Curves.easeOutCubic),
+                    30.h.height,
+                    _buildSecurityFeatures().animate().fadeIn(duration: 600.ms, delay: 600.ms).slideY(begin: 0.3, curve: Curves.easeOutCubic),
+                    20.h.height,
+                    _buildActionItem(
+                      title: "Request a physical Card",
+                      onTap: () {},
+                    ).animate().fadeIn(duration: 600.ms, delay: 700.ms).slideY(begin: 0.3, curve: Curves.easeOutCubic),
 
-              _buildCreditCardSection()
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 300.ms)
-                  .slideY(begin: 0.3, curve: Curves.easeOutCubic),
+                    10.h.height,
 
-              20.h.height,
+                    _buildActionItem(
+                      title: "View Transactions",
+                      onTap: () {
+                        Utils.showBottomSheet(context: context, child: RecentTransactionsSheet());
+                      },
+                    ).animate().fadeIn(duration: 600.ms, delay: 800.ms).slideY(begin: 0.3, curve: Curves.easeOutCubic),
 
-              _buildCardStatusSection()
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 400.ms)
-                  .slideY(begin: 0.3, curve: Curves.easeOutCubic),
-
-              20.h.height,
-
-              _buildActionButtons()
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 500.ms)
-                  .slideY(begin: 0.3, curve: Curves.easeOutCubic),
-
-              30.h.height,
-
-              _buildSecurityFeatures()
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 600.ms)
-                  .slideY(begin: 0.3, curve: Curves.easeOutCubic),
-
-              20.h.height,
-
-              _buildActionItem(title: "Request a physical Card", onTap: () {})
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 700.ms)
-                  .slideY(begin: 0.3, curve: Curves.easeOutCubic),
-
-              10.h.height,
-
-              _buildActionItem(
-                    title: "View Transactions",
-                    onTap: () {
-                      Utils.showBottomSheet(
-                        context: context,
-                        child: RecentTransactionsSheet(),
-                      );
-                    },
-                  )
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 800.ms)
-                  .slideY(begin: 0.3, curve: Curves.easeOutCubic),
-
-              30.h.height,
-            ],
-          ).paddingHorizontal(20.w),
-        ),
+                    30.h.height,
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ).paddingHorizontal(20.w),
       ),
     );
   }
@@ -95,16 +76,8 @@ class _CardViewState extends State<CardView> {
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
-        // color: AppColors.primarySoft,
-        border: Utils.greenBorder,
-        // Border.all(
-        //   color: AppColors.primary.withValues(alpha: 0.5.sp),
-        //   width: 2.w,
-        // ),
-        image: DecorationImage(
-          image: AssetImage(AppAssets.cardBg),
-          fit: BoxFit.cover,
-        ),
+        border: Border.all(color: AppColors.white.withOpacity(0.08)),
+        image: DecorationImage(image: AssetImage(AppAssets.cardBg), fit: BoxFit.cover),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,11 +87,7 @@ class _CardViewState extends State<CardView> {
             children: [
               Text(
                 "Credit",
-                style: AppTextStyles.customText(
-                  fontSize: 22,
-                  color: AppColors.white,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: AppTextStyles.customText(fontSize: 22, color: AppColors.white, fontWeight: FontWeight.w600),
               ),
               GestureDetector(
                 onTap: () {
@@ -127,30 +96,16 @@ class _CardViewState extends State<CardView> {
                   });
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 14.w,
-                    vertical: 8.h,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF1CE3A1).withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(20.r),
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
+                  decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(50.sp)),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(
-                        Icons.visibility_outlined,
-                        color: AppColors.white,
-                        size: 18.sp,
-                      ),
-                      8.w.width,
+                      Icon(Icons.visibility_outlined, color: AppColors.white, size: 14.sp),
+                      4.w.width,
                       Text(
                         "Show Details",
-                        style: AppTextStyles.customText(
-                          fontSize: 13,
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style: AppTextStyles.customText(fontSize: 12, color: AppColors.white, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
@@ -171,39 +126,22 @@ class _CardViewState extends State<CardView> {
                   children: [
                     Text(
                       showCardDetails ? "Nadeem Ahmed" : "Nadxxx xxxx",
-                      style: AppTextStyles.customText(
-                        fontSize: 18,
-                        color: AppColors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: AppTextStyles.customText(fontSize: 18, color: AppColors.white, fontWeight: FontWeight.w500),
                     ),
                     10.h.height,
                     Row(
                       children: [
                         Text(
-                          showCardDetails
-                              ? "4532 - 1234 - 5678 - 9012"
-                              : "xxxx - xxxx - xxxx - x089",
-                          style: AppTextStyles.customText(
-                            fontSize: 16,
-                            color: AppColors.white,
-                            fontWeight: FontWeight.w400,
-                            letterSpacing: 1.5,
-                          ),
+                          showCardDetails ? "4532 - 1234 - 5678 - 9012" : "xxxx - xxxx - xxxx - x089",
+                          style: AppTextStyles.customText(fontSize: 16, color: AppColors.white, fontWeight: FontWeight.w400, letterSpacing: 1.5),
                         ),
                         15.w.width,
                         GestureDetector(
                           onTap: () {
-                            Clipboard.setData(
-                              ClipboardData(text: "4532123456789012"),
-                            );
+                            Clipboard.setData(ClipboardData(text: "4532123456789012"));
                             Utils.showToast("Card number copied");
                           },
-                          child: Icon(
-                            Icons.content_copy_rounded,
-                            color: AppColors.white,
-                            size: 22.sp,
-                          ),
+                          child: Icon(Icons.content_copy_rounded, color: AppColors.white, size: 22.sp),
                         ),
                       ],
                     ),
@@ -221,8 +159,8 @@ class _CardViewState extends State<CardView> {
     return Container(
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.darkGrey),
-        borderRadius: BorderRadius.circular(10.r),
+        border: Border.all(color: AppColors.white.withOpacity(0.08)),
+        borderRadius: BorderRadius.circular(14.sp),
       ),
       child: Column(
         children: [
@@ -232,24 +170,14 @@ class _CardViewState extends State<CardView> {
             children: [
               Text(
                 "Card Status",
-                style: AppTextStyles.customText12(
-                  color: Colors.white.withValues(alpha: 0.6),
-                  fontWeight: FontWeight.w400,
-                ),
+                style: AppTextStyles.customText12(color: Colors.white.withValues(alpha: 0.6), fontWeight: FontWeight.w400),
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
-                decoration: BoxDecoration(
-                  color: Color(0xff005430),
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
+                decoration: BoxDecoration(color: Color(0xff005430), borderRadius: BorderRadius.circular(12.r)),
                 child: Text(
                   "Active",
-                  style: AppTextStyles.customText(
-                    fontSize: 11,
-                    color: AppColors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: AppTextStyles.customText(fontSize: 11, color: AppColors.white, fontWeight: FontWeight.w600),
                 ),
               ),
             ],
@@ -261,17 +189,11 @@ class _CardViewState extends State<CardView> {
             children: [
               Text(
                 "Monthly Limit",
-                style: AppTextStyles.customText12(
-                  color: Colors.white.withValues(alpha: 0.6),
-                  fontWeight: FontWeight.w400,
-                ),
+                style: AppTextStyles.customText12(color: Colors.white.withValues(alpha: 0.6), fontWeight: FontWeight.w400),
               ),
               Text(
                 "SAR 500,000",
-                style: AppTextStyles.customText16(
-                  color: AppColors.white,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: AppTextStyles.customText16(color: AppColors.white, fontWeight: FontWeight.w500),
               ),
             ],
           ),
@@ -282,17 +204,11 @@ class _CardViewState extends State<CardView> {
             children: [
               Text(
                 "Spent this month",
-                style: AppTextStyles.customText12(
-                  color: Colors.white.withValues(alpha: 0.6),
-                  fontWeight: FontWeight.w400,
-                ),
+                style: AppTextStyles.customText12(color: Colors.white.withValues(alpha: 0.6), fontWeight: FontWeight.w400),
               ),
               Text(
                 "SAR 45,230",
-                style: AppTextStyles.customText16(
-                  color: AppColors.white,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: AppTextStyles.customText16(color: AppColors.white, fontWeight: FontWeight.w500),
               ),
             ],
           ),
@@ -310,11 +226,7 @@ class _CardViewState extends State<CardView> {
             alignment: Alignment.centerRight,
             child: Text(
               "9% of limit used",
-              style: AppTextStyles.customText(
-                fontSize: 10,
-                color: Colors.white.withValues(alpha: 0.5),
-                fontWeight: FontWeight.w400,
-              ),
+              style: AppTextStyles.customText(fontSize: 10, color: Colors.white.withValues(alpha: 0.5), fontWeight: FontWeight.w400),
             ),
           ),
         ],
@@ -359,19 +271,15 @@ class _CardViewState extends State<CardView> {
     );
   }
 
-  Widget _buildActionButton({
-    required String icon,
-    required String label,
-    required VoidCallback onTap,
-  }) {
+  Widget _buildActionButton({required String icon, required String label, required VoidCallback onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 16.h),
         decoration: BoxDecoration(
           color: AppColors.primarySoft,
-          border: Utils.greenBorder,
-          borderRadius: BorderRadius.circular(10.r),
+          border: Border.all(color: Colors.white.withOpacity(0.08)),
+          borderRadius: BorderRadius.circular(14.sp),
         ),
         child: Column(
           children: [
@@ -380,10 +288,7 @@ class _CardViewState extends State<CardView> {
             8.h.height,
             Text(
               label,
-              style: AppTextStyles.customText12(
-                color: AppColors.white,
-                fontWeight: FontWeight.w500,
-              ),
+              style: AppTextStyles.customText12(color: AppColors.white, fontWeight: FontWeight.w500),
             ),
           ],
         ),
@@ -397,18 +302,13 @@ class _CardViewState extends State<CardView> {
       children: [
         Text(
           "SECURITY FEATURES",
-          style: AppTextStyles.customText(
-            fontSize: 14,
-            color: Colors.white.withValues(alpha: 0.5),
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.5,
-          ),
+          style: AppTextStyles.customText(fontSize: 14, color: Colors.white, fontWeight: FontWeight.w500, letterSpacing: 0.5),
         ),
         15.h.height,
         Container(
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.darkGrey),
-            borderRadius: BorderRadius.circular(12.r),
+            border: Border.all(color: AppColors.white.withOpacity(0.2)),
+            borderRadius: BorderRadius.circular(14.sp),
           ),
           child: Column(
             children: [
@@ -420,10 +320,7 @@ class _CardViewState extends State<CardView> {
                 isFirst: true,
                 isLast: false,
               ),
-              Divider(
-                color: AppColors.darkGrey,
-                thickness: 1.h,
-              ).paddingSymmetric(horizontal: 15.w),
+              Divider(color: AppColors.darkGrey, thickness: 1.h).paddingSymmetric(horizontal: 15.w),
               _buildSecurityItem(
                 icon: AppAssets.dotLockIc,
                 title: "Biometric Lock",
@@ -432,10 +329,7 @@ class _CardViewState extends State<CardView> {
                 isFirst: false,
                 isLast: false,
               ),
-              Divider(
-                color: AppColors.darkGrey,
-                thickness: 1.h,
-              ).paddingSymmetric(horizontal: 15.w),
+              Divider(color: AppColors.darkGrey, thickness: 1.h).paddingSymmetric(horizontal: 15.w),
               _buildSecurityItem(
                 icon: AppAssets.freezeIc,
                 title: "Instant Freeze",
@@ -444,10 +338,7 @@ class _CardViewState extends State<CardView> {
                 isFirst: false,
                 isLast: false,
               ),
-              Divider(
-                color: AppColors.darkGrey,
-                thickness: 1.h,
-              ).paddingSymmetric(horizontal: 15.w),
+              Divider(color: AppColors.darkGrey, thickness: 1.h).paddingSymmetric(horizontal: 15.w),
               _buildSecurityItem(
                 icon: AppAssets.globeIc,
                 title: "Global Access",
@@ -476,69 +367,41 @@ class _CardViewState extends State<CardView> {
       child: Row(
         children: [
           Container(
-            width: 48.w,
-            height: 48.h,
-            decoration: BoxDecoration(
-              color: const Color(0xFF414345),
-              borderRadius: BorderRadius.circular(24.r),
-            ),
+            width: 45.sp,
+            height: 45.sp,
+            decoration: BoxDecoration(color: const Color(0xFF414345), shape: BoxShape.circle),
             child: Center(
               child: Image.asset(icon, color: AppColors.white, height: 22.sp),
             ),
           ),
           16.w.width,
           Expanded(
-            child: Text(
-              title,
-              style: AppTextStyles.customText(
-                fontSize: 16,
-                color: AppColors.white,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+            child: Text(title, style: AppTextStyles.customText(fontSize: 16, color: AppColors.white)),
           ),
           Text(
             status,
-            style: AppTextStyles.customText(
-              fontSize: 14,
-              color: statusColor,
-              fontWeight: FontWeight.w400,
-            ),
+            style: AppTextStyles.customText(fontSize: 14, color: statusColor, fontWeight: FontWeight.w400),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildActionItem({
-    required String title,
-    required VoidCallback onTap,
-  }) {
+  Widget _buildActionItem({required String title, required VoidCallback onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.darkGrey),
-          borderRadius: BorderRadius.circular(12.r),
+          border: Border.all(color: AppColors.white.withOpacity(0.2)),
+          borderRadius: BorderRadius.circular(14.sp),
         ),
         child: Row(
           children: [
             Expanded(
-              child: Text(
-                title,
-                style: AppTextStyles.customText(
-                  fontSize: 16,
-                  color: AppColors.white,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              child: Text(title, style: AppTextStyles.customText(fontSize: 16, color: AppColors.white)),
             ),
-            Icon(
-              Icons.chevron_right,
-              color: AppColors.white.withValues(alpha: 0.6),
-              size: 24.sp,
-            ),
+            Icon(Icons.chevron_right, color: AppColors.white, size: 24.sp),
           ],
         ),
       ),

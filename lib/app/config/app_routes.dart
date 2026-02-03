@@ -93,289 +93,251 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.splashView,
       page: () => SplashView(),
-      transition: Transition.fadeIn,
-      transitionDuration: 600.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
         Get.lazyPut<SplashController>(() => SplashController());
       }),
     ),
-
     GetPage(
       name: AppRoutes.onboardingView,
       page: () => OnboardingView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 400.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.languageView,
       page: () => LanguageView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 400.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
         Get.lazyPut<LanguageControlller>(() => LanguageControlller());
       }),
     ),
-
     GetPage(
       name: AppRoutes.getStartedView,
       page: () => GetStartedView(),
-      transition: Transition.fadeIn,
-      transitionDuration: 400.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.verificationStepsView,
       page: () => VerificationStepsView(),
-      transition: Transition.rightToLeftWithFade,
-      transitionDuration: 450.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.completeVerificationView,
       page: () => ComleteVerificationView(),
-      transition: Transition.fadeIn,
-      transitionDuration: 400.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.setupWalletView,
       page: () => SetupWalletView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 450.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.loginView,
       page: () => LoginView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 400.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
         Get.lazyPut<LoginController>(() => LoginController());
       }),
     ),
-
     GetPage(
       name: AppRoutes.signUpView,
       page: () => SignUpView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 400.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
         Get.lazyPut<SignUpController>(() => SignUpController());
       }),
     ),
-
     GetPage(
       name: AppRoutes.forgotPasswordView,
       page: () => ForgotPasswordView(),
-      transition: Transition.downToUp,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
         Get.lazyPut<ForgotPasswordController>(() => ForgotPasswordController());
       }),
     ),
-
     GetPage(
       name: AppRoutes.verificationView,
       page: () => VerificationView(),
-      transition: Transition.fadeIn,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.selfieVerificationView,
       page: () => SelfieVerificationView(),
-      transition: Transition.rightToLeftWithFade,
-      transitionDuration: 450.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
-        Get.lazyPut<SelfieVerificationController>(
-          () => SelfieVerificationController(),
-        );
+        Get.lazyPut<SelfieVerificationController>(() => SelfieVerificationController());
       }),
     ),
-
     GetPage(
       name: AppRoutes.idCardVerificationView,
       page: () => IDCardVerificationView(),
-      transition: Transition.rightToLeftWithFade,
-      transitionDuration: 450.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
-        Get.lazyPut<IDCardVerificationController>(
-          () => IDCardVerificationController(),
-        );
+        Get.lazyPut<IDCardVerificationController>(() => IDCardVerificationController());
       }),
     ),
-
     GetPage(
       name: AppRoutes.biometricVerificationView,
       page: () => BioMetricVerificationView(),
-      transition: Transition.fadeIn,
-      transitionDuration: 400.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
-        Get.lazyPut<BiometricVerificationController>(
-          () => BiometricVerificationController(),
-        );
+        Get.lazyPut<BiometricVerificationController>(() => BiometricVerificationController());
       }),
     ),
-
     GetPage(
       name: AppRoutes.doneVerificationView,
       page: () => DoneVerificationView(),
-      transition: Transition.fadeIn,
-      transitionDuration: 400.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
-        Get.lazyPut<DoneVerificationController>(
-          () => DoneVerificationController(),
-        );
+        Get.lazyPut<DoneVerificationController>(() => DoneVerificationController());
       }),
     ),
-
     GetPage(
       name: AppRoutes.bottomBarView,
       page: () => BottomBarView(),
-      transition: Transition.fadeIn,
-      transitionDuration: 500.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
         Get.lazyPut<BottomBarController>(() => BottomBarController());
         Get.lazyPut<ProfileController>(() => ProfileController());
       }),
     ),
-
     GetPage(
       name: AppRoutes.allActivityView,
       page: () => AllActivityView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.supportView,
       page: () => SupportView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.currencyView,
       page: () => CurrencyView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.recoveryPhaseView,
       page: () => RecoveryPhaseView(),
-      transition: Transition.fadeIn,
-      transitionDuration: 400.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
         Get.lazyPut<PhraseController>(() => PhraseController());
       }),
     ),
-
     GetPage(
       name: AppRoutes.initiateTransfer,
       page: () => InitiateTransfer(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
-    // commented routes intentionally preserved
     GetPage(
       name: AppRoutes.regulatoryIdentityView,
       page: () => RegulatoryIdentityView(),
-      transition: Transition.fadeIn,
-      transitionDuration: 400.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.buyAssetView,
       page: () => BuyAssetView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.solToolView,
       page: () => SolToolView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.snipperToolView,
       page: () => SnipperToolView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
         Get.lazyPut<SnipperToolController>(() => SnipperToolController());
       }),
     ),
-
     GetPage(
       name: AppRoutes.volumeToolView,
       page: () => VolumeToolView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.autoLockTimeView,
       page: () => AutoLockTimeView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
         Get.lazyPut<AutoLockController>(() => AutoLockController());
       }),
     ),
-
     GetPage(
       name: AppRoutes.aboutusView,
       page: () => AboutUsView(),
-      transition: Transition.fadeIn,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.privacyView,
       page: () => PrivacyView(),
-      transition: Transition.fadeIn,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.termServiceView,
       page: () => TermServiceView(),
-      transition: Transition.fadeIn,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {}),
     ),
-
     GetPage(
       name: AppRoutes.changePinView,
       page: () => ChangePinView(),
-      transition: Transition.rightToLeft,
-      transitionDuration: 350.ms,
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       binding: BindingsBuilder(() {
         Get.lazyPut<ChangePinController>(() => ChangePinController());
       }),
     ),
   ];
+
 }
 
 // abstract class AppPages {

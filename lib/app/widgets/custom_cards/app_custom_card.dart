@@ -10,24 +10,19 @@ class AppCustomCard extends StatelessWidget {
   final VoidCallback onPressed;
   final bool isSelected;
 
-  const AppCustomCard({
-    super.key,
-    required this.language,
-    required this.onPressed,
-    required this.isSelected,
-  });
+  const AppCustomCard({super.key, required this.language, required this.onPressed, required this.isSelected});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadius.circular(12.r),
+      borderRadius: BorderRadius.circular(16.sp),
       onTap: onPressed,
       child: Container(
         height: 70.h,
         decoration: BoxDecoration(
-          border: Utils.greenBorder,
-          color: AppColors.primarySoft,
-          borderRadius: BorderRadius.circular(12.r),
+          border: Border.all(color: Colors.white.withOpacity(0.08)),
+          color: Color(0xff1CE3A1).withOpacity(0.12),
+          borderRadius: BorderRadius.circular(16.sp),
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
@@ -43,11 +38,7 @@ class AppCustomCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   language,
-                  style: AppTextStyles.customText(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.white,
-                  ),
+                  style: AppTextStyles.customText(fontSize: 16.sp, fontWeight: FontWeight.w500, color: AppColors.white),
                 ),
               ),
 
@@ -57,20 +48,14 @@ class AppCustomCard extends StatelessWidget {
                 height: 20.w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(
-                    color: isSelected ? AppColors.white : AppColors.grey,
-                    width: 2,
-                  ),
+                  border: Border.all(color: isSelected ? AppColors.white : AppColors.grey, width: 2),
                 ),
                 child: isSelected
                     ? Center(
                         child: Container(
                           width: 8.w,
                           height: 8.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.white,
-                          ),
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: AppColors.white),
                         ),
                       )
                     : null,

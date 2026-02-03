@@ -15,45 +15,27 @@ class AppLogoWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        /// APP LOGO — Trust Anchor
         Image.asset(AppAssets.appLogo, width: double.infinity, height: 130.h)
             .paddingSymmetric(horizontal: 12.w)
             .animate()
-            .fadeIn(duration: 700.ms)
-            .scale(
-              begin: const Offset(0.97, 0.97),
-              end: const Offset(1, 1),
-              curve: Curves.easeOutCubic,
-            ),
+            .fadeIn(duration: 900.ms, curve: Curves.easeOutQuart)
+            .scale(begin: const Offset(0.94, 0.94), end: const Offset(1, 1), duration: 900.ms, curve: Curves.easeOutQuart),
 
-        10.h.height,
+        14.h.height,
 
-        /// ENGLISH TAGLINE
         Text(
-              "The national gateway for secure digital asset management and institutional governance.",
-              textAlign: TextAlign.center,
-              style: AppTextStyles.customText12(
-                color: AppColors.white.withValues(alpha: 0.85),
-                fontWeight: FontWeight.w500,
-                height: 1.4,
-              ),
-            )
-            .animate(delay: 250.ms)
-            .fadeIn(duration: 550.ms)
-            .slideY(begin: 0.06, end: 0, curve: Curves.easeOut),
+          "The national gateway for secure digital asset management and institutional governance.",
+          textAlign: TextAlign.center,
+          style: AppTextStyles.customText12(color: AppColors.white.withValues(alpha: 0.85), fontWeight: FontWeight.w500, height: 1.45),
+        ).animate(delay: 300.ms).fadeIn(duration: 700.ms, curve: Curves.easeOutCubic).slideY(begin: 0.08, end: 0, duration: 700.ms, curve: Curves.easeOutCubic),
 
-        6.h.height,
+        8.h.height,
 
-        /// ARABIC TAGLINE
         Text(
           "البوابة الوطنية لإدارة الأصول الرقمية والحوكمة المؤسسية",
           textAlign: TextAlign.center,
-          style: AppTextStyles.customText12(
-            color: AppColors.white.withValues(alpha: 0.82),
-            fontWeight: FontWeight.w500,
-            height: 1.4,
-          ),
-        ).animate(delay: 400.ms).fadeIn(duration: 550.ms),
+          style: AppTextStyles.customText12(color: AppColors.white.withValues(alpha: 0.82), fontWeight: FontWeight.w500, height: 1.45),
+        ).animate(delay: 480.ms).fadeIn(duration: 700.ms, curve: Curves.easeOutCubic).slideY(begin: 0.06, end: 0, duration: 700.ms, curve: Curves.easeOutCubic),
       ],
     );
   }
