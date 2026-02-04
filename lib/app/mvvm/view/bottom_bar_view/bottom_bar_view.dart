@@ -40,7 +40,25 @@ class _BottomBarViewState extends State<BottomBarView> {
           resizeToAvoidBottomInset: false,
           extendBody: true,
           backgroundColor: AppColors.black,
-          body: Obx(() => screens[barController.selectedIndex.value]),
+          body: Obx(
+            () => AnimatedSwitcher(
+              duration: const Duration(milliseconds: 350),
+              switchInCurve: Curves.easeOutCubic,
+              switchOutCurve: Curves.easeInCubic,
+              transitionBuilder: (child, animation) {
+                final slide = Tween<Offset>(begin: const Offset(0.15, 0), end: Offset.zero).animate(animation);
+
+                final fade = Tween<double>(begin: 0, end: 1).animate(animation);
+
+                return FadeTransition(
+                  opacity: fade,
+                  child: SlideTransition(position: slide, child: child),
+                );
+              },
+              child: SizedBox(key: ValueKey(barController.selectedIndex.value), child: screens[barController.selectedIndex.value]),
+            ),
+          ),
+
           bottomNavigationBar: Padding(
             padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 12.h),
             child: ClipRRect(
@@ -86,21 +104,41 @@ class _BottomBarViewState extends State<BottomBarView> {
 
     return GestureDetector(
       onTap: () {
-        barController.selectedIndex.value = index;
+        if (!isSelected) {
+          barController.selectedIndex.value = index;
+        }
       },
       child: AnimatedContainer(
-        width: 70.w,
-        duration: const Duration(milliseconds: 250),
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOutCubic,
+        width: 72.w,
         margin: EdgeInsets.symmetric(vertical: 6.h),
-        decoration: BoxDecoration(color: isSelected ? AppColors.primary : Colors.transparent, borderRadius: BorderRadius.circular(16.r)),
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.primary.withOpacity(0.9) : Colors.transparent,
+          borderRadius: BorderRadius.circular(16.r),
+          boxShadow: isSelected ? [BoxShadow(color: AppColors.primary.withOpacity(0.35), blurRadius: 16, offset: const Offset(0, 6))] : [],
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(icon, height: 23.h, color: isSelected ? Colors.white : Colors.white54),
-            5.h.height,
-            Text(
-              label,
-              style: AppTextStyles.customText(fontSize: 14, fontWeight: FontWeight.w500, color: isSelected ? Colors.white : Colors.white54),
+            AnimatedSlide(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOut,
+              offset: isSelected ? const Offset(0, -0.08) : Offset.zero,
+              child: AnimatedScale(
+                duration: const Duration(milliseconds: 300),
+                scale: isSelected ? 1.15 : 1.0,
+                child: Image.asset(icon, height: 23.h, color: isSelected ? Colors.white : Colors.white54),
+              ),
+            ),
+            6.h.height,
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 250),
+              opacity: isSelected ? 1 : 0.65,
+              child: Text(
+                label,
+                style: AppTextStyles.customText(fontSize: 13, fontWeight: FontWeight.w500, color: isSelected ? Colors.white : Colors.white54),
+              ),
             ),
           ],
         ),

@@ -34,80 +34,55 @@ class _VerificationViewState extends State<VerificationView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Back Button
-              CustomBackButton()
-                  .animate()
-                  .fadeIn(duration: 400.ms)
-                  .slideX(begin: -0.3, curve: Curves.easeOut),
+              CustomBackButton().animate().fadeIn(duration: 400.ms).slideX(begin: -0.3, curve: Curves.easeOut),
 
               30.h.height,
 
               Text(
-                    AppStrings.indetityVerification,
-                    style: AppTextStyles.customText24(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  )
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 100.ms)
-                  .slideY(begin: -0.2, curve: Curves.easeOut),
+                AppStrings.indetityVerification,
+                style: AppTextStyles.customText24(color: Colors.white, fontWeight: FontWeight.w700),
+              ).animate().fadeIn(duration: 600.ms, delay: 100.ms).slideY(begin: -0.2, curve: Curves.easeOut),
 
               5.h.height,
 
               /// Subtitle
               Text(
-                    AppStrings.indetityVerificationText,
-                    style: AppTextStyles.customText14(
-                      height: 1.2,
-                      color: Colors.white.withValues(alpha: 0.7),
-                      fontWeight: FontWeight.w400,
-                    ),
-                  )
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 200.ms)
-                  .slideY(begin: -0.1, curve: Curves.easeOut),
+                AppStrings.indetityVerificationText,
+                style: AppTextStyles.customText14(height: 1.2, color: Colors.white.withValues(alpha: 0.7), fontWeight: FontWeight.w400),
+              ).animate().fadeIn(duration: 600.ms, delay: 200.ms).slideY(begin: -0.1, curve: Curves.easeOut),
 
               24.h.height,
               _identityVerificationMethods(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.selfieVerificationView);
-                    },
-                    isSelected: true,
-                    imgPath: AppAssets.selfieVerification,
-                    title: AppStrings.selfieVerification,
-                    subTitle: AppStrings.selfieVerificationText,
-                  )
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 200.ms)
-                  .slideY(begin: -0.1, curve: Curves.easeOut),
+                onTap: () {
+                  Get.toNamed(AppRoutes.selfieVerificationView);
+                },
+                isSelected: true,
+                imgPath: AppAssets.selfieVerification,
+                title: AppStrings.selfieVerification,
+                subTitle: AppStrings.selfieVerificationText,
+              ).animate().fadeIn(duration: 600.ms, delay: 200.ms).slideY(begin: -0.1, curve: Curves.easeOut),
 
               16.h.height,
               _identityVerificationMethods(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.idCardVerificationView);
-                    },
-                    isSelected: true,
-                    imgPath: AppAssets.idCardVerification,
-                    title: AppStrings.idCardVerification,
-                    subTitle: AppStrings.idCardVerificationText,
-                  )
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 250.ms)
-                  .slideY(begin: -0.1, curve: Curves.easeOut),
+                onTap: () {
+                  Get.toNamed(AppRoutes.idCardVerificationView);
+                },
+                isSelected: true,
+                imgPath: AppAssets.idCardVerification,
+                title: AppStrings.idCardVerification,
+                subTitle: AppStrings.idCardVerificationText,
+              ).animate().fadeIn(duration: 600.ms, delay: 250.ms).slideY(begin: -0.1, curve: Curves.easeOut),
 
               16.h.height,
               _identityVerificationMethods(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.biometricVerificationView);
-                    },
-                    isSelected: false,
-                    imgPath: AppAssets.biometricVerification,
-                    title: AppStrings.bioMetric,
-                    subTitle: AppStrings.bioMetricText,
-                  )
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 300.ms)
-                  .slideY(begin: -0.1, curve: Curves.easeOut),
+                onTap: () {
+                  Get.toNamed(AppRoutes.biometricVerificationView);
+                },
+                isSelected: false,
+                imgPath: AppAssets.biometricVerification,
+                title: AppStrings.bioMetric,
+                subTitle: AppStrings.bioMetricText,
+              ).animate().fadeIn(duration: 600.ms, delay: 300.ms).slideY(begin: -0.1, curve: Curves.easeOut),
               Spacer(),
               AppCustomButton(
                     onPressed: () {
@@ -119,10 +94,7 @@ class _VerificationViewState extends State<VerificationView> {
                   .paddingSymmetric(horizontal: 20.w)
                   .animate(delay: 1000.ms)
                   .fadeIn(duration: 600.ms)
-                  .scale(
-                    begin: const Offset(0.95, 0.95),
-                    curve: Curves.easeOutBack,
-                  ),
+                  .scale(begin: const Offset(0.95, 0.95), curve: Curves.easeOutBack),
               30.h.height,
             ],
           ),
@@ -159,18 +131,12 @@ class _VerificationViewState extends State<VerificationView> {
                 children: [
                   Text(
                     title,
-                    style: AppTextStyles.customText16(
-                      color: AppColors.white,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: AppTextStyles.customText16(color: AppColors.white, fontWeight: FontWeight.w500),
                   ),
                   4.h.height,
                   Text(
                     subTitle,
-                    style: AppTextStyles.customText12(
-                      color: AppColors.white.withOpacity(0.8),
-                      fontWeight: FontWeight.w400,
-                    ),
+                    style: AppTextStyles.customText12(color: AppColors.white.withOpacity(0.8), fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -178,11 +144,7 @@ class _VerificationViewState extends State<VerificationView> {
 
             Align(
               alignment: Alignment.center,
-              child: Icon(
-                Icons.check_circle_rounded,
-                color: isSelected ? AppColors.primary : AppColors.darkGrey,
-                size: 24.w,
-              ),
+              child: Icon(Icons.check_circle_rounded, color: isSelected ? AppColors.primary : AppColors.darkGrey, size: 24.w),
             ),
           ],
         ).paddingAll(13.sp),

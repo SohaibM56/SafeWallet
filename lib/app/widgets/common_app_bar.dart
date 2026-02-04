@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:safewallet/app/config/app_colors.dart';
 import 'package:safewallet/app/config/app_text_style.dart';
+import 'package:safewallet/app/config/padding_extensions.dart';
 import 'package:safewallet/app/config/utils.dart';
 import 'package:safewallet/app/widgets/sizedbox_extension.dart';
 
@@ -106,10 +107,10 @@ class CustomDataShow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: 80.h,
-      decoration: BoxDecoration(image: DecorationImage(image: AssetImage(AppAssets.glassRoundCard))),
-
+      decoration: BoxDecoration(
+        image: DecorationImage(image: AssetImage(AppAssets.glassRoundCard), fit: BoxFit.fill),
+        borderRadius: BorderRadius.circular(10.sp),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -140,7 +141,7 @@ class CustomDataShow extends StatelessWidget {
             child: customStatus(status: 'Region', imagePath: AppAssets.regionIcon, tittle: 'KSA'),
           ),
         ],
-      ),
+      ).paddingVertical(7.h),
     ).animate().fadeIn(duration: 600.ms, delay: 200.ms).slideY(begin: 0.3, curve: Curves.easeOutCubic);
     // .animate()
     // .fadeIn(duration: 600.ms, delay: 300.ms)
@@ -163,18 +164,18 @@ class CustomDataShow extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(imagePath, height: 15.h, width: 15.w, color: AppColors.lightTextColor),
-
+            Image.asset(imagePath, height: 15.h, color: AppColors.lightTextColor),
             4.w.width,
             Text(
               status,
-              style: AppTextStyles.customTextRboto(fontWeight: FontWeight.w500, color: AppColors.lightTextColor, fontSize: 11.sp),
+              style: AppTextStyles.customText(fontWeight: FontWeight.w500, color: AppColors.lightTextColor, fontSize: 9),
             ),
           ],
         ),
+        3.h.height,
         Text(
           tittle,
-          style: AppTextStyles.customTextRboto(fontWeight: FontWeight.w600, color: AppColors.white, fontSize: 14),
+          style: AppTextStyles.customText(fontWeight: FontWeight.w600, color: AppColors.white, fontSize: 12),
         ),
       ],
     );

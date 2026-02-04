@@ -38,7 +38,8 @@ class _ComleteVerificationViewState extends State<ComleteVerificationView> {
             // Title
             Text(
                   AppStrings.completeVerificationTitle,
-                  style: AppTextStyles.customText28(color: Colors.white, fontWeight: FontWeight.w700),
+                  textAlign: TextAlign.center,
+                  style: AppTextStyles.customText26(color: Colors.white, fontWeight: FontWeight.w700),
                 )
                 .paddingSymmetric(horizontal: 30.w)
                 .animate()
