@@ -374,15 +374,15 @@ class _RecoveryPhaseViewState extends State<RecoveryPhaseView> {
 
             20.h.height,
 
-            GestureDetector(
-              onTap: () {
-                controller.phase.value = RecoveryPhase.generate;
-              },
-              child: Text(
-                "Back to Seed Phase",
-                style: AppTextStyles.customText(fontSize: 13.sp, color: Colors.white.withValues(alpha: 0.5), fontWeight: FontWeight.w400),
-              ),
-            ).animate().fadeIn(duration: AppAnimations.normal, delay: 900.ms),
+            // GestureDetector(
+            //   onTap: () {
+            //     controller.phase.value = RecoveryPhase.generate;
+            //   },
+            //   child: Text(
+            //     "Back to Seed Phase",
+            //     style: AppTextStyles.customText(fontSize: 13.sp, color: Colors.white.withValues(alpha: 0.5), fontWeight: FontWeight.w400),
+            //   ),
+            // ).animate().fadeIn(duration: AppAnimations.normal, delay: 900.ms),
           ],
         ),
       ),
